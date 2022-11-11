@@ -1,0 +1,264 @@
+h1:preface Preface
+h1:intro Introduction
+h2:the-power-of-repetition-and-myummcomplicated-history-with-statistics The power of repetition (and my…umm… history with statistics)
+h2:but-theres-a-better-way But there’s a better way
+h2:the-curriculum-hasnt-changed-in-50-years The Curriculum Hasn’t Changed in 50 Years!
+h2:the-general-linear-model-approach The General Linear Model Approach
+h1:ethics Ethics
+h2:history-of-the-replication-crisis History of the Replication Crisis
+h3:dederick-stapel Dederick Stapel
+h3:darryl-bem Darryl Bem
+h3:the-p-hacking-article The  Article
+h2:p-hacking P-hacking
+h2:the-scientific-method-movement The Scientific Method Movement
+h2:values-versus-ethics Values versus Ethics
+h2:the-open-science-values The Open Science Values
+h3:protecting-humanity 1. Protecting humanity
+h3:seek-truth 2. Seek truth
+h3:openness-and-transparency. 3. Openness and transparency.
+h3:humility-and-skepticism. 4. Humility and skepticism.
+h3:dissemination. 5. Dissemination.
+h2:making-change Making Change
+h2:further-data-analysis-ethics. Further data analysis ethics.
+h1:section 
+h1:measurement Measurement
+h2:why-am-i-talking-about-measurement Why am I talking about measurement?
+h2:constructs Constructs
+h2:operational-definitions Operational Definitions
+h2:validity Validity
+h3:evaluating-validity Evaluating Validity
+h2:reliability Reliability
+h3:evaluating-reliability Evaluating reliability
+h3:increasing-reliability Increasing Reliability
+h2:variable-types Variable types
+h3:predictor-versus-outcome-variables Predictor versus Outcome Variables
+h3:measurement-scales Measurement scales
+h2:take-home-message Take-home message
+h1:univariate-distributions Univariate Distributions
+h2:categorical-variables Categorical Variables
+h3:column-sorting Column Sorting
+h3:visualizing Visualizing
+h4:line-chart Line Chart
+h4:pie-charts Pie Charts
+h4:bar-charts Bar Charts
+h3:interpreting-bar-charts Interpreting Bar Charts
+h4:redundant-labels Redundant Labels
+fig:redundant Illustration of 
+h4:unknownunexpected-labels Unknown/Unexpected Labels
+h4:swapped-labels Swapped Labels
+h4:small-sample-sizes Small Sample Sizes
+h4:practice Practice
+h4:visualizing-bar-charts-in-jasp Visualizing Bar Charts in JASP
+h4:visualizing-bar-charts-in-r Visualizing Bar Charts in R
+h2:numeric-variables Numeric Variables
+h3:what-to-look-out-for What to Look Out For
+h4:normal-bell-curved-distributions Normal (Bell-Curved) Distributions
+h4:outliers Outliers
+h4:skewness Skewness
+h4:zero-inflated-data Zero-Inflated Data
+h4:bimodal-data Bimodal data
+h4:visualizing-histograms-in-r Visualizing Histograms in R
+tab:unitab11 Example data where R will convert a numeric variable to a character. Sometimes R treats numbers as nominal variables. This often happens when you import a column with nominal values (in this case 
+h4:visualizing-histograms-in-jasp Visualizing Histograms in JASP
+tab:uni Example data where R will convert a numeric variable to a character. Sometimes R treats numbers as nominal variables. This often happens when you import a column with nominal values (in this case 
+h1:univariate-estimates Univariate Estimates
+h2:central-tendency-whats-the-most-likely-score Central Tendency: What’s the most likely score?
+h3:mean Mean
+h4:advantages-of-the-mean Advantages of the Mean
+h4:disadvantages Disadvantages
+h3:mode Mode
+h4:disadvantages-of-the-mode Disadvantages of the Mode
+h4:advantages-of-the-mode Advantages of the Mode
+h3:median Median
+h4:disadvantages-of-the-median Disadvantages of the Median
+h4:advantages-of-the-median Advantages of the Median
+h3:central-tendency-in-jasp Central Tendency in JASP
+h3:central-tendency-in-r Central Tendency in R
+h2:variability-how-precise-are-the-scores Variability: How precise are the scores?
+h3:range Range
+h4:advantagesdisadvantages-of-the-range Advantages/Disadvantages of the Range
+h3:deviations-standard-deviation-and-variance Deviations, Standard Deviation, and Variance
+h4:advantagesdisadvantages-of-the-standard-deviation Advantages/Disadvantages of the Standard Deviation
+h3:median-absolute-deviation Median Absolute Deviation
+h4:advantagesdisadvantages-of-the-mad Advantages/Disadvantages of the MAD
+h3:variability-in-jasp Variability in JASP
+h3:variability-in-r Variability in R
+h2:z-scores-and-probability Z-Scores and Probability
+h1:bivariate-visualizations Bivariate Visualizations
+h2:avengers-dataset Avengers Dataset
+h3:visualizing-bivariate-relationships-in-r-using-flexplot Visualizing bivariate relationships in R using Flexplot
+h3:visualizing-bivariate-relationships-in-jasp-using-visual-modeling Visualizing bivariate relationships in JASP using Visual Modeling
+h2:scatterplots-numeric-on-numeric Scatterplots: Numeric on numeric
+h3:what-to-look-for What to look for
+h3:problems-to-look-out-for Problems to look out for
+h4:nonlinearity Nonlinearity
+h4:bivariate-outliers Bivariate Outliers
+fig:leverage High Leverage Datapoints Follow the Pattern, \nbut Make It Look Stronger Than It Really Is.
+h3:practice-1 Practice
+h2:beeswarm-plots-categorical-on-numeric Beeswarm plots: Categorical on Numeric
+h3:what-to-look-for-1 What to look for
+h3:problems-to-look-out-for-1 Problems to look out for
+h4:uneven-sample-sizes Uneven sample sizes
+h4:skewness-1 Skewness
+h2:other-bivariate-plots Other Bivariate Plots
+h3:logistic-plots-numeric-on-binary Logistic Plots: Numeric on Binary
+h3:association-plots-categorical-on-categorical Association Plots: Categorical on Categorical
+h1:bivariate-estimates Bivariate Estimates
+h2:statistics-help-us-predict-things Statistics Help Us Predict Things
+h2:conditional-estimates Conditional Estimates
+h2:estimates-for-numeric-predictors Estimates for Numeric Predictors
+h3:slopes-and-intercepts Slopes and Intercepts
+fig:bivarestalgebraerror Statistics is just algebra with error!
+h3:making-predictions Making Predictions
+h3:when-slopesintercepts-dont-make-sense When Slopes/Intercepts Don’t Make Sense
+h3:correlation-coefficients Correlation Coefficients
+h4:whats-a-good-correlation What’s a  Correlation?
+h4:computing-estimates-in-r Computing Estimates in R
+h2:estimates-for-categorical-predictors Estimates for Categorical Predictors
+h3:slopes-and-intercepts-for-categorical-predictors Slopes and Intercepts for Categorical Predictors?
+h3:cohens-d Cohen’s 
+h1:diagnostics Diagnostics
+h2:models-are-tools.-and-they-dont-have-feelings. Models are tools. And they don’t have feelings.
+fig:diagnosticsnonlinear The blue line is clearly a poor-fitting model. Red is good. Yay.
+h2:residuals Residuals
+h2:diagnostic-tool-1-histogram-of-the-residuals Diagnostic tool # 1: Histogram of the residuals
+h3:sensitivity-analyses Sensitivity Analyses
+h2:diagnostic-tool-2-residual-dependence-rd-plot-for-linearity Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity
+h3:statistical-models-are-lazy Statistical Models are Lazy
+fig:diagnosticsrepeat This relationship is NOT linear, but the fit might deceive us into thinking it is!
+h3:residual-dependence-plots Residual Dependence Plots
+h3:how-to-fix-nonlinearity How to Fix Nonlinearity
+h3:how-to-tell-if-nonlinearity-is-a-problem How to tell if nonlinearity is a problem?
+h3:how-much-nonlinearity-is-too-much How much nonlinearity is too much?
+h2:diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity
+h3:spread-location-sl-plots Spread-Location (SL) Plots
+h2:outliers-1 Outliers
+h2:independence Independence
+h3:why-do-models-assume-independence Why do models assume independence?
+h3:what-happens-if-you-violate-the-independence-assumption What happens if you violate the independence assumption?
+h3:how-to-detect-and-handle-dependent-data How to detect and handle dependent data?
+h2:summary Summary
+h1:section-1 
+h1:the-general-linear-model The General Linear Model
+h2:wax-on-wax-off Wax on, wax off
+h2:what-is-a-model What is a model
+h2:what-is-the-general-linear-model What is the general linear model
+fig:decisiongtreeglm This diagram shows the old way of doing things. It is hopelessly complicated and it is much better to just use a linear model.
+h2:what-makes-a-good-statistical-model What makes a good statistical model?
+h2:prediction-versus-group-differences Prediction Versus Group Differences
+h3:out-with-the-old-in-with-the-shiny Out with the old, in with the shiny
+h2:one-sample-t-test One-Sample T-Test
+h3:traditional-analysis Traditional Analysis
+h3:one-sample-t-test-as-a-glm One-Sample T-Test as a GLM
+h2:independent-sample-t-test Independent Sample T-Test
+h3:preparing-data-for-a-t-test Preparing Data for a t-test
+h3:traditional-t-test-analysis Traditional t-test Analysis
+h3:glm-approach GLM Approach
+h2:related-t-test Related t-test
+h3:traditional-related-t-test-analysis Traditional Related t-test Analysis
+h3:glm-analysis-of-a-related-t-test GLM Analysis of a Related t-test
+h2:anova ANOVA
+h3:traditional-analysis-of-anova Traditional Analysis of ANOVA
+h4:multiple-comparisons Multiple comparisons
+h3:anova-as-a-glm ANOVA as a GLM
+h2:regression Regression
+h3:traditional-regression-analysis Traditional Regression Analysis
+h3:glm-approach-1 GLM Approach
+h2:categorical-outcome-variables Categorical Outcome Variables
+h2:its-all-the-same It’s All the Same!
+h1:multivariate-general-linear-models Multivariate General Linear Models
+h2:what-is-a-multivariate-relationship What is a multivariate relationship?
+h2:reasons-to-use-multivariate-glms Reasons to use multivariate GLMs
+h2:visualizing-multivariate-relationships-in-flexplot Visualizing Multivariate Relationships in Flexplot
+h3:encoding-additional-dimension-using-colorslinessymbols-or-panels Encoding Additional Dimension Using Colors/Lines/Symbols or Panels
+h3:encoding-additional-dimensions-using-added-variable-plots Encoding Additional Dimensions Using Added Variable Plots
+h4:what-do-avps-do-and-why What Do AVPs Do and Why?
+h4:using-flexplot-to-do-avps Using Flexplot To Do AVPs
+h2:summary-1 Summary
+h2:practice-2 Practice
+h1:multivariate-glms-conditioning-effects Multivariate GLMs: Conditioning Effects
+h2:multicollinearity Multicollinearity
+h2:controlling-by-conditioning Controlling by conditioning
+h2:conditioning-is-just-residualizing Conditioning is just residualizing
+h2:all-the-ways-of-thinking-about-conditioning All the ways of thinking about 
+h2:be-careful-about-conditioning-and-using-multiple-regression Be careful about conditioning! (And using multiple regression)
+h3:conditioning-will-not-prove-causation. 1. Conditioning will not prove causation.
+h3:be-careful-what-you-condition-on 2. Be Careful what you condition on
+h3:only-study-and-interpret-the-effects-of-the-interest-variable 3. Only study and interpret the effects of the interest variable
+h3:conditioning-with-interaction-effects. 4. Conditioning with interaction effects.
+h2:additional-estimates-of-interest Additional Estimates of Interest
+h3:slopes Slopes
+h3:r-squared. R squared.
+h3:semi-partial-r2 Semi-Partial 
+h2:applied-analyses Applied Analyses
+h3:ancova ANCOVA
+fig:mvcondmodelplot Plot of therapy group scores on weight loss for different levels of motivation.
+fig:mvcondavp Added Variable Plot of the therapy.type scores on weight loss, after controlling for motivation.
+h4:reporting-results-for-an-ancova Reporting Results for an ANCOVA
+h5:example-reporting-of-anova-radical Example Reporting of ANOVA (Radical)
+tab:estimatesradical Mean Differences and confidence intervals for the behaviorist, cognitive, and control groups.
+h5:example-reporting-of-anova-traditionalist Example Reporting of ANOVA (Traditionalist)
+h5:example-reporting-of-anova-conventionalist Example Reporting of ANOVA (Conventionalist)
+h3:multiple-regression Multiple Regression
+fig:mrmultivar Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent loess lines.
+fig:mrquad Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent fits from a quadratic regression.
+fig:mrdiag Diagnostics of the model predicting agility from strength, after controlling for speed and flexibility
+fig:mravp Plot of the relationship between strength and agility, after controlling for speed and flexibility. The blue lines represent the final fit of the quadratic regression model.
+h4:reporting-of-a-multiple-regression Reporting of a Multiple Regression
+h5:example-reporting-of-multiple-regression-radical Example Reporting of multiple regression (Radical)
+h5:example-reporting-of-multiple-regression-traditionalist Example Reporting of multiple regression (Traditionalist)
+h5:example-reporting-of-multiple-regression-conventionalist Example Reporting of multiple regression (Conventionalist)
+h1:multivariate-glms-interaction-effects Multivariate GLMs: Interaction Effects
+h2:the-language-of-interaction-effects The Language of Interaction Effects
+h2:visualizing-interaction-effects Visualizing interaction effects
+h3:a-simple-visual-trick-to-tell-if-theres-an-interaction A simple visual trick to tell if there’s an interaction
+h2:interactions-between-numeric-variables Interactions between numeric variables
+h2:the-glm-for-interaction-effects The GLM for interaction effects
+h2:common-things-people-screw-up-in-the-literature Common things people screw up in the literature
+h3:gripe-1.-interpreting-main-effects-when-interactions-exist Gripe #1. Interpreting main effects when interactions exist
+h3:gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova Gripe #2: Failing to check whether interactions exist when doing an ANCOVA
+h2:estimates-for-interactions Estimates for interactions
+h2:applied-analyses-1 Applied Analyses
+h3:factorial-anova Factorial ANOVA
+h4:reporting-results-for-a-factorial-anova Reporting Results for a Factorial ANOVA
+h3:multiple-regression-1 Multiple Regression
+h4:reporting-results-for-a-multiple-regression Reporting Results for a Multiple Regression
+h1:multivariate-glms-conditioning-effects-1 Multivariate GLMs: Conditioning Effects
+h2:multicollinearity-1 Multicollinearity
+h2:controlling-by-conditioning-1 Controlling by conditioning
+h2:conditioning-is-just-residualizing-1 Conditioning is just residualizing
+h2:all-the-ways-of-thinking-about-conditioning-1 All the ways of thinking about 
+h2:be-careful-about-conditioning-and-using-multiple-regression-1 Be careful about conditioning! (And using multiple regression)
+h3:conditioning-will-not-prove-causation.-1 1. Conditioning will not prove causation.
+h3:be-careful-what-you-condition-on-1 2. Be Careful what you condition on
+h3:only-study-and-interpret-the-effects-of-the-interest-variable-1 3. Only study and interpret the effects of the interest variable
+h3:conditioning-with-interaction-effects.-1 4. Conditioning with interaction effects.
+h2:additional-estimates-of-interest-1 Additional Estimates of Interest
+h3:slopes-1 Slopes
+h3:r-squared.-1 R squared.
+h3:semi-partial-r2-1 Semi-Partial 
+h2:applied-analyses-2 Applied Analyses
+h3:ancova-1 ANCOVA
+h3:multiple-regression-2 Multiple Regression
+h1:probability Probability
+h2:why-and-when-we-need-probability Why and when we need probability?
+h2:finite-samples Finite Samples
+h2:infinite-sets Infinite sets
+h2:infinite-sets-and-sampling Infinite Sets and Sampling
+h2:how-to-ensure-a-representative-sample How to ensure a representative sample
+h2:probability-density-functions Probability Density Functions
+h3:computing-probabilities-from-pdfs Computing Probabilities From PDFs
+h2:chapter-summary Chapter Summary
+h1:bayesprobability Probability Two: Bayesian Versus Frequentist Approaches
+h2:a-tale-of-two-roomates A Tale of Two Roomates
+h3:toms-approach Tom’s Approach
+h3:egons-approach Egon’s Approach
+h3:what-do-they-conclude What do they conclude?
+h2:the-bayesian-approach The Bayesian Approach
+h3:strengths-of-the-bayesian-approach Strengths of the Bayesian approach
+h3:weaknessesobjections-to-the-bayesian-approach Weaknesses/Objections to the Bayesian Approach
+h2:frequentistlikelihood-description Frequentist/Likelihood Description
+h3:strengths Strengths
+h3:weaknesses Weaknesses
+h1:probability-3-the-central-limit-theorem Probability 3: The Central Limit Theorem
+

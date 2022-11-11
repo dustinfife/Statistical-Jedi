@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction | stats-jedi.knit</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction | stats-jedi.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction | stats-jedi.knit" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ethics.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparison-statistics"><i class="fa fa-check"></i>Model Comparison Statistics</a>
+<ul>
+<li><a href="model-comparisons.html#r2"><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1>Introduction</h1>
+<p>I was an undergraduate once. And…let’s just say the statistics force wasn’t strong with this one. At least initially. Given that my innate intellectual prowess was somewhat lacking, I knew I needed a boost to get into graduate school. So, I figured one of the best things I could do, aside from getting a statistics minor (more on that later), was to write an honor’s thesis.</p>
+<p>And so I did.</p>
+<p>In retrospect, it was kind of a dumb idea. I wasn’t terribly interested in the project. And I hate inconveniencing people. Yet here I was, barging into professors’ offices, begging for them to let me inconvenience them <em>and</em> their students to conduct a study.</p>
+<p>I still have nightmares about my data collection endeavors.</p>
+<p>Well, I finally collected the data I needed and went to my mentor for analysis. Cuz I had no idea what to do with that shiz.</p>
+<p>Well, it turns out, neither did my mentor. Unbeknownst to me, the data I collected and the research question I asked required an extremely sophisticated analysis. Neither my mentor nor I had any idea how to even begin to start answering the question.</p>
+<p>So, I did what any daunted student would do…I went to the <a href="http://https://statistics.byu.edu/">Statistics Jedis</a> themselves. You see, my friends, at my alma mater, we were graced with the presence of a statistics jedi training facility (translation…a department of statistics). And since I was a padawan in training there anyhow, I went to see one of my professors.</p>
+<p><img src="drawings/schaalje.jpg" alt="drawing" style="width:500px; float:right;"/></p>
+<p>Dr. Bruce Schallje. With silver streaked hair, a continually cocked head, and eyebrows that remained fixed on a distant problem, the guy was brilliant, yet humble. He wore jeans and brown leather boots, always boots. In fact, outside his earshot, we actually called him “Boots.”</p>
+<p>As I approached his office, I imagined what it would look like to see raw statistical power manifest. Would he, perhaps, close his eyes and hum gently? Would he sit nomeste-style as insights seeped like mist into his flannel shirt? Or perhaps, his power would manifest by shouting brilliant insights as he pitterpattered on a keyboard like a hacker on a movie. Or maybe it would be like Neo in the Matrix…Dr. Schallje could just look at the data spreadsheet and see the hidden patterns in the data.</p>
+<p>But no.</p>
+<p>The man graphed the data.</p>
+<p>Yeah. He graphed it.</p>
+<p>And that, my friends, is where his brilliance really showed. The solution to the problem was, as it turned out, extremely simple. One only needed to plot the data.</p>
+<p>Yet at the same time, I thought, “That’s it? I could have done that!”</p>
+<p>I have thought over the years about my initial observation of a statistician in his native environment. The absolute mysticism I felt said more about me than about statistics. It was only mystical because I didn’t understand statistics.</p>
+<p>Let me say that again, but more tweet-worthy:</p>
+<div class="rmdtweet">
+<p>
+Those who treat statistics with reverence or a measure of mysticism only reveal they really fail to understand statistics.
+</p>
+</div>
+<p>There’s nothing mystical about statistics. That’s both good and bad. Good for you. Bad for me. It’s bad for me because I have lofty and excessive delusions of grandeur. I would love to see myself as a statistical Jedi with superpowers that exceed my own ambitions. Alas, that is not the case. There’s nothing magical or mystical about statistics. It’s actually surprisingly simple.</p>
+<p>That really sucks when you want to believe you’re special.</p>
+<p>And it wasn’t entirely my fault, I believe. Textbook writers of old have been guilty of making it way more complicated than necessary. Sums of squares, degrees of freedom, rejecting null hypotheses in infinite universes of repeated experiments?…come on, guys! Do we really need to invent or perpetuate convoluted concepts to make ourselves feel smarter than we actually are?</p>
+<p>Allow me to burn the veil before you.</p>
+<p>Statistics isn’t that complicated.</p>
+<p>And that’s where the good news comes in. You, my young Padawan, need not be daunted by the journey before you. Whatever PTSD you suffer from past statistical experience…let it go. Statistics as you knew it is dead to you. Prepare to march upon the enlightened path; one where statistics is not only understandable, but intuitive.</p>
+<p>But it does take repetition.</p>
+<div id="the-power-of-repetition-and-myummcomplicated-history-with-statistics" class="section level2">
+<h2>The power of repetition (and my…umm…<em>complicated</em> history with statistics)</h2>
+<p>My first year at <a href="http://https://www.byu.edu">BYU in Provo, UT</a> I took the undergraduate statistics class in the psychology department. The class was taught by Dr. Kim, a Korean man with a very thick accent. It took me six weeks before I finally realized “shima” was “sigma.”</p>
+<p>But I can handle accents. The bigger problem was the class took place at 8AM, and the guy’s voice was deep and soothing. The guy could have recorded meditation voiceovers and made millions. The moment his mouth opened, my eyelids grew heavier. And heavier.</p>
+<p>And I understood <em>nothing.</em> I was a really bad student. I was so confused it hurt to even try. I didn’t even know what I didn’t know. I didn’t even know how to get help. I was <em>helpless</em>.</p>
+<p>The professor felt bad for me, I think. Somehow, I ended up with a passing grade, having not learned a lick of statistics.</p>
+<p><em>Finally</em>, I thought, <em>that nightmare is over!</em></p>
+<p>Oh no, good friends The nightmare had just begun.</p>
+<p>About the time I was applying to graduate school, I had a painful realization: I was a horrible candidate. It didn’t make sense to waste hundreds of dollars to apply to graduate school when I likely wasn’t going to be accepted anywhere but Trump University.</p>
+<p>So I decided to take another year.</p>
+<p>But what could I do in a year and a half that would make a difference?</p>
+<p>The thought came before I could dismiss it. And that thought brough cold, dark fear to the depths of my bones.</p>
+<p>I could minor in statistics.</p>
+<p>Frightening, that.</p>
+<p>But, I knew it would be a nice addition to my application. So I did it.</p>
+<p>The next year and a half was quite painful. I took a graduate level introductory stats class, followed by a second graduate stats course. I then took the introductory stats class in the statsitics department, along with matrix algebra and statistical computing.</p>
+<p>Then something miraculous happened. I was in my experimental design class, which would have been my <em>seventh</em> stats class. I sat near the front, posture sunken, feeling frightened of the next concepts, knowing I’d have to struggle for hours to make sense of what he said.</p>
+<p>But something odd happened. I <em>knew</em> what he was saying. And it wasn’t even a struggle to understand him. It was as if I had suddenly awoken from a dream and could speak a foreign language. I <em>knew</em> the language of statistics.</p>
+<p>And since then, it hasn’t always been easy, but it’s been exciting.</p>
+<p>And I think it’s important to realize that statistics is a language. It’s a different way of thinking about how the world works, one that requires training of the mind.</p>
+</div>
+<div id="but-theres-a-better-way" class="section level2">
+<h2>But there’s a better way</h2>
+<p>Lemme take a trip into the deep recesses of your thoughts. I assume you are saying to yourself, “Really?? WTF? I don’t have time to take SEVEN stats classes to get it!”</p>
+<p>I know. I’m surprised I did.</p>
+<p>But, let me assure you it won’t take seven classes. Why? Because you’re way smarter than me. How do I know? I’m a statistician. I’m playing the odds on this one.</p>
+<p>More importantly though, there’s a troubling flaw in how statistics has been taught in the past. My first indication was a conversation with <a href="http://https://www.ou.edu/cas/psychology/people/faculty/robert-terry">Dr. Robert Terry</a> of the <a href="http://https://www.ou.edu">University of Oklahoma</a>. The man sported a gray-haired goatee and a relaxed demeanor–the kind “wait ’til the cows come home” demeanor only a southerner can manage.</p>
+<p>“There may be a problem with how we teach statistics,” he said.</p>
+<p>He grinned, raising an eyebrow, waiting for the question.</p>
+<p>“And what problem is that?” I asked.</p>
+<p>He turned toward his computer, and opened an image:</p>
+<p>[image of Robert’s findings]</p>
+<p>What am I seeing?" I asked, cocking my head. Lines and circles splattered across the image in a haphazard pattern. I couldn’t make any sense of it.</p>
+<p>“These are visual representations of cognitive maps. You can think of it like a graph, showing how the mind processes statistical information. This image,” he pointed to the left graph, “is how experts think about basic statistical concepts. The right image,” he pointed to the other figure, “is how some of our <em>best</em> students conceptualize statistics.”</p>
+<p>He laned back in his chair, grinning smugly. “So, what do you make of it?”</p>
+<p>“They’re different.”</p>
+<p>“Yes!” He leaned forward, eyes aglow. “They’re not only different. We would expect them to be different. But they share <em>no</em> resemblance with one another.”</p>
+<p>“But how?” I asked. “In what ways are they different?”</p>
+<p>“Experts think of statistical concepts as interconnected. Students, on the other hand, see these concepts as quite distinct.”</p>
+<p>That was in 2008.</p>
+<p>For <em>years</em> I have thought about what Robert showed me. Experts. Students. Mind maps. Very <em>different</em> mind maps.</p>
+<p>Does this imply we’re teaching statistics incorrectly? Are we misleading students somehow to see things as distinct when, in fact, they’re quite connected?</p>
+<p>Why yes, yes we are.</p>
+<p>But more on that in a minute.</p>
+</div>
+<div id="the-curriculum-hasnt-changed-in-50-years" class="section level2">
+<h2>The Curriculum Hasn’t Changed in 50 Years!</h2>
+<p>Joseph Rodgers, another of my mentors and eventual collaborators, once gave an address to Division 5 of the American Psychological Association. (This is the stats-nerds/qualitative methods division). In his address, he showed his syllabus from his graduate statistics class from the 1970s.</p>
+<p>If one were to review the topics in his syllabus, they would soon discover the standard curriculum hasn’t changed in 50 years.</p>
+<p>Let that sink in for a minute.</p>
+<p>Although statistics and our understanding of statistics has rapidly evolved over the last 50 years, the way we teach students has <em>not</em>.</p>
+<p>Does anyone see a problem with this?</p>
+<p>Well, I sure do.</p>
+<p>So, the standard curriculum hasn’t changed <em>and</em> students’ mind maps are very qualitatively different from the mind maps of experts.</p>
+<p>I think it’s time for a change. How about you?</p>
+</div>
+<div id="the-general-linear-model-approach" class="section level2">
+<h2>The General Linear Model Approach</h2>
+<p>The standard stats curriculum does indeed teach statistical concepts as very distinct: t-test. ANOVA. Regression. Correlation. Chi-square. Distinct concepts! Ne’r dare to confuse them because they are as different as apples and dirt!</p>
+<p>Actually, no. They’re not.</p>
+<p>It turns out t-tests, ANOVAs, regressions, and correlations are all the same thing. So too are factorial ANOVAs, ANCOVAs, and multiple regressions.</p>
+<p>They’re the same freaking thing. They are all what we call the General Linear Model.</p>
+<p>Why then do people teach them as distinct?</p>
+<p>Beats me!</p>
+<p>Okay, well that’s not entirely true. See the fascinating historical note box below….</p>
+<div class="rmdnote">
+<p>
+In the early history of statistics, there were two major powerhouses: Karl Pearson and Ronald Fisher. Karl, the older of the two, was the one who popularized regression and correlation and developed a bunch of really cool procedures. Ronald Fisher, the young whippersnapper had the gall to write a note to a journal where Karl recently published and publicly <em>correct</em> him for a mistake in calculating something called degrees of freedom.
+</p>
+<p>
+The nerve of Ronny.
+</p>
+<p>
+That started a long, hateful relationship between the two. Ronald Fisher, who utilized statistics for primarily doing agricultural experiments, realized you could perform a regression with a mathematical shortcut that he called the Analysis of Variance (ANOVA). He knew (as did Karl) that ANOVA was just a different way of computing regression. But, being a spiteful academic, Ron decided to use very different terms for many of the same concepts as Karl did (e.g., instead of calling variance, well, ‘variances,’ he called them mean squared errors). Afterall, who wouldn’t fail to give credit to their mortal enemies.
+</p>
+<p>
+So Ronny, again, an experimental researcher, promoted his own names and mathematical shortcuts for experiments, while Karl continued to use standard terminology. Over time, people began to develop some weird misconceptions about ANOVAs, t-tests, and regression; somehow, ANOVAs could demonstrate causation while regression could not, regression can only be used for numeric variables, and ANOVAs are somehow more appropriate and informative for experiments.
+</p>
+<p>
+Yeah, no.
+</p>
+<p>
+They really are the same thing and it’s been quite a tragedy to see people misunderstand them.
+</p>
+</div>
+<p>That is, perhaps, the most controversial and important distinction between my approach and the standard approach. I believe it’s borderline criminal to teach students these are distinct procedures when they are, in fact, the same thing.</p>
+<p>My approach offers several advantages:</p>
+<ul>
+<li>It is easy for student to transition to experts; there’s no need to reshuffle their mind maps.</li>
+<li>When students are taught they’re different, they must invest enormous intellectual resources <em>deciding</em> which analysis to do. By the time they get to interpreting the results, they’re out of resources, so they make poor decisions. When taught using my method, on the other hand, they don’t have to spend hardly <em>any</em> effort deciding which analysis to do. Instead, they invest that mental energy in interpreting results.</li>
+<li>Teaching from a GLM perspective makes the transition to advances statistical procedures intuitive. A mixed model is just a GLM, but with different slopes/intercepts for each cluster. General<em>ized</em> linear models are gener<em>al</em> linear models with different distributions of residuals (and different link functions). Structural Equation Modeling is just a bunch of GLMs slapped into a simultaneous equation. Most students taught the traditional way, again, have to make a very dramatic mental shift before they learn these advanced procedures. When taught my way, these advanced methods are minor extensions.</li>
+<li>GLMs do more than test hypotheses. T-<em>tests</em> are called tests for a reason; they are designed to test for statistical significance. Great. What if you’re interested in estimation? Or visualization? Or prediction? Or model comparison? Sorry, standard statistics approach. You can’t handle it! (Or at least, you’re agnostic about how to handle it). The GLM, on the other hand, handles these situations with aplomb.</li>
+<li>Students can use the same analytic framework for <em>all</em> statistical analyses they perform. With a GLM perspective, they merely identify their predictor(s) and their outcome, then visualize, then study estimates, they study probability estimates. With the other approaches, on the other hand, not only do they have to click on different menus (t-test or ANOVA or regression or chi square), but the type of information they must interpret differs from one analysis to another. (Although p-values, the most easily misunderstood statistic of all time, is a notable exception).</li>
+</ul>
+<p>I’m sure there’s more, but my pizza just arrived, so I’m going to wrap up this chapter.</p>
+<p>My approach isn’t a mere modification, based on personal taste, of the existing statistics curriculum. It is a explicit abandonment of the existing curriculum. Burn that curricular bridge down, I say. Let’s start anew.</p>
+<p>This is the “anew.”</p>
+<p>My approach is characterized by visualization and a general linear model approach. The whole purpose of my curriculum is to teach students to <em>really</em> understand what their data are trying to say. But, for too long, the standard approach to statistics has stuffed the mouth of our data with cotton balls; it couldn’t speak, couldn’t say your interpretation was wrong, couldn’t reveal interesting patterns you missed.</p>
+<p>It could barely breathe.</p>
+<p>And now, my friends, we are drowning in a replication crisis–a crisis caused by suffocating our data.</p>
+<p>This curriculum is designed to give voice to the data. If you adopt my approach, you will gain insights you will have missed using the standard approach. It will prevent publishing embarrassing errors and yield novel insights.</p>
+<p>In short, my approach is about data literacy.</p>
+<p>Ya’ll ready to begin?</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ethics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

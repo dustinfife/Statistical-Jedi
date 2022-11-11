@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Probability 3: The Central Limit Theorem | stats-jedi.utf8</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Probability 3: The Central Limit Theorem | stats-jedi.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Probability 3: The Central Limit Theorem | stats-jedi.utf8" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2021-04-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bayesprobability.html"/>
+
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability-3-the-central-limit-theorem" class="section level1">
+<h1>Probability 3: The Central Limit Theorem</h1>
+<p>Remember the movie Groundhog Day with Bill Murray? In that movie, the main character (played by Bill Murray) relived the same day over and over and over. (It happened to be Groundhog Day, by the way.)</p>
+<p>Because he played the same day over and over again, he was able to predict exactly when the waitress would shatter the dish, where exactly on the street he would be approached by a begger, and what song would wake him in the morning and at what time (I got you babe @ 6am).</p>
+<p>This movie is quite offensive to statisticians.</p>
+<p>But why?</p>
+<p>Because statisticians believe in variability. To a statistician, even if we were to relive the same day over and over, there would be variability. So, on some days, the waitress will shatter the dish. Other days she will not. And the probability that she will drop the dish has a probability density function.</p>
+<p>And, perhaps, the statistician thinks that she has influence over whether the dish will shatter. Maybe she decides that if she wears pink, the dish has a smaller probability of shattering than when she is wearing green.</p>
+<p>Fortunately, for the statistician, she gets to relive the same day over and over. So, of course, she can record the number of times the waitress drops it on pink versus green days.</p>
+<p>But, for most of us, we cannot relive the same day over and over. But, in order to understand the other statistical paradigm (the frequentist/likelihood paradigm), you have to think about ground-hog day.</p>
+<div id="groundhog-day" class="section level2">
+<h2>Groundhog Day</h2>
+<p>Alright, I’m going to swap out my example. Shattering dishes is cool and all, but it’s a binary outcome (shattered or not shattered). Let’s say instead that the time-challenged traveler (Phil Conners, which is Bill Murray’s character) wants to measure people’s reactions to his weather report. (Phil’s a weatherman, by the way). So, he gathers ratings of his weather report from 5 randomly selected individuals, and obtains the following data:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+</tr>
+</tbody>
+</table>
+<p>So, on a 1-10 scale, Phil averaged 6 and his standard deviation was 2.1.</p>
+<p>Not terribly impressive.</p>
+<p>But, Phil really doesn’t care about those 5 people’s opinions. He wants to know the opinions of the <em>population</em> (which, in this case, might be all individuals who watch his weather report). Does the population have an average of 6 as well?</p>
+<p>Phil knows it’s impossible to measure every one of his viewers. But what he <em>can</em> do (but you cannot!) is measure 5 people again on the next repeat day. (And maybe he gets a 5.7 average this time).</p>
+<p>And he can measure again on his <em>next</em> repeat groundhog day. (And maybe he gets a 4.9 average this time).</p>
+<p>And he can measure again on his <em>next</em> repeat groundhog day. (And maybe he gets a 5.2 average this time).</p>
+<p>And maybe Phil does this for 1000 consecutive days. If he were to plot the distribution of <strong>means</strong> across the 1000 relived deays, he might see something like this:</p>
+<p><img src="stats-jedi_files/figure-html/clthistogram-1.png" width="672" /></p>
+<p>Again, Phil is living in a universe where he gets to relive the same day over and over again. Each of the scores represented in the plot above are <strong>means</strong>, not actual scores.</p>
+<p>Now, let’s say that, instead of sampling 5 people, he instead sampled 50. And, let’s say that, again, he did this every (relived) day for 1000 days. What would that look like?</p>
+<p><img src="stats-jedi_files/figure-html/cltlargen-1.png" width="672" /></p>
+<p>Let’s go ahead and put those side-by-side:</p>
+<p><img src="stats-jedi_files/figure-html/cltsidebyside-1.png" width="672" /></p>
+<p>Notice what’s happening here? The <em>spread</em> of the scores is shrinking. Back when Phil was only measuring 5 people, mean scores ranged from about 3.5 to 6.5. When he started measuring 50 people, mean scores range from 4.5 to 5.5.</p>
+</div>
+<div id="the-central-limit-theorem" class="section level2">
+<h2>The Central Limit Theorem</h2>
+<p>This here example illustrates what we call the “central limit theorem,” or CLT as the “in” crowd calls it. In order to understand the CLT, you have to think of yourself as belonging in the Groundhog Day universe. We have to pretend that our experiment is one of an infinite number of experiments that <em>could</em> have been performed, if we were to somehow live the same day over and over again, an infinite number of times.</p>
+<p>The distribution of means, in this case, is called a “sampling distribution of means.”</p>
+<p>By the way, I’ve been talking about <em>means</em>, just to simplify things. But, all estimates we’ve talked about (e.g., slopes, intercepts, mean differences, Cohen’s d). So, you can have a sampling distribution of slopes, which is just a distribution of computed slopes for a bunch of repeated experiments. You can have a sampling distribution of mean differences, which is just a distribution of computed mean difference across a bunch of repeated experiments.</p>
+<p>Actually, I rather think the idea of a “sampling distribution” is bold-worthy:</p>
+<p><strong>A sampling distribution is a hypothetical distribution of some statistic (e.g., mean, correlation, slope) that is (theoretically) computed across multiple (relived) samples</strong></p>
+<p>(Not very tweet-worthy, but it works for now).</p>
+<p>The CLT states that, if you were indeed to relive the same day over and over, and if you were to perform the same experiment over and over, and if you plotted those means (or slopes, or intercepts, or whatever), a few things would happen:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <em>distribution</em> of means (or slopes, intercepts, Cohen’s d, etc.) would be normally distributed. Notice that in all the histograms above, all the distributions are approximately normal. That’s not coincidental. That will always happen. By the way, that will always happen even if the underlying distribution isn’t normal. For example, if you were to roll the dice 10 times, compute the mean, then roll the dice ten more times and compute the mean, and do that a truck-load of times, guess what? The distribution of dice roll <em>means</em> will be normally distributed, even though the probability of getting a six/five/four/etc. is <em>not</em> normally distributed.</p></li>
+<li><p>The distribution of means (or correlations, intercepts, etc) will always equal the “true” mean. So, Phil wanted to know what the average person thought of his weather report. If the CLT is to be believed, it looks like Phil’s “true” mean is 5. Or, if we were to be able to somehow sample the entire population, the actual rating would be 5. The CLT states that we don’t actually need to sample the entire population to figure out the true mean. Instead, we only have to relive the same day over and over again and repeatedly sample from the population! (Yes, that was very sarcastic and I’ll explain in a minute a much easier way to get a good guess about what the actual population mean is).</p></li>
+<li><p>The spread of the distribution of means (or correlations/intercepts….are you getting sick of me qualifying this yet?) will decrease as you increase the sample size. That is exactly what I illustrated with the two graphics above. The distribution of means from samples of 5 had much more spread than a distribution of means from samples of 50. Why? Well, think of it this way: how easy it is to average a dice roll of 1 when you roll the dice 5 times? Not likely to happen, simply because you’d have to a one five times in a row to average a 1. On the other hand, how likely is it to average a 1 if you roll the dice 10,000 times? It’s practically impossible, because you’d have to get a 1 10,000 times in a row.</p></li>
+</ol>
+<p>There’s actually a mathematical relationship between the sample size of the sample, the standard deviation of the sample, and the standard deviation of the sampling distribution:</p>
+<p><span class="math display">\[
+\begin{align}
+\text{standard deviation}_{\text{sampling distribution}} =&amp; \frac{\text{standard deviation}_{\text{sample}}}{\sqrt(\text{sample size})} \\
+se =&amp; \frac{s}{\sqrt{N}}
+\end{align}
+\]</span></p>
+<p>(By the way, we call the standard deviation of the sampling distribution the “standard error”).</p>
+<p>This is some seriously powerful stuff. I know you don’t believe me. And that’s cool. You don’t know me from Adrian. You’re probably thinking, “yeah, that’s nice and all, but we don’t live in Groundhog Day! Nor do I have access to the population! How in the world is this helpful at all?”</p>
+<p>To see how powerful it is, you have to make a subtle shift in your thinking. Yes, you cannot possibly repeat the same experiment an infinite number of times (let alone repeat the same day Groundhog Day-style). But, you can <em>pretend</em> your one experiment is one of an infinite number of experiments that <em>could</em> have happened.</p>
+<p>Yes. Professional statisticians play pretend…All. The. Time.</p>
+<p>Seriously, though, To make this branch of statistics work, we have to pretend (aka assume) our experiment is one of an infinite number of experiments that could have been performed. If that’s the case, then the implications of the CLT are powerful.</p>
+</div>
+<div id="implications-of-the-clt" class="section level2">
+<h2>Implications of the CLT</h2>
+<p>Let’s recap real quick: the CLT assumes that our one study is one of an infinite number of studies we could have performed. Whatever mean we compute belongs to a theoretical distribution of means. And, the distribution of means is always normal, the mean of the distribution of means is equal to the population mean, and the spread of the distribution of means shrinks as our sample size increases.</p>
+<p>Why is this a big deal?</p>
+<p>So glad you asked….</p>
+<div id="implication-1-normality-doesnt-really-matter" class="section level3">
+<h3>Implication #1: Normality doesn’t really matter</h3>
+<p>The CLT says that the distributions of means is normal. When we compute inferences, we assume the distribution of the <em>data</em> (not the means) is normal. But, we use the central limit theorem to make inferences. So….really, as long as the distribution of means is normal, our inferences are valid.</p>
+<p>But the distribution of means is always normal. So….yeah, we really don’t need to assume normality. if our distribution of means is normal. Or, if you’re interested in a correlation coefficient, you don’t really care about normality because your correlation coefficient (hypothetically) belongs to a normally-distributed distribution of correlation coefficients.</p>
+</div>
+<div id="implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value" class="section level3">
+<h3>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</h3>
+<p>I’m going to reproduce the earlier image so you see this more clearly:</p>
+<p><img src="stats-jedi_files/figure-html/cltsidebyside2-1.png" width="672" /></p>
+<p>In the first image, the smallest mean in the sample was 3.7, or about 1.3 points from the “true” value. But that was with a sample size of 5. When we had a sample size of 50, our smallest mean was 4.6, or about 0.4 points different from the true value. See how much closer our <em>worst</em> estimate got?</p>
+<p>Here’s the take-home message: for very large sample sizes, even your worst estimate of the population is going to be pretty close. (Though, see the caveats in the next section).</p>
+</div>
+<div id="implication-3-we-can-kinda-sorta-make-inferences-about-the-population" class="section level3">
+<h3>Implication #3: We can (kinda sorta) make inferences about the population</h3>
+<p>Two chapters ago how I said we could use PDFs to figure out a bunch of information about the population from the sample. For example, we could use the mean and standard deviation of a sample to figure out the probability of every score in that sample.</p>
+<p>Wouldn’t it be nice if we could use the mean/standard deviation of the sample to infer that information about the population?</p>
+<p>Yeah. But we can’t.</p>
+<p>Why? We know that <em>on average</em>, the mean of the sample is equal to the mean of the population, but there’s no guarantee our specific instance of the sample mean/standard deviation will equal that of the population. That there is wishful thinking.</p>
+<p>But, we can use the CLT to (kinda sorta) make inferences about the population. But, I’m going to talk about that in the next sections.</p>
+</div>
+</div>
+<div id="using-the-clt-to-making-inferences" class="section level2">
+<h2>Using the CLT to Making Inferences</h2>
+<p>To make inferences, we’re actually going to cheat. Well, maybe we’re not cheating. What we’re really going to do is pretend the sample perfectly represents the population. Then we’re going to “uncheat” by just changing our interpretation of the values we actually compute. So, in the next section, I’m going to show you how we compute two statistics: confidence intervals and p-values. For each of these, we’re going to cheat by replacing population estimates with sample estimates. Then we’re going to uncheat by showing you how wonky the actual interpretations of p-values/CIs is.</p>
+<div id="confidence-intervals" class="section level3">
+<h3>Confidence intervals</h3>
+<p>Let’s say we’re doing a study where we collect data from 50 people and compute a mean difference. Say it’s 0.33. How close are we to the “true” value? We don’t know, nor can we. So instead we just assume our mean (0.33) is equal to the population mean and we assume our standard deviation (let’s say it’s 1.2) is equal to the population’s standard deviation. If the sample and the population are identical, what would the sampling distribution look like?</p>
+<p>Remember, the standard deviation of the sampling distribution is equal to <span class="math inline">\(se = sd / \sqrt{N}\)</span>. So, if the sample and the population have identical means/standard deviations, then the standard deviation of the sampling distribution (again, we call this a standard error) is equal to <span class="math inline">\(1.2 / \sqrt{50} = .17\)</span>.</p>
+<p>Okay. We’re making progress. We have the mean of the sampling distribution (because the mean of the sampling distribution is the same as the mean of the population, which we assume to be equal to our sample mean of .33). We also have the standard deviation of the sampling distribution (.17). We also know that we can use PDFs (probability density functions) to compute the probability of any range of scores.</p>
+<p>So, the obvious next step is to use the PDF to compute the range of scores we could reasonably expect the sampling distribution to have. Sounds reasonable.</p>
+<p>I’m going to show you a histogram of this (hypothetical) sampling distribution:</p>
+<p><img src="stats-jedi_files/figure-html/cltfake-1.png" width="672" /></p>
+<p>Based on a visual inspection, most scores seem to fall between 0 and 0.7. We could even be more precise and say something like, "95% of all scores fall between 0 and 0.66. (Don’t worry about how exactly I computed that interval. Just know that those values come from the same histogram above).</p>
+<p>This is (conceptually) what a confidence interval is; we take the mean/standard deviation of our sample, assume they’re equal to the population values, use our sample mean/standard deviation to derive the sampling distribution, then use the PDF of the sampling distribution to get a range of values where we expect the mean estimates to fall.</p>
+<p>But, to do that, we made a very big assumption; we assumed the sample’s values were exactly equal to the population values.</p>
+<p>But what if they’re not? Maybe, in another Groundhog Day universe, we actually got a mean of .28 and a standard deviation of .95. Then our range of scores wouldn’t be (0, 0.66), but instead be (0.02, 0.54). And, of course, in another universe, we could get different values.</p>
+<p>Each of the samples from our Groundhog Day universe will give us different sampling distribution estimates and different confidence intervals.</p>
+<p>If you’re a frequentist/likelihood statistician, you’re okay with that. We just have to interpret the confidence interval a bit differently.</p>
+<div id="interpreting-confidence-intervals" class="section level4">
+<h4>Interpreting Confidence Intervals</h4>
+<p>I’m just going to jump right into it and tell you how to interpret a 95% confidence interval:</p>
+<p><strong>A 95% confidence interval means that, if we were to repeat the study an infinite number of times and compute a confidence interval each time, 95% of those confidence intervals would contain the “true” value.</strong></p>
+<p>That’s a brain-ful. I know. My apologies. But we <em>have</em> to interpret it this way because we’re pretending the sample actually represents the population.</p>
+<p>Despite my superiorly cogent explanation, I’m assuming you’re still confused. That’s cool. Let me try explaining it with a graphic.</p>
+<p><img src="stats-jedi_files/figure-html/cltdanceoftheCI-1.png" width="672" /></p>
+<p>In the above graphic, all dots represents the mean for a repeated experiment. The upper horizontal line is the upper limit of the 95% confidence interval and the lower horizontal line is the lower limit of the 95% confidence interval. We call these “error bars.” The red line is the true value (which is .5 in this case). Notice that <em>95% of the error bars contain the red line</em>! Only one of those 95% confidence intervals (at Experiment #14) does <em>not</em> contain the true value.</p>
+<p>So, again, let me define a confidence interval: a confidence interval tells you that, if you were to repeat your study an infinite number of times, your confidence interval will contain the true value an average of 95% of the time.</p>
+<p>Still having a hard time conceptualizing it? That’s fine! It is really hard to think about. The interpretation is really weird, but it has to be really weird because we’re pretending the sample is the same as the population.</p>
+<p>Now, you might be tempted to say, “alright…so a confidence tells you there’s a 95% probability the true value is between your upper and lower limit.”</p>
+<p>Sadly, no. Look at the graphic above: each confidence interval either contains the true value or it does not. So, the probability it contains the confidence interval is actually 0 or 1. It doesn’t make sense to talk about the <em>individual</em> confidence intervals as having a probability of containing the red line (unless that probability is zero or one).</p>
+<p>If you’re brilliant, you might have had an important insight about confidence intervals: <em>the actual numbers we compute on our sample have no meaning!</em> So the numbers 0 and 0.66 mean <em>nothing</em>. They are little more than a rough approximation of the uncertainty we might expect when estimating the population value. That’s a far less impressive interpretation than people actually make.</p>
+</div>
+</div>
+<div id="p-values" class="section level3">
+<h3>p-values</h3>
+<p>The confidence interval is (arguably) an adequate measure of our uncertainty about our estimate of a population parameter. That’s nice and all, but sometimes you just want to make a decision. Did the treatment work? Are these variables correlated? Do liberals score higher than conservatives?</p>
+<p>The p-value was designed for decision-making. And, like its cousin the confidence interval, it requires some brain gymnastics to understand what’s going on.</p>
+<div id="the-logic-of-hypothesis-testing" class="section level4">
+<h4>The logic of hypothesis testing</h4>
+<p>We begin by assuming there is no effect. We call this the “null hypothesis.”</p>
+<p><strong>The null hypothesis is the test you seek to “nullify.” In other words, it’s the test we assume, then weight the evidence against that hypothesis.</strong></p>
+<p>You could test an intercept, slope, correlation, mean difference, etc. So, for example, we might assume…</p>
+<ul>
+<li>the correlation coefficients are equal to zero</li>
+<li>the difference between groups is zero</li>
+<li>the slope is zero</li>
+</ul>
+<p>Notice the pattern? We’re always going to assume the parameter of interest is zero.</p>
+<p>Once we set up our null hypothesis, we do similarly to what we did with our confidence intervals: we assume the sample estimates are the same as the population, then we use probability density functions (PDF) to compute probabilities. Remember that for a normal distribution, we only need the mean and standard deviation. But, we already have the mean. Why? Because we assume the mean is equal to zero. So, we only need the sample’s standard deviation to compute the PDF. (Okay, we also need the sample size, because we’re using a t-distribution. See the first note box for more information).</p>
+<p>So, let’s recap: we assume the population’s true value is zero. We then that value and the sample’s standard deviation to generate our PDF. We can then use those probabilities to estimate the probability of any possible score…..</p>
+<p>…including the score we computed from the sample. That’s exactly what a p-value is: it is the probability of obtaining our mean (or correlation, or mean difference, or slope, or intercept, etc.) <em>if the population’s mean is zero and if the population’s standard deviation is the same as our sample standard deviation</em>.</p>
+<p>Let me say that again: the p-value represents the probability of obtaining our mean (or slope/intercept/etc) if the population value is equal to zero.</p>
+<p>Let me say what a p-value is <em>not</em>:</p>
+<ul>
+<li>the p-value is not the probability the null hypothesis is true</li>
+<li>the p-value is not the probability our desired hypothesis is false</li>
+<li>the p-value is not the probability our results will replicate</li>
+</ul>
+<p>Now, I’ve kinda side-stepped another layer of complexity, mostly because it’s not terribly important. The PDF we use is from the <em>sampling distribution</em>. Remember a sampling distribution is a hypothetical distribution of estimates (e.g., a mean, correlation, slope) we might obtain with repeated sampling. So, the p-value is telling you what proportion of those repeated samples we might expect to be as far from the mean as ours.</p>
+<p>Okay, now I need to add another layer of complexity. Technically, the probability of obtaining our mean is zero. Always. Why? Because means are on a continuous scale. So our mean might be 54.23259347823912305736946….. Given enough digits, the probability of a specific value is zero. So, you can’t compute probabilities of specific values. What you can do, however, is compute the probability of values equal to or higher than your specific mean. So, we technically compute the probability of values <em>as high as our mean or higher</em>. (Of course, if our mean is negative, we might compute the probability of values as low or lower than our mean).</p>
+<p>I know, this is getting complicated. And, it’s kinda necessary to have these complications because, again, we’re using sample information to make inferences to a population. But, I like to think of the interpretation of a p-value as having four levels of complexity. The first few are mostly true, but oversimplify some details. The last definition is exactly what a p-value is:</p>
+<ul>
+<li>p-value is the probability of obtaining our mean if the null is true</li>
+<li>p-value is the probability of obtaining a value of our mean (or a value more extreme) if the null is true</li>
+<li>p-value is the probability of obtaining a value of our mean (or a value more extreme) if we assume the population value is zero and the population standard deviation is the same as our sample’s standard deviation</li>
+<li>p-value is the probability of a (hypothetical) repeated sample having a mean as extreme or more extreme than ours, if we assume the population value is zero and the population standard deviation is the same as our sample’s standard deviation</li>
+</ul>
+<p>That’s the p-value. Earlier I said we use the p-value to make decisions. Convention dictates that if <span class="math inline">\(p&lt;0.05\)</span> we “reject” the null hypothesis as a valid hypothesis of our data.</p>
+<p>So, it sounds convoluted and all, but reasonable….right?</p>
+<p>Sure. But, the problem is that people abuse p-values. We’ll talk about why/how in the next chapter.</p>
+</div>
+</div>
+</div>
+<div id="learning-objectives" class="section level2">
+<h2>Learning Objectives</h2>
+<ul>
+<li>Understand what a sampling distribution is</li>
+<li>What the central limit theorem states</li>
+<li>The three implications of the CLT</li>
+<li>What confidence intervals are conceptually</li>
+<li>How to interpret confidence intervals</li>
+<li>The purpose of p-values</li>
+<li>The null hypothesis</li>
+<li>The meaning of a p-value</li>
+</ul>
+<p>, with a slight modification. Remember that we’re assuming the population’s true value is zero. So, we don’t require any sample information to make that assumption.</p>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bayesprobability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/16-Probability-3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

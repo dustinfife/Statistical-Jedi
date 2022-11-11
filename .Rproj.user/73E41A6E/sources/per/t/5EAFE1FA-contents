@@ -1,0 +1,504 @@
+# Ethics
+
+You know what's kinda funny. 
+
+I have *never* seen an ethics chapter in statistics textbooks. 
+
+"Well," you might say, "I don't see a need. You don't teach ethics in physics, do you? In logic? In math? Math is math, Math doesn't care what ethical standards we hold."
+
+True. Math doesn't have feelings. 
+
+Neither does statistics. 
+
+But we (humans, that is...if you're not a human and you're reading this, let me be the first to welcome you to our planet) do!
+
+And here's the thing: it is actually quite easy to lie using statistics. We can lie to others and we can lie to ourselves. It is very possible, if not likely, that if two statisticians analyze the same dataset, they will arrive at different conclusions. 
+
+Sometimes those conclusions are similar. Sometimes they're not.
+
+And, with enough searching, we can almost always find *something* in our dataset that tickles our intellect. Problem is, we never really know if that intellect-tickling insight is real or spurious.
+
+This has always been the case, by the way. But we didn't really realize it until 2011. 
+
+What's so magical about 2011? Well, I had a birthday in 2011. So there's that. 
+
+But there's oh so much more. 
+
+## History of the Replication Crisis
+
+Prior to 2011, research in psychology (as well as biology, sociology, medicine, exercise science, etc.) was business as usual. Scientists were pumping out scientific truths faster than technicians could stock the printer. We were quite proud of that, patting ourselves on the back and feeling quite right about the truths we had revealed. 
+
+Then 2011 happened. 
+
+### Dederick Stapel
+
+It started with a fellow named Dederick Stapel. Stapel was a Dutch social psychologist. The man was a rising star, earning high-impact publications and awards. That was, until one of his graduate students grew suspicious. You see, Stapel *always* performed his own statistical analysis. None of his students ever saw the data.
+
+Odd, that. 
+
+
+
+So one of his student reported their suspicion to the university. The university conducted an investigation and discovered that, for many years, Stapel had been outright fabricating his data. 
+
+Swaths of publications had to be retracted.
+
+Suddenly, scientists started to worry about what they could trust. 
+
+Oh, but there was more to come. 
+
+### Darryl Bem
+
+So, Stapel was a crook. (Although, he seems to have rehabilitated since. Good for him!). So, as long as most scientists aren't crooks, science can be believed....right?
+
+Well, no, unfortunately. 
+
+Darryl Bem, also a social psychologist at Harvard, was likewise a luminary in his field. In 2011, he published an article in Journal of Personality and Social Psychology that "proved" humans are capable of pre-cognition. 
+
+Yeah. 
+
+What was odd about this incident is that Darryl hadn't fabricated his data. Instead, he has used *standard statistical procedures* to justify his conclusions. 
+
+Apparently, the reviewers of the articles, despite their skepticism of the conclusions, trusted the methods enough to let the publication pass. 
+
+Others were not so trusting. Once again, scientists began to feel uneasy. Darryl Bem used the *same* statistical procedures the vast majority of scientists used, and yet he concluded something so outlandish. 
+
+But there was one more incident in 2011 that would solidify our unease. 
+
+### The "P-Hacking" Article
+
+This one is actually quite funny. A trio of researchers (Joe Simmons, Lief Nelson, and Uri Simonsohn) published a paper where they "proved" that people listening to a song titled "When I'm Sixty-Four" made them *younger* than a control group (who listened to the song "Kalimba"). 
+
+What?
+
+Yes, apparently, after listening to a song, it reversed the flow of time. 
+
+Nice.
+
+Except, this is absolutely ridiculous. And that was *exactly* the point of their article. 
+
+What they showed is that researchers could engage in practices they called "researcher degrees of freedom" to essentially find support for any conclusion they want, even ridiculous conclusions. 
+
+This paper was a pretty big deal. Why?
+
+As researchers read this, they realized many of these "researcher degrees of freedom" these authors cautioned against were activities in which these researchers routinely engaged.
+
+Uh oh. 
+
+This article was later dubbed the "p-hacking" article. 
+
+What is p-hacking?
+
+Glad you asked. 
+
+## P-hacking
+
+Before I talk about what p-hacking is, let me give you a brief overview of how researchers use probability to make decisions about data. When a researcher collects data, they use statistics to summarize what they found in the data. 
+
+Well, it turns out statistics are *designed* to detect patterns. That's good, right?
+
+Yes and no. 
+
+The problem is data *always* show patterns. For example, you may collect data on your quality of sleep and notice that you tend to sleep better whenever polar bears migrate closer to the arctic circle. 
+
+Nice!
+
+Perhaps you ought to set up an automatic feeder within the arctic circle so you can always sleep well. 
+
+Are you seeing the problem?
+
+There's no reason to suspect polar bear migrations have anything to do with your sleep patterns. This is what we call a "spurious relationship." A spurious relationship occurs when two variables appear to be related to one another, but in reality any association between them is nothing more than chance. 
+
+So, think about that: statistics is designed to detect patterns. Some patterns are spurious. So...maybe that pattern you discovered is spurious?
+
+That's always the risk when doing data analysis. And, unfortunately, you never know whether that thing you detected is real or spurious. 
+
+But, there are safeguards we can put in place. Often these safeguards utilize probability; we compute the probability of obtaining our results. ^[To those Bayesians, I *know* your objection and I'll get to that in my [Bayesian versus Frequentist](#bayesprobability) chapter. Hold your horses! In fact, I'm very much going to liberally abuse misconceptions about p-values and probability in this section for the sake of simplicity. I'll cover the nuances in later chapters.] 
+
+That's all well and good, but the Achilles heel of probability is what we call multiplicity.
+
+Say I want to win a game of chance. To do so, all I have to do is roll a six on a die. What is my probability of rolling a six? 1/6. 
+
+What if, instead of rolling once, I roll a hundred times. What's my probability of rolling a six now? It's ain't 1/6! It's much higher. Why is it higher?
+
+Because of multiplicity. 
+
+Likewise, when we collect data, we'll generally compute some sort of probability of obtaining our results. What we'd like is to find a high probability our data support our hypothesis. If there's a 99% chance our hypothesis is true, that's good...right? (BTW, this is a very poor representation of the statistics we'd actually compute when doing data analysis, but you get the idea). 
+
+That probability (99%) can only be believed if there's no multiplicity. Just like our dice-rolling example, researchers too can engage in multiplicity. What does that look like?
+
+Well, maybe a researcher analyzes how treatment and control groups differ on a memory task. Darn. There's a very small difference between the two groups, and it happens to be in the opposite direction the researcher hypothesized. And their probability estimate isn't very favorable. 
+
+Undeterred, the researcher decides the last four questions on the memory task should be thrown out. Why? I don't know. Maybe they think participants got too tired. 
+
+Again, they compute the difference between the two groups. Now, the difference between the two is in the right direction, but it's still small. Once again, they compute some probabilities and find the estimates aren't that favorable. Maybe the probability of their hypothesis being true is only 50%. Well, you can't win big in science if your probability's only 50%.  
+
+You know....those 20 or so people who participated looked a little lethargic. Let's go ahead and delete their data. 
+
+Okay, well, that helped a little. The difference between the two groups is larger and the probability rises to 75%. 
+
+So let's now "control" for intelligence. (We'll talk more about what this means in our [conditioning](#multivariate-glms-conditioning-effects) chapter).
+
+Then let's delete that outlier. 
+
+Then let's delete that guy's scores because...well, I don't know. I've got a gut feeling. And, besides, he wears Old Spice. Everyone knows anybody who wears Old Spice can't be trusted. 
+
+In the end, the researcher may obtain a very impressive probability estimate, but not because he discovered some amazing truth. It's only because of multiplicity. 
+
+AKA p-hacking. P-hacking is short for "probability-value hacking," which means to keep trying a bunch of different analyses until one's probability estimate is favorable. 
+
+```{block, type="rmdnote"}
+
+It may be a bit misleading to say nobody realized multiplicity was an issue. People knew multiplicity was a problem. However, it was usually understood in terms of testing a bunch of different hypotheses. People hadn't really realized that testing the *same* hypothesis, but in *different ways* also constitutes multiplicity. 
+
+```
+
+
+P-hacking is what Simmons, Nelson, and Simonsohn were criticizing. And, nearly *everybody* was practicing multiplicity [@John2012].
+
+Big oops. 
+
+A few years later, in 2015, a gentleman by the name of Brian Nosek led a research team in a massive effort to replicate some of psychology's most recent prestigious findings. To do so, they found 100 studies from the top journals in the field to replicate. Unfortunately, only 36% reached the standard threshold for publishability upon replication.
+
+Double big oops. 
+
+Since 2011 (and especially since 2015), Psychology has been undergoing undergoing a "replication crisis" [@Pashler2012a]. That sucks, but it's also good because a lot of good things are coming out of it. One of those very good things is the Open Science Movement. 
+
+What is the Open Science Movement? 
+
+To understand this movement, it's important to see what this movement was a response to. 
+
+## The Scientific Method Movement
+
+Chances are, you are a recipient of the scientific method movement pedagogy. This movement began to emerge in the early 1900s. Back then, scientists started to consider *how* one goes about finding truth. Do we meditate? Do we ask questions of a magic 8-ball? Do we sit in an empty room and think about tacos and beach waves?
+
+We could try these things, but how do we know if we're actually divining truth?
+
+Alas, you can never really know. 
+
+Quite by chance, scientists began to believe truth was independent of the person seeking it. It doesn't matter whether the scientist believes in black holes, fairies, or unicorns; these things either exist or they do not.
+
+So, if we accept truth is truth, regardless of our own beliefs, how do we uncover the truth?
+
+The answer for these earlier scientists was objectivity. If the scientist can somehow put aside their beliefs, values, biases, and expectations, they might more easily uncover truth. And it makes sense; we all know that our biases can get in the way of seeing evidence. Just think of flat-earthers! The evidence is overwhelming, yet their biases seem to always find a way to dismiss even the most convincing of evidence. 
+
+Easier said than done, am I right? It's easy to say objectivity is the answer, but if objectivity is the answer, shouldn't we have some *objective* method of deriving truth? And shouldn't it be the case that *anybody* who applies this method will arrive at the same answer?
+
+Why yes. (At least, that's what we came to believe in the early 1900s). 
+
+This "method" became known as the scientific method. The scientific method is a rough overview of how scientists might investigate a research question (and by so doing, it is an overview of how they might uncover truth). 
+
+In reality, there's no "the" scientific method. But usually, people would agree it consists of at least the following procedures:
+
+1. Develop a hypothesis to explain a phenomena
+2. Design an experiment
+3. Formulate a hypothesis
+4. Objectively measure the outcome
+5. Refine and repeat
+
+Simple, right? It seems to meet the criteria: the steps are objective and seemingly easy to follow. And, it seems to have had success in the past. Supposedly, when we apply the scientific method, we are guarding against our own subjectivity and the results gleaned are near-perfect representations of truth. 
+
+Right?
+
+Well, no. Alas, the scientific method only has the *illusion* of objectivity. But humans are still humans. It's impossible for us to be objective. And by mindlessly following the scientific method procedure, we may trick ourselves into believing we're objective when we're not. 
+
+Also, information gleaned from the scientific method is anything but certain. 
+
+It's quite a shame, actually. When I was taught about science as a kid, I had this impression of science as this codified set of facts that were certain and could be trusted. Likewise, I assumed all scientists were quintessential objectivists. 
+
+Ha. HAHAHAHAHAHAHAHAHAHAHAHAHAHA!
+
+Scientists are very much humans. Sometimes they're really stupid, or stubborn, or ignorant, or mean, or blind. Sometimes scientists promote their theories for no other reason than to protect their pride. Sometimes scientists are petty and suppress information that contradicts their self-interests. 
+
+That really shouldn't surprise you. Scientists are people too. 
+
+Alas, subscribing to the scientific method actually makes it more likely that, when you *are* being detrimentally subjective, you will (falsely) feel self-assured you're being a good scientist and uncovering truths. 
+
+For scientists, the replication crisis served as a wake-up call. It was nearly undeniable proof  we had fooled ourselves into believing in our methods. 
+
+## Values versus Ethics
+
+The old school values (the Scientific Method values) relegated discussion of ethics and values to philosophers. Instead, their "ethics" were nothing more than intrusions in their scientific freedom. 
+
+"What? I can't inject poison in my participants? But, it's for science!!!!!"
+
+Yeah, not cool, man. 
+
+Remember, the scientists of older years valued objectivity. What better way to be ethical than to embed ethics into "rules" that clearly delineate what is and what is not ethical behavior. And that has largely been the approach to ethics in science: a series of "thou shalt nots" that identify what's cool from what's uncool. 
+
+"Thou shalt not harm participants."
+
+"Thou shalt use deception only when the benefits outweight the risks."
+
+"Thou shalt compensate participants."
+
+"Thou shalt gain permission from people before they participate."
+
+"Thou shalt not fabricate your data."
+
+The problem with this approach is plain to any lawyer (or anybody, for that matter). There's always a loophole. There's always room for the gratuitous exercise of shenaningans. 
+
+"Oh, I must compensate participants? Well, I'll compensate them with good advice."
+
+"Oh, I can't fabricate my data? Well, it's not fabrication if I merely modify my existing data."
+
+So, shenanigans brings more shenanigans, we add more rules, tighten the noose, annoy well-intentioned researchers with ever-longer training modules, and so on. 
+
+This rule-based approach focuses on *restrictions* to research, which really only seem to annoy people. 
+
+But there's a better way--values. There's little doubt one's values can be a powerful motivator. Consider the following quote from Karl Maeser, an American educator:
+
+> I have been asked what I mean by ‘word of honor.’ I will tell you. Place me behind prison walls–walls of stone ever so high, ever so thick, reaching ever so far into the ground–there is a possibility that in some way or another I may escape; but stand me on the floor and draw a chalk line around me and have me give my word of honor never to cross it. Can I get out of the circle? No. Never! I’d die first!”
+
+Daaaaammmmmnnnnn, dude! 
+
+If Mr. Maeser's words are to be believed (and, by all accounts, the fellow was an upstanding individual), is there any doubt he would be ethical in his scientific pursuits? 
+
+No doubt. 
+
+Maeser doesn't need rules. The man has values to guide his decision-making. 
+
+What's my point? My point is that the objective, rule-based approach to ethics has serious limitations. Rules are easy to circumvent, they're overly complicated, and they can stifle creativity. But, for one who is motivated by *values*, their values become the *motivation* behind their research. 
+
+As I once said in a paper I wrote:
+
+> Rules invite exploitation, whereas values motivate exploration. Rules limit freedom while values instill purpose. Rules are limitations. Values invite possibilities. Values exist from idea inception, to study design, to data collection, to data analysis, to publication, to post-publication, and they are the guiding force behind the research process itself. Once ethics shift away from rules and boundaries (extrinsic motivation), and toward values (intrinsic motivation), researchers can more readily govern themselves. 
+
+This is not to say we shouldn't have rules. In an ideal world, every scientist would have strong values guiding their research and will always act in perfect alignment with their values. (Ha!)
+
+But, let's be reasonable. Some people will always be jerks. 
+
+I'm not advocating we abandon rules. Rather, I'm advocating we shift the focus away from from teaching ethics as a set of ever-expanding rules, and instead teach emerging scientists to espouse the values of good scientists. 
+
+For those who teach or will ever teach emerging scientists, remember this: as a teacher, you have enormous influence over the values to which your students will subscribe. Think of Mr. Miyagi versus Sensei John Kreese--it's no wonder "Daniel-son" embodied the values Mr. Miyagi taught (inner peace and martial arts as a defense only), while Johnny Lawrence embodied the values of his sensei (no mercy and win at all costs). 
+
+Be a Mr. Miyagi. 
+
+They key to change is to embed values in our students. By so doing, the culture itself changes. 
+
+But what are these values?
+
+## The Open Science Values
+
+Btw, this section is a much more condensed and irreverent version of a [paper I published](http://https://psyarxiv.com/q9d28/).
+
+
+The scientific method movement emphasized objectivity and valued (near) certainty. In many ways, the open science movement is a rejection of these ideas. Rather than promoting objectivity and certainty, the open science movement promotes a completely different set of values [@Fife]:
+
+1. Protecting humanity.
+2. Seeking truth.
+3. Openness and transparency
+4. Humility and skepticism
+5. Dissemination
+
+Why these values? Because the open science movement recognizes it's *impossible* to be objective. So, rather than pretending we're not human, instead we should (a) leverage our strengths as humans, and (b) put safeguards in place that minimize the damage we can do to our pursuit of truth. 
+
+And how do we do that?
+
+
+### 1. Protecting humanity
+
+You know what would advance science quite quickly? Forcing people to do what we want. We could, for example, estimate exactly how damaging cigarretes are by simply forcing healthy people to smoke and seeing the damage it does. But, that would be mean. And it wouldn't be worth it. Sure, we'd learn a lot about smoking, but we'd lose our humanity. Not cool. 
+
+This first value recognizes that *no* scientific pursuit is worth sacrificing the well-being of humanity. When we keep that in mind, it makes it much easier to make ethical decisions.
+
+### 2. Seek truth
+
+I get it. We all want to get a job, acquire tenure, make a name for ourselves, be rich, attractive, popular, etc., etc. These motivations will certainly play a role in motivating us as scientists. Right now, I'm wanting you to like my book, and maybe I'm hoping you'll make a donation so I can buy a new bandsaw. I wouldn't mind if my wonky approach to teaching statistics becomes the standard and they interview me on live television and ask me what my inspiration was for my innovative teaching approach. And, I'm not going to lie, that motivation is one of the reasons I'm sitting here, during Covid lockdown, simultaneously helping my kids do their homeschool while trying to write jokes that keep your interest. 
+
+You don't get that kind of detail unless it's true. 
+
+Sometimes, these motivations conflict with our desire for truth. Back in 2018 I wrote (and received) a grant to develop statistical software. It was brilliant, I tell ya. I promised to develop point-and-click software that focused on visualization, estimation, Bayesian analysis, and was built atop R so that *any* R package developer could easily build a point-and-click interface for their R packages. Yes, it was brilliant. 
+
+Except that software already existed (mostly). I didn't know it until after I received the grant. Both JASP and Jamovi already did 70% of what I wanted. 
+
+Suddenly, my vision of fame and notoriety started to fade. That was *my* idea! They stole it!
+
+What do you do? Here I was with grant money to develop something someone else had already developed. 
+
+I considered going forward with my original plan. To hell with JASP and Jamovi. I'll make software, the likes of which the world has never seen. I'll make them regret they ever thought of an idea before I did. Because I was going to make it better. Faster. More truthy. More....
+
+What was I thinking? 
+
+I know what I was thinking. My desires came in conflict with one another. Sure, I wanted notoriety, prestige, credit, ....
+
+But I also genuinely wanted to make a difference in science. I wanted to promote sound statistical practice. 
+
+So then I asked myself....
+
+> *If I really cared about truth, what would I do?*
+
+Once I asked myself that question, the answer was clear: I needed to join forces with JASP and Jamovi. 
+
+So I did. 
+
+Now, years later, I have accomplished my original goal: I created software that focuses on estimation and visualization, but I didn't have to create software built atop R, nor did I have to build Bayesian-focused software. JASP and Jamovi did that for me. 
+
+Maybe I won't get as much credit as I'd originally hoped, but my original purpose (advocating for sound statistical practices) is much further along than if I had tried building my own software from scratch. 
+
+When we seek truth above our own personal ambitions, it always seems to work out better, both for science as a whole, and for ourselves personally. 
+
+### 3. Openness and transparency. 
+
+Remember how I said the scientific method advocated or objectivity? Also remember how I said we can't possibly be objective?
+
+I hope you remember. I just said it a few sections ago. Maybe you're getting tired. Go take a nap, then come back. This part's important. 
+
+I hope you had a good nap. 
+
+Anyway, where were we? Ah, yes. Objectivity. 
+
+Yeah, we're human. We can't be objective. Confirmation bias threatens everything we do. 
+
+How do we combat confirmation bias?
+
+Openness and transparency. 
+
+Somewhere out there, your scholarly enemies await, looking for the moment to pounce upon a frailty in your study. Maybe said enemy is Reviewer 2, who insists your paper doesn't adequately cite their research or undermines a finding they published 30 years ago. Or maybe said enemy is some scientist across the nation that stumbles upon your paper. 
+
+Fortunately, for you and I, there's no shortage of arrogant scholars waiting to pounce on a weakness. 
+
+That's actually a very good thing. This batch of misfit scholars are what allows science to be as self-correcting as it is. 
+
+But, we can thwart the self-corrective mechanisms built-in to science by masking information. We can, for example, refuse to make our data publicly available, or we can hide the fact we auditioned 30 different analyses before finding something "statistically significant," or we can remove any mention of failed hypotheses and only report those that tell a sexy story. 
+
+In short, to circumvent the self-corrective mechanisms in science, we only need to hide our weaknesses. 
+
+When we hide things, there are certainly short-term gains. Maybe our paper speeds through the publication pipeline or our unambiguously positive report that supports our finding is highly cited. 
+
+Long term, however, nobody benefits. Eventually, the weaknesses of our findings will come to light, but only after researchers across the globe waste thousands of hours and dollars attempting to replicate something that never should have survived in the first place. And when that happens, progress grinds to a halt and our reputations will suffer. 
+
+To prevent such backpedaling, and to ensure science truly is self-correcting, it's best to be open and transparent from the get-go. After all, if there is a glaring weakness in our data analysis or research design, don't we want other to discover it? 
+
+### 4. Humility and skepticism. 
+
+As scientists, we need to be skeptical of claims we hear. Skepticism is, perhaps, our best tool against being deceived.
+
+By the way, that includes being skeptical of our *own* findings. To be skeptical of our own findings requires a great deal of humility. 
+
+So, skepticism and humility are really two sides of the same coin. 
+
+Let me give you an example. A few years ago, Nosek and Motyl performed a study where they measured participants' political ideaology, then subsequently showed them words of various shades of gray. These participants then had to select a grayscale shade that matched the shade of the word. What they found was that participants with more extreme political ideologies tended to also pick more extreme shades to match the words they saw. In other words, those at the political extremes *literally* saw colors as more black and white. 
+
+That there would be a TED talk-worthy finding. 
+
+But, Nosek and Motyl were skeptical of their own finding. So, they attempted to replicate the results in a new sample. 
+
+And found nothing. 
+
+What humility that required. And it cost them a publication. But science is better for it. 
+
+It's not easy for scientists to be humble, especially when we're so freaking smart. And, it's doubly hard when the findings we've discovered and the theories we've developed are called into question. We often tie our personal identities to our science. The temptation to double down against a challenger is great, but science will be better when we choose to be humble. 
+
+### 5. Dissemination. 
+
+Hey, you remember back when people believed in science? Remember? Back before the whole autism and vaccinations debacle, before flat-earthers, before global warming denialism, and before people got super offended when you asked them to wear a Covid-preventing mask?
+
+Yeah. Those were the good old days. 
+
+But, we live in a different time. 
+
+Why are people so dumb? I'm sure there's lots of causes: the dominance of social media, change in diets, the advances of medicine (and thus the decline of natural selection's power in weeding out morons), UFO kidnappings.
+
+But, I suspect, part of the reason things are different now is the fault of scientists. Scientists can really suck at communicating. And that problem is exacerbated by pulitzer-chasing journalists looking for catchy headlines for their articles. 
+
+"Eating Chocolate Is Healthy, Says a World-Reknown Food Scientist!"
+"Chocolate Will Kill You, Says a World-Reknown Food Scientist!"
+"Gravity Exists, Says Newton!"
+"Gravity Doesn't Exist, Says Einstein!"
+
+If you're not comfortable with today's scientific headlines, just wait six months. It'll change. 
+
+Why?
+
+The problem is, as you'll soon learn, we deal with what we call "noisy" data. When data are noisy (i.e., when it's hard to pick out the good stuff), conclusions are ambiguous. But, nobody wants to publish a paper saying a conclusion is ambiguous. So, scientists wrangle the data (i.e., p-hack....we'll get to that later) until they get an unambiguous conclusion.
+
+Then, months or years later, somebody else comes along with a different research agenda. They might take similar data (i.e., *noisy* data), and wrangle the data a different way. And, they come to the same conclusions.
+
+What does this have to do with dissemination? Good question. I hope scientists are becoming increasingly careful and cautious with their conclusions. But, they might not be the best at communicating that. Alas, a scientist's care and caution might not translate to journalists who really want to report catchy headlines. 
+
+What else tends to happen is scientists get used to speaking a particular language. I call that language nerd-speak. It's the sort of language nobody understands but fellow scientists. It's like a letterman jacket....but for nerds. Only those who've earned their letter get to wear such fancy pantsy language. 
+
+Want an example? 
+
+(You probably said no, but I'm going to pretend you said yes). Here are some journal titles for a journal I follow:
+
+"A Square-Root Second-Order Extended Kalman Filtering Approach for Estimating Smoothly Time-Varying Parameters"
+"Finite Mixtures of Hidden Markov Models for Longitudinal Responses Subject to Drop out"
+"Model Selection of Nested and Non-Nested Item Response Models Using Vuong Tests"
+
+Most of your are probably saying, "I know what 'the' means..."
+
+Yeah, I get it. And, in some sense, it's kinda necessary to have a discipline-specific vernacular. Saying, "Model Selection of Nested and Non-Nested Item Response Models Using Vuong Tests," is way easier than saying, "Alright, so this papers about comparing two statistical models, one of which is more complicated than the other. Oh, and Item Response Models are used for educational testing. So, yeah, this paper's about using two different models for fitting data from educational testing. And Vuong was some guy who invented a way to compare two models. It's pretty cool."
+
+But, we have to be able to communicate our research to the public. We have become such an "elite" group of people. We have used our fancy-pantsy language and flip-flopped on so many "truths,"  non-scientists don't trust us.
+
+And, it's kinda scary. 
+
+So, yeah, learn how to communicate. We're pretty blessed to be able to do what we do. Let's pay it forward. 
+
+How, you ask?
+
+Good question. I don't know. I'm pretty good at it, but just because I know how to communicate, doesn't mean I can teach it to others. And, besides, this is a statistics class, not a communication class. 
+
+So why talk about it in the first place?
+
+Again, to remind you (and me) that communicating to the public is part of our professional responsibility. More than our pride is on the line. 
+
+The fate of humanity is. (Seriously). 
+
+So, yeah, practice communicating with non-scientists. You might save the world doing it!
+
+## Making Change
+
+Unfortunately, right now it's not all that "cool" to practice open science. The status quo still rewards those who write catchy titles, p-hack, hide important information, and refuse to acknowledge their wrongs. 
+
+That's pretty sucky.
+
+But I want a better science. I hope you want a better science to. 
+
+How do we make that happen?
+
+We push. That's all! No one person's going to change the status quo alone. Rather, it's going to be thousands of scientists, chipping away at the wall of the scientific method. 
+
+So how do you chip away? Maybe you preregister your hypotheses. Or maybe you report *all* analyses you did, rather than just the ones that worked. Or maybe you make your data publicly available. Or maybe you explicitly state in your papers you're uncertain about your results.
+
+If *all* of us push against the status quo, pretty soon, these sorts of things move from being "weird," to being common, to being the norm. Then, those who refuse to make their data publicly available (for example) start looking like the one guy at a nude beach who's walking around in a tuxedo and top-hat. (Btw, I'm not at all recommending you walk outside your house naked. That would be illegal. And awkward. It was just a metaphor).
+
+Throughout this course, I'm going to teach data analysis from *this* perspective. If you read any other textbook, it's going to be written as if you can divine truth from your data. I will not mislead you into believing that. So, the very fact you're reading this (and presumably taking a course with this book as your text) means you're already pushing against the boundaries. High five! 
+
+Because this is *my* ethical framework, I'm going to, throughout the text, tell you ways you can push against the boundaries. I might, for example, talk about having an external website that contains *all* your plots, or I might suggest you report Bayes factors instead of p-values, or I might suggest you tell reviewers to f&$% off when they say you should run a t-test instead of a general linear model. 
+
+(Not really. You should probalby be polite). 
+
+Anyway. I'm just rambling now. On to the next section. 
+
+## Further data analysis ethics. 
+
+I've only really scratched the veneer of ethics in science. I haven't even talked about exploration versus confirmation, nor p-hacking, data mining, or HARKing. Alas, to understand the nuances of these, you really need to have a foundation in probability. 
+
+But, we'll get there. Once we do, I'm going to revisit the idea of ethics, and more specifically, the ethics of data analysis. Until then, peace out. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#

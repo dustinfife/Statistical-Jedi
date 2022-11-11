@@ -1,0 +1,106 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+My name is Dustin Fife and I am a Hobby-holic. Over the last few decades, I have acquired the following skills and hobbies:
+
+Gardening
+Woodworking
+Pizza Making
+Primitive Bow Building
+Welding
+Forestry
+Raising Pigs
+Raising Chickens
+Raising Rabbits
+Novel Writing
+Tool Restoration
+Web Design
+Ballroom Dance
+Photography
+
+And that's a very concise list. 
+
+Why do I tell you? Well, I acquire new hobbies at a rate of several per year. At that rate, I have become quite adept at learning new skills. 
+
+I've learned that the acquisition of hobbies/skills can be broken down into several stages:
+
+1. Development of need and interest. For example, when I began bow making, it began when I first learned to hunt. It was bow hunting season and I didn't have enough money to buy a bow. But, I had a large collection of woodworking tools, so I figured I might be able to build one. Sure enough, there's no shortage of tutorials designed to teach you to do just that. 
+
+2. Hasty and superficial research. I'm impatient. If I want to make a bow, I want to make it *now*. I don't have time to learn. So, I learn the basics. Maybe I'll watch a collection of videos or read a website. But I'm really *skimming* these tutorials because, frankly, I'm too impatient to learn the ins and outs. More importantly, though, it's just too much information. You have to learn about hinges and limb stiffness, about bellies and backs and backings, about tillering and tillering stands, green versus aged wood, about hickory and osage organge and oak and maple. 
+
+3. Massive failure. For bow making, it came when my first bow *shattered*. And by shattered, I mean slivers in fingers, ears ringing, heart-stopping explosion of failure. I pulled my first bow to just an inch short of its maximal draw length and the thing exploded on me. 
+
+    It seems all those *detauils* I had glossed over were actually important. I
+
+And I'm not ashamed of it. Mostly. 
+
+Story that illustrates the need for a rule rather than memorizing a bunch of unrelated facts
+
+Why do I tell this story? Cuz I like telling stories. And...well, I'm sure there's some relevance, but I've already lost track of what I was saying.
+
+Oh wait. Just remembered. 
+
+
+
+
+
+
+
+
+
+
+I'm not going to go into details about the differences between them. Instead, I'll talk about what they have in common. 
+
+The frequentist/Likelihood approach consider the experiment we did as one of an infinite number of experiments that *could* have occurred. Since I'm a big fan of Hollywood references, I'm going to reference another movie. Remember the movie Groundhog Day with Bill Murray. In that movie, the main character (played by Bill Murray) relived the same day over and over and over. It happened to be Groundhog Day, by the way. 
+
+Imagine in your experiment, the mean of the control group was 7.5 and the mean of the treatment group was 6.2. The Frequentist/Likelihood approaches recognize that, if we were to live today over again, the means would be different. The control group's mean might be 7.9 and the treatment could be 8.5. 
+
+This approach seeks to characterize the 
+
+Lemme talk about Pearson/Neyman first. The two worked as statisticians in quality control. They were practical men who wanted to know whether a particular batch of bolts had a high enough probability of fitting into a nut that they could ship it off to the Lowes Depots of the world. 
+
+To make such a decision, they did the following:
+
+1. Decide in advance how big a difference is enough to care about. Let's say that a bolt will fit within a nut if its tolerance is within half a millimeter (for the Americans out there, that's about 1/64 of an inch...dumb imperial system). They call this the "effect size." We have called it an estimate. 
+
+2. Assume an alternative distribution. Now that we have stated the minimal effect size we care about (half a milimeter), we are going to assume the existence of a two distributions: a null distribution, which states that the bolts are exactly the right size, and an alternative distribution
+
+2. 
+
+decided to pit two hypotheses against one another: a null hypothesis and an alternative hypothesis. The null hypothesis stated that the bolts all met specs. The alternative said they didn't. Their basic idea was to assume the null hypothesis is true *unless* the evidence
+                                                                                                                                                             
+                                                                                                                                                             Neyman/Pearson were clever
+                                                                                                                                                             
+                                                                                                                                                             
+                                                                                                                                                             * brief history of their merging
+                                                                                                                                                             * frequentist: controlling long range probability
+                                                                                                                                                             * likelihood: our experiment is one of many that could be performed
+                                                                                                                                                             * Groundhog day
+                                                                                                                                                             * characteristics
+                                                                                                                                                             * rely on repeated sampling
+                                                                                                                                                             * inverse probability
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+h1:bivariate-estimates Bivariate Estimates
+h2:statistics-help-us-predict-things Statistics Help Us Predict Things
+h2:conditional-estimates Conditional Estimates
+h2:estimates-for-numeric-predictors Estimates for Numeric Predictors
+h3:slopes-and-intercepts Slopes and Intercepts
+fig:bivarestalgebraerror Statistics is just algebra with error!
+h3:making-predictions Making Predictions
+h3:when-slopesintercepts-dont-make-sense When Slopes/Intercepts Don’t Make Sense
+h3:correlation-coefficients Correlation Coefficients
+h4:whats-a-good-correlation What’s a  Correlation?
+h4:computing-estimates-in-r Computing Estimates in R
+h2:estimates-for-categorical-predictors Estimates for Categorical Predictors
+h3:slopes-and-intercepts-for-categorical-predictors Slopes and Intercepts for Categorical Predictors?
+h3:cohens-d Cohen’s 
+

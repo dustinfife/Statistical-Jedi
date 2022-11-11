@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1608761480389.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "981850466",
+    "id" : "51C2108F",
+    "lastKnownWriteTime" : 1610460156,
+    "last_content_update" : 1610460156,
+    "path" : "~/Dropbox/research/Statistical Framework/Intro Book V 2/05-UnivariateEstimates.Rmd",
+    "project_path" : "05-UnivariateEstimates.Rmd",
+    "properties" : {
+        "cursorPosition" : "159,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

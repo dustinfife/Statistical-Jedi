@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Diagnostics | stats-jedi.knit</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Diagnostics | stats-jedi.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Diagnostics | stats-jedi.knit" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-02-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bivariate-estimates.html"/>
+<link rel="next" href="section.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li><a href="section.html#section"></a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparison-statistics"><i class="fa fa-check"></i>Model Comparison Statistics</a>
+<ul>
+<li><a href="model-comparisons.html#r2"><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="diagnostics" class="section level1 unnumbered">
+<h1>Diagnostics</h1>
+<p>Let’s say you’re right in the middle of remodeling a bathroom. You have quite cleverly managed to demo the old shower, rip up the old tile, install a new bathtub, and you have begun to tile a backsplash. Your project is <em>way</em> under budget. Why? Because you managed to borrow all the tools you need for the project.</p>
+<p>Until today.</p>
+<p>You see…you thought you’d be able to tile the backsplash without buying a tile saw. Except…well…tiling without a tile saw really sucks.</p>
+<p>None of your friends have a tile saw and renting one from Lowe’s Depot would cost half the price of buying it outright.</p>
+<p>So you decide to splurge. You hop on to Lowe’s Depot dot com and order a $500 tile saw with <em>free delivery</em>!</p>
+<p>Nice.</p>
+<p>After a few days, the UPS guy knocks on your door with a package in tow. Except, there’s something wrong.</p>
+<p>The package seems really small. Like, the size of a squirrel coffin.</p>
+<p>Hmmm…</p>
+<p><em>Well</em>, you reason, <em>them package designers are quite impressive. I never thought they’d be able to fit an entire tile saw inside something no bigger than a shoebox.</em></p>
+<p>So you open the package, excited to see your new tile saw.</p>
+<p>Except it isn’t a tile saw.</p>
+<p>It’s a hammer.</p>
+<p><img src="drawings/hammer.jpg" alt="drawing" style="width:500px; float:right;"/></p>
+<p>Now there’s nothing wrong with a hammer. In fact, you <em>just</em> used a hammer to demo the old drywall.</p>
+<p>But a hammer can’t cut precise shapes on tile. For that, you need a tile saw.</p>
+<p>Now, let me say that again because I worry the hammer’s feelings might get hurt. <em>There’s nothing wrong with a hammer.</em> That hammer is useful, nay <em>essential</em> for many situations. It’s just the wrong tool for <em>this</em> job.</p>
+<div id="models-are-tools.-and-they-dont-have-feelings." class="section level2">
+<h2>Models are tools. And they don’t have feelings.</h2>
+<p>Statistical models are tools. Some models are hammers. Some are tile saws. Some are plumb bobs or tape measures or dado jigs or dust collectors. These statistical models are designed to handle certain types of situations and they do quite well. But if one uses a statistical model in a situation it’s poorly equipped to handle…let’s just say it will be like trying to hammer a tile into a precise shape.</p>
+<p>Fortunately for you and I, statistical models don’t have feelings, so they don’t care if you use them or not. But humans <em>do</em> have feelings. For some odd reason, humans get quite attached to particular models. ANOVAs. T-Tests. Regressions. Chi-Squares: all models designed for different situations. Yet, for some, if you tell them their models isn’t appropriate for that particular situation, they pitch a fit.</p>
+<p>Well…not really. They pitch an academic fit, which means they simply say, “Yeah, don’t care. I’m going to use this model anyway.”</p>
+<p>The problem is that when one uses a statistical model in a situation it wasn’t designed for, you’ll get poor model performance.</p>
+<p>Let’s take a look at an example, shall we?</p>
+<div class="figure"><span style="display:block;" id="fig:diagnosticsnonlinear"></span>
+<img src="stats-jedi_files/figure-html/diagnosticsnonlinear-1.png" alt="The blue line is clearly a poor-fitting model. Red is good. Yay." width="672" />
+<p class="caption">
+Figure 1: The blue line is clearly a poor-fitting model. Red is good. Yay.
+</p>
+</div>
+<p>Notice there are two lines, or two <em>models</em> of the data. The red model is like the tile saw: it was designed for situations <em>just like this.</em> The blue line, on the other hand, is a little out of its element; it’s trying to fit a straight line to a relationship that is clearly not straight.</p>
+<p>Once again, there’s nothing wrong with the blue model. It’s just trying to fit something it was never designed to fit.</p>
+<p>This chapter is designed to give you some tools to help assist in identifying whether the chosen model is appropriate. But before we do that, we need to talk about what a residual is.</p>
+</div>
+<div id="residuals" class="section level2">
+<h2>Residuals</h2>
+<p>A residual means “what’s left over.”</p>
+<p>Left over after what, you ask?</p>
+<p>Remember the equation for a line?</p>
+<p><span class="math inline">\(y = b_0 + b_1 x + e\)</span></p>
+<p>See that <span class="math inline">\(e\)</span>? That’s our residual. A residual is what’s left in our data after we’ve fit the model.</p>
+<p>Let’s look at that equation in several different ways. Each of these ways are saying the same thing:</p>
+<p><span class="math display">\[
+\begin{align}
+y =&amp; b_0 + b_1 x + e \\
+y =&amp; \text{line} + \text{residual} \\
+y  =&amp; \text{fit} + \text{remainder} \\
+y  =&amp; \text{signal} + \text{noise}
+\end{align}
+\]</span></p>
+<p>Nearly every statistical model can be dissected into these two components: the fit and the residual.</p>
+<p>Let’s look at a geometric interpretation of a residual, shall we?</p>
+<p>The figure below shows a blue line (which is the regression line) and a bunch of red lines. The blue line is the fit. The red lines are the <em>residuals</em>. A residual is simply the difference between what we thought the score would be and what the score actually is.</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticsresid-1.png" width="672" /></p>
+<p>So why do residuals matter? Residuals tell us what we did <em>not</em> fit in our model. It turns out, knowing what wasn’t fit is pretty useful for determining whether our model is bomb-diggity, or whether our model just bombed.</p>
+</div>
+<div id="diagnostic-tool-1-histogram-of-the-residuals" class="section level2">
+<h2>Diagnostic tool # 1: Histogram of the residuals</h2>
+<p>Remember, back in Chapter 4, how I said we like normal distributions? Well, it turns out, we actually <em>really</em> like normal distributions. All the models we’re going to cover in this book assume the <em>residuals</em> are normally distributed.</p>
+<div class="rmdnote">
+<p>
+<strong>Distribution of the residuals</strong>
+</p>
+<p>
+When statistical models make assumptions, they are made about the <em>residuals</em> of the statistical model. For example, we never assume the dependent variable is normally distributed or the independent variable is normally distributed; we assume the <em>residuals</em> are normally distributed.
+</p>
+<p>
+Why is the assumption about the residuals? When we talk about probability, it will make more sense. But long story short, eventually we’re going to make inferences about datasets beyond our own. Those inferences are going to make guesses based on how our residuals behave.
+</p>
+<p>
+And sometimes a variable can be crazy distributed, but the residuals are fine. For example, we might have a sample of football players and basketball players. Suppose we measure height. The distribution of height is going to be bimodal (one mode for the basketball players, one for the football players). However, once we model athlete type (b-ball versus football), then subtract that fit from the model, the residuals are probably going to be normal.
+</p>
+</div>
+<p>Why do they assume a normal distribution? Well, you actually know this already. Really, you do. You just didn’t know you knew it.</p>
+<p>Remember in a previous chapter when we said it doesn’t make sense to compute a mean with data that are skewed? Also remember how I mentioned that bivariate estimates are <em>conditional means</em>? Well, it turns out that most statistical models are simply different ways of computing conditional means. If the data are not normally distributed, computing a mean doesn’t make sense. So, we assume the residuals are normally distributed because our statistical models are all mean-based.</p>
+<p>Make sense?</p>
+<p>The easiest way to assess normality of the residuals is simply to plot a histogram of the residuals. To do we, we actually have to fit a model. We’ll actually spend a <em>lot</em> of time fitting models in later chapters, so I’ll go into more detail later. But, to give you the basics, you can fit a “linear model” in R using the function <code>lm</code>. Do it with me:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="diagnostics.html#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load flexplot</span></span>
+<span id="cb1-2"><a href="diagnostics.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span>
+<span id="cb1-3"><a href="diagnostics.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># load the avengers dataset</span></span>
+<span id="cb1-4"><a href="diagnostics.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(avengers)</span>
+<span id="cb1-5"><a href="diagnostics.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># fit a linear model, or &#39;lm&#39;</span></span>
+<span id="cb1-6"><a href="diagnostics.html#cb1-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">lm</span>(kills<span class="sc">~</span>speed, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>The above model (called <code>model</code>…I know, original name, huh?) tries to predict the number of kills in the final avengers battle from the speed of the person. Let’s go ahead and visualize it like we did before using the <code>visualize</code> function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="diagnostics.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(model, <span class="at">plot=</span><span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsviz-1.png" width="672" /></p>
+<p>Hmmm…That one looks a bit odd.</p>
+<p>We can also look at the residuals as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="diagnostics.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">residuals</span>(model)</span></code></pre></div>
+<pre><code>#&gt;            1            2            3            4            5            6 
+#&gt;  -4.46286435  18.41768747  -0.82120888   3.14706642  -2.95969188  -0.19224329 
+#&gt;            7            8            9           10           11           12 
+#&gt;  -2.33072629  -6.73983034  -0.59500240  -3.46286435  -2.33707123   5.60058505 
+...</code></pre>
+<p>Except that’s not all that helpful. I don’t need to turn all red-faced again about how the world needs graphics? You know that, right?</p>
+<p>To visualize the residuals, I’m going to show you a hard way and an easy way. Why would I show you a hard way? Because that’s how things used to be done, back I invented flexplot. And if I had to suffer, so do you! Well, not really, but it will help you appreciate the suite of tools in flexplot</p>
+<p>Back in the day, to visualize the residuals, you’d have to do something like this:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="diagnostics.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">residuals</span>(model))</span></code></pre></div>
+<p>Or, using the <code>flexplot</code> function, we could do the following:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="diagnostics.html#cb6-1" aria-hidden="true" tabindex="-1"></a>avengers<span class="sc">$</span>residuals <span class="ot">=</span> <span class="fu">residuals</span>(model)</span>
+<span id="cb6-2"><a href="diagnostics.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(residuals<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>Okay, I guess neither approach wasn’t <em>too</em> hard. But, what I’m about to show you is easier. And, you kinda already know how to do it. Earlier I mentioned that we can visualize statistical models using the <code>visualize</code> function in <code>flexplot</code>. Remember how I said we’d talk about residuals later?</p>
+<p>Yeah. Here we are.</p>
+<p>Sorry to make you wait. That was rude of me.</p>
+<p>Anyhow, to visualize the model, just type the following:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="diagnostics.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(model, <span class="at">plot=</span><span class="st">&quot;residuals&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsresidonly-1.png" width="672" /></p>
+<p>Now, it presents <em>three</em> different graphics. But this is the normality section, so I’m only going to talk about the top-left figure. If you can’t wait for the others, skim ahead, by all means.</p>
+<p>The top-left image is the histogram of the residuals. This image will give us a good idea whether our mean-based models are appropriate. If this histogram deviates from normal, we might be at risk of using the wrong tool.</p>
+<p>Fortunately for you <em>and</em> me, I’ve already taught you to interpret histograms. As before, we’re looking for a normal distribution. As before, we <em>hope</em> we don’t see outliers, zero-inflated distributions, bimodality, skewness, etc. And, unfortunately, these residuals look pretty bad.</p>
+<p>Of course, no distribution is perfect. There will almost always be <em>some</em> deviations from normality. How do you know if what we have is enough to muck things up? That, my friend, is a <em>good</em> question. And, truth be told, a bit hard to answer. Statisticians of the past have tried to answer that by performing objective “tests,” such as the Anderson–Darling test, the Cramér–von Mises criterion, and the Kolmogorov–Smirnov test. (What colorful names!)</p>
+<p>These tests are designed to detect deviations from normality. The basic idea is, if your statistical procedure can detect a departure from normality, your statistical model is in trouble.</p>
+<p>But is it really? Well, no.</p>
+<div class="rmdnote">
+<p>
+<strong>Tests of Statistical Assumptions</strong>
+</p>
+<p>
+There are loads of test available, designed to test whether one’s sample deviates significantly from normality, homoscedasticity, independence, etc. With these tests, the <em>null</em> hypothesis is that the assumption is met. (See Chapter 13 to learn more about null hypotheses). In typical null hypothesis testing, researchers are trying to reject the null hypothesis; rejecting the null = accepting the researcher’s chosen hypothesis. With assumption tests, on the other hand, you <em>don’t</em> want to reject the null hypothesis. Doing so means that there <em>are</em> normality (or homoscedasticity or independence) problems.
+</p>
+<p>
+These tests are pretty useless. (Maybe this should have been a rant box?) Much like the other null hypothesis tests, these are sensitive to sample size. So, if you have a small sample size, even extreme deviations from normality (or other assumptions) will pass. On the other hand, with large sample sizes, even trivial deviations reject the null hypothesis.
+</p>
+<p>
+Once again, being able to <em>detect</em> a deviation from the assumptions doesn’t mean it’s actually going to screw up your analysis.
+</p>
+</div>
+<div class="rmdrant">
+<p>
+<strong>Rant: Does Normality Really Matter?</strong>
+</p>
+<p>
+Back in the 1980s, a fellow by the name of Micceri (1989) wrote one of the best titled papers in all of science-dom: “The unicorn, the normal curve, and other improbable creatures.” You gotta love a guy who has a sense of humor.
+</p>
+<p>
+His major point was that most psychological research relies heavily on statistics, which assume a normal distribution. Alas, Micceri points out that very few variables in psychology are actually normally distributed.
+</p>
+<p>
+Therefore, psychology is broken.
+</p>
+<p>
+Ho hum. Ba humbug. I’ve got series beef with how various disciplines abuse statistics. But normality is very low on my gripe list. Why? Because there’s a <em>massive</em> difference between having a dataset that has a <em>detectable difference</em> from normality and a dataset that has a <em>problematic difference</em> from normality. In other words, just because you can detect departures from normality, that doesn’t mean it will actually screw up your analysis.
+</p>
+<p>
+In fact, dozens of studies have been conducted that show that even pretty large departures from normality may not affect statistical models at all. In stats-speak, we say that most statistical models are “robust” to non-normality.
+</p>
+<p>
+But what exactly does that mean? That means that estimates obtained from non-normally distributed data will be pretty close to population values. Likewise, when making decisions (e.g., this relationship is statistically different from zero), the “right” decision will be pretty close, regardless of normality or not.
+</p>
+</div>
+<p>How do you tell whether deviations from normality are bad enough to abandon my original tool (model)? I still haven’t answered the question, have I? In the figures below, which of my models should be abandoned?</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticstest-1.png" width="960" /></p>
+<p>You’re not going to like the answer(s).</p>
+<p>I don’t know. Experience helps. In my judgment, the far right is certainly problematic. The far left is certainly okay. I’d say by the third plot from the left, that’s going to be problematic.</p>
+<p>So, it’s a bit subjective. But, we’re okay with subjectivity. We’re okay with uncertainty. It protects us from making stupid decisions.</p>
+<p>But, I do think there’s a better answer: do a sensitivity analysis.</p>
+<div id="sensitivity-analyses" class="section level3">
+<h3>Sensitivity Analyses</h3>
+<p>The basic idea behind a sensitivity analysis is to run a model multiple ways. For example, we might fit a model that assumes normality, then fit another model that doesn’t. If both models are basically saying the same thing about the data, then who cares if our model deviates from normality? It doesn’t change the decision we make about the data.</p>
+<p>On the other hand, if the models yield substantially different conclusions, then our model is probably <em>not</em> robust and we ought to choose the more complex model.</p>
+<p>So let’s go ahead and try it. I’m going to introduce you to a “robust” version of the model, but I’m not going to explain it in detail. That’s beyond the scope of this book. But here’s the short of it: magical fairies eat your troublesome data and sprinkle fairy dust on your fitted lines.</p>
+<p>Does that help?</p>
+<p>With that explanation, here’s the fairy-guided analysis:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="diagnostics.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(MASS)</span>
+<span id="cb8-2"><a href="diagnostics.html#cb8-2" aria-hidden="true" tabindex="-1"></a>fairy_model <span class="ot">=</span> <span class="fu">rlm</span>(kills<span class="sc">~</span>speed, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>Now, we can visualize both models. (By the way, there’s a much better way of visualizing a pair of models, but we won’t get to that until a later chapter. In the mean time, you and I will have to suffer through a more verbose method).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="diagnostics.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(MASS)</span>
+<span id="cb9-2"><a href="diagnostics.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(model, <span class="at">plot=</span><span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsMASS-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="diagnostics.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(fairy_model, <span class="at">plot=</span><span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsMASS-2.png" width="672" /></p>
+<p>It’s a bit hard to tell because of the outliers, but if you look closely at the two models, it’s quite clear that, at least for these variables, the two models have pretty different fits. In other words, the lack of normality is a serious problem.</p>
+<p>Oh well.</p>
+</div>
+</div>
+<div id="diagnostic-tool-2-residual-dependence-rd-plot-for-linearity" class="section level2">
+<h2>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</h2>
+<div id="statistical-models-are-lazy" class="section level3">
+<h3>Statistical Models are Lazy</h3>
+<p>Suppose you wanted to walk from the goal-post of one endzone on a football field to the other. What’s the quickest way to do so? Should you trance up the bleachers, do a cartwheel in the parking lot, crabwalk to the nearest McDonald’s, then moonwalk to the other endzone? No!</p>
+<p>You will minimize travel if you walk directly from one endzone to the other, in a <em>straight line</em>. It’s the <em>laziest</em> option.</p>
+<p>Well, it turns out statistical models are quite lazy. They too prefer straight lines. Can statistical models fit data with non-straight lines? Sure. We call those nonlinear models. But, statistical models are lazy. They don’t want to bend their lines if they don’t have to.</p>
+<p>Let’s have a look, shall we? The code below fits the same relationship we saw before (between agility and strength). When we visualize the data, we can clearly see that the relationship is nonlinear. So, no surprise, if we try to fit a straight (lazy) line to this relationship, that’s a problem!</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="diagnostics.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength, <span class="at">data=</span>avengers, <span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:diagnosticsrepeat"></span>
+<img src="stats-jedi_files/figure-html/diagnosticsrepeat-1.png" alt="This relationship is NOT linear, but the fit might deceive us into thinking it is!" width="672" />
+<p class="caption">
+Figure 2: This relationship is NOT linear, but the fit might deceive us into thinking it is!
+</p>
+</div>
+</div>
+<div id="residual-dependence-plots" class="section level3">
+<h3>Residual Dependence Plots</h3>
+<p>It seems our eyes are often a little too trusting. If you were to look at the first image (Figure <a href="diagnostics.html#fig:diagnosticsnonlinear">1</a>), the nonlinearity is very apparent. But if we were to only look at the image above (Figure <a href="diagnostics.html#fig:diagnosticsrepeat">2</a>), we might not see that nonlinearity.</p>
+<p>That’s where the second type of plot comes in. It’s called a “residual-dependence plot.” Let’s go ahead and take a look at that sort of plot:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="diagnostics.html#cb12-1" aria-hidden="true" tabindex="-1"></a>model_with_boring_name <span class="ot">=</span> <span class="fu">lm</span>(agility<span class="sc">~</span>strength, <span class="at">data=</span>avengers)</span>
+<span id="cb12-2"><a href="diagnostics.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(model_with_boring_name, <span class="at">plot=</span><span class="st">&quot;residuals&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsRDP-1.png" width="672" /></p>
+<p>As before, the first plot shows a histogram of the residuals. We’re cool there; the data are normal, symmetric, beautiful, and all that jazz. But the second plot is problematic. What this plot shows is a scatterplot between the “fitted” values (which, in this case, is the variable <code>strength</code>) and the residuals.</p>
+<p>Why do we want this? Okay, remember how I said that residuals show us what remains after fitting our model? In the code above, we fit a <em>linear</em> model. So what do the residuals tell us? They tell us what remains after we have removed any <em>linear</em> relationship between <code>strength</code> and <code>agility</code>. In an ideal world, our statistical model is amazing and we have removed <em>any</em> signal from the data. In other words, what should be left is <em>no</em> relationship. However, in the plot above, we can very clearly see that after we remove the linear fit, there’s still some “signal” remaining, a <em>curvilinear</em> effect.</p>
+<p>Now, if you began with plotting loess lines, and/or if you had a keen eye, you probably would have seen that nonlinearity from the original plot of the raw data. What’s the point of doing a residual dependence plot? I’ve got two answers for you. First, the residual dependence plot will make the nonlinearity more apparent. For example, in the plot below, the same data are displayed as a model plot (left) versus a residual-dependence plot (right). Notice how the nonlinearity is <em>much</em> more apparent in the RD plot. The reason it’s more apparent is because the steep slope of the left plot masks any nonlinearity. The right plot, on the other hand, removes that slope so the nonlinearity can show through.</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticscowplot-1.png" width="672" /></p>
+<p>The second reason we use RD plots rather than model plots is because RDs can display multivariate nonlinearity more easily, which we will cover in a later chapter.</p>
+<p>So, what are you looking for when studying RD plots? We would like to see a flat-line relationship. That, once again, tells us that our statistical model has successfully removed any association between our variables. If, on the other hand, there’s any pattern remaining, that tells us we have failed to capture something in our model.</p>
+</div>
+<div id="how-to-fix-nonlinearity" class="section level3">
+<h3>How to Fix Nonlinearity</h3>
+<p>Now suppose there is nonlinearity. How do you fix it? Alas, that too is beyond the scope of this chapter, or maybe even this book. Fixing nonlinearity (and other problems) is really what my <a href="http://https://www.youtube.com/playlist?list=PL8F480DgtpW9W-PEX0f2gHl8SnQ7PtKBv">multivariate statistics course</a> is all about.</p>
+<p>But, I know how eager you are to know. So…I guess I’ll show you by adding a quadratic term to the model.</p>
+<div id="what-is-a-quadratic-term" class="section level4">
+<h4>What is a Quadratic Term?</h4>
+<p>Most models we deal with are “linear.” The statistical model looks like this:</p>
+<p><span class="math display">\[y = b_0 + b_1 \times X\]</span></p>
+<p>Or, in R code:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="diagnostics.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data=</span>d)</span></code></pre></div>
+<p>And the visual model looks like this:</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticvisual-1.png" width="672" /></p>
+<p>As you know, when you fit that model, it produces a straight line, just like the image above. But, you can add what we call a “quadratic term” to the model:</p>
+<p><span class="math display">\[y = b_0 + b_1 \times X + b_2 \times X^2\]</span></p>
+<p>What’s going on here? What we’re doing is creating a new variable (called <span class="math inline">\(X^2\)</span>) that is <em>literally</em> the same as <span class="math inline">\(X\)</span> except we square it. It turns out that when you square a variable and add it to our original model, the resulting model shows up as a curved line:</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticsviz2-1.png" width="672" /></p>
+<p>Neato.</p>
+<p>Unfortunately, it’s not as easy as typing <code>lm(y~x + x^2,...)</code>; you have to tell R that the squared term should be interpreted literally, as follows:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="diagnostics.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(y<span class="sc">~</span>x <span class="sc">+</span> <span class="fu">I</span>(x<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>d)</span></code></pre></div>
+<p>Why is that necessary? I’m not going to go into that. Just know that to square a term in R, you have to surround the squared term with <code>I</code>.</p>
+<p>Going back to our avengers dataset, let’s curve that model:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="diagnostics.html#cb15-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">## add a quadratic term to the model</span></span>
+<span id="cb15-2"><a href="diagnostics.html#cb15-2" aria-hidden="true" tabindex="-1"></a>curve_that_sucker <span class="ot">=</span> <span class="fu">lm</span>(agility<span class="sc">~</span>strength <span class="sc">+</span> <span class="fu">I</span>(strength<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>avengers)</span>
+<span id="cb15-3"><a href="diagnostics.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(curve_that_sucker, <span class="at">plot=</span><span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticspoly-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="diagnostics.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(curve_that_sucker, <span class="at">plot=</span><span class="st">&quot;residuals&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticspoly-2.png" width="672" /></p>
+<p><em>Now</em> the RD plot looks pretty flat (except for the far left side of the plot).</p>
+<p>Sometimes a quadratic term will work. Sometimes it won’t. It all depends on how that curve is shaped. To learn more about complex curve fitting, you can see an example of me doing it on <a href="http://https://youtu.be/5BpmktmvgIA">my YouTube channel</a>. Or, conversely, you can wait until 2085, when I write a book about it.</p>
+</div>
+</div>
+<div id="how-to-tell-if-nonlinearity-is-a-problem" class="section level3">
+<h3>How to tell if nonlinearity is a problem?</h3>
+<p>Earlier I said that statistical models are robust to non-normality. How about nonlinearity?</p>
+<p>No. </p>
+<p>They are not robust.</p>
+<p>Why?</p>
+<p>Remember how I said that models are robust if they generate similar conclusions to non-robust models? With nonlinear models, it takes very little nonlinearity for two models to make very different conclusions. Let’s look at the avengers data again, but with the two lines atop the same graphic.</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticsdiffpred-1.png" width="672" /></p>
+<p>These two models say very different things about the data. The lazy model says that more strength = more agility. The nonlinear model says that there’s diminishing returns and, in fact, at some point, more strength means <em>less</em> agility. Those are <em>very</em> different conclusions that could have real-world implications; the lazy model suggests professional soccer players will benefit from competitive bodybuilding.</p>
+<p>Yeah. Right.</p>
+<p>Likewise, the two models can generate very different predictions. Suppose you can benchpress 1,000 lbs (which is how strength is measured). The lazy model predicts your agility will be around 65. The nonlinear model, on the other hand, predicts a score below 35. That’s a massive difference in prediction!</p>
+</div>
+<div id="how-much-nonlinearity-is-too-much" class="section level3">
+<h3>How much nonlinearity is too much?</h3>
+<p>Okay…I’m kinda dreading writing this section. My first instinct is to say, “ANY NONLINEARITY IS TOO MUCH! MODEL THAT SUCKER!”</p>
+<p>But I also know that’s not entirely true. You see, the problem with loess lines is that they can be heavily influenced by outlying observations. Look at the RD plot below. That loess line in the RD plot looks nonlinear at both the high and low ends of the fitted values. But the sample size is pretty small. Is that nonlinearity because of the sample size? Or is there something there? It’s hard to tell. One way to tell is to ask yourself, “Hey, good looking! If you were to remove the largest and smallest fitted values, would that loess line still bend?”</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticsrepeatloessbend-1.png" width="672" /></p>
+<p>In this case, I think not. It seems those two outliers are dragging the loess line to make it seem like there’s problems with nonlinearity. But there’s not.</p>
+<p>So, in summary, unless you suspect that outliers are dragging the tails of the loess lines, <em>any</em> sort of curvilinearity in an RD plot suggests our model might be wrong.</p>
+</div>
+</div>
+<div id="diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity" class="section level2">
+<h2>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</h2>
+<p>Homoscedasticity: This has got to be the funnest word in all of statistics to say.</p>
+<p>Say it with me….</p>
+<p>Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity! Homoscedasticity!</p>
+<p>Oh that’s too fun.</p>
+<p>I’ll give you a minute to recuperate.</p>
+<p>What does homoscedasticity mean? That means that the variability across our fitted values is about the same.</p>
+<p>I know, that’s a terrible description. How about a visual?</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticssucess-1.png" width="672" /></p>
+<p>This graphic has <em>heteroscedasticity</em>, or non-homoscedasticity, which means that the variance (or spread) in each group is not equal. We can also have heteroscedasticity for numeric predictors:</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticstwogroup-1.png" width="672" /></p>
+<p>Notice how the spread of Y increases as X increases.</p>
+<p>That’s bad. We don’t want that.</p>
+<p>Why?</p>
+<p>Lemme put it this way: regression models <em>should</em> be democratic. Every datapoint <em>should</em> give equal “vote” to what the value of the regression line should be. Remember, the regression line is trying to be best buds with every datapoint. In other words, it’s trying to be as close as possible to every observation. Under a democratic model, this will generally mean that the regression line passes through the densest parts of the data. However, with heteroscedastic data, those areas with larger variances (e.g., near 2.0 in the above figure) will have more “pull” with the regression line. That means that models may buddy up to those areas with large variances while somewhat disregarding those areas with smaller variances.</p>
+<p>Wanna see an illustration of that going haywire?</p>
+<p>I knew you did.</p>
+<p>The example below shows two subgroups: the left subgroup has a very small variance (i.e., the variance of Y is small). The right subgroup has a very large variance. The regression line <em>should</em> be democratic and give each subgroup equal weight. But it’s not. It’s favoring the right subgroup.</p>
+<p><img src="stats-jedi_files/figure-html/diagnosticswonkyvar-1.png" width="672" /></p>
+<p>Why?</p>
+<p>Because of heteroscedasticity!</p>
+<p>But there’s another reason heteroscedasticity is bad. Many estimates and other statistics use a single value as the estimate for the spread. For example, remember Cohen’s d?</p>
+<p><span class="math inline">\(d = \frac{\bar{x_1}-\bar{x_2}}{s_{pooled}}\)</span></p>
+<p>The denominator (<span class="math inline">\(s_{pooled}\)</span>) is a <em>single value</em> that is supposed to represent the spread of the distribution. But we know that, with heteroscedasticity, spread increases (or decreases) across the values of <span class="math inline">\(X\)</span>. So using a single value to represent spread doesn’t actually make sense.</p>
+<div id="spread-location-sl-plots" class="section level3">
+<h3>Spread-Location (SL) Plots</h3>
+<p>So how do we detect heteroscedasticity? Well, we could just plot the model. That would help. But sometimes it’s hard to see if heteroscedasticity is a problem. Instead, we use an SL plot.</p>
+<p>Like RD plots, SL plots display the fitted values (X) on the x-axis. However, the Y axis shows the absolute value of the residuals. The basic idea is that when assessing heteroscedasticity, some residuals will be higher than the fitted line (i.e., the residuals are positive) and some will be lower. We really don’t care whether they’re higher or lower. We just want to know <em>how far</em> from the line they are. By computing the absolute value, these tell us simply how far from the line they are (regardless of direction). Then, when we plot those against X, we can see if there’s a consistent pattern of increasing (or decreasing) as X increases.</p>
+<p>If we were to visualize the stats-coolness dataset, for example, we would see something like this:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="diagnostics.html#cb17-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">lm</span>(Success<span class="sc">~</span>Group, <span class="at">data=</span>stats_coolness)</span>
+<span id="cb17-2"><a href="diagnostics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(mod, <span class="at">plot=</span><span class="st">&quot;residuals&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsstatscool-1.png" width="672" /></p>
+<p>Notice there’s no RD plots. The reason is because linearity is a given for categorical variables. (The “fit” or slope between any two groups has to be linear). Also, the residuals look normal. So that’s good.</p>
+<p>But…holy gamoly! The SL plot looks a little wonky. Remember, we <em>want</em> the line to be flat. And that ain’t flat. Instead, the line indicates that spread increases as the fitted values increase. In other words, we’ve got a problem with heteroscedasticity.</p>
+<p>So…how do we fix it? Again, that’s beyond the scope of this chapter (and this book). But, for those who would send hate mail if I don’t answer, here’s the short of it. We can use <em>weighted</em> least squares, which allows those values with smaller residuals to have more “pull” in voting on the value of the regression line. Here’s the R code to do it, which seems to make things a bit better:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="diagnostics.html#cb18-1" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fit a model that ignores heteroscedasticity</span></span>
+<span id="cb18-2"><a href="diagnostics.html#cb18-2" aria-hidden="true" tabindex="-1"></a>bad_bad_bad_model <span class="ot">=</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data=</span>wonky_variance)  </span>
+<span id="cb18-3"><a href="diagnostics.html#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## create &quot;weights&quot; </span></span>
+<span id="cb18-4"><a href="diagnostics.html#cb18-4" aria-hidden="true" tabindex="-1"></a>weights <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> <span class="fu">lm</span>(<span class="fu">abs</span>(bad_bad_bad_model<span class="sc">$</span>residuals) <span class="sc">~</span> bad_bad_bad_model<span class="sc">$</span>fitted.values)<span class="sc">$</span>fitted.values<span class="sc">^</span><span class="dv">2</span>  </span>
+<span id="cb18-5"><a href="diagnostics.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">## fit a new model that weights the residuals</span></span>
+<span id="cb18-6"><a href="diagnostics.html#cb18-6" aria-hidden="true" tabindex="-1"></a>good_model <span class="ot">=</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data=</span>wonky_variance, <span class="at">weights=</span>weights)</span>
+<span id="cb18-7"><a href="diagnostics.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(good_model)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/diagnosticsbadmod-1.png" width="672" /></p>
+</div>
+</div>
+<div id="outliers-1" class="section level2">
+<h2>Outliers</h2>
+<p>I’ve talked about outliers quite a bit, haven’t I? You’re smart enough to know that outliers can really screw things up. But outliers don’t have a dedicated plot like the other assumptions do.</p>
+<p>Why? Well, that’s mostly because any of the three plots I mentioned will show outliers. They’re not all that hard to identify.</p>
+<p>So how do you deal with them? That’s really up to debate. Some people are heartless, butchering datapoints if they fall too far beyond the mean. For example, the robust models I mentioned earlier default to removing the upper and lower 10% of the distribution. Yikes! But, they have their reasons. Outliers can really screw up a model and generate senseless predictions and/or conclusions. By only modeling the center of the data, you’re much less likely to have a senseless model.</p>
+<p>Others, the “outlier-huggers” as I call them, protest the destruction of datapoints, chaining themselves protectively to the outliers and facing down the riot gear of the analyst. Their basic argument is that these datapoints reflect real observations. If we start getting rid of data willy nilly, we limit our ability to generalize our results to real situations. For example, we might collect weight loss data from a hundred people and see how correlated weight loss is with calorie consumption. Is it possible to have someone in the sample who lost 200 pounds? Absolutely! Perhaps that person was on the Biggest Loser. If we eliminate that person, our model is no longer trying to estimate the relationship between calorie consumption and weight loss for all people. Instead, it’s estimating the relationship for those within a fairly arbitrary range.</p>
+<p>I can see it both ways. Outliers can really screw things up, so removing them can ensure that the model isn’t unduly influenced by wonky datapoints. On the other hand, those datapoints are real datapoints that we might be interested in.</p>
+<p>So what do we do?</p>
+<p>Sensitivity analyses. It worked before, right? Maybe we fit one model with the outlier and one without. Then we can compare the two models. If the fits of both models are essentially the same, then it doesn’t matter. If the fits are different, then of course we could choose a model. If we do, we should report both results. On the other hand, we don’t have to choose a model. We can withhold judgment until we gather more data.</p>
+<p>Let me say one more thing about outliers. They’re really only a problem with small samples. With large samples, even massive outliers will change the fit of the model very little. In other words, with large sample sizes, sensitivity analyses will tend to show the two models are pretty similar.</p>
+</div>
+<div id="independence" class="section level2">
+<h2>Independence</h2>
+<p>You ever see the show Quantico? For those who haven’t, I’m going to spoil a major plot point. You might wanna skip ahead.</p>
+<p>Actually…don’t. Because this metaphor is kinda important. So, stop reading, go binge watch the first few episodes. Then come back and bask in the beauty of my rhetoric.</p>
+<p>It’s okay. I’ll wait.</p>
+<p>Back?</p>
+<p>Good.</p>
+<p>Okay, so in the show, there are two identical twin sisters training to be FBI agents: Nimah and Raina Amin. For the majority of the season, nobody in their training group had any idea they were two different people. They always just assumed there was one person: Nimah. Few in the FBI administration even knew.</p>
+<p>Now suppose you are in charge of tracking training statistics, including retention. Further suppose you had 100 applicants start at Quantico, but only 80 completed. What is your retention rate?</p>
+<p>80%, right?</p>
+<p>Wrong.</p>
+<p>Why? Because you didn’t know that Nimah was actually masquerading as a single person when she (they) were actually two people. So, what is your real retention rate?</p>
+<p><span class="math inline">\(81/101 = 80.2%\)</span></p>
+<p>Close enough, right?</p>
+<p>But what if <em>half</em> of the 100 applicants had an identical twin? Would it surprise you at all if <em>most</em> of the time when one twin quit, the other did too? Probably not. Twins that quit together get to get drunk together. And party. And contemplate the meaning of life and ponder the existential crisis of unemployment. In other words, the probability one person quits is heavily dependent on whether their twin quits.</p>
+<p>This, in a nutshell, is an illustration of the assumption of independence. Independence states: <strong>the scores for one participant do not influence the scores of another participant.</strong></p>
+<p>In this example, having one twin drop out will almost certainly increase the chances that the other twin will drop out.</p>
+<p>In statistics, there are three common situations where we violate this assumption:</p>
+<ol style="list-style-type: decimal">
+<li>If we measure the same people twice. Obviously, the way I respond to a “Libertarians for Bernie” questionnaire at Time 1 will be correlated with my response to the same questionnaire at Time 2.</li>
+<li>If we measure people who are related in some way (e.g., husband and wife, two twins, father and son)</li>
+<li>If we measure a particular “cluster” (e.g., a bunch of students who were taught by the same instructor).</li>
+</ol>
+<p>In any of these cases, the individual scores are probably going to be correlated with one another.</p>
+<div id="why-do-models-assume-independence" class="section level3">
+<h3>Why do models assume independence?</h3>
+<p>Why is this a critical assumption?</p>
+<p>Damn good question, that. And, I’m gonna be honest. I’m really struggling with writing this explanation. Why? Because my metaphor doesn’t stretch as far as I want it to. The more I try to extend Quantico to statistics, the more I realize the limits of my metaphor. And, the reason is kinda technical and delves into probability (which we haven’t covered).</p>
+<p>But let me give a conceptual answer. Actually, to cover my assets, let me give two conceptual answers.</p>
+<ol style="list-style-type: decimal">
+<li><p>If scores are correlated, you are <em>missing</em> an important predictor of the outcome. Remember when we talked about linearity and I said that we want to capture all the signal between X and Y? If a nonlinear trend is present, it would be misleading to pretend it’s not there. In fact, it would return a bad model. We needed to add that curvilinear element to improve our predictions.</p>
+<p>Likewise, if we have twins in our data, that’s an important piece of signal. If we ignore it, we’re going to generate bad predictions. For example, suppose Gus’s twin (Goose) drops out of the program. A model that incorrectly assumes independence might guess Gus’s probability of quitting to be 20%. But, once again, if Gus’s twin drops out, his probability of dropping out is going to be <em>much</em> higher than the norm.</p>
+<p>That there is probably the most conceptual, least mathematical explanation. Now to a slightly more technical explanation.</p></li>
+<li><p>Independence screws up degrees of freedom. Wow. That’s an archaic statement to make. It was really put there to satisfy the pedantic statisticians and convince them I know what I’m talking about. (Honestly, sometimes this crass writing style harms my credibility).</p>
+<p>WTF does that mean? Long story short, we eventually want to make probabilistic statements, such as “What is the probability that a <em>randomly sampled applicant</em> will dropout of Quantico?” These probablistic statements are based on our current sample size. To compute the probability someone will drop out of Quantico, we will use information from our current sample, including the <em>sample size</em>. If our sample size is 100, but we really have 50 pairs of identical twins, our sample size isn’t really 100. It’s probably more like 50 because identical twins are…well…you know…identical. So, if we compute a probability as if our sample size is 100, but it’s really 50, we’re going to really screw things up.</p></li>
+</ol>
+</div>
+<div id="what-happens-if-you-violate-the-independence-assumption" class="section level3">
+<h3>What happens if you violate the independence assumption?</h3>
+<p>It’s bad. Really bad. Statistically speaking, you’d rather have lemonade injections through an IV while sitting in a bath of ice vinegar. Violating the independence assumption is really going to screw up both your models and your inferences.</p>
+<p>Statisticians don’t let other statisticians violate independence.</p>
+</div>
+<div id="how-to-detect-and-handle-dependent-data" class="section level3">
+<h3>How to detect and handle dependent data?</h3>
+<p>There are graphs out there to detect dependence (e.g., autoregressive plots). Fortunately, the independence assumption is typically met unless you recruit twins, couples, or classes, or you measure somebody multiple times. So, generally, you don’t have to worry about it.</p>
+<p>And if you do violate the assumption? No big deal, as long as you use the right model. Unfortunately, I won’t cover how to model dependencies in data. At least not in this book. (But I do on <a href="http://https://youtube.com/playlist?list=PL8F480DgtpW9_IT7xN1XeRF_dglZmK0nM">my YouTube channel</a>!) Give me a decade and maybe I’ll write about it. But the short answer is that we use Mixed Models (aka multilevel models, mixed effect models, hierarchical linear models).</p>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>Statistical models are tools. Like tools, some models are appropriate under some circumstances, but not in others. This chapter addressed diagnostics, which is a scary overly technical word that describes various methods we can use to determine whether our model is the right tool. These statistical models make “assumptions.” When these assumptions fail, we need to be able to detect that failure so we can choose a different tool.</p>
+<p>Many people advocate for statistical tests designed to give us an unambiguous answer about whether the assumption has been violated. These are useless. Just because an assumption has been violated, doesn’t mean that it actually requires us to change our statistical tool. Instead, this chapter teaches you to plot the data and see if the graphics suggest we need to make major modifications to our model.</p>
+<p>Throughout, I have advocated for “sensitivity analyses,” where the analyst runs the analysis multiple ways, one where the assumption is ignored, one where it is handled appropriately. If the two models agree, you know it doesn’t really matter. If they don’t agree, then you should probably handle the violation.</p>
+<p>A statistical model is comprised of two major elements: fit + residual (or signal + noise). A residual is what remains after fitting the model and they provide a convenient means for assessing model assumptions.</p>
+<p>In this chapter, I talked about three major assumptions of statistical models: normality, homoscedasticity, and linearity. Normality means that we assume the residuals are approximately normally distributed, though it turns out that most statistical models don’t care all that much if we have violations from normality. We assess normality via a histogram of the residuals. If it’s normal, ’taint abnormal.</p>
+<p>Homoscedasticity means we assume that the variance (or uncertainty) is about the same for every level of our predictor variable. We use S-L plots to visualize homoscedasticity. If this plot has a slope that’s markedly different from zero, that’s a problem. Or, as they say in the hood, “if the plot has a slope, your model ain’t dope.”</p>
+<p>Linearity means we assume that the fit of the model is straight. But really, it means that we assume our model captures all the “signal” or fit of the model. We can use residual dependence plots (fitted on X axis, residuals on Y axis) and look for any patterns. As they say in the hood, “If a pattern is there, analyst beware.”</p>
+<p>I also mentioned outliers, which can really pull the fit of the model away from where it should be. These may show up in any graphic. Finally, I talked about independence. Independence means that one observation has no affect on another observation, which is generally the case unless we measure the same person twice, or we collect data from couples, twins, or other sorts of clusters like classrooms. If this assumption is violated, we just need to use a model that can handle the dependence.</p>
+<p>For a summary of the assumptions, check out my cool table.</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="44%" />
+<col width="9%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Assumption</th>
+<th>Meaning</th>
+<th>Graphic</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Normality</td>
+<td>Residuals are normally distributed</td>
+<td>Histogram</td>
+<td>Symmetric, unimodal distribution</td>
+</tr>
+<tr class="even">
+<td>Linearity</td>
+<td>Relationship between X and Y is linear</td>
+<td>S-L Plot</td>
+<td>Flat line with no pattern</td>
+</tr>
+<tr class="odd">
+<td>Homoscedasticity</td>
+<td>Variance is the same across all predicted values</td>
+<td>SL Plot</td>
+<td>Flat line with no slope</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bivariate-estimates.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-Diagnostics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

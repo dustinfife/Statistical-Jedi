@@ -1,0 +1,488 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", echo = FALSE, message=FALSE, note=FALSE, warning=FALSE, cache= TRUE
+)
+```
+
+# Probability Two: Bayesian Probabilities (Versus Frequentist Approaches) {#bayesprobability}
+
+This chapter is primarily about the Bayesian approach. Along the way, I'm going to compare it to the frequentist approach, just to highlight differences. In the next chapter, I'll go more in depth with the frequentist/likelihood approach. 
+
+As a reminder, in the last chapter, we talked about how we use samples to make inferences to the population. If our sample is representative of our population, we can begin to understand how to make these inferences.
+
+But exactly how do you do that?
+
+Last chapter, I noted that means and standard deviations can be used to construct a probability density function (PDF). From the PDF, we can reconstruct the probability of obtaining *any possible range of scores*. 
+
+Alas, the mean/standard deviation of the sample isn't going to be *exactly* equal to the population, so using sample statistics as if they're population parameters is probably a bad idea. Also, we know that estimates (e.g., means, correlations, slopes) from larger samples should be more precise than guesses from small samples. 
+
+So...yeah...how do we begin to make inferences from samples, but with the appropriate amount of precision?
+
+Hell if I know. But, maybe an analogy will help. 
+
+## A Tale of Two Roomates
+
+There were once two brothers, both of which worked as mathematicians for a local factory. Tom was the oldest, with dark hair and a quiet demeaner. The man was practical and rarely in a hurry to make stupid claims that would later bite him in the arse. The younger, Egon, on the other hand, was a little pompous and prone to fantasizing about the weirdest things, like bathing in jello while smoking cuban marijuana.
+
+<img src="drawings/boxingmatch.jpg">
+
+The two worked at the same company. Though very different, both agreed that sleep was important and work was lame. Alas, both their shifts began at 6 am, where every minute one can oversleep truly counts. There are two routes to work: A and B. Also, their work allows them to be late only 5% of the time or less. Any more and they're fired. 
+
+So one day, the two brothers were having a discussion. They wanted to know two things: (1) which route is faster, and (2) What is the latest they could possibly leave without being late more than 5% of the time?
+
+Of course, because the two brothers were mathematicians, each felt quite confident they had the best approach to the solution. They are also quite competitive. They decided to place a wager. Whichever approach nets the most sleep (without reaching the critical 5% late threshold) wins.
+
+What do they win?
+
+A year's supply of their favorite cut of beef, funded by the loser. 
+
+So...yeah...the steaks are pretty high. (Pun intended). 
+
+For the next month, whilst carpooling to work, they record which route they chose and how long it takes to get to work. After that month, they each use that sample dataset to make their predictions.
+
+For review: their *sample* is the month of carpooling data. Their *population* is all future instances of driving to work. 
+
+Oh, and by the way, you can read in this dataset from the flexplot R package:
+
+```{r}
+#data(carpool)
+load("data/carpool.rda")
+```
+
+Go ahead, play around with it a bit. I know you're itching to. 
+
+With this dataset, we can compute the mean/standard deviation for each route:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+require(tidyverse)
+summary_stats = carpool %>% 
+  group_by(Route) %>% 
+  summarize(driving_time = round(mean(Time), digits=1), 
+            stdev = round(sd(Time), digits=1),
+            n = length(Time))
+```
+
+```{r, results="asis", echo=FALSE}
+knitr::kable(summary_stats, digits=1)
+```
+
+At this point, we could, of course, pretend our sample's estimates are exactly equal to their population values. If so, we could use some of the functions we learned in the last chapter, or even some new ones. First, let's see the latest we could possibly leave to be on time 95% of the time:
+
+```{r, echo=TRUE}
+require(ggplot2)
+routeA = qnorm(.05, summary_stats$driving_time[1], summary_stats$stdev[1])
+routeB = qnorm(.05, summary_stats$driving_time[2], summary_stats$stdev[2])
+routeA
+routeB
+```
+
+```{block, type="rmdnote"}
+`pnorm` in R computes the probability of obtaining a particular score or lower. `qnorm`, on the other hand, computes the score that falls at a particular percentile. Here, the value of 11.65 is the time (driving in minutes) that fell at the 5th percentile. 
+```
+
+If the sample perfectly represented the population, clearly Route A is better and Tom and Egon could leave around `r round(routeA)` minutes before work and be on time 95% of the time. 
+
+But, of course, this is just a sample. 
+
+So, how do we move from the sample to the population?
+
+### Tom's Approach
+
+Remember, one of the major problems with making inferences from the 31-day sample to all future possibilities is that the sample isn't going to reflect the population perfectly. In this example, the mean difference between the routes was `r difference.mean`, but there's no way of knowing whether this mean is equal the population mean. In fact, Tom's a little suspicious of the data. Before he ever collected data, he *thought* the difference between routes A and B would be somewhere between `r prior.diff - 2*prior.sd` and `r prior.diff + 2*prior.sd` minutes. 
+
+So Tom decides it makes sense to reign in the data a little bit, just in case it was an odd month. So Tom decides to convert his beliefs about how long it takes into a PDF.
+
+Kinda weird, but stick with me, although I'm going to relegate this to a technical box. Why? Because you really don't need to know how Tom converted his prior beliefs into a PDF. You just need to know that he did. But for those who do want to know, read on. Otherwise, I'll meet you post-technical box. 
+
+
+```{block, type="rmdnote", echo=TRUE}
+
+**Converting from a range to a normal mean/stanard deviation using PDFs**
+
+So how does Tom do this conversion? 
+
+Fortunately, we have access to his thoughts at the time:
+
+"Hmmm...I believed the difference in times would be somewhere between -1 and +5 minutes. What sort of normal distribution would give me that sort of range? Well, the mean of that range is $(-1 + 5) / 2$ = 2."
+
+Nice, Tom! So Tom has his mean. 
+
+And his standard deviation? Remember how last chapter we said that 95% of scores fall between $\pm 2$ standard deviations? Tom decides 95 is good enough to cover the range of -1 to +5. So what standard deviation would make -1 and +5 equal to 2 standard deviations from the mean? 1.5! (1.5*2 = 3, and 5 is 3 points above the mean of 2). 
+
+
+Nice, Tom! Man this guy's bright!
+
+Alright, so Tom has figured out how to convert his belief into a mean/standard deviation (so he can use a PDF). 
+
+To combine two different PDFs (Tom's prior beliefs with the data), things get a bit more complicated. Don't worry about how Tom came up with this equation; just trust that this will combine his prior belief with the actual data: 
+
+$$ \text{posterior mean} = \frac{1/s^2_p}{N/s^2_d + 1/s^2_p} M_p + \frac{N/s^2_d}{N/s^2_d + 1/s^2_p} M_d$$ 
+
+where anything with a subscript of p is from the prior, anything with a d is from the data, $s$ is the standard deviation, $M$ is the mean, and $N$ is the sample size. 
+
+The formula for the posterior standard deviation is a bit easier:
+
+$$ \text{posterior standard deviation} = \sqrt{s^2_p + \frac{s^2_d}{N}}$$ 
+```
+
+Back?
+
+Glad I didn't lose you. Long story short, Tom figured out how to combine the PDFs from his prior belief with the data. This new mean is called a "posterior mean," while the new standard deviation is called a "posterior standard deviation." In this case, they will be `r round(posterior.diff)` for the mean and `r round(posterior.sd, digits=2)` for the standard deviation.
+
+Anyway, what Tom just did was combine what he believed *before* he collected data with what the data actually say. His new best guess of the mean is `r round(posterior.diff, digits=2)`, which is a compromise between what he believed before (`r prior.diff`) and what the data say (`r difference.mean`). In fact, let's look at a graphic, shall we?
+
+```{r prob2priorposterior}
+difference.plot
+```
+
+The red line shows the PDF of Tom's belief before collecting data. The green line is the PDF for the data. The blue line is the compromise (or posterior). We can use the same function as before to compute probabilities. For example, we might ask, "what is the probability Route B is actually faster?" 
+
+```{r, echo = FALSE}
+prob_route_b_faster = round(pnorm(0, mean=posterior.diff, sd=posterior.sd.diff), digits=3)
+```
+
+Let's find out! If Route B is faster, that means we need to compute what proportion of cases fall below zero, which in this case is `r prob_route_b_faster`. So, the probability that route B is faster is only `r round(prob_route_b_faster, digits=2)`. 
+
+Once again, though, Tom is careful. Rather than making a decision now, he decides to collect more data for another two weeks, then again combine his new belief (`r round(posterior.diff, digits=2)`)  with the new set of data. If, once again, we have a mean above close to five minutes, Tom might abandon his prior belief entirely, admit he was wrong, and move on with his life. 
+
+In summary, Tom's approach to inferring from the sample to the population requires Tom to combine two different PDFs: the one he had before collecting data (called his prior belief) and the one he got from the data. When he combines these, we call it the posterior distribution. From this, we can compute the probabilities we need. 
+
+What does Egon have to say about this?
+
+### Egon's Approach
+
+Egon thinks Tom is stupid: "Who the beansprouts cares about what you believe?!?! Honestly, you're a scientist and your personal beliefs should play no role. Moron."
+
+So Egon doesn't make any guesses. He relies 100% on the data. 
+
+Egon knows he doesn't know which route is better. Instead, he takes a different approach.
+
+It just so happens that Egon watched "The One" with Jet Li. In that movie, the main character (Gabriel Yulaw) lives in a multiverse, and there are bajillions of different versions of himself. Gabriel figures that if he were to kill his alternative lives, he will absorb their powers and become god-like. 
+
+Well, Egon has similar delusions of grandeur. So he says to himself, "Hey, what if in a parallel universe, Tom and I did the same experiment. We'd probably get different results!" 
+
+In one universe, the mean might be 17.5, while it might be 16.2 in another. He then visualizes a histogram, but not of the *drivings times*, but of the means for the experiment.
+
+Lemme say that again: Egon starts to think about a distribution of *means*, not of driving times. 
+
+And again: Egon's distribution is a distribution of *mean* driving times, not the actual driving times.
+
+"I wonder," said Egon, "if there's a mathematical relationship between the mean *we* computed and the distribution of mean across all universes?"
+
+So Egon does nothing but math for the next two weeks.
+
+<img src="drawings/egon_clt.jpg" alt="drawing"/>
+
+"I've got it!" he says, "I've discovered something called the central limit theorem...patent pending."
+
+Tom raises an eyebrow. 
+
+"Okay," says Egon. "Let's say you randomly picked a person from a crowd. Would it be unusual to randomly pick someone who's 6'5"?"
+
+"Yes."
+
+"But would it be unheard of?"
+
+"No," said Tom.
+
+"Right. But now, let's say you randomly picked 15 people from a crowd and computed their average height. Now, would it be unusual to *average* 6'5"?"
+
+Tom nods.
+
+"Exactly! You'd have to have a *lot* of fluke events happen repeatedly. It might happen once. But 15 times? No way."
+
+"Your point?"
+
+"The more datapoints you sample, the more likely your sample's mean will be close to the true value."
+
+I'm going to interrupt Egon there, because he's about to get technical. Long story short, there's a mathematical relationship between the sample's standard deviation and the standard deviation of the *distribution of means*:
+
+$\text{sampling distribution standard deviation}=\text{sample standard deviation} / \sqrt{N}$
+
+
+```{r, echo=FALSE}
+difference.sd = with(summary_stats, sqrt(((14)*stdev[1]^2 + 
+                                            (15)*stdev[2]^2)/(n[1] + n[2] - 2)))
+sampling_distribution_sd = difference.sd/sqrt(nrow(carpool))
+```
+
+For our sample, that would be `r round(sampling_distribution_sd, digits=2)`. If we use the sample's estimate of the mean difference (`r round(difference.mean, digits=2)`) and the sample's estimate of the sampling distribution's standard deviation (`r round(sampling_distribution_sd, digits=2)`), we can then compute probabilities like we did in the last chapter. 
+
+As with Tom's example, maybe we want to know the probability Route B is as good or better:
+
+```{r}
+probability_routeB_is_better= pnorm(0, 
+                                    mean=difference.mean, 
+                                    sd = sampling_distribution_sd)
+probability_routeB_is_better
+```
+
+This probability is very similar to Tom's, but it's interpreted very differently. What does *this* probability mean? It means that *if* we lived in a multiverse where the true difference is zero, `r round(probability_routeB_is_better, digits=2)*100`\% of the time, some version of that multiverse would produce means this different (or more different). 
+
+"Cool," says Tom. "So...how you gonna solve our route dillema?"
+
+Egon grins. "Here's what we do. We *assume* the two driving times are equal. Then, we compute the probability of observing the difference we observe *if* there was zero difference in driving times...under a parallel universe. If the actual driving times are really unlikely under the assumption they're equal, we conclude they're different."
+
+So, to summarize Egon: Egon assumes that their sample mean is one of an infinite number of sample means that could have been generated. He assumes the means are not different, then computes the probability of observing what we observed *if* they were actually not different. 
+
+Time for a joke:
+
+```{block, type = 'rmdjoke', echo=TRUE}
+What is a pirate's favorite software?
+
+R
+```
+
+
+### What do they conclude?
+
+From his analysis, Tom concludes that there's only a `r round(prob_route_b_faster, digits=2)` probability that Route B is better. Egon concludes that, if the routes are equal, there's only a `r round(probability_routeB_is_better, digits=2)*100`\% probability they would observe what they observed. 
+
+"Wait," Tom says, "That's not what we want to know!"
+
+"Pardon?" says Egon.
+
+"You're computing the probability of observing this difference *if* there's no difference."
+
+"Yeah."
+
+"That's not the same as the probability the two are different."
+
+Egon's face turns red, then he lowers his eyes. "Maybe."
+
+"So which route is faster?" Tom asks.
+
+"I can't say. But, I can say that it would be rare to observe the numbers we observed if they were equal."
+
+"But that's not what we want to know."
+
+"True," says Egon. "But it's a close to what we want to know. I think."
+
+Then they share their results of how late they can leave. Tom says that, if they leave `r round(posterior.mean -2*posterior.sd, digits=2)` before work, 95% of the time they will arrive on time.
+
+As for Egon?
+
+"Well," he says, "the answer is `r round(dmean, digits=1)`."
+
+"Okay," says Tom. "So, if we leave `r round(dmean, digits=1)` before work, we'll be on time 95% of the time?"
+
+"Well...no."
+
+"Then what does it mean."
+
+"Okay," Egon sucks in a breath, as if he's about to sing an entire opera in one breath, "in the multiverse, if we were to compute this sort of number, 95% of the time, all sample scores would be above this value."
+
+Tom stares blankly at Egon.
+
+Egon shrugs. 
+
+Tom shakes his head. "I have an IQ of 190 and I have no idea what you just said."
+
+(That was my subtle attempt to tell you it's okay to be totally confused by Egon's statement. So, chill :))
+
+So who won?
+
+Felix, their third roomate. 
+
+Dude had a GPS. 
+
+## The Bayesian Approach
+
+In this silly example, Tom (named after Thomas Bayes) represents the Bayesian point of view. Thomas Bayes was a reverend and mathematician who lived in the 1700s. He would have long been forgotten, except for one small theorem that was only discovered after his death. I'm going to show it to you, but fear not. You don't have to memorize it, or really even understand it. 
+
+So, here it is:
+
+$$p(A|B) = \frac{p(B|A)p(A)}{p(B)}$$
+
+For our carpool example, that would mean:
+
+$$p(\text{Route A < Route B}|\text{data}) = \frac{p(\text{data}|\text{Route A < Route B})\times p(\text{Route A < Route B})}{p(\text{data})}$$
+This formula mathematizes what we want to know: we want to know, given the data we have observed, what the probability Route A is faster than Route B. This formula tells us how to compute that. The most important term for a Bayesian probability is the right term in the numerator: $p(\text{Route A < Route B}$). This represents the *prior* knowledge (or belief) about the data. The left term is called the likelihood, and can be easily computed from the data, but it's the exact opposite of what we want: we don't want to know the probability of the *data* given that Route A < Route B, we want to know the probability that Route A < Route B, given the data. 
+
+But let's simplify this a bit:
+
+$$p(\text{hypothesis}|\text{data}) = \text{likelihood}\times \text{prior probability of the hypothesis}$$
+Wait a minute! You can't just get rid of the denominator! Well, you're right, but it's just there to make sure our probabilities sum to one. 
+
+But that there is Bayesian in a nutshell.
+
+So what? What's the point? Why should I care?
+
+Or, maybe the most important question is, "What is my take-home message from this?"
+
+Good question, wise student. 
+
+The point of this is to tell you that Bayesian provides a way of computing what we want, the posterior probability ($p(\text{hypothesis}|\text{data})$), but it requires us to specify our prior knowledge or beliefs. As far as *how* to compute that posterior, don't worry about it. The computer will do it for you. 
+
+This posterior then becomes our new state of belief, which then can serve as the prior for our next study. We call this "updating": we specify a prior for Study 1, collect data, then update our beliefs. We then conduct Study 2, using our posterior from Study 1. The data from Study 2 then updates our beliefs from Study 1. And so on.  
+
+But this updating isn't just a simple averaging. When the prior and the data are combined, one may pull more weight than the other. If the sample size is tiny, we should probably be more uncertain about the data and our prior should hold more weight. On the other hand, if the sample size is massive, our prior should probably hold little weight. 
+
+Also, the standard deviation on the prior/data are going to be used for the weighting. If our prior is ridiculously certain (e.g., we predict the mean difference between Routes A and B to fall between 0.9999 and 1.00001), the posterior will heavily weight the prior. 
+
+Yeah, but *how* do you do it?
+ 
+Ha ha ha. 
+
+It turns out, it's quite complicated. But I'm not going to bore you with the details, unless you happen to read the technical box. 
+
+```{block, type="rmdnote", echo=TRUE}
+### Brief history of the emergence of Bayesian
+
+Back in the 1930s-1950s, the field of statistics was pretty new. It hadn't yet reached that point where everything was systematized (i.e., the point where everyone thinks they know what they're doing). 
+
+At the time, statisticians recognized that it would be wicked cool if we could augment statistical analysis with probability. But how do you do that? Looking back at the old equation, everyone knew they wanted to compute probabilities based on the data (i.e., $p(\text{hypothesis}|\text{data})$). While the likelihood could be computed, that pesky prior really screwed things up. There were two problems:
+
+1. Where do you get the prior probability of the hypothesis? Most Bayesian-oriented statisticians were completely fine with the idea that it could be derived from one's subjective beliefs. After all, given enough data, it won't matter anyway. But, the culture of that era shunned any notion of subjectivity. Instead, people believed they could actually be objective. (I'll give you a minute to recover from your laughing spell). Bayesians, on the other hand, knew it was impossible and, rather than hiding their subjectivity, they put it out there in the open where it could be readily scrutinized. 
+
+2. Actually computing these probabilities is effing difficult. Remember, we use PDFs to compute probabilities. These PDFs are often enormously complicated, but then having to multiply them together is even more complicated. And then you have to figure out what the denominator is. Only rarely can these calculations even be computed. (In math-speak, we say the mathematical solution doesn't have a closed form). 
+
+It's possible Bayesians might have made a good case for addressing #1, but there's no way they could address #2. At least not yet. 
+
+In the 1940s and 1950s, a few clever individuals developed an class of algorithms called Monte Carlo simulations. These algorithms work by asking the computer to give you a bunch of random numbers from specific distributions. For example, I could ask R to give me 100 random scores from a normal distribution with a mean of 10 and a standard deviation of 2:
+
+`rnorm(100,10,2)`
+
+The simulations are used to solve complex problems for which the math is quite untractable, like the probability of winning a game of monopoly. It was never initially designed to be used to estimate Bayesian problems. 
+
+One of the sorts of Monte Carlo algorithms was called a Markov Chain. While regular Monte Carlo algorithms simulate a bunch of independent numbers, the simulations Markov Chains depend on previous values. 
+
+Nobody really knew that Markov Chain Monte Carlo (MCMC) algorithms could solve Bayesian problems, or at least not until 1990, when Gelfand and Smith realized you can use MCMC to simulate the posterior distribution. Long story short, we tell the computer what the PDF is for our prior, then we give it our data, then it samples from the prior and the data to generate a posterior. Problem solved. Literally. This was a pretty massive step that made Bayesian go from a cute and impractical idea to something that could actually be done.
+
+Unfortunately, these simulations are intensive, and the 1990s wasn't the optimal time to start doing heavy computing. Now, however, these calculations are much more manageable.
+```
+
+
+### Strengths of the Bayesian approach
+
+I worry I will offend Bayesians in this section. There are actually a *lot* of advantages to a Bayesian approach and I don't have time to address them all. But here are a few. 
+
+1. *Bayesian methods reinforce meta-analytic thinking.* The Bayesian method encourages one to continually "update" their probability estimates; the information from Study 1 informs Study 2, which informs Study 3, etc. Bayesian estimates demand users think beforehand about what we know (knew) prior to collecting data. This sort of approach reinforces the idea that our study is one of a large number of studies that *could* be done. This is a healthy way of thinking, otherwise you run the risk of thinking your single study discovered gold. 
+
+2. *Interpreting Bayesian Probabilities is Easy.* As you'll see in the next section, one has to perform both mental and verbal gymnastics to interpret frequentist probabilities. With Bayesian probabilities, on the other hand, the interpretation is easy and intuitive. 
+
+3. *Flexibility.* With the advent of MCMC, Bayesian models are incredibly flexible, which is not always the case with frequentist models. For example, structural equation models (which we won't cover in this book) cannot fit certain models. Bayesian models, on the other hand, *can* be fit.
+
+4. *Bayesian methods do not violate the likelihood principle*. The likelihood principle states, in short, that all that matters in making inferences is contained within the likelihood function. What does that mean? Well, it means that our inferences do not depend on anything but the math. As you'll see in the next section, frequentist probabilities violate the likelihood principle; the inferences one wishes to make depends on how many tests are performed, the intended sample size, the actual sample size, the threshold for determining "significance," etc. Bayesian methods are the same regardless of the number of tests, sample size, threshold for significance, etc. 
+
+5. *Bayesian methods handle small sample sizes quite well*. Kinda. Remember how I said earlier that with small sample sizes, one's prior holds a lot more weight. So, while a frequentist approach will simply give very imprecise estimates (that may become meaningless), Bayesian estimates can have very precise estimates even with small sample sizes. However, those estimates rely heavily on the priors. So, if the priors are biased, the results of the Bayesian estimation will also be biased.   
+
+
+### Weaknesses/Objections to the Bayesian Approach
+
+In some ways, Bayesian methods seem to be pretty freaking awesome. They resolve a lot of issues and make estimation nice. But, there's some limitations that remain. 
+
+1. *One's beliefs shouldn't matter.* It does seem kind of odd, doesn't it? If two people approach the same problem with different priors, they will get different answers. If truth is truth, one's beliefs should be irrelevant. Perhaps that's true. But, alas, truth is a pesky bugger that refuses to be pinned down. While it doesn't give a damn about our beliefs, so also is it hard to acquire. It turns out, starting with a prior belief is a necessary step toward approaching the truth. Also, the more data we collect, the more irrelevant our prior beliefs become. So, in a way, the skeptics are correct and Bayesians would agree: one's beliefs are irrelevant. But, the more data we collect, the less our model cares about what we believed. 
+
+    More importantly, though, is that our beliefs are going to influence our analysis regardless of whether we use Bayesian or frequentist methods. The hypotheses we choose to test are not random; they are guided by our personal beliefs. In other words, it is *impossible* to not let one's beliefs influence data analysis. So, rather than pretending we're being objective, isn't it better to be explicit about our biases (priors)? If we're explicit, they're out there in the open for others to scrutinize. 
+
+2. *Priors can be quite influential.* This is really a second aspect to #1; if one wanted a particular experimental effect to show a whopping difference from the treatment group, all they need to do is have a really precise prior that suggest as much. When aggregated with the data, the posterior might not move hardly at all. On the other hand, eventually, after multiple replications, the data will again win, provided the researcher has enough patience to keep testing the same hypothesis. 
+
+3. *Bayesian methods are too complicated.* Ha! Ha ha ha! That's a load of horse manure! Bayesian *results* are far easier to interpret than Frequentist results. Let's consider a confidence interval (frequentist) versus a credible interval (Bayesian). Say both range from 2 to 10. How does a frequentist interpret this interval? Well, if we were to compute an interval like this, 95% of the the time, over repeated samples, the parameter we compute will contain the population value. 
+
+    "Okay," you might say, "so does 2 to 10 mean there's a 95% probability the true value is within that interval?" 
+  
+    No. In fact, those specific numbers mean *nothing* (as I will explain in more detail in the next chapter. )
+  
+    And what about a Bayesian credible interval? It actually *does* mean what we think it means: 2 to 10 means there's a 95% probability the true value lies within that region (given our choice of priors). Much easier, eh?
+  
+    It is, however, true that the mathematics behind Bayesian is way more complicated. But that's what computers are for. You don't need to understand the math. You just need to understand how to interpret it. And, I just told you how to interpret it.
+  
+    Congratulations! You're a Bayesian!
+
+4. *Software implementations*. Of all the objections to Bayesian methods, this one has the most merit. Many Bayesian analyses must be hand-coded in a language that is different than R, a language that will then do MCMC in the background. That means *another* language one has to learn. Well, that sucks. But this is not a problem with Bayesian, per se. It's a problem with developers. 
+
+    But there's promise. I'll show some of my favorite R packages that allow you to do Bayesian methods quite easily. Yay! 
+  
+    As Bayesian methods become more popular, more technical folk will show an interest in bringing the rest of us along on a Bayesian journey. 
+
+    In fact, I'm afraid by the time you read this, this comment will be horrendously outdated. 
+
+To summarize: Bayesians infer from samples to populations by pairing prior beliefs with the data. The larger the sample size, the less influential are one's prior beliefs in fitting the model. 
+
+## Frequentist/Likelihood Description
+
+The frequentist approach was spawned by two fellows named Egon Pearson and Jersey Neyman. The Likelihood approach was created by Ronald Fisher. 
+
+Oh boy. The Fisher and Pearson/Neyman would be deeply offended if they knew I lumped them into the same category. Oh well. You can't please everyone. And they're all dead. So...I guess I don't care. 
+
+Why do I lump them into the same category? Because that's what other people have done. So I'm going to stick with it. 
+
+I'm not going to spend much time here on this approach because we'll cover it in more detail in the next chapter. But the short of it is this: these camps consider the experiment you performed as one of an infinite number of experiments that *could* have been performed. The frequentist/likelihood approaches generally seek to reject a "null hypothesis" and estimate confidence intervals. These have very nuanced interpretations, which we'll cover in a later chapter. 
+
+### Strengths
+
+The primary strength of the frequentist/likelihood approach is that it's super easy to compute the statistics of interest. They don't rely on crazy advanced calculus or MCMC algorithms like the Bayesian approach does. 
+
+Another strength is that it is familiar. It's what most people use in scientific research, so you're not going to have a lot of obstacles to overcome if you analyze your data using this approach. 
+
+Finally, it's (presumably) objective; we simply compute the statistics of interest without letting our prior beliefs affect the results. But really, this isn't all that true. This approach is just as subjective as the Bayesian approach, we just hide our subjectivity. It is subjective what type of analysis to run, how to run it, what variables to use, etc. 
+
+### Weaknesses
+
+I'm going to comment very briefly on the weaknesses of this approach because I'll cover it more deeply in another chapter. First, it's prone to misinterpretation. The correct interpretation is really nuanced and complicated and few people actually understand it. Also, it's not clear how to incorporate information from past studies. That makes it hard to do cumulative research. Next, doing multiple null hypothesis tests really screws up the probability computations. These multiple tests need to be corrected, which is rarely done. Finally, this approach violates the likelihood principle. Which kinda sucks. 
+
+## Doing Bayesian Analyses in R
+
+Like I said earlier, Bayesian methods are kinda new. And, most Bayesian methods rely on sophisticated algorithms (called MCMC). These algorithms typically require the user to write computer code to specify how the algorithms will work. Writing Bayesian models is generally done in either a program called BUGS/JAGs (which is the successor of BUGS) or Stan. 
+
+Fortunately for you, some very clever people have written R interfaces for all these Bayesian programs. For my examples, I'm going to use an R package called `rstanarm`. This is going to be brief...so much so that I worry it's just going to confuse you. There's a lot of information you get from a Bayesian analysis that I haven't prepared you for.
+
+But, I can at least give you a taste.
+
+To install it, we type:
+
+```{r, echo=TRUE, eval=FALSE}
+install.packages("rstanarm")
+```
+
+Then, of course, we must load it (as well as flexplot):
+
+```{r, echo=TRUE}
+require(rstanarm)
+```
+
+The reason I like `rstanarm` is because using it is very similar to what we're already familiar with. For example, I could analyze the relationship between weight.loss and motivation in the exercise_data dataset: 
+
+```{r, echo=TRUE}
+model = stan_glm(weight.loss~motivation, data=exercise_data)
+```
+
+It gives a *lot* of information when you run the model. That just tells you that it's doing MCMC in the background. Don't worry about that input. 
+
+We could ask for a summary of the model, just like we do with regular `lm`:
+
+```{r, echo=TRUE}
+summary(model)
+```
+
+Most of the information we don't have enough background to interpret. But, we do know what "Estimates" means. It gives us the intercept, the slope, and the residual standard error. 
+
+But, we didn't specify a prior! By default, most programs use what's called a "noninformative prior." A noninformative prior is basically like saying, "the slope could be anything between negative infinity and positive infinity." Generally, Bayesian models with noninformative priors yield results similar to a frequentist analysis. rstanarm uses some other priors and I haven't yet taken the time to figure them out :)
+
+So, let's go ahead and specify some priors:
+
+```{r, echo=TRUE}
+prior_intercept = normal(0, 20)
+prior = normal(.2, .5)
+```
+
+Here, I'm specifying that my best guess of the intercept is zero (i.e., if someone has zero motivation, I expect them to have lost zero pounds). But, I'm uncertain about that, so I'm allowing my prior to have a large standard deviation (20). So, according to this prior, I'm saying people with no motivation may gain up to about 40 pounds (i.e., $2\times $ the standard deviation) or gain 40 pounds. 
+
+The second one is going to be for my slope. I'm estimating a .2 intercept (meaning that every point of motivation means a .2 lb weight loss) and I'm indicating my uncertainty with a standard deviation of .5. So, the slope could be anywhere between -0.2 (again 2 $\times$ the standard deviation) and +1.2 (i.e., for every point gained in motivation, they will lose 1.2 lbs). 
+
+Now we can fit the model with those priors:
+
+```{r note=FALSE, message=FALSE, echo=TRUE}
+mod = stan_glm(weight.loss~motivation, data=exercise_data,
+               prior_intercept = prior_intercept,
+               prior = prior)
+summary(model)
+```
+
+It would be quite nice if flexplot worked with `rstanarm`, but it doesn't. (Not yet, anyway). That's on my to-do list. :) But, in the future, you can expect to use the `visualize` and `estimates` functions. 
+
+In the future, I plan to have a much more in-depth chapter on actually doing Bayesian analyses. Alas, to interpret what's going on, I need to talk about MCMC chains, convergence, and all that jazz. In the mean time, you can visit the [rstanarm website](http://http://mc-stan.org/rstanarm/index.html) for more information. 
+ 
+
+

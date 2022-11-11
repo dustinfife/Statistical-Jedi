@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Multivariate GLMs: Conditioning Effects | R Notebook</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Multivariate GLMs: Conditioning Effects | R Notebook" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Multivariate GLMs: Conditioning Effects | R Notebook" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2021-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multivariate-general-linear-models.html"/>
+<link rel="next" href="multivariate-glms-interaction-effects.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li><a href="section.html#section"></a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li><a href="section-1.html#section-1"></a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-language-of-interaction-effects"><i class="fa fa-check"></i>The Language of Interaction Effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Versus Frequentist Approaches</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Notebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="multivariate-glms-conditioning-effects" class="section level1">
+<h1>Multivariate GLMs: Conditioning Effects</h1>
+<p>There were once two identical twin brothers, separated at birth, one named Tim, the other named Burton. Tim was born to a wealthy family. Said family paid for private tutors, incentivized Tim to do his homework with donuts and hot chocolate, and build him his own baseball diamond. Burton, on the other hand, was not so lucky. Shortly after the adoption, Burton’s father died. Burton’s mom, now an uneducated spinster, took double shifts at a local diner. When she could afford it, she paid for daycare, but more often than not, Burton spent his time watching Sesame Street and eating Hot Pockets.</p>
+<p>Decades later, Tim works as a successful hedge fund manager, making millions. Burton, on the other hand, fell into a troubled group of friends, began drinking, and accidentally killed a youth in a drunk driving incident.</p>
+<p>When Tim learns of his twin, he pays a visit to Burton, who recently was released from prison. Tim was appalled and could only conclude, “It’s like my pop always said…the key to success is hard work.”</p>
+<p>Hard work, eh?</p>
+<p>We could model that, you know. We could build a statistical model that predicts success (say we define it as income) from hard work (say we define it as hours worked per week). Clearly, because Tim works 80 hours a week and Tim is jobless, we would see a striking relationship:</p>
+<p><img src="stats-jedi_files/figure-html/conditioninghardwork-1.png" width="672" /></p>
+<p>Of course, you’re smart enough to know that doing statistics with only two datapoints (Tim and Burton) is pretty useless. So, perhaps, you go out and collect more data. What now?</p>
+<p><img src="stats-jedi_files/figure-html/conditioningtwo-1.png" width="672" /></p>
+<p>Can we now conclude that working hard = success?</p>
+<p>No. </p>
+<p>Why? There’s lots of reasons, but for today, we’ll focus on one: you can’t disentangle hard work from a host of other possible explanations. Sure Tim works harder, but he was also incentivized to work harder. And he had many more resources. And he had parents with enough time to invest in his development. These other factors (incentivized to work hard, resources, parental investment) are <em>highly</em> correlated with work ethic and it makes it really difficult to determine whether its the work ethic or something else that caused Tim to be successful.</p>
+<div id="multicollinearity" class="section level2">
+<h2>Multicollinearity</h2>
+<p>This little example illustrates something we call “multicollinearity,” or “collinearity.” Collinearity means that we have predictor variables that are correlated with one another. When we have variables that are correlated, it’s hard to figure out which variable is causing the outcome. Once again, is it work ethic? Parental wealth? Resources? Love and affection? Access to clean drinking water?</p>
+<p>Perhaps I’ll submit to convention and illustrate this with a Venn diagram.</p>
+<p>The overlap between circles represents the degree of correlation (more overlap = more correlated). What we want to know is the yellow-colored area: how much overlap exists between hard work and income, once we subtract out any shared effect of parental wealth.</p>
+<p><img src="stats-jedi_files/figure-html/conditioningvenn1-1.png" width="672" /></p>
+<p>How then, do we disentangle the explanations? We use conditioning!</p>
+</div>
+<div id="controlling-by-conditioning" class="section level2">
+<h2>Controlling by conditioning</h2>
+<p>Before I explain conditioning, let’s review some terminology. Once again, we’re going to call the variable we’re interested in (in this case, hard word) the “interest variable.” Why? Because it’s the variable we’re interested in. The variable we’re trying to control for, we’re going to call a “covariate” or a “control” variable</p>
+<p><strong>Interest variable: the predictor variable for which we’re wanting to determine the strength of the relationship </strong></p>
+<p><strong>Covariate: the predictor variable for which we’re trying to control.</strong></p>
+<p>Let’s say, for the sake of explanation, we think it was parental wealth that caused Tim’s success, not his work ethic. In other words, the interest variable is work ethic and the covariate is parental wealth.</p>
+<p>If we were to write a model as a GLM, we might use:</p>
+<p><span class="math inline">\(\text{Outcome} = b_0 + b_1\text{Covariate} + b_2\text{Interest Variable} + e\)</span></p>
+<p>It’s customary to put the covariate first, then put the interest variable. Why? Two reasons. The first is in the technical box. The second reason is psychological; that which is last is most easily remembered. So, putting our interest variable last is an easy reminder of which variable we’re actually interested in.</p>
+<div class="rmdnote">
+<h2 id="why-is-the-covariate-put-first-type-iiiiii-sums-of-squares">
+Why is the covariate put first? Type I/II/III Sums of Squares!
+</h2>
+<p>
+This whole book is based on the GLM. But it used to be that people thought in terms of ANOVA models. To compute an ANOVA, you essentially compute two or more types of variances, then divide those variances. Whenever we have multiple variables, especially if those variables are not under the control of the experimenter, there’s a good possibility the variables will be correlated. When variables are correlated, it becomes hard to figure out which variable gets “credit” for predicting the outcome.
+</p>
+<p>
+If you look at the Venn diagram above, you’ll notice that I’ve defined “credit” by a variable’s unique contribution; hard work uniquely contributes to income by the amount designated in red. Another name for unique credit is “Type III Sums of Squares.” Why that name? Well, long story short, an ANOVA is trying to explain variance. Another name for variance is sums of squares. So Type III Sums of Squares is a fancy way of saying, “Variance explained, according to the third type of defining variance explained.”
+</p>
+<p>
+So what are Type I/II? Type I means that whatever variable is entered first in a model gets the credit. So, if our model was Income = <span class="math inline"><span class="math inline">\(b_0 + b_1\)</span></span>Hard Work <span class="math inline"><span class="math inline">\(+ b_2\)</span></span>Parental Income, Hard work would get the credit for the information presented in yellow + green, while Parental Income would only get credit for the blue area. Type II is similar to Type III, but it ignores interaction effects (i.e., it “controls” for all main effects, but not interactions).
+</p>
+<p>
+I think it’s pretty stupid to give one variable more credit than another, just because we happened to enter it first in the model. For that reason, I always use Type III sums of squares.
+</p>
+</div>
+<p>If we were to write the above equation for the GLM using our own variables, we would put:</p>
+<p><span class="math inline">\(\text{Income} = b_0 + b_1\text{Parental Wealth} + b_2\text{Hard Work} + e\)</span></p>
+<p>Once again, we want to know the unique contribution of hard work, controlling for parental wealth. To condition, we could divide our sample based on the covariate, into different wealth brackets. Suppose, for example, we divide our sample into three groups: those who make less than $20K, those who make less than $50K, and those that make more than $50K.</p>
+<p><img src="stats-jedi_files/figure-html/conditioningpanelgroups-1.png" width="672" /></p>
+<p>What does this accomplish? Now we have three different groups that are roughly homogenous on parental wealth. Or, put differently, we are finding people who <em>differ</em> in their work hours, but are <em>similar</em> in how wealthy their parents are. If parental wealth is entirely responsible for their income, we would expect to see no relationship between work hours and income. Yet, in the above plot, there is still a relationship there.</p>
+<p>So, we could say that, after conditioning on the covariate parental wealth, there is still a positive effect of work hours on income.</p>
+<p>This is the basic idea behind conditioning. We know that predictor variables can often be correlated with one another, yet we want to know the unique contribution of a particular variable. To do so, we separate our sample into subsets that are homogenous on the covariate, then see if there’s still a relationship between our variable of interest and the outcome.</p>
+<p>Let’s go ahead and look at an example where conditioning eliminates a relationship. Let’s say you’ve got a friend who’s a bit of a gambler. He says he’s been practicing for a poker tournament. Your friend, an odd one, has data showing that the more practice a poker player has, the more money they earn in the end. But you’re skeptical. Cards drawn are completely random. What matters is <em>confidence</em>. Confident players are better able to summon a poker face and more willing to make risky bets when they have good cards.</p>
+<p>The graph below shows the <em>un</em>conditional relationship on top and the conditional relationship on bottom. Sure enough, once you separate poker players into groups of approximately equal confidence, there’s little relationship between practice and earnings.</p>
+<p><img src="stats-jedi_files/figure-html/conditioning3-1.png" width="672" /></p>
+</div>
+<div id="conditioning-is-just-residualizing" class="section level2">
+<h2>Conditioning is just residualizing</h2>
+<p>In reality, statistical models don’t actually separate the groups to do conditioning. Instead, the models residualize things.</p>
+<p>And, it turns out, we’ve already talked about this. Remember back in the diagnostics chapter how I mentioned that a model is comprised of two components:</p>
+<p>y = fitted + residual</p>
+<p>Also remember that residuals represent what <em>remains</em> in the outcome variable after we’ve fitted the model. Or, put differently, a residual reflects the value of the outcome after we’ve subtracted out or removed the effect of the model. When we condition, we’re doing the same thing. We’re essentially fitting a model first (e.g., a model that predicts earnings from confidence), then seeing the effect of a new variable on the residualized outcome (e.g., seeing the effect of practice on earnings, once we’ve removed the effects of confidence).</p>
+<p>But there’s a visual way of showing this. Remember the added variable plots we talked about in the last chapter? Once again, these plots actually plot the variable of interest (in our case, practice) against the residuals of the model.</p>
+</div>
+<div id="all-the-ways-of-thinking-about-conditioning" class="section level2">
+<h2>All the ways of thinking about “conditioning”</h2>
+<p>There are actually many different ways to think about conditioning. We’ve already mentioned two: (1) conditioning is like separating the data into homogenous groups based on the covariate, and (2) conditioning is like using the interest variable to predict the residuals after subtracting the effect of the covariate. There’s still another way of thinking about conditioning: (3) conditioning is like assuming every person has the same score on the covariate.</p>
+<p>All these are different ways to think about it, but they’re essentially the same. You should probably practice mental yoga, bending your mind to think about it as all three ways at the same time. Because, really, that’s what it is.</p>
+</div>
+<div id="be-careful-about-conditioning-and-using-multiple-regression" class="section level2">
+<h2>Be careful about conditioning! (And using multiple regression)</h2>
+<p>Perhaps it seems too good to be true. Wow! We can find the unique contribution of a variable! With that, we can find cause and effect and be true Jedi stats masters!</p>
+<p>Well, not quite. There’s always a catch. This time, there’s four: (1) Conditioning will not prove causation, (2) don’t condition for the very thing you’re trying to model, (3) Use conditioning for targeted hypotheses, not for fishing, and (4) conditioned analyses only make sense if there are no interaction effects.</p>
+<div id="conditioning-will-not-prove-causation." class="section level3">
+<h3>1. Conditioning will not prove causation.</h3>
+<p>You’ve probably heard many marginally-educated souls repeat the mantra that correlation does not prove causation. And it’s true.</p>
+<p>But, correlation can provide evidence for causation. For example, a lack of correlation between race and death penalty is evidence that there’s no relationship between race and death penalty. But, it’s very weak and misleading evidence. As I mentioned, once you condition on the race of the victim, a much different picture emerges.</p>
+<p>The problem with using conditioning as evidence for causality is that there are <em>always</em> an infinite number of variables you can condition on. Is there a strong correlation between processed food consumption and heart disease? Sure, let’s say there is. But maybe it’s not processed food consumption per se, but perhaps people who are health-conscious tend to both consume less processed food <em>and</em> they tend to exercise more regularly. So, maybe we condition on exercise and find there’s <em>still</em> a relationship between the two. Has our evidence for causation strengthened?</p>
+<p>Certainly, but we still have weak evidence. Maybe our covariate should really be wealth; wealthy people can afford non-processed foods and they have more to spend on top-notch health care. Okay, so maybe we control for that and <em>still</em> find a strong relationship between processed food consumption and heart disease. Has our evidence for causation strengthened?</p>
+<p>Yes, but, once again, it is still weak. So maybe we control for age, race, geographic area, type of salt used, shoe size, and knowledge of 80’s pop culture. After all that, we might still find a relationship, but there’s <em>always</em> a possibility there’s some covariate we haven’t yet controlled for.</p>
+<p>So, again, it’s evidence, but it may be weak evidence. We can strengthen the evidence by controlling for various factors that theoretically may be related to the outcome of interest. But, the possibility remains that there’s a “confound.”</p>
+<p>A much easier approach to controlling for boat-loads of variables is to do experiments. Why do experiments work? Because the interest variable (independent variable) is assigned at random. In other words, <em>nothing should be correlated with the interest variable because it was created at random</em>. That would be like moving the circle away from the covariate in our Venn Diagram:</p>
+<p><img src="stats-jedi_files/figure-html/conditioning4-1.png" width="672" /></p>
+</div>
+<div id="be-careful-what-you-condition-on" class="section level3">
+<h3>2. Be Careful what you condition on</h3>
+<p>There’s this weird habit I have seen in the world of research. Seems these folks are fans of conditioning or controlling for anything and everything, without a passing thought about why they’re conditioning. I’ve even asked why they condition on this or that.</p>
+<p>“Well,” they say, “that’s what everybody else seems to be doing.”</p>
+<p>It wouldn’t be the first time everybody else is doing something stupid.</p>
+<p>Here’s the problem: by conditioning thoughtlessly, you may be conditioning on the very thing you’re trying to model. I once heard of a statistician who was trying to demonstrate there’s no such thing as racial profiling. To do so, he built a model that predicted who would be pulled over using an interest variable (race) and several covariates. For simplicity, let’s say the covariates were type of car driven, the clothing the person wore, the accent with which they spoke, and religion. After controlling for these variables, the statistician found no relationship between race and the probability of being pulled over.</p>
+<p>Here’s the problem with this analysis: these covariates (type of car driven, clothing, accent, and religion) are <em>heavily</em> influenced by one’s culture. It would be extremely unusual to see an African American male driving a horse-drawn carriage, wearing overalls, speaking with a German accent, and attending Mennonite church services. You might even go so far as to say that skin color (e.g., black versus tan versus white) is meaningless by itself. These factors (car driven, clothing, etc.) are so heavily influenced by cultural factors that, once you control for them, you have actually controlled for the very thing you’re trying to model.</p>
+<p>So, before you try to control for a particular covariate, spend some time thinking about whether you actually want to control for it. Perhaps, as in the example I use, controlling for that thing yields the interest variable meaningless.</p>
+</div>
+<div id="only-study-and-interpret-the-effects-of-the-interest-variable" class="section level3">
+<h3>3. Only study and interpret the effects of the interest variable</h3>
+<p>Multivariate GLMs are kind of dangerous, at least if they’re approached from the antiquated NHST paradigm of the past. Why? Well, let’s say we’re trying to model heart disease based on an interest variable (processed food consumption) and various covariates (socioeconomic status, exercise, and age). Using the GLM, our model becomes:</p>
+<p>Heart Disease = <span class="math inline">\(b_0 + b_1\)</span> SES <span class="math inline">\(+ b_2\)</span> exercise <span class="math inline">\(+ b_3\)</span> age <span class="math inline">\(+ b_4\)</span>processed foods <span class="math inline">\(+e\)</span></p>
+<p>Note that we don’t care about <span class="math inline">\(b_1-b_3\)</span>; we only care about <span class="math inline">\(b_4\)</span>. Even though that’s all we care about, the computer doesn’t know that. So, it will report estimates for <em>everything</em> we have in the model, even the variables we don’t care about. The problem is much worse if you’re using anything but flexplot because the computer will report p-values <em>for each and every variable in the model</em>. So, we might start our analysis with the idea that we will study the effect of processed foods, but our eyes might be pulled to look at the whopping SES effect, or the statistically significant exercise effect.</p>
+<p>There are two problems with doing that. First, if we are lured by the significance of p-values, we are deceiving ourselves; in this situation, p-values have no probabilistic meaning. Remember a p-value only means something if we have specified our sample size in advance, met all the assumptions, and <em>perform one test</em> (or control for multiple comparisons). Nearly all statistical packages out there disregard this fact and default to reporting p-values for every single parameter in the model.</p>
+<p>That’s a problem.</p>
+<p>Multivariate GLMs (or multiple regression) are not a means for performing a fishing expedition. They should be used for <em>targeted hypotheses</em>, which means we should only study and interpret the parameter for the interest variable.</p>
+</div>
+<div id="conditioning-with-interaction-effects." class="section level3">
+<h3>4. Conditioning with interaction effects.</h3>
+<p>One final problem with conditioning: it only makes sense if there are no interaction effects in the model. Alas, I have not explained what interaction effects are. That is the topic of the next chapter. For now, know this, young padawan: there is great danger in conditioning if a covariate interacts with the interest variable. If there is an interaction, the conditioned analysis is senseless.</p>
+<div class="rmdnote">
+<p>
+<em>Conditioning on Colliders</em>
+</p>
+<p>
+I kinda wish this box weren’t necessary. But, I fear that some egghead out there will give me a negative ten star review on Amazon if I don’t address this.
+</p>
+<p>
+Most people act under the assumption that conditioning can’t hurt; if I control for a variable that’s not actually a confound, the worst it can do is make my estimates slightly less precise. Alas, there are actually times when conditioning on a covariate could introduce bias. Specifically, if you have an interest variable and a covariate that are <em>not</em> correlated in the population, then you condition on the covariate, you will actually induce a negative correlation between the interest variable and the covariate.
+</p>
+<p>
+Huh?
+</p>
+<p>
+Here’s an example. Let’s say, for the sake of simplicity, that beauty and talent for acting are uncorrelated. It’s probably a safe assumption. I’ve known some beautiful people who truly suck at acting. Likewise, I’ve seen some ugly actors. However, let’s say we “condition” on success by sampling from Hollywood. Would you be surprised if talent and beauty are correlated in Hollywood? In fact, they are. Why? Because if you’re really beautiful, you don’t need a whole lot of talent to be in a movie. On the other hand, if you’re talented, you don’t need to be as beautiful. In other words, one’s talent (or beauty) can compensate for weaknesses they have in another area. This means that there will be a negative correlation between talent and beauty amongst movie stars.
+</p>
+<p>
+Again, this correlation doesn’t exist when we don’t do a conditional analysis.
+</p>
+<p>
+We call this “conditioning on a collider.” If you have an interest variable and an outcome that are uncorrelated, but both are related to a covariate, if we then condition on that covariate, we will see a spurious correlation between our interest variable and our outcome.
+</p>
+<p>
+Fortunately, very few variables are truly uncorrelated, so I suspect this sort of situation is rare.
+</p>
+</div>
+<p>All these reasons suggest that we ought to be very careful when we condition. Our choice of what to condition on ought to be carefully considered in light of theory. Then, this should be followed by targeted hypotheses and our interpretation should only focus on the parameters that are actually of interest.</p>
+</div>
+</div>
+<div id="additional-estimates-of-interest" class="section level2">
+<h2>Additional Estimates of Interest</h2>
+<p>Ya’ll’r familiar with estimates. We’ve talked about Cohen’s d, slopes, intercepts, means, mean differences, etc. Each of these numbers answer a particular question. That’s all well and good, but not much help when we start doing multivariate analyses. Why? Because with multivariate analyses, we are asking different questions. Before, we might have been asking what the mean difference is between groups. Now, however, we want to ask <em>conditional</em> questions. For example, we might want to know how strong an effect is <em>after controlling for another variable.</em></p>
+<p>That means we need new estimates, we do. And it’s right time we get them estimates.</p>
+<div id="slopes" class="section level3">
+<h3>Slopes</h3>
+<p>Well hot dang. I just said we need to introduce new estimates, yet here I am talking about something we already know about: slopes.</p>
+<p>Why am I doing such nonsense?</p>
+<p>Well, the reason why is because the slopes now take on new meaning. Let’s say we have a bivariate model like this:</p>
+<p>punch force = <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>Bicep Circumference</p>
+<p>Remember that <span class="math inline">\(b_1\)</span> tells us the amount of punch force we can expect whenever one gains an inch of bicep circumference.</p>
+<p>Things change slightly with a multivariate analysis. Let’s add another predictor:</p>
+<p>punch force = <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>Bicep Circumference + <span class="math inline">\(b_2\)</span>Grunt Volume</p>
+<p>With the addition of this second variable (grunt volume…it’s a scientific fact that the louder one grunts, the more force they have), the value of <span class="math inline">\(b_1\)</span> actually changes meaning. <em>Now</em> it means the expected change in force for an inch gain in bicep circumference <em>assuming grunt volume doesn’t change</em>.</p>
+<p>But what does that mean?</p>
+<p>Let’s say there’s two fellows competing in a punch force competition: Andre and Alfred. Let’s say both have equal punch force, equal bicep circumference and equal grunt volume. However, Andre decides to alter his training regime. After doing so, he gains exactly an inch of bicep circumference. However, <em>his grunt volume has not changed at all!</em></p>
+<p>What can we expect Andre’s new punch force value to be? Our prediction of his increase in punch force is <em>exactly</em> equal to whatever <span class="math inline">\(b_1\)</span> is. Why? Because his grunt volume didn’t change. Or, we could say because his grunt volume is “held constant.”</p>
+<p>Alfred, on the other hand, also started a new training program. This program also yields an inch in bicep circumference, but it also gives him a decibel in grunt volume. (It’s a very holistic training program). How much do we expect punch force to increase? It is <em>not</em> <span class="math inline">\(b_2\)</span> because his grunt volume did not remain the same. Instead, it’s actually <span class="math inline">\(b_1 + b_2\)</span> because both grunt volume and bicep circumference increased by exactly one unit.</p>
+<p>This little example may make that whole “holding constant” distinction seem unimportant. But it’s actually quite important when there’s multicollinearity present. Let’s say we have a new model:</p>
+<p>punch force = <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>Bicep Circumference in Inches + <span class="math inline">\(b_2\)</span>Bicep Circumference in Centimeters</p>
+<p>Anybody know the correlation between bicep circumference in inches and circumference in centimeters? It’s exactly one. If you know the circumference in inches, you know it in centimeters.</p>
+<p>So, let’s think about what the parameter <span class="math inline">\(b_1\)</span> means: it tells us the expected change in punch force if we were to gain an inch of bicep circumference <em>while gaining no centimeters</em>.</p>
+<p>That’s actually not possible. You can’t gain an inch while gaining no inches in centimeters. So, not surprisingly, our value of <span class="math inline">\(b_1\)</span> will be zero.</p>
+<p>So what does this tell us? The slopes actually tell us <em>the unique contribution of a predictor variable</em>. The more strongly an interest variable is associated with a covariate, the smaller we should expect a slope to be.</p>
+<p>So, in short, it’s important to realize that a slope has new meaning with multivariate relationships: they reflect the unique contribution of a variable and are interpreted as the change in Y for a unit change in the interest variable if the covariate(s) remain constant.</p>
+</div>
+<div id="r-squared." class="section level3">
+<h3>R squared.</h3>
+<p>Alrighty, folks. I kinda lied. I said we need estimates that tell us about conditional relationships. Well, <span class="math inline">\(R^2\)</span> is not one of those estimates. But it’s companion, the semi-partial <span class="math inline">\(R^2\)</span> is. But, before you understand the semi-p, you’ve gotta know the <span class="math inline">\(R^2\)</span>, yessiree.</p>
+<p>So what is R squared? Well, to understand, you have to think kinda sorta like an antiquated statistician. So, lemme take you through an acid-laced trip through the mind of a nerd…</p>
+<p>Suppose we want to predict a score. For simplicity, let’s suppose it’s someone’s height. What’s our best guess of their height? Without any information, our best guess is going to be the mean. So, let’s say we predict 5’6" (or 1.67 meters for those smart enough to use the metric system). We will call this prediction (i.e., the prediction with just the mean) as our naive prediction.</p>
+<p>But, alas, not everyone in the world is going to be 5’6“. Some are going to be 5’8,” some 4’9“, some 7’8.” We can measure the deviations from 5’6" with the standard deviation. Just for fun, let’s say our standard deviation is 4 inches. So, our naive prediction yields an average error of 4 inches.</p>
+<p>Now, however, we want to be less naive. Now we want to predict someone’s height using <em>some</em> information. Maybe we ask them their gender and build a GLM from that. Perhaps our GLM says that our new prediction is 5’3" for females and 5’8" for males. As before, we could measure our new deviations. We would expect this to improve, right? Before, we were off by an average of 4 inches. Now, however, every prediction gets us closer and we’re now only off by 2 inches.</p>
+<p>So, to review, before we added gender, our average error in prediction was 4 inches. Now, our average error is 2 inches. In other words, we cut our errors in prediction in half (because 2 inches is half of 4).</p>
+<p>That’s very similar to what R squared is: it is a ratio that tells us how much we reduced our error in prediction when we go from just the mean to predicting with our model. But, I’ve oversimplified things. R squared is actually computed from the variance, not the standard deviation. So, for our example before, the error in prediction before was 16 inches (four squared) while now it is 4 inches (two squared). In other words, our <span class="math inline">\(R^2\)</span> is <span class="math inline">\(4/16 = 0.25\)</span>.</p>
+<p>In stats-ese, we would say we have “explained 25% of the variance.” Or, a more elaborate explanation would be, “relative to a model that just predicts someone’s score using only the mean, adding the predictors that we have added reduces the variance by 25%.”</p>
+<p>Make sense?</p>
+<p>Let’s go ahead and look at an example, using the avengers dataset:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="multivariate-glms-conditioning-effects.html#cb108-1" aria-hidden="true" tabindex="-1"></a>speed.model <span class="ot">=</span> <span class="fu">lm</span>(speed<span class="sc">~</span>superpower, <span class="at">data=</span>avengers)</span>
+<span id="cb108-2"><a href="multivariate-glms-conditioning-effects.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(speed.model)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.021 (0, 0.04)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt; superpower 
+#&gt;      0.021 
+#&gt; 
+#&gt; Estimates for Factors:
+#&gt;    variables levels estimate lower upper
+#&gt; 1 superpower     no        5  4.98  5.01
+#&gt; 2               yes     5.12  5.06  5.18
+#&gt; 
+#&gt; 
+#&gt; Mean Differences:
+#&gt;    variables comparison difference lower upper cohens.d
+#&gt; 1 superpower     yes-no       0.13  0.04  0.21     0.75</code></pre>
+<p>Our model’s <span class="math inline">\(R^2\)</span> is 0.02, which means that knowing one’s superhero status, we are able to reduce our errors in predicting your speed by 2%.</p>
+<p>The cool thing about <span class="math inline">\(R^2\)</span> is that it can be used multivariately; we can know how adding multiple predictors improves our overall prediction. Let’s take a look, by adding agility to our model:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="multivariate-glms-conditioning-effects.html#cb110-1" aria-hidden="true" tabindex="-1"></a>speed.model<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">lm</span>(speed<span class="sc">~</span>superpower <span class="sc">+</span> agility, <span class="at">data=</span>avengers)</span>
+<span id="cb110-2"><a href="multivariate-glms-conditioning-effects.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(speed.model<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.247 (0.2, 0.3)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt; superpower    agility 
+#&gt;      0.021      0.226 
+#&gt; 
+#&gt; Estimates for Factors:
+#&gt;    variables levels estimate lower upper
+#&gt; 1 superpower     no        5  4.99  5.01
+#&gt; 2               yes     5.08  5.03  5.13
+#&gt; 
+#&gt; 
+#&gt; Mean Differences:
+#&gt;    variables comparison difference lower upper cohens.d
+#&gt; 1 superpower     yes-no       0.08     0  0.15     0.53
+#&gt; 
+#&gt; 
+#&gt; Estimates for Numeric Variables = 
+#&gt;     variables estimate lower upper std.estimate std.lower std.upper
+#&gt; 1 (Intercept)     4.73  4.69  4.76         0.00      0.00      0.00
+#&gt; 2     agility     0.01  0.00  0.01         0.48     -0.46      1.42</code></pre>
+<p>Our <span class="math inline">\(R^2\)</span> went from 0.02 to 0.25. This new value tells us that, relative to a model that just predicts speed from the mean, if we were to instead add agility and superpower status, we increase our precision to 25%.</p>
+<p>Very often, however, we don’t really care about the total model’s <span class="math inline">\(R^2\)</span>–we care about one variable’s unique contribution to <span class="math inline">\(R^2\)</span>.</p>
+</div>
+<div id="semi-partial-r2" class="section level3">
+<h3>Semi-Partial <span class="math inline">\(R^2\)</span></h3>
+<p>The semi-partial tells us how much <span class="math inline">\(R^2\)</span> a single variable adds to a model. Remember our two models above:</p>
+<p>Model 1: Speed = <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>superpower</p>
+<p>Model 2: Speed = <span class="math inline">\(b_0\)</span> + <span class="math inline">\(b_1\)</span>superpower + <span class="math inline">\(b_2\)</span>agility</p>
+<p>Model 1’s <span class="math inline">\(R^2\)</span> was 0.02 and Model 2’s was 0.25. The difference between the two: 0.25-0.02 = 0.23 <em>is</em> the semi-partial <span class="math inline">\(R^2\)</span>.</p>
+<p>So, the semi-partial tells us how much our model improves in its ability to predict when we add that particular variable to our existing model.</p>
+<p>You could, of course, compute the semi-partial “by hand,” by computing the <span class="math inline">\(R^2\)</span> for a pair of models, then subtract the two, but flexplot will actually do that for you. Let’s look at this code again:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="multivariate-glms-conditioning-effects.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(speed.model<span class="fl">.2</span>)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.247 (0.2, 0.3)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt; superpower    agility 
+#&gt;      0.021      0.226 
+#&gt; 
+#&gt; Estimates for Factors:
+#&gt;    variables levels estimate lower upper
+#&gt; 1 superpower     no        5  4.99  5.01
+#&gt; 2               yes     5.08  5.03  5.13
+#&gt; 
+#&gt; 
+#&gt; Mean Differences:
+#&gt;    variables comparison difference lower upper cohens.d
+#&gt; 1 superpower     yes-no       0.08     0  0.15     0.53
+#&gt; 
+#&gt; 
+#&gt; Estimates for Numeric Variables = 
+#&gt;     variables estimate lower upper std.estimate std.lower std.upper
+#&gt; 1 (Intercept)     4.73  4.69  4.76         0.00      0.00      0.00
+#&gt; 2     agility     0.01  0.00  0.01         0.48     -0.46      1.42</code></pre>
+<p>Notice that second section labeled “Semi-Partial R squared?” Nice, that. Ya’ll can thank me now. I accept cash, check, and Subway coupons.</p>
+<p>So, in summary, a semi-partial tells you how much adding a single predictor improves our prediction above and beyond a model without that variable.</p>
+</div>
+</div>
+<div id="applied-analyses" class="section level2">
+<h2>Applied Analyses</h2>
+<p>Now that we have all the theoretical nonsense out of the way, let’s do some analyses. I’m going to use three examples. The first one is what we would traditionally call an “ANCOVA,” which is used when we have one categorical variable and one numeric covariate. The second analysis will be what we would traditionally call a “Multiple Regression,” which is used when we have two numeric variables (one a covariate and one an interest variable). Finally, I’ll do a brief introduction to a mediation analysis, which is a special type of conditioning analysis.</p>
+<div id="ancova" class="section level3">
+<h3>ANCOVA</h3>
+<p>We would traditionally call this an Analysis of Covariance (ANCOVA). ANCOVAs are generally used when we have a treatment condition and we want to control for a covariate we suspect might muck up our analysis.</p>
+<p>For this analysis, we’re going to look at the exercise_data dataset. We know from previous analyses that the behaviorist/cognitive groups lost more weight than the control group. But we know that weight loss is heavily influence by motivation. It’s possible that we accidentally put a bunch of motivated people in the control group and unmotivated people in the treatment groups. In other words, maybe we don’t believe that random assignment didn’t work very well. If that’s the case, we might want to “control” or “condition” on motivation.</p>
+<p>So, our research question might be:</p>
+<p><em>Once we control for motivation, those in the treatment groups (cognitive and behaviorist) will have more weight loss than those in the control group</em></p>
+<p>Nice.</p>
+<p>Now let’s look at the univariate plots.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multivariate-glms-conditioning-effects.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(weight.loss<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>exercise_data)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/conditioning7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="multivariate-glms-conditioning-effects.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(motivation<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>exercise_data)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/conditioning7-2.png" width="672" /></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="multivariate-glms-conditioning-effects.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(therapy.type<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>exercise_data)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/conditioning7-3.png" width="672" /></p>
+<p>Nothing surprising here, especially since we’ve already seen these plots.</p>
+<p>Now let’s visualize the statistical model. We could do it in multiple ways. First, let’s put all the data out there at the same time, using a paneled plot. (Not I’m also asking flexplot to show standard errors, instead of medians/interquartile ranges):</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="multivariate-glms-conditioning-effects.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(weight.loss<span class="sc">~</span>therapy.type <span class="sc">|</span> motivation, <span class="at">data=</span>exercise_data, <span class="at">spread=</span><span class="st">&quot;sterr&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:mvcondmodelplot"></span>
+<img src="stats-jedi_files/figure-html/mvcondmodelplot-1.png" alt="Plot of therapy group scores on weight loss for different levels of motivation." width="672" />
+<p class="caption">
+Figure 7: Plot of therapy group scores on weight loss for different levels of motivation.
+</p>
+</div>
+<p>Why did I put the therapy.type on the x-axis? Because it’s the interest variable. I almost always put the interest variable on the x-axis because it makes that relationship most visible. It seems that the two conditions always do better than the control condition, though the degree changes somewhat across motivation levels.</p>
+<p>The second way to visualize it is with the added variable plot I mentioned earlier. Remember, therapy.type is my interest variable, so I’m going to put that last in the equation.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="multivariate-glms-conditioning-effects.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">added.plot</span>(weight.loss<span class="sc">~</span>motivation <span class="sc">+</span> therapy.type, <span class="at">data=</span>exercise_data)</span></code></pre></div>
+<div class="figure"><span id="fig:mvcondavp"></span>
+<img src="stats-jedi_files/figure-html/mvcondavp-1.png" alt="Added Variable Plot of the therapy.type scores on weight loss, after controlling for motivation." width="672" />
+<p class="caption">
+Figure 8: Added Variable Plot of the therapy.type scores on weight loss, after controlling for motivation.
+</p>
+</div>
+<p>This plot seems to indicate that, even after controlling for motivation, the beh and cog groups lose more weight than the control group. But, let’s make sure we’ve met the assumptions:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="multivariate-glms-conditioning-effects.html#cb119-1" aria-hidden="true" tabindex="-1"></a>ancova.model <span class="ot">=</span> <span class="fu">lm</span>(weight.loss<span class="sc">~</span>therapy.type <span class="sc">+</span> motivation, <span class="at">data=</span>exercise_data)</span>
+<span id="cb119-2"><a href="multivariate-glms-conditioning-effects.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(ancova.model, <span class="at">plot=</span><span class="st">&quot;residuals&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvcondresiduals-1.png" width="672" /></p>
+<p>The residuals look fairly normal. There’s some bendiness in the residual-dependence plot, but nothing to worry about. Likewise, there’s slight heteroskedasticity, but probably not enough to worry about.</p>
+<p>So, at this point, I feel comfortable looking at the estimates of the model:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="multivariate-glms-conditioning-effects.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(ancova.model)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.216 (0.12, 0.32)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt; therapy.type   motivation 
+#&gt;        0.079        0.137 
+#&gt; 
+#&gt; Estimates for Factors:
+#&gt;      variables  levels estimate lower upper
+#&gt; 1 therapy.type control     4.09   2.8  5.37
+#&gt; 2                  beh     7.82  6.69  8.94
+#&gt; 3                  cog      7.8  6.52  9.07
+#&gt; 
+#&gt; 
+#&gt; Mean Differences:
+#&gt;      variables  comparison difference lower upper cohens.d
+#&gt; 1 therapy.type beh-control       3.73  0.67  6.79     0.74
+#&gt; 2              cog-control       3.71  0.83  6.59     0.74
+#&gt; 3                  cog-beh      -0.02 -2.89  2.85     0.00
+#&gt; 
+#&gt; 
+#&gt; Estimates for Numeric Variables = 
+#&gt;     variables estimate  lower upper std.estimate std.lower std.upper
+#&gt; 1 (Intercept)    -6.41 -10.17 -2.66         0.00      0.00       0.0
+#&gt; 2  motivation     0.19   0.13  0.26         0.37     -0.36       1.1</code></pre>
+<p>It seems we’re explaining just over 20% of the variance in the model, and almost 10% of that is due to the treatment condition. Yay. We also know that both treatment conditions average about 3.7 pounds more weight lost than the control condition, for a Cohen’s <span class="math inline">\(d\)</span> of 0.74. Saweet. Also, the mean weight loss in the two conditions is nearly eight pounds.</p>
+<p>I’m intentionally not going to interpret the numeric estimates because motivation is my covariate; I’m not interested in that.</p>
+<div id="reporting-results-for-an-ancova" class="section level4">
+<h4>Reporting Results for an ANCOVA</h4>
+<p>I know I’m kind of a weird fellow and have different ideas. You kinda need to be quirky to change the way statsitics is taught and used. However, it also means that, if you are following my approach, you might not be sure how to go about reporting results. If you’re focusing heavily on visualization while the rest of the world is still obsessed with p-values, how do you report information?</p>
+<p>Good question, that. I’m going to give three examples. Why three? Because some of you are going to be comfortable being “radicals”–people who give the finger to convention and entirely embrace the new way of doing statistics. Some (I’ll call them the “traditionalists”) don’t want to risk abandoning convention if fear a precious publication will not pass the review process. The traditionalists want to better report statistics, but not at great personal risks. That’s okay! I have a template for you! Finally, there are the “conventionalists,” who want to deviate from convention as little as possible. That’s okay too. I simply ask that you at least push against the boundaries a little.</p>
+<p>Here’s the basic approach for each:</p>
+<ol style="list-style-type: decimal">
+<li>Radicals will not report visuals/estimates/confidence intervals/Bayes factors. They will refuse to report p-values and they will refer to analyses using GLM terminology.</li>
+<li>Traditionalists will report visuals/estimates/confidence intervals/Bayes factors. They will use traditional terminology and report p-values but will not use them to guide their commentary of the results.</li>
+<li>Conventionalists will report/interpret p-values as is typical, but will supplement their analysis with visuals/estimates/confidence intervals/Bayes factors.</li>
+</ol>
+<div id="example-reporting-of-anova-radical" class="section level5">
+<h5>Example Reporting of ANOVA (Radical)</h5>
+<p>When reporting from a “radical” perspectives, I generally have three sections. The first section reports on the model diagnostics. The second section reports and comments on the visuals/estimates. The final section reports <span class="math inline">\(R^2\)</span> and probability estimates.</p>
+<div style="margin-left: 40px;">
+<p>We fit a linear model predicting weight loss from motivation and therapy group. First, however, we studied the univariate distributions (see Appendix A), as well as the diagnostics. The diagnostics suggest the residuals of the model are approximately normally-distributed, the model is approximately linear, and the variance is approximately constant.</p>
+<p>Once the viability of the assumptions was established, we visualized the model using an added-variable plot (see Figure <a href="multivariate-glms-conditioning-effects.html#fig:mvcondavp">8</a>). According to the figure and Table <a href="multivariate-glms-conditioning-effects.html#tab:estimatesradical">2</a>, the cognitive and behavioral groups consistently lost more weight than the control group, after controlling for motivation. Therapy group explained 7.9% of the model’s variance.</p>
+</div>
+<table>
+<caption><span id="tab:estimatesradical">Table 2: </span>Mean Differences and confidence intervals for the behaviorist, cognitive, and control groups.</caption>
+<thead>
+<tr class="header">
+<th align="left">variables</th>
+<th align="left">comparison</th>
+<th align="right">difference</th>
+<th align="right">lower</th>
+<th align="right">upper</th>
+<th align="right">cohens.d</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">therapy.type</td>
+<td align="left">beh-control</td>
+<td align="right">3.73</td>
+<td align="right">0.67</td>
+<td align="right">6.79</td>
+<td align="right">0.74</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">cog-control</td>
+<td align="right">3.71</td>
+<td align="right">0.83</td>
+<td align="right">6.59</td>
+<td align="right">0.74</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">cog-beh</td>
+<td align="right">-0.02</td>
+<td align="right">-2.89</td>
+<td align="right">2.85</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-reporting-of-anova-traditionalist" class="section level5">
+<h5>Example Reporting of ANOVA (Traditionalist)</h5>
+<div style="margin-left: 40px;">
+<p>After evaluating the assumptions of normality, linearity, and homoscedasticity (see Appendix A), we fit an ANCOVA, estimating the mean differences in therapy groups, after controlling for motivation. Figure <a href="multivariate-glms-conditioning-effects.html#fig:mvcondmodelplot">7</a> shows the three groups across different levels of motivation, t(196) = 5.86, p&lt;0.001. The cognitive group differed from the control group by an average of 3.71 (95% CI: 0.83, 0.83, t(196) = 4.046, p&lt;0.001), while the behaviorist group differed from the control by an average of 3.73 (95% CI: 0.67, 0.67, t(196) = 4.312, p&lt;0.001).</p>
+</div>
+</div>
+<div id="example-reporting-of-anova-conventionalist" class="section level5">
+<h5>Example Reporting of ANOVA (Conventionalist)</h5>
+<div style="margin-left: 40px;">
+<p>After evaluating the assumptions of normality, linearity, and homoscedasticity (see Appendix A), we fit an ANCOVA, estimating the mean differences in therapy groups, after controlling for motivation. Figure <a href="multivariate-glms-conditioning-effects.html#fig:mvcondmodelplot">7</a> shows the three groups across different levels of motivation. The group effect was statistically significant, t(196) = 5.86, p&lt;0.001. The cognitive group was statistically different from the control group by an average of 3.71 (95% CI: 0.83, 0.83, t(196) = 4.046, p&lt;0.001), while the behaviorist group differed from the control by an average of 3.73 (95% CI: 0.67, 0.67, t(196) = 4.312, p&lt;0.001).</p>
+</div>
+</div>
+</div>
+</div>
+<div id="multiple-regression" class="section level3">
+<h3>Multiple Regression</h3>
+<p>For this analysis, let’s say you’re a body builder and you want to demonstrate the advantages of strength training. You want to show that strength training has a large effect on ability. However, you know that both speed and flexibility also influence agility. But, you’re a strength trainer for Stat’s sake. You don’t give two flips about speed and flexibility. Thus, your research question is:</p>
+<p><em>How strongly does strength affect agility, once we control for speed and flexibility</em></p>
+<p>This research question would traditionally be answered using multiple regression. Multiple regression is used when you have multiple numeric predictors and a numeric outcome. But, we’re calling it a multivariate GLM, because, once again, whether a predictor is numeric or categorical doesn’t matter.</p>
+<p>Let’s start by looking at the univariate distributions:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="multivariate-glms-conditioning-effects.html#cb122-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">flexplot</span>(agility<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span>
+<span id="cb122-2"><a href="multivariate-glms-conditioning-effects.html#cb122-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">flexplot</span>(strength<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span>
+<span id="cb122-3"><a href="multivariate-glms-conditioning-effects.html#cb122-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">=</span> <span class="fu">flexplot</span>(flexibility<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span>
+<span id="cb122-4"><a href="multivariate-glms-conditioning-effects.html#cb122-4" aria-hidden="true" tabindex="-1"></a>q <span class="ot">=</span> <span class="fu">flexplot</span>(speed<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span>
+<span id="cb122-5"><a href="multivariate-glms-conditioning-effects.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(patchwork)</span>
+<span id="cb122-6"><a href="multivariate-glms-conditioning-effects.html#cb122-6" aria-hidden="true" tabindex="-1"></a>a<span class="sc">+</span>b<span class="sc">+</span>c<span class="sc">+</span>q</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mruniv-1.png" width="672" /></p>
+<p>Everything looks spiffy, though speed is a little negatively skewed. But, I see nothing to worry about here.</p>
+<p>Let’s look at the multivariate relationships now. As before, I’m putting the interest variable (strength) on the x-axis.</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="multivariate-glms-conditioning-effects.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength <span class="sc">|</span> speed <span class="sc">+</span> flexibility, <span class="at">data=</span>avengers)</span></code></pre></div>
+<div class="figure"><span id="fig:mrmultivar"></span>
+<img src="stats-jedi_files/figure-html/mrmultivar-1.png" alt="Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent loess lines." width="672" />
+<p class="caption">
+Figure 9: Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent loess lines.
+</p>
+</div>
+<p>Hmmmm…I’m seeing a lot of curvilinear loess lines here. Let’s go ahead and visualize a quadratic with flexplot:</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="multivariate-glms-conditioning-effects.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength <span class="sc">|</span> speed <span class="sc">+</span> flexibility, <span class="at">data=</span>avengers,</span>
+<span id="cb124-2"><a href="multivariate-glms-conditioning-effects.html#cb124-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">&quot;quadratic&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:mrquad"></span>
+<img src="stats-jedi_files/figure-html/mrquad-1.png" alt="Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent fits from a quadratic regression." width="672" />
+<p class="caption">
+Figure 10: Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent fits from a quadratic regression.
+</p>
+</div>
+<p>I reckon that looks right nice. But before we decide on that, let’s go ahead and check out the diagnostics:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="multivariate-glms-conditioning-effects.html#cb125-1" aria-hidden="true" tabindex="-1"></a>multiple_reg_model <span class="ot">=</span> <span class="fu">lm</span>(agility<span class="sc">~</span>strength <span class="sc">+</span> flexibility <span class="sc">+</span> speed <span class="sc">+</span> <span class="fu">I</span>(strength<span class="sc">^</span><span class="dv">2</span>),</span>
+<span id="cb125-2"><a href="multivariate-glms-conditioning-effects.html#cb125-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data=</span>avengers)</span>
+<span id="cb125-3"><a href="multivariate-glms-conditioning-effects.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(multiple_reg_model, <span class="at">plot=</span><span class="st">&quot;residuals&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:mrdiag"></span>
+<img src="stats-jedi_files/figure-html/mrdiag-1.png" alt="Diagnostics of the model predicting agility from strength, after controlling for speed and flexibility" width="672" />
+<p class="caption">
+Figure 11: Diagnostics of the model predicting agility from strength, after controlling for speed and flexibility
+</p>
+</div>
+<p>Wowsers! That’s more beautiful than my wife smiling at a camera in front of a spring sunset! I’d say that’s a good-fitting model!</p>
+<p>Let’s go ahead and visualize the final model using an added variable plot. Because my statistical model is controlling for speed and flexibility, I’m going to residualize that in my AVP:</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="multivariate-glms-conditioning-effects.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">added.plot</span>(agility<span class="sc">~</span>strength, <span class="at">data=</span>avengers, <span class="at">lm_formula =</span> agility<span class="sc">~</span>flexibility <span class="sc">+</span> speed)</span></code></pre></div>
+<div class="figure"><span id="fig:mravp"></span>
+<img src="stats-jedi_files/figure-html/mravp-1.png" alt="Plot of the relationship between strength and agility, after controlling for speed and flexibility. The blue lines represent the final fit of the quadratic regression model." width="672" />
+<p class="caption">
+Figure 12: Plot of the relationship between strength and agility, after controlling for speed and flexibility. The blue lines represent the final fit of the quadratic regression model.
+</p>
+</div>
+<p>That there is a very simple visual representation of our model. Nice!</p>
+<p>So, let’s go ahead and look at the estimates:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="multivariate-glms-conditioning-effects.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(multiple_reg_model)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.53 (0.48, 0.58)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt;      strength   flexibility         speed I(strength^2) 
+#&gt;         0.141         0.268         0.016         0.106 
+#&gt; 
+#&gt; 
+#&gt; Estimates for Numeric Variables = 
+#&gt;       variables estimate  lower upper std.estimate std.lower std.upper
+#&gt; 1   (Intercept)     5.43 -20.58 31.45         0.00      0.00      0.00
+#&gt; 2      strength     0.18   0.16  0.20         1.75     -1.68      5.19
+#&gt; 3   flexibility     8.42   7.56  9.29         0.56     -0.54      1.66
+#&gt; 4         speed    -0.43  -6.12  5.26         0.00      0.00     -0.01
+#&gt; 5 I(strength^2)     0.00   0.00  0.00        -1.30      1.25     -3.85</code></pre>
+<p>When we have polynomials, it’s a bit tricky because the speed effect (which is, of course, the effect of interest) has actually been separated into two components: the linear component (called “strength”) and the quadratic component (called “I(strength^2)”). To see the total effect of the interest variable (speed), we have to add them together:</p>
+<p>0.141 + 0.106 = 0.247</p>
+<p>That there is an impressive amount of esplaining going on. We’re in luck, muscle man.</p>
+<p>I’m going to forego looking at p-values and Bayes Factors for this model. The polynomial makes it a little tricky and model comparisons (which we cover in a later chapter) make it much easier.</p>
+<p>Suffice it to say, we’ve got a good model now ;)</p>
+<div id="reporting-of-a-multiple-regression" class="section level4">
+<h4>Reporting of a Multiple Regression</h4>
+<div id="example-reporting-of-multiple-regression-radical" class="section level5">
+<h5>Example Reporting of multiple regression (Radical)</h5>
+<div style="margin-left: 40px;">
+<p>We sought to determine how strongly strength affects agility, after controlling for speed and flexibility. To do so, we utilized a linear model. Upon visual inspection (Figure <a href="multivariate-glms-conditioning-effects.html#fig:mrquad">10</a>), we determined that the speed/agility relationship is curvilinear: as strength increases, so does agility, until one reaches around 500, at which point more strength actually decreases agility. Consequently, we added a quadratic term to the linear model to account for the nonlinearity. Figure <a href="multivariate-glms-conditioning-effects.html#fig:mrdiag">11</a> shows the diagnostics of this model, suggesting the assumptions of normality, linearity, and homoscedasticity have been met. The final visual representation of the model is shown in Figure <a href="multivariate-glms-conditioning-effects.html#fig:mravp">12</a>.</p>
+<p>Table <a href="multivariate-glms-conditioning-effects.html#tab:mrestimates">3</a> reports the estimates for the variables of interest, along with 95% confidence intervals. (Estimates for the flexibility/speed effects are omitted because they were only used as covariates, Fife, 2021). The linear and quadratic term combined explained 10.741% of the variance in agility.</p>
+<caption>
+<span id="tab:mrestimates">Table 3: </span>
+</caption>
+<div custom-style="Table Caption">
+<em>Estimates for the Model Predicting Agility From Strength</em>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">variables</th>
+<th align="left">estimate</th>
+<th align="left">lower</th>
+<th align="left">upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="left">5.4347</td>
+<td align="left">-20.5785</td>
+<td align="left">31.4480</td>
+</tr>
+<tr class="even">
+<td align="left">strength</td>
+<td align="left">0.1755</td>
+<td align="left">0.1551</td>
+<td align="left">0.1959</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{strength}^2\)</span></td>
+<td align="left">-0.0001</td>
+<td align="left">-0.0001</td>
+<td align="left">-0.0001</td>
+</tr>
+</tbody>
+</table>
+<div custom-style="Compact">
+<p><em>Note.</em> The model also controlled for flexibility and speed, but these estimates are not presented because they were not of substantive interest.</p>
+</div>
+<p> </p>
+</div>
+</div>
+<div id="example-reporting-of-multiple-regression-traditionalist" class="section level5">
+<h5>Example Reporting of multiple regression (Traditionalist)</h5>
+<div style="margin-left: 40px;">
+<p>We sought to determine how strongly strength affects agility, after controlling for speed and flexibility. To do so, we utilized a multiple regression model. Upon visual inspection, we determined that the speed/agility relationship is curvilinear: as strength increases, so does agility, until one reaches around 500, at which point more strength actually decreases agility. Consequently, we added a quadratic term to the linear model to account for the nonlinearity. The final visual representation of the model is shown in Figure <a href="multivariate-glms-conditioning-effects.html#fig:mravp">12</a>. Visual diagnostics suggest that after fitting the quadratic term, the assumptions of normality, linearity, and homoscedasticity have been met (see Appendix).</p>
+<p>Table <a href="multivariate-glms-conditioning-effects.html#tab:mrestimates2">4</a> reports the estimates for the variables of interest, along with 95% confidence intervals. The linear and quadratic term combined explained 10.741% of the variance in agility (p&lt;0.001).</p>
+<caption>
+<span id="tab:mrestimates2">Table 4: </span>
+</caption>
+<div custom-style="Table Caption">
+<em>Estimates for the Model Predicting Agility From Strength</em>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">variables</th>
+<th align="left">estimate</th>
+<th align="left">lower</th>
+<th align="left">upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="left">5.4347</td>
+<td align="left">-20.5785</td>
+<td align="left">31.4480</td>
+</tr>
+<tr class="even">
+<td align="left">strength</td>
+<td align="left">0.1755</td>
+<td align="left">0.1551</td>
+<td align="left">0.1959</td>
+</tr>
+<tr class="odd">
+<td align="left">flexibility</td>
+<td align="left">8.4244</td>
+<td align="left">7.5580</td>
+<td align="left">9.2908</td>
+</tr>
+<tr class="even">
+<td align="left">speed</td>
+<td align="left">-0.4275</td>
+<td align="left">-6.1161</td>
+<td align="left">5.2610</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\text{strength}^2\)</span></td>
+<td align="left">-0.0001</td>
+<td align="left">-0.0001</td>
+<td align="left">-0.0001</td>
+</tr>
+</tbody>
+</table>
+<div custom-style="Compact">
+<p><em>Note.</em> The model also controlled for flexibility and speed, but these estimates are not presented because they were not of substantive interest.</p>
+</div>
+<p> </p>
+</div>
+</div>
+<div id="example-reporting-of-multiple-regression-conventionalist" class="section level5">
+<h5>Example Reporting of multiple regression (Conventionalist)</h5>
+<div style="margin-left: 40px;">
+<p>We sought to determine how strongly strength affects agility, after controlling for speed and flexibility. To do so, we utilized a multiple regression model. Upon visual inspection, we determined that the speed/agility relationship is curvilinear: as strength increases, so does agility, until one reaches around 500, at which point more strength actually decreases agility. Consequently, we added a quadratic term to the linear model to account for the nonlinearity. The final visual representation of the model is shown in Figure <a href="multivariate-glms-conditioning-effects.html#fig:mravp">12</a>. Visual diagnostics suggest that after fitting the quadratic term, the assumptions of normality, linearity, and homoscedasticity were met.</p>
+<p>Table <a href="multivariate-glms-conditioning-effects.html#tab:mrestimates2">4</a> reports the estimates for the variables of interest, along with 95% confidence intervals. The linear and quadratic term combined explained 10.741% of the variance in agility. This effect was statistically significant (p&lt;0.001).</p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multivariate-general-linear-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariate-glms-interaction-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/11-GLM-conditioning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

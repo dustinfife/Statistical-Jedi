@@ -1,0 +1,19 @@
+h1:multivariate-glms-interaction-effects Multivariate GLMs: Interaction Effects
+h2:visualizing-interaction-effects Visualizing interaction effects
+h3:a-simple-visual-trick-to-tell-if-theres-an-interaction A simple visual trick to tell if there’s an interaction
+h2:interactions-between-numeric-variables Interactions between numeric variables
+h3:simple-slopes-analysis Simple Slopes Analysis
+h3:the-flexplot-approach-to-interpreting-interactions The Flexplot Approach to Interpreting Interactions
+h2:the-glm-for-interaction-effects The GLM for interaction effects
+h2:common-things-people-screw-up-in-the-literature Common things people screw up in the literature
+h3:gripe-1.-interpreting-main-effects-when-interactions-exist Gripe #1. Interpreting main effects when interactions exist
+h3:gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova Gripe #2: Failing to check whether interactions exist when doing an ANCOVA
+h2:estimates-for-interactions Estimates for interactions
+h2:applied-analyses Applied Analyses
+h3:factorial-anova Factorial ANOVA
+h4:reporting-results-for-a-factorial-anova Reporting Results for a Factorial ANOVA
+h3:multiple-regression Multiple Regression
+h4:reporting-results-for-a-multiple-regression Reporting Results for a Multiple Regression
+h3:mediation-analysis Mediation Analysis
+h4:reporting-results-for-a-multiple-regression-1 Reporting Results for a Multiple Regression
+

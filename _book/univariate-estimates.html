@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Univariate Estimates | R Notebook</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Univariate Estimates | R Notebook" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Univariate Estimates | R Notebook" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2021-03-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="univariate-distributions.html"/>
+<link rel="next" href="bivariate-visualizations.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li><a href="section.html#section"></a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li><a href="section-1.html#section-1"></a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-language-of-interaction-effects"><i class="fa fa-check"></i>The Language of Interaction Effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Versus Frequentist Approaches</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Notebook</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="univariate-estimates" class="section level1">
+<h1>Univariate Estimates</h1>
+<p>For the most part, humans really suck at interpreting information. Let’s look at an example:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">student</th>
+<th align="right">category</th>
+<th align="right">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="right">1</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="right">1</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>Here we have ten students’ ratings on the first of ten categories. What do you conclude?</p>
+<p>Most likely, your natural inclination is to try to <em>condense</em> that information somehow. Maybe you noticed that the lowest score was 2 and the highest was 5, so you conclude these ratings are on the higher end. Or maybe you counted which score occurred the most (4) and concluded that these ratings are pretty high. Or perhaps you computed the mean.</p>
+<p>But no matter your strategy, you most likely did try to condense that information. You <em>have</em> to in order to understand it. We just really suck at looking at a string of numbers of making sense of it.</p>
+<p>Of course, you could plot the data (like we did in the last chapter). That’s going to be the best approach.</p>
+<p>But, plots have a weakness: they’re not very concrete. It’s kinda like art; we just kind of have an intuition for what we’re seeing, and we might be able to describe it. But plots, like art, are subjective. Eventually, we might want to supplement (but not replace) our graphical interpretation of the data with something less subjective and something more concrete.</p>
+<p>However, our statistics are always going to be describing a slice of the visual. We might have statistics that describe the center of the data (central tendency), but these statistics will say nothing about how spread out the data are (variability), nor will they say anything about the skewness of the data.</p>
+<p>Let’s keep that in mind as we’re talking about statistics; they are great at describing a slice of the visual, and they put the visual information into concrete numbers, but they’re often going to be poor representations of the visuals.</p>
+<div id="central-tendency-whats-the-most-likely-score" class="section level2">
+<h2>Central Tendency: What’s the most likely score?</h2>
+<p>I don’t play tennis. But if I did, I’d be pretty good.</p>
+<p>Why?</p>
+<p>Because I know statistics.</p>
+<p>Bear with me. Suppose you’re about to play in a high stakes tennis tournament. (Maybe the winner of the tournament will get a year’s supply of bandaids or toilet paper).</p>
+<p>Let’s further suppose you’re really good at hitting the tennis ball, as long as it comes within arm’s reach. But, if you have to run to hit it, you’re screwed. You see, yoou’re really slow.</p>
+<p>But you’re no moron. You realize that if you can somehow figure out where your opponent is most likely to hit the ball, you can just stand in that spot.</p>
+<p>Then you don’t have to move very much.</p>
+<p>Win, win.</p>
+<p>So, instead of practicing running, you spend weeks gathering data on your biggest competitor, Tony “Tennis Toes” Thompson. You decide to graph the data like the figure below. Each tennis ball shows where Tony’s shots landed. If two balls landed in the same spot, we have marked that by stacking the tennis balls atop one another.</p>
+<p>[[tennis balls centered]]</p>
+<p>Kinda looks like a histogram, doesn’t it?</p>
+<p>Why yes, yes it does. And that’s quite intentional, btw.</p>
+<p>So now, what is central tendency? It’s nothing more than the lazy man’s quest to run as little as possible in a game of tennis. You want to know at what spot to stand in a tennis match that will allow you to run as little as possible.</p>
+<p>Or, put differently, central tendency tells you what the most likely spot is where your competitor’s shots will fall.</p>
+<p>Sounds simple, right?</p>
+<p>Actually, it’s not. Let’s say your competitor’s shots fall as follows:</p>
+<p>[[tennis balls centered but with an outlier]]</p>
+<p>Where do you stand? Do you stand in the right-middle? Well, maybe not, because then you’ll miss the one on the far left. So maybe you stand partway between the right-middle and the far-left shot. Well, now you’re running more than you have to for the vast majority of shots.</p>
+<p>If the placement of your competitor’s shots is symmetric, it’s easy; we just stand in the middle. If the placement is not symmetric, identifying central tendency is much more difficult.</p>
+<p>Let’s stop for a few important take home messages:</p>
+<ol style="list-style-type: decimal">
+<li>Measures of central tendency attempt to describe the center of a distribution of scores.</li>
+<li>These measures also try to answer which score is most likely.</li>
+<li>When distributions are not symmetric, it’s really hard to conceptualize what central tendency is.</li>
+</ol>
+<p>Because central tendency is really hard to conceptualize, we actually have three ways to measure it:</p>
+<ul>
+<li>the mean</li>
+<li>the median</li>
+<li>the mode</li>
+</ul>
+<p>(Technically, there are a <em>lot</em> of other ways to measure central tendency, but these are the most common).</p>
+<div id="mean" class="section level3">
+<h3>Mean</h3>
+<p>The most commonly used measure of central tendency is the mean, or the average.</p>
+<div class="rmdjoke">
+<p>
+Why do statisticians call the average the “mean?”
+</p>
+<p>
+Because they’re….mean.
+</p>
+</div>
+<p>Computing the mean is easy and requires two steps:</p>
+<ol style="list-style-type: decimal">
+<li>Add up the scores</li>
+<li>Divide by the number of scores.</li>
+</ol>
+<p>For Step 1, that would be…</p>
+<pre><code>#&gt; 2 + 5 + 3 + 2 + 4 + 4 + 5 + 3 + 4 + 1 = 33</code></pre>
+<p>Then we divide that by the number of scores (10 in this case):</p>
+<pre><code>#&gt; 33 / 10 = 3.3</code></pre>
+<p>So, we could say that, according to one measure, the center of the scores is 3.3. Or, our most likely score is 3.3.</p>
+<p>Going back to our tennis example, the mean would tell us we should, at least partially move our slow feet toward that far-left tennis ball.</p>
+<div id="advantages-of-the-mean" class="section level4">
+<h4>Advantages of the Mean</h4>
+<p>Remember, the mean is just <em>one</em> measure of central tendency. So, is it good at measuring central tendency? Well, yes, means do quite well at measuring central tendency when the distribution is symmetrical. Or, put differently, the mean is quite good at measuring the center of the distribution (or it’s good at measuring the most likely score) when our distributions are not skewed.</p>
+<p>Another advantage of the mean is that it’s the most “democratic” measure of central tendency. That means that every score gets a “vote” in what the mean is. In other words, every score is used to compute the mean. For the other measures, not every score is used to compute central tendency.</p>
+<p>A final advantage of the mean is that it has really nice mathematical properties. I’m not going to go into those mathematical properties because this isn’t a math stats book. But, I will say that, because of these mathematical properties, the mean becomes the foundation of nearly all statistics. (A slope is just the mean change in Y for every change in X. The intercept is the mean of Y when X is zero. The correlation is the mean standardized change in Y for every standardized change in X.)</p>
+</div>
+<div id="disadvantages" class="section level4">
+<h4>Disadvantages</h4>
+<p>The fatal flaw of the mean is it doesn’t do too well when data are skewed and/or there are outliers. These tend to pull the estimate of the mean toward the extremes. Imagine we had a sample of 100 people and we asked their income. Suppose, by chance, Jeff Bezos were included in our sample. Would it surprise you if we predicted the mean income of our sample is $1.2 million? It wouldn’t surprise you if you knew Bezos was in the sample, but the momemt we try to make inferences (e.g., the average income in the States is $1.2 million).</p>
+<p>Fortunately, many (if not most) distributions are symmetrical and outliers become less and less influential with large sample sizes. If our sample had 10,000 people, for example, it wouldn’t really matter if Bezos was in our sample.</p>
+</div>
+</div>
+<div id="mode" class="section level3">
+<h3>Mode</h3>
+<p>Let’s go ahead and look at that tennis distribution again (Figure xxx). You might be saying to yourself, “self, you’re bright and beautiful, and sadly, lazy. It might cost a few points, but let’s just at position xxx because that’s where most of the hits land.”</p>
+<p>You, my beautiful friend, seem to have an affinity for the mode. The mode is the score the occurs most frequently.</p>
+<p>Let’s look at a dataset, shall we?</p>
+<pre><code>#&gt; 8, 3, 6, 2, 4, 3, 6, 1, 5, 5</code></pre>
+<p>Notice the score 3 occurs most frequently (a total of 2 times). That there is the mode.</p>
+<div id="disadvantages-of-the-mode" class="section level4">
+<h4>Disadvantages of the Mode</h4>
+<p>So, the mode is nice, right?</p>
+<p>But what happens if you don’t have a mode?</p>
+<p>Let’s look at an example:</p>
+<pre><code>#&gt; 3.88, 5, 5.83, 7.62, 9.48, 5.7, 1.99, 4.08, 6.45, 5.52</code></pre>
+<p>Every score only occurs once! Well, that’s a problem, isn’t it?</p>
+<p>To bypass this problem, we could “bin” the scores, like we did in the last chapters. So maybe we can decide anything between 3 and 4 is assigned a 3, between 4 and 5 is assigned a 4, etc. That will give us a measure of the mode, but that measure will change depending on how we decide to bin things.</p>
+<p>Unfortunately, we scientists aren’t too fond of ambiguity, particularly when it comes to mathematics.</p>
+<p>It really only makes sense to compute the mode for discrete values. That means we should use the mode for categorical variables (e.g., gender, political affiliation) or numeric variables that are naturally discrete (e.g., number of children, number of times you’ve been arrested).</p>
+<p>A final disadvantage of the mode is that it’s a very poor description of distributions that are <em>uniform</em>. Uniform distributions emerge when there’s an equal probability of every single value in a dataset. Let’s look at an example:</p>
+<p><img src="stats-jedi_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>The probability of rolling a 1 is equal to the probability of rolling a 2, which equals the probability of rolling a 3, etc. This is a uniform distribution. The mode of this distribution of 1 and 2 and 3 and 4 and 5 and 6.</p>
+<p>Not much of a summary, am I right?</p>
+<p>In this situation, it’s probably better to just say the distribution is uniform and the range of the data is 1-6. (We’ll talk more about the range later in this chapter).</p>
+</div>
+<div id="advantages-of-the-mode" class="section level4">
+<h4>Advantages of the Mode</h4>
+<p>Probably the primary advantage of the mode is, as I said earlier, that we can use it to compute central tendency for nominal data. You can’t compute the mean of eye color for example. It doesn’t make sense to. You can, however, compute the mode.</p>
+<p>Another advantage of the mode is that it’s pretty intuitive. Remember with central tendency, we’re trying to find the most likely score. Doesn’t it make sense that the most likely score should be the score that occurs most frequently?</p>
+</div>
+</div>
+<div id="median" class="section level3">
+<h3>Median</h3>
+<p>Let’s go back to our tennis example. The mean told us where to stand that will minimize running over the course of the entire match. The mode told us where to stand if we wanted to be where the most hits occured, but it risks us missing the hits that are far from the center.</p>
+<p>The median is the compromise between the two. It’s like standing somewhere between the point where most hits occurred (mode) and the place that minimizes the amount of running (mean).</p>
+<p>Computing the median is a simple two (and a half) step process:</p>
+<ol style="list-style-type: decimal">
+<li>Sort all the scores</li>
+<li>Find the score that’s in middle position</li>
+</ol>
+<p>Let’s look at an example, shall we?</p>
+<p>Here’s a dataset with eleven numbers:</p>
+<pre><code>#&gt; 9, 10, 12, 7, 11, 8, 12, 10, 12, 7, 9</code></pre>
+<p>Now let’s sort them:</p>
+<pre><code>#&gt; 7, 7, 8, 9, 9, 10, 10, 11, 12, 12, 12</code></pre>
+<p>Remember, we have 11 scores. So the score that’s in the middle is the score in the 6th position, which in this case is 10.</p>
+<p>That’s all well and good until you have an even number of scores. Suppose we had ten scores:</p>
+<pre><code>#&gt; 7, 7, 8, 9, 9, 10, 10, 11, 12, 12</code></pre>
+<p>The dataset splits evenly (5 on one half, 5 on the other). So there is no middle position.</p>
+<p>What do we do?</p>
+<p>Easy. We just split the difference between the two scores in the middle. In this case, that would be halfway between 9 (the 5th position) and 10 (the 6th position).</p>
+<div id="disadvantages-of-the-median" class="section level4">
+<h4>Disadvantages of the Median</h4>
+<p>There’s really only one (and a half) disadvantage of the median I can think of. You cannot compute the median for nominal data. (What is the median score of eye color?) Medians only work for ordinal data.</p>
+<p>Second (or one and a half) is that it’s hard to extend the median to more advanced statistics. Like I mentioned earlier, the mean is the foundation of nearly all advanced statistics. I don’t think we’ve figured out how to extend the median to advanced statistics yet. (Though, if I’m wrong, please correct me!)</p>
+</div>
+<div id="advantages-of-the-median" class="section level4">
+<h4>Advantages of the Median</h4>
+<p>The median’s actually pretty slick. It’s great for skewed distributions. If Jeff Bezos happens to fall into your sample, it’s not going to drastically affect your estimate of central tendency. (Though, while he’s there, you might want to ask for a donation to the Dustin Fife Needs Money Foundation).</p>
+</div>
+</div>
+<div id="central-tendency-in-jasp" class="section level3">
+<h3>Central Tendency in JASP</h3>
+<p>To compute central tendency in JASP, you’re actually going to have to go outside the Visual Modeling module. Instead, you click on the Descriptives module (left-most graphical button):</p>
+<p><img src="images/screenshots/Desktop%202021-01-05%20at%209.34.24%20AM.png" width="100" /></p>
+<p>Once there, you can send variables from the variable box on the left over to the “Variables” box on the right:</p>
+<p><img src="images/screenshots/Desktop%202021-01-05%20at%209.36.28%20AM.png" width="522" /></p>
+<p>That will then give you a table with a mean and median. It won’t give you the mode, however. To get that, you have to click on the “Statistics” collapsible menu and select “Mode”:</p>
+<p><img src="images/screenshots/Desktop%202021-01-05%20at%209.37.49%20AM.png" width="444" /></p>
+</div>
+<div id="central-tendency-in-r" class="section level3">
+<h3>Central Tendency in R</h3>
+<p>To compute central tendency in R, we’re going to use three functions: <code>mean</code>, <code>median</code>, and <code>table</code>. (You thought I’d say <code>mode</code>, didn’t you?)</p>
+<p>For example, we can compute the mean/median as follows</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="univariate-estimates.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span>
+<span id="cb14-2"><a href="univariate-estimates.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(paranormal<span class="sc">$</span>conviction)</span></code></pre></div>
+<pre><code>#&gt; [1] 48.88832</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="univariate-estimates.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(paranormal<span class="sc">$</span>conviction)</span></code></pre></div>
+<pre><code>#&gt; [1] 48</code></pre>
+<p>We could also use <code>tidyverse</code> to do it:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="univariate-estimates.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb18-2"><a href="univariate-estimates.html#cb18-2" aria-hidden="true" tabindex="-1"></a>paranormal <span class="sc">%&gt;%</span> <span class="fu">summarize</span>(<span class="at">mean.value =</span> <span class="fu">mean</span>(conviction), <span class="at">median.value =</span> <span class="fu">median</span>(conviction))</span></code></pre></div>
+<pre><code>#&gt;   mean.value median.value
+#&gt; 1   48.88832           48</code></pre>
+<p>And the mode? Well, it’s actually a little tough. Remember, for the mode, we have to make sure we have a nominal or discrete variable. Once we have our variable selected, we use the <code>table</code> function to get a summary table, telling us how many times each unique value occurs:</p>
+<pre><code>#&gt; 
+#&gt;     eerie feeling       heard voice presence watching         saw ghost 
+#&gt;               110                41                22               150 
+#&gt;           saw UFO 
+#&gt;                71</code></pre>
+<p>Then we just look up which value occurs most frequently (in this case, “saw ghost”).</p>
+<p>We could simplify this process by sorting the table:</p>
+<pre><code>#&gt; 
+#&gt; presence watching       heard voice           saw UFO     eerie feeling 
+#&gt;                22                41                71               110 
+#&gt;         saw ghost 
+#&gt;               150</code></pre>
+</div>
+</div>
+<div id="variability-how-precise-are-the-scores" class="section level2">
+<h2>Variability: How precise are the scores?</h2>
+<p>Remember, for our tennis analogy, the goal of doing all this statistical analysis is to run as little as possible. With central tendency, we learned <em>where</em> to stand. But, in preparation for our next match, we might want to know how much we can expect to run during a match. Perhaps for some opponents, we will hardly have to run at all because all their hits generally land in the same place. For other opponents, we might expect to traverse the entire range of the court.</p>
+<p>That’s what variability is–it’s simply a measure that tells us how far we would expect to run. Or, put differently, it tells us what kind of <em>spread</em> we might expect from our opponents’ hits.</p>
+<p>Like I said earlier, these numbers we’re computing (or, these <em>statistics</em>) are just a single number that attempts to convey information we can already see visually. A single number is never quite going to capture all the information we can readily see.</p>
+<p>Let’s look at an example:</p>
+<p><img src="stats-jedi_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>These two distributions have the same mean, but look very different. What’s different?</p>
+<p>They have different amounts of precision. Or different amount of uncertainty. Or they have more variability. Or they have more spread.</p>
+<p>That’s just a bunch of different ways of saying the same thing.</p>
+<p>So, how do we measure that spread (or uncertainty, or variability, or precision)?</p>
+<p>There are three common measures: the range, the standard deviation, and the median absolute deviation.</p>
+<div id="range" class="section level3">
+<h3>Range</h3>
+<p>Let’s return to our tennis analogy, shall we? One way we can estimate variability is by simply finding the left-most hit on the court, then find the right-most hit on the court, then compute the distance between them.</p>
+<p>Easy, eh?</p>
+<p>That’s what a range is. All we have to do is subtract the smallest score from the highest score. Let’s look at an example dataset:</p>
+<pre><code>#&gt; 33,35,33,42,40,35,38,36,27,41</code></pre>
+<p>Just for fun, let’s sort the dataset so it’s easier to see which score is highest/lowest:</p>
+<pre><code>#&gt; 27,33,33,35,35,36,38,40,41,42</code></pre>
+<p>The range is simply the maximum score (42) minus the minimum score ( 27), which equals 15.</p>
+<p>That gives us a rough idea of the spread or variability in our distribution.</p>
+<div id="advantagesdisadvantages-of-the-range" class="section level4">
+<h4>Advantages/Disadvantages of the Range</h4>
+<p>The advantage of the range is it’s quick and easy. The problem is when we have outliers. Let’s say we have a dataset with very little variability (e.g., 1, 2, 2, 3, 3, 3, 4, and 4). Here, our range is 4 - 1 = 3. But, let’s say we collect another datapoint and the next scores is 55. What’s our range now? 55 - 1 = 54.</p>
+<p>The range can be misleading in this case because it seems to suggest we have more variability than we actually have if we have outliers.</p>
+</div>
+</div>
+<div id="deviations-standard-deviation-and-variance" class="section level3">
+<h3>Deviations, Standard Deviation, and Variance</h3>
+<p>Let’s travel back to tennisland. Like I said, we would like to know how much running we might expect during a tennis match. Knowing that information will give us a competitive advantage. Maybe if we know we won’t have to run very much, we spend the hour before our match meditating instead of warming up our body.</p>
+<p>We could, of course, look at the distribution of hits (i.e., a histogram). But maybe we want to condense that information into a number.</p>
+<p>One number we could compute is the <em>average</em> amount we expect to run per hit. Or, put differently, <em>on average</em> how much do we have to run for any given hit?</p>
+<p>Sounds intuitive. Let’s go ahead and look at a dataset to see how we would go about doing that. The table below shows the court position (in feet) in the first column, followed by the number of feet we’d have to run, assuming we stand at the mean. Negative numbers mean we move to the left. Positive numbers mean we move to the right.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Court Location (ft)</th>
+<th align="right">Distance Run</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">-15</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">-10</td>
+</tr>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">-5</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">-5</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">15</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">25</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">30</td>
+<td align="right">15</td>
+</tr>
+</tbody>
+</table>
+<p>In stats-ese, we call the second column “deviations.” Deviations indicate how far from the mean a particular score is.</p>
+<p>Well that’s nice. Now let’s go ahead and compute the average deviation, or compute the average distance we’d have to run. Remember, we start by summing the scores:</p>
+<p>-15 + -10 + -5 + -5 + 0 + 0 + 0 + 5 + 5 + 10 + 15 = 0</p>
+<p>Uh oh. Well that didn’t work too well. This says that, on average, we ran zero feet.</p>
+<p>That’s can’t be right.</p>
+<p>Give me a minute to figure out why….</p>
+<p>[sound effects of papers shuffling, cussing, machines whirring, and R2D2 beeping]</p>
+<p>Okay, I figured it out. The problem we’re having is the negatives and the positives cancel each other out. Let’s rearrange the math to make that obvious:</p>
+<p><del>-15</del> + <del>15</del> + <del>-10</del> + <del>10</del> + <del>-5</del> + <del>5</del> + <del>-5</del> + <del>5</del> + 0 + 0 + 0</p>
+<p>By the way, this isn’t just a convenient set of numbers where the deviations <em>happen</em> to sum to zero. Deviations (or differences from means) <em>always</em> sum to zero.</p>
+<p>So we’re stuck, I guess.</p>
+<p>Well, it was a nice thought.</p>
+<p>“Wait a minute!” you might say. “Why not just compute the average of the <em>absolute values</em> of the deviations?”</p>
+<p>Well, young genius, that’s a fine idea. Let’s try that:</p>
+<p><span class="math display">\[\begin{align}
+15 + 15 + 10 + 10 + 5 + 5 + 5 + 0 + 0 + 0 &amp;= 65 \\
+65 / 10 &amp;= 6.5
+\end{align}\]</span></p>
+<p>Well, look at that! That number actually makes sense. It seems to say that, on average, we can expect to run about 6.5 feet for every hit (if we stand at the mean).</p>
+<p>But (here’s the twist of the century) <em>that’s not the standard deviation we just computed</em>. When we compute the standard deviation, we actually don’t take the absolute value of the scores. Instead we square them.</p>
+<p>So, let’s go ahead and compute the average of the squared distances:</p>
+<p><span class="math display">\[\begin{align}
+15^2 + 15^2 + 10^2 + 10^2 + 5^2 + 5^2 + 5^2 + 0^2 + 0^2 + 0^2 &amp;= \\
+225 + 225 + 100 + 100 + 25 + 25 + 25 + 0^2 + 0^2 + 0^2 &amp;= 725 \\
+65 / 10 &amp;= 72.5
+\end{align}\]</span></p>
+<p>Hmmm….that doesn’t sound right. We ran an average of 72.5 feet? That can’t be right. The maximum deviation was only 15 feet!</p>
+<p>Oh wait…</p>
+<p>Oh, I see the problem. Remember how we squared things? So that 72.5 is actually how many <em>squared</em> feet we ran. Let’s go back to our original variables by taking the square root of 72.5:</p>
+<p><span class="math inline">\(\sqrt{72.5} = 8.51\)</span></p>
+<p>That’s much better. So, on ‘average’ we ran about 8.51 feet per hit. Notice I’ve put average in airquotes because we technically didn’t compute the average (because we had to square the values first).</p>
+<p>By the way, that first number (72.5) is called the <em>variance</em>, which is the average of the squared deviations. The second number (8.51) is called the standard deviation.</p>
+<p>If we wanted to be fancy, we can even use mathematical symbols:</p>
+<p><span class="math display">\[\begin{align} 
+\text{variance} = s^2 &amp;= 72.5 \\
+\text{standard deviation} = s &amp;= 8.51
+\end{align}\]</span></p>
+<p>If we wanted to be <em>real</em> fancy (like, Gray Poupon fancy), we could even write the equation of each of these in mathematical symbols:</p>
+<p><span class="math display">\[\begin{align}
+\text{variance} = s^2 &amp;= \frac{(X-\bar{X})^2}{N} \\
+\text{standard deviation} = s &amp;= \sqrt{\frac{(X-\bar{X})^2}{N}}
+
+\end{align}\]</span></p>
+<p>Here, <span class="math inline">\(X\)</span> is the score, <span class="math inline">\(\bar{X}\)</span> is the mean, and <span class="math inline">\(N\)</span> is the number of scores you have.</p>
+<p>In summary, a deviation is the distance of a score from the mean. Negative numbers mean it’s less than the mean, while positive numbers mean it’s larger than the mean. Deviations sum to zero, so we can’t compute their average. Instead, we square them. The average of the squared deviations is called the variance, and the square root of the variance is called the standard deviation.</p>
+<div id="advantagesdisadvantages-of-the-standard-deviation" class="section level4">
+<h4>Advantages/Disadvantages of the Standard Deviation</h4>
+<p>Remember how I said the mean formed the bases of nearly all advanced statistics? Let me be a little more clear about that. The mean is the basis of all measures of central tendency for advanced statistics. Likewise, the standard deviation/variance form the basis of all measures of spread for advanced statistics. The reason for this is that they have very nice mathematical properties. For more information on that, see the note below.</p>
+<p>The disadvantages? They have all the same disadvantages of the mean. If we have extreme outliers or skewness, these measures of spread can be misleading. Once again, if Jeff Bezos were in our samnple, the standard deviation might say our ‘average’ deviation from the mean is $1,000,000. (I’m actually writing this <em>just</em> as Elon Musk topped Jeff Bezos as the richest person in the world. Here’s to mars!)</p>
+</div>
+</div>
+<div id="median-absolute-deviation" class="section level3">
+<h3>Median Absolute Deviation</h3>
+<p>So, we already talked about two different measures of spread. One (the range) just tells us the difference between the largest and smallest score. Or, for our tennis example, the number of feet between the right-most and left-most hits. The second (standard deviation) tells us the “average” distance the scores are from the mean (or the average distance we’d have to run in our tennis example).</p>
+<p>Supposing you are as clever as I assume you are, you might be saying, “hey…wait a minute. If the standard deviation gets screwed up by skewness, can’t you compute the median deviation and fix that problem?”</p>
+<p>You’re damn smart, I’ll give you that.</p>
+<p>Yes, yes you can. Rather than computing the mean distance from the mean, we can instead compute the median distance from the median. We call that the median absolute deviation, or MAD for short. [Insert joke about being mad about statistics. But make it funny].</p>
+<p>Let’s look at a quick example, shall we?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">score</th>
+<th align="right">deviation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="right">15</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+<p>The first column is our dataset, and the second column is the absolute value of the difference between each score and the median (which is 3). If we were to now sort those deviations:</p>
+<pre><code>#&gt; 0, 0, 0, 1, 1, 1, 1, 2, 12</code></pre>
+<p>The middle score is 1. Easy peasy.</p>
+<div id="advantagesdisadvantages-of-the-mad" class="section level4">
+<h4>Advantages/Disadvantages of the MAD</h4>
+<p>The primary disadvantage of the MAD is that it frustrates me. I can’t explain why, it just makes me MAD.</p>
+<p>Aside from that, another disadvantage is the mathematical properties of it are not as nice. So it’s rarely used in advanced statistics.</p>
+<p>But, it is quite nice when you have skewed data and/or outliers.</p>
+<p>Alright, enough talk about about variability. Let’s compute it, shall we?</p>
+</div>
+</div>
+<div id="variability-in-jasp" class="section level3">
+<h3>Variability in JASP</h3>
+<p>You already know how to do this, btw. Just as before, you go to the descriptives module. By default, JASP computes the standard deviation, but not the range/MAD. To do so, just click on the buttons next to them:</p>
+<p><img src="images/screenshots/images%202021-01-11%20at%2010.21.17%20AM.png" width="214" /></p>
+</div>
+<div id="variability-in-r" class="section level3">
+<h3>Variability in R</h3>
+<p>To compute the range in R, you can use the <code>range</code> function:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="univariate-estimates.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(paranormal<span class="sc">$</span>conviction)</span></code></pre></div>
+<pre><code>#&gt; [1]  0 96</code></pre>
+<p>Notice, however, it gives you the max and min. So to compute the actual range, you just compute the difference. Or you can do that in R using the <code>diff</code> function (which simply computes the difference between values):</p>
+<pre><code>#&gt; [1] 96</code></pre>
+<p>To compute the standard deviation, you just use the <code>sd</code> function:</p>
+<pre><code>#&gt; [1] 22.5767</code></pre>
+<p>And for the variance:</p>
+<pre><code>#&gt; [1] 509.7076</code></pre>
+<p>TO compute the MAD, you can use the <code>mad</code> function:</p>
+<pre><code>#&gt; [1] 29.652</code></pre>
+<p>But, the MAD function in R actually multiplies the actual MAD by 1.4826. Why? Well, if you multiply the MAD by 1.4826, the MAD as the standard deviation are equal for very large symmetric distributions. To get that actual MAD, you can type:</p>
+<pre><code>#&gt; [1] 20</code></pre>
+</div>
+</div>
+<div id="z-scores-and-probability" class="section level2">
+<h2>Z-Scores and Probability</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="univariate-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bivariate-visualizations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-UnivariateEstimates.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

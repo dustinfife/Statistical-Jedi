@@ -1,0 +1,20 @@
+h1:bivariate-visualizations Bivariate Visualizations
+h2:avengers-dataset Avengers Dataset
+h3:visualizing-bivariate-relationships-in-r-using-flexplot Visualizing bivariate relationships in R using Flexplot
+h3:visualizing-bivariate-relationships-in-jasp-using-visual-modeling Visualizing bivariate relationships in JASP using Visual Modeling
+h2:scatterplots-numeric-on-numeric Scatterplots: Numeric on numeric
+h3:what-to-look-for What to look for
+h3:problems-to-look-out-for Problems to look out for
+h4:nonlinearity Nonlinearity
+h4:bivariate-outliers Bivariate Outliers
+fig:leverage High Leverage Datapoints Follow the Pattern, \nbut Make It Look Stronger Than It Really Is.
+h3:practice Practice
+h2:beeswarm-plots-categorical-on-numeric Beeswarm plots: Categorical on Numeric
+h3:what-to-look-for-1 What to look for
+h3:problems-to-look-out-for-1 Problems to look out for
+h4:uneven-sample-sizes Uneven sample sizes
+h4:skewness Skewness
+h2:other-bivariate-plots Other Bivariate Plots
+h3:logistic-plots-numeric-on-binary Logistic Plots: Numeric on Binary
+h3:association-plots-categorical-on-categorical Association Plots: Categorical on Categorical
+

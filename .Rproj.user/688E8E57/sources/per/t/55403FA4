@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1617802537871.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "100831322",
+    "id" : "55403FA4",
+    "lastKnownWriteTime" : 1617804419,
+    "last_content_update" : 1618326864431,
+    "path" : "~/Dropbox/research/Statistical Framework/Intro Book V 2/15-Probability-2.Rmd",
+    "project_path" : "15-Probability-2.Rmd",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

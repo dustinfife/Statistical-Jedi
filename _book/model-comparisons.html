@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Model Comparisons | stats-jedi.knit</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Model Comparisons | stats-jedi.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Model Comparisons | stats-jedi.knit" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-04-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probability-3-the-central-limit-theorem.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-lm"><i class="fa fa-check"></i>One-Sample T-Test as a LM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#lm-approach"><i class="fa fa-check"></i>LM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#lm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>LM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-lm"><i class="fa fa-check"></i>ANOVA as a LM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#lm-approach-1"><i class="fa fa-check"></i>LM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparisons-are-tools-not-procedures"><i class="fa fa-check"></i>Model comparisons are tools, not procedures</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li><a href="model-comparisons.html#the-model.comparison-function">The <code>model.comparison</code> function</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li><a href="model-comparisons.html#r2"><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#what-if-the-statistics-disagree"><i class="fa fa-check"></i>What if the statistics disagree?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#hierarchical-regressions-nested-model-comparisons-in-spss"><i class="fa fa-check"></i>Hierarchical Regressions: Nested Model Comparisons in SPSS</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#non-nested-models"><i class="fa fa-check"></i>Non-nested models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="model-comparisons" class="section level1">
+<h1>Model Comparisons</h1>
+<p>I used to work as a professional photographer. I started right when digital photography was in its infancy. One of my favorite things to do was take a digital photo, bring it into Adobe Photoshop, then photoshop the crap out of that picture.</p>
+<p>Afterall, there’s nothing more touching than a Disney-princess-perfect photo of a happy couple on their wedding day.</p>
+<p>But here’s the problem: it’s very easy to overdo it in photoshop. Maybe your contrast is too high or your colors are overly saturated. But what tended to happen is that you end up making gradual changes. After dozens of gradual changes, you’ve gone overboard without even realizing it.</p>
+<p>Fortunately, for overzealous photographers like myself, by hacking photoshop’s layers functionality, I had the ability to see a before and after. Very often, the contrast between the before and after showed me that yes, indeed, I had gone <em>way</em> too far in my edits.</p>
+<p>Our brains are wired in such a way that we’re not very good at judging absolutes; we’re much better at judging relative differences. The same applies for statistical models: our estimates are <em>really</em> bad at telling you whether the model fits well, but statistical models are quite good at telling you which of two models is better.</p>
+<div id="nested-versus-non-nested-models" class="section level2">
+<h2>Nested versus non-nested Models</h2>
+<p>Alright, I’m going to qualify what I was just saying; statistical models are really good at telling which of two <em>nested</em> models fits better.</p>
+<p>“Why, Fifedog…what are nested models?”</p>
+<p>So glad you asked, wise student.</p>
+<p>Let me give a somewhat technical definition first, then I’ll illustrate with some examples.</p>
+<p><strong>For two models (Model A and Model B), Model A is said to be <em>nested</em> within Model B if terms from Model B can be deleted to obtain Model A.</strong></p>
+<p>Yikes, that was all stuffy sounding. Let me try a non-technical definition:</p>
+<p><strong>If you can delete parts from the bigger of two models to get the smaller of the two models, the smaller model is nested within the bigger model.</strong></p>
+<p>Better?</p>
+<p>Lets look at an example of nested models. For simplicity, I’m not going to show the “coefficients” (i.e., <span class="math inline">\(b_0, b_1, b_2,\)</span> etc.), but just the variables:</p>
+<p><span class="math display">\[
+\begin{align}
+\nonumber y =&amp; A + B \\
+\nonumber y =&amp; A
+\end{align}
+\]</span></p>
+<p>The second model (<span class="math inline">\(y = A\)</span>) is said to be <em>nested</em> within the other model (<span class="math inline">\(y = A + B\)</span>). Let’s look at a non-nested model:</p>
+<p><span class="math display">\[
+\begin{align}
+\nonumber y =&amp; A + B \\
+\nonumber y =&amp; C
+\end{align}
+\]</span></p>
+<p>There’s no way to get from the more complex of the two (<span class="math inline">\(y = A + B\)</span>) to the simpler of the two (<span class="math inline">\(y = C\)</span>), so these models are not nested.</p>
+<p>Here’s a few more nested examples:</p>
+<p><span class="math display">\[
+\begin{align}
+\nonumber \text{depression} =&amp; \text{stress} + \text{anxiety} + \text{stress}\times\text{anxiety}\\
+\nonumber \text{depression} =&amp; \text{stress} + \text{anxiety} \\
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+\nonumber \text{blood pressure} =&amp; \text{exercise} + \text{exercise}^2 \\
+\nonumber \text{blood pressure} =&amp; \text{exercise} \\
+\end{align}
+\]</span></p>
+<p><span class="math display">\[
+\begin{align}
+\nonumber \text{temperature} =&amp; \text{humidity} + \text{atmospheric pressure} \\
+\nonumber \text{temperature} =&amp; \text{humidity} \\
+\end{align}
+\]</span></p>
+<p>In each case, we can delete one term from the larger model to get the smaller model.</p>
+<p>We call the larger of the two models the <strong>full model</strong>, while we call the smaller of the two the <strong>reduced model</strong>:</p>
+<p><span class="math display">\[
+\begin{align}
+\nonumber \text{Full Model: }\text{temperature} =&amp; \text{humidity} + \text{atmospheric pressure} \\
+\nonumber \text{Reduced Model: }\text{temperature} =&amp; \text{humidity} \\
+\end{align}
+\]</span></p>
+<p>Like I said earlier, statistics are pretty good at telling whether the full or reduced model is the better of two models. But why?</p>
+<p>Four words: <em>Is it worth it?</em></p>
+<p>Before I explain what I mean by those four magical words, I need to cover a basic concept: the fit/complexity tradeoff.</p>
+</div>
+<div id="the-fitcomplexity-tradeoff" class="section level2">
+<h2>The Fit/Complexity Tradeoff</h2>
+<p>This can be a very technical topic, but I’m not going to be technical. But here’s the basic idea: every time we add a variable (or a term, like an interaction term), our model will <em>always</em> improve in fit. (Well, technically, it might not change at all, but it can’t get worse.)</p>
+<p>That’s good, right? Well, no. The problem is that we can add <em>anything</em> to the model to improve fit. We can improve our prediction of temperature by adding my daily weight to our prediction model. It will improve the fit (very slightly). But we know that my weight has nothing to do with the temperature. So, if our model is filled with predictors that really have nothing to do with our outcome of interest, we’re adding useless information.</p>
+<p>But there’s a more sinister problem with adding useless predictors: the model will “overfit.” Overfitting means that the model is fitting both the “signal” and the noise. The practical implications of that is that if we overfit, we will have very poor replication rates.</p>
+<p>So, let me say that all much more concisely: adding variables always improves prediction, but it also increases the probability your results won’t replicate. So, you need to be very careful about what variables you decide to include in your analysis in such a way that balances fit with replication potential.</p>
+<p>Got it?</p>
+<p>Now we return to those four magical words: Is it worth It? When we ask our statistical models that questions, we’re asking whether the improvement in fit is worth the cost of potentially overfitting.</p>
+<p>Fortunately, we have several tools we can use to determine whether the added complexity is worth it.</p>
+</div>
+<div id="model-comparisons-are-tools-not-procedures" class="section level2">
+<h2>Model comparisons are tools, not procedures</h2>
+<p>I have had several students say stuff like, “My adviser thinks I should do an ANOVA, but I’d like to do a model comparison. What do you think?”</p>
+<p>My response? Yes!</p>
+<p>This is often met with confusion.</p>
+<p>The two are not mutually exclusive. Model comparisons are <em>tools</em>, much like plots, or estimates, or p-values. We can use plots, estimates, p-values, and model comparisons for <em>any number of analyses</em>.</p>
+<p>Let me say that again, but a smidge differently: model comparisons are tools we can use for just about any sort of analysis.</p>
+<p>All it requires is for us to reframe our research questions into a model comparison question.</p>
+<p>Here are some examples:</p>
+<p><em>An ANOVA traditionally asks whether there are mean differences between groups (e.g., control, treatment A, treatment B) on some outcome. A model comparison asks whether the inclusion of group membership (control, treatment A, treatment B) improves fit above and beyond using a single mean for each group.
+</em>An ANCOVA asks whether group means are different after controlling for a covariate. A model comparison asks whether the inclusion of group membership improves prediction above and beyond predicting from the covariate alone.
+*Traditionally, testing for an interaction asks whether the interaction effect differs from zero. A model comparison asks if a model which allows the slopes to differ is substantially better than a model that does not allow the slopes to differ.</p>
+<p>Many of the analyses we’ve already been doing can be re-framed as a model comparison:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Analysis Type</th>
+<th>Model Comparison Question</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>t-test</td>
+<td>Relative to a model where each group has the same mean, do I improve prediction by allowing both groups to have their own means?</td>
+</tr>
+<tr class="even">
+<td>Conditioning Analysis (e.g., ANCOVA)</td>
+<td>Does the addition of this variable improve prediction enough to justify keeping it?</td>
+</tr>
+<tr class="odd">
+<td>Moderation (Interaction) Analysis (a.g., Factorial ANOVA)</td>
+<td>If I allow the slopes to be non-parallel, does it improve my prediction substantially?</td>
+</tr>
+<tr class="even">
+<td>Multiple regression</td>
+<td>Does the inclusion of therapy and drug use improve treatment above and beyond just demographics?</td>
+</tr>
+</tbody>
+</table>
+<p>Just about all (if not all!) analyses can be reframed as a model comparison. Because of that, we can almost always use the tools of model comparisons for analyses.</p>
+</div>
+<div id="visual-model-comparisons" class="section level2">
+<h2>Visual model comparisons</h2>
+<p>Are you at all surprised that I begin with visualizations? You probably shouldn’t be.</p>
+<p>Flexplot has various tools that allow you to visually compare two models. Perhaps the coolest tool is the <code>compare.fits</code> function. Let me go ahead and show you how it works with an example, then I’ll explain the deets:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="model-comparisons.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span>
+<span id="cb1-2"><a href="model-comparisons.html#cb1-2" aria-hidden="true" tabindex="-1"></a>full_model    <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>injuries <span class="sc">+</span> north_south, <span class="at">data=</span>avengers)</span>
+<span id="cb1-3"><a href="model-comparisons.html#cb1-3" aria-hidden="true" tabindex="-1"></a>reduced_model <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>injuries              , <span class="at">data=</span>avengers)</span>
+<span id="cb1-4"><a href="model-comparisons.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">compare.fits</span>(ptsd<span class="sc">~</span>north_south <span class="sc">|</span> injuries, </span>
+<span id="cb1-5"><a href="model-comparisons.html#cb1-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data=</span>avengers, </span>
+<span id="cb1-6"><a href="model-comparisons.html#cb1-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">model1 =</span> full_model,</span>
+<span id="cb1-7"><a href="model-comparisons.html#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">model2 =</span> reduced_model)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/modcompav1-1.png" width="672" /></p>
+<p>Let’s talk about the arguments first. <code>compare.fits</code> requires four major arguments:</p>
+<ol style="list-style-type: decimal">
+<li>A flexplot formula specifying how the variables are displayed. All variables in this formula <em>must</em> be in one of the models you’ve fit. However, you do not have to have all variables displayed. For example, we could choose to only display <code>ptsd~north_south</code> and not plot injuries.</li>
+<li>The dataset</li>
+<li>A fitted model. For now, that means a model fit with the <code>lm</code> function.</li>
+<li>(Optional). A second model that we wish to compare to the first. If we omit this, <code>compare.fits</code> will just visualize the one model. (In which case, it’s really no different than using the <code>visualize</code> function).</li>
+</ol>
+<p>So, in short, this function will visually compare two models. In the plot above, one in blue is the reduced model and the red one is the full model.</p>
+<p>So, what are we looking for when viewing two plots in compare.fits?</p>
+<p>We are looking for <em>different predictions</em>. In this case, the two models have similar predictions, at least in some instances. For example, both models predict ptsd scores near 8 when injuries are low (0-3) for the south battlefield. However, they have a larger difference in their predictions for the north battle field (maybe 8 versus 7.7).</p>
+<div class="rmdnote">
+<h2 id="do-we-want-parallel-lines-in-compare.fits">
+Do we want parallel lines in <code>compare.fits</code>?
+</h2>
+<p>
+Your natural inclination might be to say, “Holy Smokes, Stats Man! Those lines are not parallel! We have an interaction here!”
+</p>
+<p>
+And, truth be told, you wouldn’t be the first student to say that. You’ve been well-trained to look for nonparallel lines whenever we overlay a ghost line in flexplot. But, the red lines <em>are not ghost lines</em>. The red lines are the fits of the full model.
+</p>
+<p>
+So, don’t confuse the two approaches. Lemme make it more clear with a bulleted list:
+</p>
+<ul>
+<li>
+When using the <code>flexplot</code> function, we often use ghost lines to see if the slopes are not parallel
+</li>
+<li>
+When using <code>compare.fits</code>, we don’t care if they’re parallel. We care if the two lines are <em>different</em>.
+</li>
+</ul>
+</div>
+<p>Let’s look at another example with a more drastic difference. This time, we’ll fit a model with/without injuries (while leaving north_south in both):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="model-comparisons.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span>
+<span id="cb2-2"><a href="model-comparisons.html#cb2-2" aria-hidden="true" tabindex="-1"></a>full    <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>north_south <span class="sc">+</span> injuries, <span class="at">data=</span>avengers)</span>
+<span id="cb2-3"><a href="model-comparisons.html#cb2-3" aria-hidden="true" tabindex="-1"></a>reduced <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>north_south           , <span class="at">data=</span>avengers)</span>
+<span id="cb2-4"><a href="model-comparisons.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">compare.fits</span>(ptsd<span class="sc">~</span>injuries <span class="sc">|</span> north_south, </span>
+<span id="cb2-5"><a href="model-comparisons.html#cb2-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">data=</span>avengers, </span>
+<span id="cb2-6"><a href="model-comparisons.html#cb2-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">model1 =</span> full,</span>
+<span id="cb2-7"><a href="model-comparisons.html#cb2-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">model2 =</span> reduced)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/modcompav2-1.png" width="672" /></p>
+<p>Now our two models are <em>drastically</em> different. For example, the left-most plot says the full model predicts a ptsd score over 8 for those with no injuries, while the reduced model predicts a score just over 7.</p>
+<p>So, again, let me say it again, but with emphasis. *When using <code>compare.fits</code>, we’re trying to see whether the two models produced drastically different predictions`.</p>
+</div>
+<div id="the-model.comparison-function" class="section level2">
+<h2>The <code>model.comparison</code> function</h2>
+<p>Whew! That was loads of fun. I like pictures. I like plots, But, alas, we’re not done yet. More often than not, we look at a plot and say to ourselves, “That there’s a lovely plot. But I’m not sure if the two are different <strong>enough</strong>. It would be right nice if I had some more concrete numbers to help me make a decision.”</p>
+<p>Lucky for you, we have a lovely tool to help us put what we see in concrete numbers: the <code>model.comparison</code> function.</p>
+<p>This function is so easy to use, my dog could use it. Let’s look at an example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="model-comparisons.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.comparison</span>(full, reduced)</span></code></pre></div>
+<pre><code>#&gt; $statistics
+#&gt;              aic      bic bayes.factor      p   rsq
+#&gt; full    1490.063 1508.861 5.802341e+45 &lt;2e-16 0.310
+#&gt; reduced 1705.512 1719.610 0.000000e+00        0.098
+#&gt; 
+#&gt; $predicted_differences
+#&gt;    0%   25%   50%   75%  100% 
+#&gt; 0.048 0.054 0.322 0.328 1.038</code></pre>
+<p>All it requires is two models (preferably nested). It will then report several statistics that are helpful in determining which of the two models is preferred. Let’s go ahead and go through all these statistics so you know how to interpret them.</p>
+<div id="aicbic" class="section level3">
+<h3>AIC/BIC</h3>
+<p>The AIC is short for Akaike’s Information Criteria. It is defined as:</p>
+<p><span class="math display">\[ AIC = 2k - 2ln(\hat L)\]</span>
+where <span class="math inline">\(k\)</span> is the number of parameters and <span class="math inline">\(\hat L\)</span> is the likelihood function.</p>
+<p>WTF?</p>
+<p>Don’t worry about it. I’m just putting the definition there for the pedantic. And, btw, this is going to be a very brief intro to AIC. I’m not going to get into the technical nuances. I’m just going to show you how to use it.</p>
+<p>But, it might be good to notice that <span class="math inline">\(k\)</span>, the number of parameters is in there. AIC was designed to impose a penalty on models that fit more parameters. Or, put differently, AIC tries to balance the fit/complexity tradeoff.</p>
+<p>So, while the AIC was specifically designed for comparing models, there’s a problem with it: the numbers themselves are uninterpretable. What does an AIC of -255.87 mean? Um. Er. I don’t know. What about an AIC of -1985.23? Again, I don’t know.</p>
+<p>So, if the AIC value is meaningless, what’s the point?</p>
+<p>Well, the AIC should not be used in isolation. You always use the AIC to compare two models. <em>And the model with the lower AIC is the better fitting model.</em></p>
+<p>So, let’s look at the AICs from the models above. The full model had an AIC of 1490.063, while the AIC of the reduced model is 1705.512. Which model fits better? The full model. Why? Because its AIC is lower.</p>
+<p>Naturally, you might ask, “How much better is it?”</p>
+<p>Alas, the AIC cannot answer that. It’s not like <span class="math inline">\(R^2\)</span>, where we can easily develop an intuition for how large a difference is.</p>
+<p>All you need to remember is that the model with the lower AIC is the better fitting of the two.</p>
+<p>The BIC, or Bayesian Information Criteria is very similar to the AIC, but it incorporates the sample size in its calculation:</p>
+<p><span class="math display">\[ BIC = k \text{ ln}(n) - 2ln(\hat L)\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the sample size.</p>
+<p>BIC tends to be more conservative than the AIC. (In other words, the BIC will generally favor the reduced model moreso than the AIC). Fortunately, the two usually agree.</p>
+<p>Like the AIC, the numbers associated with the BIC cannot be interpreted in isolation. Rather, we use the BIC from two models and favor the model with the lower BIC.</p>
+</div>
+<div id="bayes-factors" class="section level3">
+<h3>Bayes Factors</h3>
+<p>Bayes factors are freaking awesome. Remember how the actual AIC/BIC numbers are pretty meaningless? The Bayes factor takes the BIC and converts it into something that is actually meaningful.</p>
+<p>The Bayes factor is a ratio:</p>
+<p><span class="math display">\[ \frac{\text{Evidence in favor of Model 1}}{\text{Evidence in favor of Model 2}}\]</span></p>
+<p>So, if the full model has a Bayes factor of 2.5, the evidence in favor of the full model is 2.5 times larger than the evidence in favor of the reduced model. Or, conversely, you could say that the evidence in favor of the reduced model is 0.4 (i.e., 1/2.5) relative to the full model.</p>
+<p>So, the model that has Bayes factor values larger than 1 is the better fitting model. The model with the Bayes factor less than 1 is the worse fitting model.</p>
+<p>That there is quite intuitive. Going back to our previous example, the evidence in favor of the full model (which includes injuries) is 5.8023405^{45} times larger than the reduced model. (That’s a <em>massive</em> difference!)</p>
+<p>By convention, Bayes factors larger than around 10 are considered fairly strong evidence in favor of that model. One thing you’ll have to remember about the BF is that anything near 1 is <em>ambiguous</em>. For some reason (likely the extensive training we all receive in p-values), it’s tempting to interpret a BF of, say 1.5, as saying the reduced model should be favored. This is not the case! Rather, 1.5 says the BF is having a really hard time deciding between the two.</p>
+</div>
+<div id="p-values-1" class="section level3">
+<h3>p values</h3>
+<p>Let’s have a fictitious conversation, shall we?</p>
+<p>You: Aren’t you diametrically opposed to p-values?</p>
+<p>Me: Usually.</p>
+<p>You: So…why are you reporting p-values in the software that <em>you</em> developed?</p>
+<p>You got me.</p>
+<p>Yes, I use p-values. But, I don’t feel as cringy about it in for model comparisons as I do for null hypothesis significance testing.</p>
+<p>Why?</p>
+<p>There’s three reasons I’m okay with using p-values for model comparisons:</p>
+<ol style="list-style-type: decimal">
+<li><p>These p-values are associated with <em>meaningful</em> hypotheses. When we do a model comparison, we’re testing a theoretically-motivated hypothesis (e.g., does stress contribute to depression above and beyond one’s genetic influence?). With NHST, we’re testing whether a parameter is zero. That may or may not be tied to a theoretical hypothesis.</p></li>
+<li><p>With model comparisons, we only compute <em>one</em> p-value. Suppose we’re trying to see if stress affects income, above and beyond demographics (age, gender, ethnicity). This model comparison will compute one p-value (full model: income = stress + age + gender + ethnicity versus reduced model: income = age + gender + ethnicity). A traditional NHST-style model will compute a p-value for <em>every single variable</em> (one for age, one for gender, one for ethnicity, and one for stress). That gives us three additional opportunities to capitalize on chance. Of course, one could choose to ignore all the other p-values and focus on the only meaningful one (stress in this case), but seeing all those other p-values might be tempt you into interpreting them.</p></li>
+<li><p>With model comparisons, we’re using p-values as <em>one of many</em> pieces of evidence. I don’t hate p-values. I hate how they’re used. I don’t mind someone reporting a p-value, provided they also give me plots, Cohen’s <span class="math inline">\(d\)</span> values, correlations, slopes, Bayes Factors, etc. I have a big problem with using p-values in isolation. In the <code>model.comparison</code> function, <span class="math inline">\(p\)</span> values are reported alongside several other metrics. This prevents p-value myopia (I hope!)</p></li>
+</ol>
+<p>Let me go back to a point I made in #2. We <em>could</em> compute the p-values for every single parameter and only interpret the one of interest. Let’s say we’re interested in the effects of flexibility on ptsd, controlling for minutes.fighting, injuries, and shots.taken. Our models look like this:</p>
+<p>We could avoid the <code>model.comparisons</code> machinery and just compute the p-value for flexibility:</p>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = ptsd ~ minutes.fighting + injuries + shots.taken + 
+#&gt;     flexibility, data = avengers)
+#&gt; 
+#&gt; Residuals:
+#&gt;      Min       1Q   Median       3Q      Max 
+#&gt; -2.06856 -0.36478 -0.00478  0.35388  3.10220 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                    Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)       7.0989057  0.1078205  65.840   &lt;2e-16 ***
+#&gt; minutes.fighting  0.0284030  0.0025551  11.116   &lt;2e-16 ***
+#&gt; injuries         -0.2843643  0.0183447 -15.501   &lt;2e-16 ***
+#&gt; shots.taken       0.0071596  0.0007025  10.192   &lt;2e-16 ***
+#&gt; flexibility      -0.0152581  0.0192458  -0.793    0.428    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.5484 on 807 degrees of freedom
+#&gt; Multiple R-squared:  0.4322, Adjusted R-squared:  0.4293 
+#&gt; F-statistic: 153.5 on 4 and 807 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Notice the p-value associated with flexibility (0.428) is <em>exactly</em> the same as the p-value associated with the model comparison:</p>
+<pre><code>#&gt; $statistics
+#&gt;              aic      bic bayes.factor     p   rsq
+#&gt; full    1335.716 1363.913        0.048 0.428 0.432
+#&gt; reduced 1334.348 1357.846       20.773       0.432
+#&gt; 
+#&gt; $predicted_differences
+#&gt;    0%   25%   50%   75%  100% 
+#&gt; 0.000 0.005 0.011 0.018 0.047</code></pre>
+<p>Why are they the same? When we computed the p-values for the whole model, we were asking R:</p>
+<ul>
+<li>Is the slope of minutes.fighting equal to zero (after controlling for all the other variables)?</li>
+<li>Is the slope of injuries equal to zero (after controlling for all the other variables)?</li>
+<li>Is the slope of shots.taken equal to zero (after controlling for all the other variables)?</li>
+<li><em>Is the slope of flexibility equal to zero (after controlling for all the other variables)?</em></li>
+</ul>
+<p>Asking if the slope is equal to zero is exactly the same as asking whether adding flexibility to our model improves the fit enough to justify its inclusion. But, with model comparisons, it doesn’t compute those p-values for all those questions we didn’t actually ask. Rather, it’s focusing on the one hypothesis we’re really asking.</p>
+<p>“Okay,” you may say, “so what’s the point of doing a model comparison if we could always just compute the p-value?”</p>
+<p>For one, computing p-values (e.g, with the <code>summary</code> function) computes way more p-values than we actually need. Also, the <code>model.comparison</code> functions gives us much more information (e.g., AIC/BIC/Bayes factors).</p>
+<p>But there’s a third reason to prefer <code>model.comparison</code> over the <code>summary</code> function: the <code>summary</code> function cannot compute p-values for certain types of model comparisons.</p>
+<p>Let’s say you want to see the effect of speed <em>and</em> agility on ptsd, after controlling for minutes.fighting and injuries. In this case, our two models would be:</p>
+<p>full model: <code>ptsd~minutes.fighting + injuries + speed + agility</code>
+reduced model: <code>ptsd~minutes.fighting + injuries</code></p>
+<p>Now the full model has <em>two</em> variables the reduced model doesn’t. There’s no way to identify the effect of both variables with the <code>summary</code> function.</p>
+</div>
+<div id="r2" class="section level3">
+<h3><span class="math inline">\(R^2\)</span></h3>
+<p>The final statistic the <code>model.comparison</code> function returns is the model’s <span class="math inline">\(R^2\)</span>. We’re all familiar with this metric, so I won’t go into much detail. But, <code>model.comparison</code> makes it very easy to compare model r squared values.</p>
+</div>
+<div id="the-predicted-values" class="section level3">
+<h3>The predicted values</h3>
+<p>Back when I was talking about <code>compare.fits</code>, I was trying, by eye, to tell you how different two model’s predictions are. For example, I said Figure <a href="#fit:modcompav2"><strong>??</strong></a> predicted over 8 versus over 7 for the north battlefield/0 injuries folks for the full/reduced model, respectively.</p>
+<p>Perhaps, it might be a smidge better to have more concrete values than having to eyeball things. That’s what these predicted value are.</p>
+<p>Bascially, what <code>model.comparison</code> does in the background is it uses both models to predict scores for each individual. For example, the full model might predict a ptsd score of 7.6, while the reduced model might predict a ptsd score of 5.4. Then <code>model.comparison</code> will compute the difference in prediction. In this example (7.6 versus 5.4), the difference will be 2.2. It will compute this difference for <em>all</em> scores in the dataset. The predicted_difference section tells you the percentiles of these differences.</p>
+<p>Let’s go ahead and pull up these statistics for the two models we compared earlier (with versus without flexibility). Let’s show that again:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="model-comparisons.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.comparison</span>(full, reduced)<span class="sc">$</span>predicted_differences</span></code></pre></div>
+<pre><code>#&gt;    0%   25%   50%   75%  100% 
+#&gt; 0.000 0.005 0.011 0.018 0.047</code></pre>
+<p>This is telling you that the <em>minimum</em> difference between the two models is 0. It also says that 25% of scores differ by no more than 0.005, 50% differ by no more than 0.011, 75% differ by no more than 0.018, and that maximum difference in prediction is 0.047. Remember that the ptsd scale ranges from about 5 to 10, so a difference of around 0.05 is really tiny. In other words, these two models are generating <em>very</em> similar predictions.</p>
+</div>
+<div id="what-if-the-statistics-disagree" class="section level3">
+<h3>What if the statistics disagree?</h3>
+<p>That there is a good question. And it happens! Most of the time, the AIC/BIC/BF/p-value/R-squared/predicted difference/plots all agree on which model is better. But sometimes you’ll get an AIC/p-value that favors the full, and a BIC/BF that favors the reduced.</p>
+<p>What then?</p>
+<p>You may not like the answer, but I’m going to tell you anyway. In those cases, it’s best to say that the answer is ambiguous. The reality is that the evidence isn’t strong either way. So, my best recommendation is to report that the evidence is ambiguous, then collect more data.</p>
+<p>You might be uncomfortable with that. It’s understandable. As humans, we don’t like ambiguity. As scientists, we’ve been trained to reject ambiguity and uncertainty. That has, unfortunately, been to our detriment. In the past, when we <em>should</em> have been ambiguous under uncertainty, we instead were bold. That led to the replication crisis. So, it’s high time we allow ambiguity into our conclusions and scientific dialogue.</p>
+</div>
+</div>
+<div id="hierarchical-regressions-nested-model-comparisons-in-spss" class="section level2">
+<h2>Hierarchical Regressions: Nested Model Comparisons in SPSS</h2>
+<p>You may have to communicate with users of SPSS. Or perhaps you yourself have used SPSS. There’s a popular tool in SPSS called “Hierarchical Regressions.” With these, the user different “blocks” of models. For example, block one might be:</p>
+<p><img src="screenshots/Intro%20Book%20V%202%202022-04-18%20at%208.32.41%20AM.png" width="221" /></p>
+<p>While block two might add minutes.fighting:</p>
+<p><img src="screenshots/Intro%20Book%20V%202%202022-04-18%20at%208.38.10%20AM.png" width="218" /></p>
+<p>All this is a nested model comparison. The first “block” is the reduced model, and the second “block” is the full model.</p>
+<p>If we look at the SPSS output, we see the <span class="math inline">\(R^2\)</span>….</p>
+<p><img src="screenshots/Intro%20Book%20V%202%202022-04-18%20at%208.39.39%20AM.png" width="211" /></p>
+<p>… is the same we’d get in R:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="model-comparisons.html#cb9-1" aria-hidden="true" tabindex="-1"></a>full    <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>injuries <span class="sc">+</span> minutes.fighting, <span class="at">data=</span>avengers)</span>
+<span id="cb9-2"><a href="model-comparisons.html#cb9-2" aria-hidden="true" tabindex="-1"></a>reduced <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>injuries                   , <span class="at">data=</span>avengers)</span>
+<span id="cb9-3"><a href="model-comparisons.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">model.comparison</span>(full, reduced)</span></code></pre></div>
+<pre><code>#&gt; $statistics
+#&gt;              aic      bic bayes.factor      p   rsq
+#&gt; full    1430.986 1449.784 2.148146e+20 &lt;2e-16 0.358
+#&gt; reduced 1529.318 1543.417 0.000000e+00        0.274
+#&gt; 
+#&gt; $predicted_differences
+#&gt;    0%   25%   50%   75%  100% 
+#&gt; 0.000 0.035 0.074 0.127 2.149</code></pre>
+<p><em>Hierarchical Regressions are model comparisons</em>. I have no idea why SPSS decided to use different terminology than what statisticians use. It’s quite frustrating, actually. It makes it seem like what I teach is foreign, when it’s not at all.</p>
+</div>
+<div id="non-nested-models" class="section level2">
+<h2>Non-nested models</h2>
+<p>This chapter has been primarily devoted to nested models, and this book isn’t intended to really go too deeply into non-nested models. But, many of the research questions we ask cannot be assessed with a nested model comparison:</p>
+<ul>
+<li>Is human behavior primarily a function of punishments/reinforcements? Or is it primarily a function of genetics?</li>
+<li>Is the diathesis-stress model a better representation of psychological vulnerability than the differential susceptibility model?</li>
+<li>Do autoantibodies accrue before soluable mediators, or do soluable mediators accrue before autoantibodies?</li>
+</ul>
+<p>These sorts of models are probably best addressed with more advanced statistical procedures, such as structural equation models. (Non-nested model comparisons are the rule, rather than the exception in SEM).</p>
+<p>However, I will say a few things about these. First, if you try to use the <code>model.comparison</code> function for non-nested models, it will report an AIC, BIC, BF, and predicted differences. It will <em>not</em> report p-values and R squared. Why? Because p-values/R-squared only make sense with nested models.</p>
+<p>Fortunately, you can still use AIC/BIC/BF/predicted differences in exactly the same was you would with nested models.</p>
+</div>
+<div id="summary-2" class="section level2">
+<h2>Summary</h2>
+<p>Statistics is really terrible at determining whether a mdoel fits. It’s really good at telling you which of two models fit better. There are two types of models: nested models (meaning we can delete one part of a model to get the other model), and non-nested models.</p>
+<p>When comparing models, it’s important to keep in mind the complexity versus fit tradeoff: adding variables always improve prediction in that dataset, but it may not cross-validate well. So we ask the computer to tell us whether adding variables improves prediction <em>enough</em> to justify adding complexity to our model.</p>
+<p>Flexplot offers two excellent tools for comparing models: the compare.fits function which visually shows the difference in predictions, and the compare.fits function, which computes various model comparison statistics (AIC, BIC, BF, p-values, and R squared). p-values in model comparisons are okay for several reasons, including that they’re more targeted hypotheses and that they’re evaluated in the context of other metrics. Remember that SPSS often will call nested model comparisons “hierarchical regressions.”</p>
+
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probability-3-the-central-limit-theorem.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/17-ModelComparisons.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

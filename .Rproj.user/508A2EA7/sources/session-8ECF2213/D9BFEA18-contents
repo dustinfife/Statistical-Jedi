@@ -1,0 +1,16 @@
+g1 = rnorm(100)
+g2 = g1 + rnorm(100, 1.5, 1)
+d = data.frame(score = g2 -g1)
+mod = lm(score~1, data=d)
+summary(mod)
+estimates(mod)
+require(flexplot)
+estimates(mod)
+
+
+
+full    = lm(ptsd~injuries + minutes.fighting, data=avengers)
+reduced = lm(ptsd~injuries                   , data=avengers)
+model.comparison(full, reduced)$statistics$aic[1]
+names(model.comparison(full, reduced))
+head(avengers)

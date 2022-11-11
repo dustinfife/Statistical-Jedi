@@ -1,0 +1,33 @@
+h1:multivariate-glms-conditioning-effects Multivariate GLMs: Conditioning Effects
+h2:multicollinearity Multicollinearity
+h2:controlling-by-conditioning Controlling by conditioning
+h2:conditioning-is-just-residualizing Conditioning is just residualizing
+h2:all-the-ways-of-thinking-about-conditioning All the ways of thinking about 
+h2:be-careful-about-conditioning-and-using-multiple-regression Be careful about conditioning! (And using multiple regression)
+h3:conditioning-will-not-prove-causation. 1. Conditioning will not prove causation.
+h3:be-careful-what-you-condition-on 2. Be Careful what you condition on
+h3:only-study-and-interpret-the-effects-of-the-interest-variable 3. Only study and interpret the effects of the interest variable
+h3:conditioning-with-interaction-effects. 4. Conditioning with interaction effects.
+h2:additional-estimates-of-interest Additional Estimates of Interest
+h3:slopes Slopes
+h3:r-squared. R squared.
+h3:semi-partial-r2 Semi-Partial 
+h2:applied-analyses Applied Analyses
+h3:ancova ANCOVA
+fig:mvcondmodelplot Plot of therapy group scores on weight loss for different levels of motivation.
+fig:mvcondavp Added Variable Plot of the therapy.type scores on weight loss, after controlling for motivation.
+h4:reporting-results-for-an-ancova Reporting Results for an ANCOVA
+h5:example-reporting-of-anova-radical Example Reporting of ANOVA (Radical)
+tab:estimatesradical Mean Differences and confidence intervals for the behaviorist, cognitive, and control groups.
+h5:example-reporting-of-anova-traditionalist Example Reporting of ANOVA (Traditionalist)
+h5:example-reporting-of-anova-conventionalist Example Reporting of ANOVA (Conventionalist)
+h3:multiple-regression Multiple Regression
+fig:mrmultivar Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent loess lines.
+fig:mrquad Plot of the relationship between strength and agility for various levels of speed and flexibility. The blue lines represent fits from a quadratic regression.
+fig:mrdiag Diagnostics of the model predicting agility from strength, after controlling for speed and flexibility
+fig:mravp Plot of the relationship between strength and agility, after controlling for speed and flexibility. The blue lines represent the final fit of the quadratic regression model.
+h4:reporting-of-a-multiple-regression Reporting of a Multiple Regression
+h5:example-reporting-of-multiple-regression-radical Example Reporting of multiple regression (Radical)
+h5:example-reporting-of-multiple-regression-traditionalist Example Reporting of multiple regression (Traditionalist)
+h5:example-reporting-of-multiple-regression-conventionalist Example Reporting of multiple regression (Conventionalist)
+

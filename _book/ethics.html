@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Ethics | stats-jedi.knit</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Ethics | stats-jedi.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ethics | stats-jedi.knit" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-01-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="section.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li><a href="section.html#section"></a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparison-statistics"><i class="fa fa-check"></i>Model Comparison Statistics</a>
+<ul>
+<li><a href="model-comparisons.html#r2"><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ethics" class="section level1">
+<h1>Ethics</h1>
+<p>You know what’s kinda funny.</p>
+<p>I have <em>never</em> seen an ethics chapter in statistics textbooks.</p>
+<p>“Well,” you might say, “I don’t see a need. You don’t teach ethics in physics, do you? In logic? In math? Math is math, Math doesn’t care what ethical standards we hold.”</p>
+<p>True. Math doesn’t have feelings.</p>
+<p>Neither does statistics.</p>
+<p>But we (humans, that is…if you’re not a human and you’re reading this, let me be the first to welcome you to our planet) do!</p>
+<p>And here’s the thing: it is actually quite easy to lie using statistics. We can lie to others and we can lie to ourselves. It is very possible, if not likely, that if two statisticians analyze the same dataset, they will arrive at different conclusions.</p>
+<p>Sometimes those conclusions are similar. Sometimes they’re not.</p>
+<p>And, with enough searching, we can almost always find <em>something</em> in our dataset that tickles our intellect. Problem is, we never really know if that intellect-tickling insight is real or spurious.</p>
+<p>This has always been the case, by the way. But we didn’t really realize it until 2011.</p>
+<p>What’s so magical about 2011? Well, I had a birthday in 2011. So there’s that.</p>
+<p>But there’s oh so much more.</p>
+<div id="history-of-the-replication-crisis" class="section level2">
+<h2>History of the Replication Crisis</h2>
+<p>Prior to 2011, research in psychology (as well as biology, sociology, medicine, exercise science, etc.) was business as usual. Scientists were pumping out scientific truths faster than technicians could stock the printer. We were quite proud of that, patting ourselves on the back and feeling quite right about the truths we had revealed.</p>
+<p>Then 2011 happened.</p>
+<div id="dederick-stapel" class="section level3">
+<h3>Dederick Stapel</h3>
+<p>It started with a fellow named Dederick Stapel. Stapel was a Dutch social psychologist. The man was a rising star, earning high-impact publications and awards. That was, until one of his graduate students grew suspicious. You see, Stapel <em>always</em> performed his own statistical analysis. None of his students ever saw the data.</p>
+<p>Odd, that.</p>
+<p>So one of his student reported their suspicion to the university. The university conducted an investigation and discovered that, for many years, Stapel had been outright fabricating his data.</p>
+<p>Swaths of publications had to be retracted.</p>
+<p>Suddenly, scientists started to worry about what they could trust.</p>
+<p>Oh, but there was more to come.</p>
+</div>
+<div id="darryl-bem" class="section level3">
+<h3>Darryl Bem</h3>
+<p>So, Stapel was a crook. (Although, he seems to have rehabilitated since. Good for him!). So, as long as most scientists aren’t crooks, science can be believed….right?</p>
+<p>Well, no, unfortunately.</p>
+<p>Darryl Bem, also a social psychologist at Harvard, was likewise a luminary in his field. In 2011, he published an article in Journal of Personality and Social Psychology that “proved” humans are capable of pre-cognition.</p>
+<p>Yeah.</p>
+<p>What was odd about this incident is that Darryl hadn’t fabricated his data. Instead, he has used <em>standard statistical procedures</em> to justify his conclusions.</p>
+<p>Apparently, the reviewers of the articles, despite their skepticism of the conclusions, trusted the methods enough to let the publication pass.</p>
+<p>Others were not so trusting. Once again, scientists began to feel uneasy. Darryl Bem used the <em>same</em> statistical procedures the vast majority of scientists used, and yet he concluded something so outlandish.</p>
+<p>But there was one more incident in 2011 that would solidify our unease.</p>
+</div>
+<div id="the-p-hacking-article" class="section level3">
+<h3>The “P-Hacking” Article</h3>
+<p>This one is actually quite funny. A trio of researchers (Joe Simmons, Lief Nelson, and Uri Simonsohn) published a paper where they “proved” that people listening to a song titled “When I’m Sixty-Four” made them <em>younger</em> than a control group (who listened to the song “Kalimba”).</p>
+<p>What?</p>
+<p>Yes, apparently, after listening to a song, it reversed the flow of time.</p>
+<p>Nice.</p>
+<p>Except, this is absolutely ridiculous. And that was <em>exactly</em> the point of their article.</p>
+<p>What they showed is that researchers could engage in practices they called “researcher degrees of freedom” to essentially find support for any conclusion they want, even ridiculous conclusions.</p>
+<p>This paper was a pretty big deal. Why?</p>
+<p>As researchers read this, they realized many of these “researcher degrees of freedom” these authors cautioned against were activities in which these researchers routinely engaged.</p>
+<p>Uh oh.</p>
+<p>This article was later dubbed the “p-hacking” article.</p>
+<p>What is p-hacking?</p>
+<p>Glad you asked.</p>
+</div>
+</div>
+<div id="p-hacking" class="section level2">
+<h2>P-hacking</h2>
+<p>Before I talk about what p-hacking is, let me give you a brief overview of how researchers use probability to make decisions about data. When a researcher collects data, they use statistics to summarize what they found in the data.</p>
+<p>Well, it turns out statistics are <em>designed</em> to detect patterns. That’s good, right?</p>
+<p>Yes and no.</p>
+<p>The problem is data <em>always</em> show patterns. For example, you may collect data on your quality of sleep and notice that you tend to sleep better whenever polar bears migrate closer to the arctic circle.</p>
+<p>Nice!</p>
+<p>Perhaps you ought to set up an automatic feeder within the arctic circle so you can always sleep well.</p>
+<p>Are you seeing the problem?</p>
+<p>There’s no reason to suspect polar bear migrations have anything to do with your sleep patterns. This is what we call a “spurious relationship.” A spurious relationship occurs when two variables appear to be related to one another, but in reality any association between them is nothing more than chance.</p>
+<p>So, think about that: statistics is designed to detect patterns. Some patterns are spurious. So…maybe that pattern you discovered is spurious?</p>
+<p>That’s always the risk when doing data analysis. And, unfortunately, you never know whether that thing you detected is real or spurious.</p>
+<p>But, there are safeguards we can put in place. Often these safeguards utilize probability; we compute the probability of obtaining our results.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>That’s all well and good, but the Achilles heel of probability is what we call multiplicity.</p>
+<p>Say I want to win a game of chance. To do so, all I have to do is roll a six on a die. What is my probability of rolling a six? 1/6.</p>
+<p>What if, instead of rolling once, I roll a hundred times. What’s my probability of rolling a six now? It’s ain’t 1/6! It’s much higher. Why is it higher?</p>
+<p>Because of multiplicity.</p>
+<p>Likewise, when we collect data, we’ll generally compute some sort of probability of obtaining our results. What we’d like is to find a high probability our data support our hypothesis. If there’s a 99% chance our hypothesis is true, that’s good…right? (BTW, this is a very poor representation of the statistics we’d actually compute when doing data analysis, but you get the idea).</p>
+<p>That probability (99%) can only be believed if there’s no multiplicity. Just like our dice-rolling example, researchers too can engage in multiplicity. What does that look like?</p>
+<p>Well, maybe a researcher analyzes how treatment and control groups differ on a memory task. Darn. There’s a very small difference between the two groups, and it happens to be in the opposite direction the researcher hypothesized. And their probability estimate isn’t very favorable.</p>
+<p>Undeterred, the researcher decides the last four questions on the memory task should be thrown out. Why? I don’t know. Maybe they think participants got too tired.</p>
+<p>Again, they compute the difference between the two groups. Now, the difference between the two is in the right direction, but it’s still small. Once again, they compute some probabilities and find the estimates aren’t that favorable. Maybe the probability of their hypothesis being true is only 50%. Well, you can’t win big in science if your probability’s only 50%.</p>
+<p>You know….those 20 or so people who participated looked a little lethargic. Let’s go ahead and delete their data.</p>
+<p>Okay, well, that helped a little. The difference between the two groups is larger and the probability rises to 75%.</p>
+<p>So let’s now “control” for intelligence. (We’ll talk more about what this means in our <a href="multivariate-glms-conditioning-effects.html#multivariate-glms-conditioning-effects">conditioning</a> chapter).</p>
+<p>Then let’s delete that outlier.</p>
+<p>Then let’s delete that guy’s scores because…well, I don’t know. I’ve got a gut feeling. And, besides, he wears Old Spice. Everyone knows anybody who wears Old Spice can’t be trusted.</p>
+<p>In the end, the researcher may obtain a very impressive probability estimate, but not because he discovered some amazing truth. It’s only because of multiplicity.</p>
+<p>AKA p-hacking. P-hacking is short for “probability-value hacking,” which means to keep trying a bunch of different analyses until one’s probability estimate is favorable.</p>
+<div class="rmdnote">
+<p>
+It may be a bit misleading to say nobody realized multiplicity was an issue. People knew multiplicity was a problem. However, it was usually understood in terms of testing a bunch of different hypotheses. People hadn’t really realized that testing the <em>same</em> hypothesis, but in <em>different ways</em> also constitutes multiplicity.
+</p>
+</div>
+<p>P-hacking is what Simmons, Nelson, and Simonsohn were criticizing. And, nearly <em>everybody</em> was practicing multiplicity <span class="citation">(<a href="#ref-John2012" role="doc-biblioref">John, Loewenstein, and Prelec 2012</a>)</span>.</p>
+<p>Big oops.</p>
+<p>A few years later, in 2015, a gentleman by the name of Brian Nosek led a research team in a massive effort to replicate some of psychology’s most recent prestigious findings. To do so, they found 100 studies from the top journals in the field to replicate. Unfortunately, only 36% reached the standard threshold for publishability upon replication.</p>
+<p>Double big oops.</p>
+<p>Since 2011 (and especially since 2015), Psychology has been undergoing undergoing a “replication crisis” <span class="citation">(<a href="#ref-Pashler2012a" role="doc-biblioref">Pashler and Wagenmakers 2012</a>)</span>. That sucks, but it’s also good because a lot of good things are coming out of it. One of those very good things is the Open Science Movement.</p>
+<p>What is the Open Science Movement?</p>
+<p>To understand this movement, it’s important to see what this movement was a response to.</p>
+</div>
+<div id="the-scientific-method-movement" class="section level2">
+<h2>The Scientific Method Movement</h2>
+<p>Chances are, you are a recipient of the scientific method movement pedagogy. This movement began to emerge in the early 1900s. Back then, scientists started to consider <em>how</em> one goes about finding truth. Do we meditate? Do we ask questions of a magic 8-ball? Do we sit in an empty room and think about tacos and beach waves?</p>
+<p>We could try these things, but how do we know if we’re actually divining truth?</p>
+<p>Alas, you can never really know.</p>
+<p>Quite by chance, scientists began to believe truth was independent of the person seeking it. It doesn’t matter whether the scientist believes in black holes, fairies, or unicorns; these things either exist or they do not.</p>
+<p>So, if we accept truth is truth, regardless of our own beliefs, how do we uncover the truth?</p>
+<p>The answer for these earlier scientists was objectivity. If the scientist can somehow put aside their beliefs, values, biases, and expectations, they might more easily uncover truth. And it makes sense; we all know that our biases can get in the way of seeing evidence. Just think of flat-earthers! The evidence is overwhelming, yet their biases seem to always find a way to dismiss even the most convincing of evidence.</p>
+<p>Easier said than done, am I right? It’s easy to say objectivity is the answer, but if objectivity is the answer, shouldn’t we have some <em>objective</em> method of deriving truth? And shouldn’t it be the case that <em>anybody</em> who applies this method will arrive at the same answer?</p>
+<p>Why yes. (At least, that’s what we came to believe in the early 1900s).</p>
+<p>This “method” became known as the scientific method. The scientific method is a rough overview of how scientists might investigate a research question (and by so doing, it is an overview of how they might uncover truth).</p>
+<p>In reality, there’s no “the” scientific method. But usually, people would agree it consists of at least the following procedures:</p>
+<ol style="list-style-type: decimal">
+<li>Develop a hypothesis to explain a phenomena</li>
+<li>Design an experiment</li>
+<li>Formulate a hypothesis</li>
+<li>Objectively measure the outcome</li>
+<li>Refine and repeat</li>
+</ol>
+<p>Simple, right? It seems to meet the criteria: the steps are objective and seemingly easy to follow. And, it seems to have had success in the past. Supposedly, when we apply the scientific method, we are guarding against our own subjectivity and the results gleaned are near-perfect representations of truth.</p>
+<p>Right?</p>
+<p>Well, no. Alas, the scientific method only has the <em>illusion</em> of objectivity. But humans are still humans. It’s impossible for us to be objective. And by mindlessly following the scientific method procedure, we may trick ourselves into believing we’re objective when we’re not.</p>
+<p>Also, information gleaned from the scientific method is anything but certain.</p>
+<p>It’s quite a shame, actually. When I was taught about science as a kid, I had this impression of science as this codified set of facts that were certain and could be trusted. Likewise, I assumed all scientists were quintessential objectivists.</p>
+<p>Ha. HAHAHAHAHAHAHAHAHAHAHAHAHAHA!</p>
+<p>Scientists are very much humans. Sometimes they’re really stupid, or stubborn, or ignorant, or mean, or blind. Sometimes scientists promote their theories for no other reason than to protect their pride. Sometimes scientists are petty and suppress information that contradicts their self-interests.</p>
+<p>That really shouldn’t surprise you. Scientists are people too.</p>
+<p>Alas, subscribing to the scientific method actually makes it more likely that, when you <em>are</em> being detrimentally subjective, you will (falsely) feel self-assured you’re being a good scientist and uncovering truths.</p>
+<p>For scientists, the replication crisis served as a wake-up call. It was nearly undeniable proof we had fooled ourselves into believing in our methods.</p>
+</div>
+<div id="values-versus-ethics" class="section level2">
+<h2>Values versus Ethics</h2>
+<p>The old school values (the Scientific Method values) relegated discussion of ethics and values to philosophers. Instead, their “ethics” were nothing more than intrusions in their scientific freedom.</p>
+<p>“What? I can’t inject poison in my participants? But, it’s for science!!!!!”</p>
+<p>Yeah, not cool, man.</p>
+<p>Remember, the scientists of older years valued objectivity. What better way to be ethical than to embed ethics into “rules” that clearly delineate what is and what is not ethical behavior. And that has largely been the approach to ethics in science: a series of “thou shalt nots” that identify what’s cool from what’s uncool.</p>
+<p>“Thou shalt not harm participants.”</p>
+<p>“Thou shalt use deception only when the benefits outweight the risks.”</p>
+<p>“Thou shalt compensate participants.”</p>
+<p>“Thou shalt gain permission from people before they participate.”</p>
+<p>“Thou shalt not fabricate your data.”</p>
+<p>The problem with this approach is plain to any lawyer (or anybody, for that matter). There’s always a loophole. There’s always room for the gratuitous exercise of shenaningans.</p>
+<p>“Oh, I must compensate participants? Well, I’ll compensate them with good advice.”</p>
+<p>“Oh, I can’t fabricate my data? Well, it’s not fabrication if I merely modify my existing data.”</p>
+<p>So, shenanigans brings more shenanigans, we add more rules, tighten the noose, annoy well-intentioned researchers with ever-longer training modules, and so on.</p>
+<p>This rule-based approach focuses on <em>restrictions</em> to research, which really only seem to annoy people.</p>
+<p>But there’s a better way–values. There’s little doubt one’s values can be a powerful motivator. Consider the following quote from Karl Maeser, an American educator:</p>
+<blockquote>
+<p>I have been asked what I mean by ‘word of honor.’ I will tell you. Place me behind prison walls–walls of stone ever so high, ever so thick, reaching ever so far into the ground–there is a possibility that in some way or another I may escape; but stand me on the floor and draw a chalk line around me and have me give my word of honor never to cross it. Can I get out of the circle? No. Never! I’d die first!”</p>
+</blockquote>
+<p>Daaaaammmmmnnnnn, dude!</p>
+<p>If Mr. Maeser’s words are to be believed (and, by all accounts, the fellow was an upstanding individual), is there any doubt he would be ethical in his scientific pursuits?</p>
+<p>No doubt.</p>
+<p>Maeser doesn’t need rules. The man has values to guide his decision-making.</p>
+<p>What’s my point? My point is that the objective, rule-based approach to ethics has serious limitations. Rules are easy to circumvent, they’re overly complicated, and they can stifle creativity. But, for one who is motivated by <em>values</em>, their values become the <em>motivation</em> behind their research.</p>
+<p>As I once said in a paper I wrote:</p>
+<blockquote>
+<p>Rules invite exploitation, whereas values motivate exploration. Rules limit freedom while values instill purpose. Rules are limitations. Values invite possibilities. Values exist from idea inception, to study design, to data collection, to data analysis, to publication, to post-publication, and they are the guiding force behind the research process itself. Once ethics shift away from rules and boundaries (extrinsic motivation), and toward values (intrinsic motivation), researchers can more readily govern themselves.</p>
+</blockquote>
+<p>This is not to say we shouldn’t have rules. In an ideal world, every scientist would have strong values guiding their research and will always act in perfect alignment with their values. (Ha!)</p>
+<p>But, let’s be reasonable. Some people will always be jerks.</p>
+<p>I’m not advocating we abandon rules. Rather, I’m advocating we shift the focus away from from teaching ethics as a set of ever-expanding rules, and instead teach emerging scientists to espouse the values of good scientists.</p>
+<p>For those who teach or will ever teach emerging scientists, remember this: as a teacher, you have enormous influence over the values to which your students will subscribe. Think of Mr. Miyagi versus Sensei John Kreese–it’s no wonder “Daniel-son” embodied the values Mr. Miyagi taught (inner peace and martial arts as a defense only), while Johnny Lawrence embodied the values of his sensei (no mercy and win at all costs).</p>
+<p>Be a Mr. Miyagi.</p>
+<p>They key to change is to embed values in our students. By so doing, the culture itself changes.</p>
+<p>But what are these values?</p>
+</div>
+<div id="the-open-science-values" class="section level2">
+<h2>The Open Science Values</h2>
+<p>Btw, this section is a much more condensed and irreverent version of a <a href="http://https://psyarxiv.com/q9d28/">paper I published</a>.</p>
+<p>The scientific method movement emphasized objectivity and valued (near) certainty. In many ways, the open science movement is a rejection of these ideas. Rather than promoting objectivity and certainty, the open science movement promotes a completely different set of values <span class="citation">(<a href="#ref-Fife" role="doc-biblioref">Fife et al. 2020</a>)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Protecting humanity.</li>
+<li>Seeking truth.</li>
+<li>Openness and transparency</li>
+<li>Humility and skepticism</li>
+<li>Dissemination</li>
+</ol>
+<p>Why these values? Because the open science movement recognizes it’s <em>impossible</em> to be objective. So, rather than pretending we’re not human, instead we should (a) leverage our strengths as humans, and (b) put safeguards in place that minimize the damage we can do to our pursuit of truth.</p>
+<p>And how do we do that?</p>
+<div id="protecting-humanity" class="section level3">
+<h3>1. Protecting humanity</h3>
+<p>You know what would advance science quite quickly? Forcing people to do what we want. We could, for example, estimate exactly how damaging cigarretes are by simply forcing healthy people to smoke and seeing the damage it does. But, that would be mean. And it wouldn’t be worth it. Sure, we’d learn a lot about smoking, but we’d lose our humanity. Not cool.</p>
+<p>This first value recognizes that <em>no</em> scientific pursuit is worth sacrificing the well-being of humanity. When we keep that in mind, it makes it much easier to make ethical decisions.</p>
+</div>
+<div id="seek-truth" class="section level3">
+<h3>2. Seek truth</h3>
+<p>I get it. We all want to get a job, acquire tenure, make a name for ourselves, be rich, attractive, popular, etc., etc. These motivations will certainly play a role in motivating us as scientists. Right now, I’m wanting you to like my book, and maybe I’m hoping you’ll make a donation so I can buy a new bandsaw. I wouldn’t mind if my wonky approach to teaching statistics becomes the standard and they interview me on live television and ask me what my inspiration was for my innovative teaching approach. And, I’m not going to lie, that motivation is one of the reasons I’m sitting here, during Covid lockdown, simultaneously helping my kids do their homeschool while trying to write jokes that keep your interest.</p>
+<p>You don’t get that kind of detail unless it’s true.</p>
+<p>Sometimes, these motivations conflict with our desire for truth. Back in 2018 I wrote (and received) a grant to develop statistical software. It was brilliant, I tell ya. I promised to develop point-and-click software that focused on visualization, estimation, Bayesian analysis, and was built atop R so that <em>any</em> R package developer could easily build a point-and-click interface for their R packages. Yes, it was brilliant.</p>
+<p>Except that software already existed (mostly). I didn’t know it until after I received the grant. Both JASP and Jamovi already did 70% of what I wanted.</p>
+<p>Suddenly, my vision of fame and notoriety started to fade. That was <em>my</em> idea! They stole it!</p>
+<p>What do you do? Here I was with grant money to develop something someone else had already developed.</p>
+<p>I considered going forward with my original plan. To hell with JASP and Jamovi. I’ll make software, the likes of which the world has never seen. I’ll make them regret they ever thought of an idea before I did. Because I was going to make it better. Faster. More truthy. More….</p>
+<p>What was I thinking?</p>
+<p>I know what I was thinking. My desires came in conflict with one another. Sure, I wanted notoriety, prestige, credit, ….</p>
+<p>But I also genuinely wanted to make a difference in science. I wanted to promote sound statistical practice.</p>
+<p>So then I asked myself….</p>
+<blockquote>
+<p><em>If I really cared about truth, what would I do?</em></p>
+</blockquote>
+<p>Once I asked myself that question, the answer was clear: I needed to join forces with JASP and Jamovi.</p>
+<p>So I did.</p>
+<p>Now, years later, I have accomplished my original goal: I created software that focuses on estimation and visualization, but I didn’t have to create software built atop R, nor did I have to build Bayesian-focused software. JASP and Jamovi did that for me.</p>
+<p>Maybe I won’t get as much credit as I’d originally hoped, but my original purpose (advocating for sound statistical practices) is much further along than if I had tried building my own software from scratch.</p>
+<p>When we seek truth above our own personal ambitions, it always seems to work out better, both for science as a whole, and for ourselves personally.</p>
+</div>
+<div id="openness-and-transparency." class="section level3">
+<h3>3. Openness and transparency.</h3>
+<p>Remember how I said the scientific method advocated or objectivity? Also remember how I said we can’t possibly be objective?</p>
+<p>I hope you remember. I just said it a few sections ago. Maybe you’re getting tired. Go take a nap, then come back. This part’s important.</p>
+<p>I hope you had a good nap.</p>
+<p>Anyway, where were we? Ah, yes. Objectivity.</p>
+<p>Yeah, we’re human. We can’t be objective. Confirmation bias threatens everything we do.</p>
+<p>How do we combat confirmation bias?</p>
+<p>Openness and transparency.</p>
+<p>Somewhere out there, your scholarly enemies await, looking for the moment to pounce upon a frailty in your study. Maybe said enemy is Reviewer 2, who insists your paper doesn’t adequately cite their research or undermines a finding they published 30 years ago. Or maybe said enemy is some scientist across the nation that stumbles upon your paper.</p>
+<p>Fortunately, for you and I, there’s no shortage of arrogant scholars waiting to pounce on a weakness.</p>
+<p>That’s actually a very good thing. This batch of misfit scholars are what allows science to be as self-correcting as it is.</p>
+<p>But, we can thwart the self-corrective mechanisms built-in to science by masking information. We can, for example, refuse to make our data publicly available, or we can hide the fact we auditioned 30 different analyses before finding something “statistically significant,” or we can remove any mention of failed hypotheses and only report those that tell a sexy story.</p>
+<p>In short, to circumvent the self-corrective mechanisms in science, we only need to hide our weaknesses.</p>
+<p>When we hide things, there are certainly short-term gains. Maybe our paper speeds through the publication pipeline or our unambiguously positive report that supports our finding is highly cited.</p>
+<p>Long term, however, nobody benefits. Eventually, the weaknesses of our findings will come to light, but only after researchers across the globe waste thousands of hours and dollars attempting to replicate something that never should have survived in the first place. And when that happens, progress grinds to a halt and our reputations will suffer.</p>
+<p>To prevent such backpedaling, and to ensure science truly is self-correcting, it’s best to be open and transparent from the get-go. After all, if there is a glaring weakness in our data analysis or research design, don’t we want other to discover it?</p>
+</div>
+<div id="humility-and-skepticism." class="section level3">
+<h3>4. Humility and skepticism.</h3>
+<p>As scientists, we need to be skeptical of claims we hear. Skepticism is, perhaps, our best tool against being deceived.</p>
+<p>By the way, that includes being skeptical of our <em>own</em> findings. To be skeptical of our own findings requires a great deal of humility.</p>
+<p>So, skepticism and humility are really two sides of the same coin.</p>
+<p>Let me give you an example. A few years ago, Nosek and Motyl performed a study where they measured participants’ political ideaology, then subsequently showed them words of various shades of gray. These participants then had to select a grayscale shade that matched the shade of the word. What they found was that participants with more extreme political ideologies tended to also pick more extreme shades to match the words they saw. In other words, those at the political extremes <em>literally</em> saw colors as more black and white.</p>
+<p>That there would be a TED talk-worthy finding.</p>
+<p>But, Nosek and Motyl were skeptical of their own finding. So, they attempted to replicate the results in a new sample.</p>
+<p>And found nothing.</p>
+<p>What humility that required. And it cost them a publication. But science is better for it.</p>
+<p>It’s not easy for scientists to be humble, especially when we’re so freaking smart. And, it’s doubly hard when the findings we’ve discovered and the theories we’ve developed are called into question. We often tie our personal identities to our science. The temptation to double down against a challenger is great, but science will be better when we choose to be humble.</p>
+</div>
+<div id="dissemination." class="section level3">
+<h3>5. Dissemination.</h3>
+<p>Hey, you remember back when people believed in science? Remember? Back before the whole autism and vaccinations debacle, before flat-earthers, before global warming denialism, and before people got super offended when you asked them to wear a Covid-preventing mask?</p>
+<p>Yeah. Those were the good old days.</p>
+<p>But, we live in a different time.</p>
+<p>Why are people so dumb? I’m sure there’s lots of causes: the dominance of social media, change in diets, the advances of medicine (and thus the decline of natural selection’s power in weeding out morons), UFO kidnappings.</p>
+<p>But, I suspect, part of the reason things are different now is the fault of scientists. Scientists can really suck at communicating. And that problem is exacerbated by pulitzer-chasing journalists looking for catchy headlines for their articles.</p>
+<p>“Eating Chocolate Is Healthy, Says a World-Reknown Food Scientist!”
+“Chocolate Will Kill You, Says a World-Reknown Food Scientist!”
+“Gravity Exists, Says Newton!”
+“Gravity Doesn’t Exist, Says Einstein!”</p>
+<p>If you’re not comfortable with today’s scientific headlines, just wait six months. It’ll change.</p>
+<p>Why?</p>
+<p>The problem is, as you’ll soon learn, we deal with what we call “noisy” data. When data are noisy (i.e., when it’s hard to pick out the good stuff), conclusions are ambiguous. But, nobody wants to publish a paper saying a conclusion is ambiguous. So, scientists wrangle the data (i.e., p-hack….we’ll get to that later) until they get an unambiguous conclusion.</p>
+<p>Then, months or years later, somebody else comes along with a different research agenda. They might take similar data (i.e., <em>noisy</em> data), and wrangle the data a different way. And, they come to the same conclusions.</p>
+<p>What does this have to do with dissemination? Good question. I hope scientists are becoming increasingly careful and cautious with their conclusions. But, they might not be the best at communicating that. Alas, a scientist’s care and caution might not translate to journalists who really want to report catchy headlines.</p>
+<p>What else tends to happen is scientists get used to speaking a particular language. I call that language nerd-speak. It’s the sort of language nobody understands but fellow scientists. It’s like a letterman jacket….but for nerds. Only those who’ve earned their letter get to wear such fancy pantsy language.</p>
+<p>Want an example?</p>
+<p>(You probably said no, but I’m going to pretend you said yes). Here are some journal titles for a journal I follow:</p>
+<p>“A Square-Root Second-Order Extended Kalman Filtering Approach for Estimating Smoothly Time-Varying Parameters”
+“Finite Mixtures of Hidden Markov Models for Longitudinal Responses Subject to Drop out”
+“Model Selection of Nested and Non-Nested Item Response Models Using Vuong Tests”</p>
+<p>Most of your are probably saying, “I know what ‘the’ means…”</p>
+<p>Yeah, I get it. And, in some sense, it’s kinda necessary to have a discipline-specific vernacular. Saying, “Model Selection of Nested and Non-Nested Item Response Models Using Vuong Tests,” is way easier than saying, “Alright, so this papers about comparing two statistical models, one of which is more complicated than the other. Oh, and Item Response Models are used for educational testing. So, yeah, this paper’s about using two different models for fitting data from educational testing. And Vuong was some guy who invented a way to compare two models. It’s pretty cool.”</p>
+<p>But, we have to be able to communicate our research to the public. We have become such an “elite” group of people. We have used our fancy-pantsy language and flip-flopped on so many “truths,” non-scientists don’t trust us.</p>
+<p>And, it’s kinda scary.</p>
+<p>So, yeah, learn how to communicate. We’re pretty blessed to be able to do what we do. Let’s pay it forward.</p>
+<p>How, you ask?</p>
+<p>Good question. I don’t know. I’m pretty good at it, but just because I know how to communicate, doesn’t mean I can teach it to others. And, besides, this is a statistics class, not a communication class.</p>
+<p>So why talk about it in the first place?</p>
+<p>Again, to remind you (and me) that communicating to the public is part of our professional responsibility. More than our pride is on the line.</p>
+<p>The fate of humanity is. (Seriously).</p>
+<p>So, yeah, practice communicating with non-scientists. You might save the world doing it!</p>
+</div>
+</div>
+<div id="making-change" class="section level2">
+<h2>Making Change</h2>
+<p>Unfortunately, right now it’s not all that “cool” to practice open science. The status quo still rewards those who write catchy titles, p-hack, hide important information, and refuse to acknowledge their wrongs.</p>
+<p>That’s pretty sucky.</p>
+<p>But I want a better science. I hope you want a better science to.</p>
+<p>How do we make that happen?</p>
+<p>We push. That’s all! No one person’s going to change the status quo alone. Rather, it’s going to be thousands of scientists, chipping away at the wall of the scientific method.</p>
+<p>So how do you chip away? Maybe you preregister your hypotheses. Or maybe you report <em>all</em> analyses you did, rather than just the ones that worked. Or maybe you make your data publicly available. Or maybe you explicitly state in your papers you’re uncertain about your results.</p>
+<p>If <em>all</em> of us push against the status quo, pretty soon, these sorts of things move from being “weird,” to being common, to being the norm. Then, those who refuse to make their data publicly available (for example) start looking like the one guy at a nude beach who’s walking around in a tuxedo and top-hat. (Btw, I’m not at all recommending you walk outside your house naked. That would be illegal. And awkward. It was just a metaphor).</p>
+<p>Throughout this course, I’m going to teach data analysis from <em>this</em> perspective. If you read any other textbook, it’s going to be written as if you can divine truth from your data. I will not mislead you into believing that. So, the very fact you’re reading this (and presumably taking a course with this book as your text) means you’re already pushing against the boundaries. High five!</p>
+<p>Because this is <em>my</em> ethical framework, I’m going to, throughout the text, tell you ways you can push against the boundaries. I might, for example, talk about having an external website that contains <em>all</em> your plots, or I might suggest you report Bayes factors instead of p-values, or I might suggest you tell reviewers to f&amp;$% off when they say you should run a t-test instead of a general linear model.</p>
+<p>(Not really. You should probalby be polite).</p>
+<p>Anyway. I’m just rambling now. On to the next section.</p>
+</div>
+<div id="further-data-analysis-ethics." class="section level2">
+<h2>Further data analysis ethics.</h2>
+<p>I’ve only really scratched the veneer of ethics in science. I haven’t even talked about exploration versus confirmation, nor p-hacking, data mining, or HARKing. Alas, to understand the nuances of these, you really need to have a foundation in probability.</p>
+<p>But, we’ll get there. Once we do, I’m going to revisit the idea of ethics, and more specifically, the ethics of data analysis. Until then, peace out.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Fife" class="csl-entry">
+Fife, Dustin, Matthew Lung, Nadine Sullivan, and Chelsie Young. 2020. <span>“<span class="nocase">When Values Collide: Why Scientists Argue About Open Science and How to Move Forward</span>.”</span> <a href="https://doi.org/10.31234/OSF.IO/Q9D28">https://doi.org/10.31234/OSF.IO/Q9D28</a>.
+</div>
+<div id="ref-John2012" class="csl-entry">
+John, Leslie K., George Loewenstein, and Drazen Prelec. 2012. <span>“<span class="nocase">Measuring the Prevalence of Questionable Research Practices With Incentives for Truth Telling</span>.”</span> <em>Psychological Science</em>. <a href="https://doi.org/10.1177/0956797611430953">https://doi.org/10.1177/0956797611430953</a>.
+</div>
+<div id="ref-Pashler2012a" class="csl-entry">
+Pashler, Harold, and Eric-Jan Wagenmakers. 2012. <span>“<span class="nocase">Editors’ Introduction to the Special Section on Replicability in Psychological Science</span>.”</span> <em>Perspectives on Psychological Science</em> 7 (6): 528–30. <a href="https://doi.org/10.1177/1745691612465253">https://doi.org/10.1177/1745691612465253</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>To those Bayesians, I <em>know</em> your objection and I’ll get to that in my <a href="bayesprobability.html#bayesprobability">Bayesian versus Frequentist</a> chapter. Hold your horses! In fact, I’m very much going to liberally abuse misconceptions about p-values and probability in this section for the sake of simplicity. I’ll cover the nuances in later chapters.<a href="ethics.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-Ethics.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,598 @@
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>", echo = FALSE, message=FALSE, note=FALSE, warning=FALSE, cache=TRUE
+)
+```
+# Univariate Estimates
+
+For the most part, humans really suck at interpreting information. Let's look at an example:
+
+```{r, echo=FALSE}
+set.seed(121212)
+student = 1:10
+category = 1:10
+score = round(rnorm(100, 3, 1.5), digits=0)
+score[score>5] = 5; score[score<1] = 1
+d = expand.grid(student=student, category=category)
+d$score = score
+knitr::kable(d[1:10,])
+```
+Here we have ten students' ratings on the first of ten categories. What do you conclude?
+
+Most likely, your natural inclination is to try to *condense* that information somehow. Maybe you noticed that the lowest score was 2 and the highest was 5, so you conclude these ratings are on the higher end. Or maybe you counted which score occurred the most (4) and concluded that these ratings are pretty high. Or perhaps you computed the mean. 
+
+But no matter your strategy, you most likely did try to condense that information. You *have* to in order to understand it. We just really suck at looking at a string of numbers of making sense of it. 
+
+Of course, you could plot the data (like we did in the last chapter). That's going to be the best approach.
+
+But, plots have a weakness: they're not very concrete. It's kinda like art; we just kind of have an intuition for what we're seeing, and we might be able to describe it. But plots, like art, are subjective. Eventually, we might want to supplement (but not replace) our graphical interpretation of the data with something less subjective and something more concrete. 
+
+However, our statistics are always going to be describing a slice of the visual. We might have statistics that describe the center of the data (central tendency), but these statistics will say nothing about how spread out the data are (variability), nor will they say anything about the skewness of the data. 
+
+Let's keep that in mind as we're talking about statistics; they are great at describing a slice of the visual, and they put the visual information into concrete numbers, but they're often going to be poor representations of the visuals. 
+
+## Central Tendency: What's the most likely score?
+
+I don't play tennis. But if I did, I'd be pretty good. 
+
+Why?
+
+Because I know statistics. 
+
+Bear with me. Suppose you're about to play in a high stakes tennis tournament. (Maybe the winner of the tournament will get a year's supply of bandaids or toilet paper). 
+
+Let's further suppose you're really good at hitting the tennis ball, as long as it comes within arm's reach. But, if you have to run to hit it, you're screwed. You see, yoou're really slow. 
+
+But you're no moron. You realize that if you can somehow figure out where your opponent is most likely to hit the ball, you can just stand in that spot. 
+
+Then you don't have to move very much. 
+
+Win, win. 
+
+So, instead of practicing running, you spend weeks gathering data on your biggest competitor, Tony "Tennis Toes" Thompson. You decide to graph the data like the figure below. Each tennis ball shows where Tony's shots landed. If two balls landed in the same spot, we have marked that by stacking the tennis balls atop one another. 
+
+[[tennis balls centered]]
+
+Kinda looks like a histogram, doesn't it?
+
+Why yes, yes it does. And that's quite intentional, btw. 
+
+So now, what is central tendency? It's nothing more than the lazy man's quest to run as little as possible in a game of tennis. You want to know at what spot to stand in a tennis match that will allow you to run as little as possible. 
+
+Or, put differently, central tendency tells you what the most likely spot is where your competitor's shots will fall. 
+
+Sounds simple, right? 
+
+Actually, it's not. Let's say your competitor's shots fall as follows:
+
+[[tennis balls centered but with an outlier]]
+
+Where do you stand? Do you stand in the right-middle? Well, maybe not, because then you'll miss the one on the far left. So maybe you stand partway between the right-middle and the far-left shot. Well, now you're running more than you have to for the vast majority of shots. 
+
+If the placement of your competitor's shots is symmetric, it's easy; we just stand in the middle. If the placement is not symmetric, identifying central tendency is much more difficult. 
+
+Let's stop for a few important take home messages:
+
+1. Measures of central tendency attempt to describe the center of a distribution of scores. 
+2. These measures also try to answer which score is most likely.
+3. When distributions are not symmetric, it's really hard to conceptualize what central tendency is. 
+
+Because central tendency is really hard to conceptualize, we actually have three ways to measure it:
+
+* the mean
+* the median
+* the mode
+
+(Technically, there are a *lot* of other ways to measure central tendency, but these are the most common). 
+
+### Mean
+
+The most commonly used measure of central tendency is the mean, or the average. 
+
+```{block, type='rmdjoke', echo = TRUE}
+Why do statisticians call the average the "mean?"
+
+Because they're....mean. 
+```
+
+Computing the mean is easy and requires two steps:
+
+1. Add up the scores
+2. Divide by the number of scores. 
+
+For Step 1, that would be...
+
+```{r, echo=FALSE}
+sums = paste0(score[1:10], collapse = " + ")
+total = paste0(" = ", sum(score[1:10]))
+cat(paste0(sums, total))
+```
+
+Then we divide that by the number of scores (10 in this case):
+
+```{r, echo=FALSE}
+sums = paste0(score[1:10], collapse = " + ")
+total = paste0(" = ", sum(score[1:10]))
+cat(paste0(sum(score[1:10]), " / 10 = ", mean(score[1:10])))
+```
+
+So, we could say that, according to one measure, the center of the scores is `r mean(score[1:10])`. Or, our most likely score is `r mean(score[1:10])`.
+
+Going back to our tennis example, the mean would tell us we should, at least partially move our slow feet toward that far-left tennis ball. 
+
+#### Advantages of the Mean
+
+Remember, the mean is just *one* measure of central tendency. So, is it good at measuring central tendency? Well, yes, means do quite well at measuring central tendency when the distribution is symmetrical. Or, put differently, the mean is quite good at measuring the center of the distribution (or it's good at measuring the most likely score) when our distributions are not skewed. 
+
+Another advantage of the mean is that it's the most "democratic" measure of central tendency. That means that every score gets a "vote" in what the mean is. In other words, every score is used to compute the mean. For the other measures, not every score is used to compute central tendency. 
+
+A final advantage of the mean is that it has really nice mathematical properties. I'm not going to go into those mathematical properties because this isn't a math stats book. But, I will say that, because of these mathematical properties, the mean becomes the foundation of nearly all statistics. (A slope is just the mean change in Y for every change in X. The intercept is the mean of Y when X is zero. The correlation is the mean standardized change in Y for every standardized change in X.)
+
+#### Disadvantages
+
+The fatal flaw of the mean is it doesn't do too well when data are skewed and/or there are outliers. These tend to pull the estimate of the mean toward the extremes. Imagine we had a sample of 100 people and we asked their income. Suppose, by chance, Jeff Bezos were included in our sample. Would it surprise you if we predicted the mean income of our sample is \$1.2 million? It wouldn't surprise you if you knew Bezos was in the sample, but the momemt we try to make inferences (e.g., the average income in the States is \$1.2 million). 
+
+Fortunately, many (if not most) distributions are symmetrical and outliers become less and less influential with large sample sizes. If our sample had 10,000 people, for example, it wouldn't really matter if Bezos was in our sample. 
+
+### Mode
+
+Let's go ahead and look at that tennis distribution again (Figure xxx). You might be saying to yourself, "self, you're bright and beautiful, and sadly, lazy. It might cost a few points, but let's just at position xxx because that's where most of the hits land."
+
+You, my beautiful friend, seem to have an affinity for the mode. The mode is the score the occurs most frequently. 
+
+Let's look at a dataset, shall we?
+
+```{r, echo=FALSE}
+set.seed(2323)
+scores = round(rnorm(10, 5, 2))
+mode = names(sort(table(scores), decreasing = T))[1]
+nmode = sort(table(scores), decreasing = T)[1]
+cat(paste0(scores, collapse=", "))
+```
+
+Notice the score `r mode` occurs most frequently (a total of `r nmode` times). That there is the mode. 
+
+#### Disadvantages of the Mode
+
+So, the mode is nice, right? 
+
+But what happens if you don't have a mode?
+
+Let's look at an example:
+
+```{r, echo=FALSE}
+set.seed(23232)
+scores = round(rnorm(10, 5, 2), digits=2)
+cat(paste0(scores, collapse=", "))
+```
+
+Every score only occurs once! Well, that's a problem, isn't it?
+
+To bypass this problem, we could "bin" the scores, like we did in the last chapters. So maybe we can decide anything between 3 and 4 is assigned a 3, between 4 and 5 is assigned a 4, etc. That will give us a measure of the mode, but that measure will change depending on how we decide to bin things. 
+
+Unfortunately, we scientists aren't too fond of ambiguity, particularly when it comes to mathematics. 
+
+It really only  makes sense to compute the mode for discrete values. That means we should use the mode for categorical variables (e.g., gender, political affiliation) or numeric variables that are naturally discrete (e.g., number of children, number of times you've been arrested). 
+
+```{block, type="rmdnote"}
+
+### The Mode for Continuous Data
+
+There is actually a way to compute the mode for continuous data, even when no two scores are the same. In fact, it's very common to compute the mode when doing Bayesian statistics. To do so requires what's called the probability density function. We'll talk more about probability density functions in our probability chapters. But, to give you an intuition for it, imagine a histogram from one of the previous chapters. The heights of each of the bars we call the density. (Well, technically, it's the height of the bars divided by the number of bars, because density values need to sum to one). We can then find which bar has the highest height. That there is our mode
+
+```
+
+A final disadvantage of the mode is that it's a very poor description of distributions that are *uniform*. Uniform distributions emerge when there's an equal probability of every single value in a dataset. Let's look at an example:
+
+```{r, echo=FALSE}
+require(ggplot2)
+dice = data.frame(dice = rep(1:6, times=199))
+qplot(dice$dice, geom="histogram") + theme_bw() +
+  scale_x_continuous(labels=1:6, breaks=1:6) +
+  labs(x="Dice Roll")
+```
+
+The probability of rolling a 1 is equal to the probability of rolling a 2, which equals the probability of rolling a 3, etc. This is a uniform distribution. The mode of this distribution of 1 and 2 and 3 and 4 and 5 and 6. 
+
+Not much of a summary, am I right?
+
+In this situation, it's probably better to just say the distribution is uniform and the range of the data is 1-6. (We'll talk more about the range later in this chapter). 
+
+#### Advantages of the Mode
+
+Probably the primary advantage of the mode is, as I said earlier, that we can use it to compute central tendency for nominal data. You can't compute the mean of eye color for example. It doesn't make sense to. You can, however, compute the mode. 
+
+Another advantage of the mode is that it's pretty intuitive. Remember with central tendency, we're trying to find the most likely score. Doesn't it make sense that the most likely score should be the score that occurs most frequently?
+
+### Median
+
+Let's go back to our tennis example. The mean told us where to stand that will minimize running over the course of the entire match. The mode told us where to stand if we wanted to be where the most hits occured, but it risks us missing the hits that are far from the center. 
+
+The median is the compromise between the two. It's like standing somewhere between the point where most hits occurred (mode) and the place that minimizes the amount of running (mean). 
+
+Computing the median is a simple two (and a half) step process:
+
+1. Sort all the scores
+2. Find the score that's in middle position
+
+Let's look at an example, shall we?
+
+Here's a dataset with eleven numbers:
+
+```{r}
+set.seed(2322)
+nums = round(rnorm(11, 10, 2))
+cat(paste0(nums, collapse=", "))
+```
+
+Now let's sort them:
+
+```{r}
+cat(paste0(sort(nums), collapse=", "))
+med = median(nums)
+```
+
+Remember, we have 11 scores. So the score that's in the middle is the score in the 6th position, which in this case is `r med`. 
+
+That's all well and good until you have an even number of scores. Suppose we had ten scores:
+
+```{r}
+cat(paste0(sort(nums)[1:10], collapse=", "))
+```
+
+The dataset splits evenly (5 on one half, 5 on the other). So there is no middle position. 
+
+What do we do? 
+
+Easy. We just split the difference between the two scores in the middle. In this case, that would be halfway between 9 (the 5th position) and 10 (the 6th position). 
+
+#### Disadvantages of the Median
+
+There's really only one (and a half) disadvantage of the median I can think of. You cannot compute the median for nominal data. (What is the median score of eye color?) Medians only work for ordinal data. 
+
+Second (or one and a half) is that it's hard to extend the median to more advanced statistics. Like I mentioned earlier, the mean is the foundation of nearly all advanced statistics. I don't think we've figured out how to extend the median to advanced statistics yet. (Though, if I'm wrong, please correct me!)
+
+```{block, type="rmdblock"}
+
+# Extending Median-Based Statistics
+
+There are some efforts to extend median-like statistics to advanced statistical procedures like regression. To do so, we can convert all scores to ranks, then compute standardard (mean-based) statistics on the ranks. These are pseudo-median-based and they can work to maintain the advantages of medians, but I'm not a fan of these procedures. They tend to throw away information and there's not any strong statistical theory to back up their methods. 
+```
+
+#### Advantages of the Median
+
+The median's actually pretty slick. It's great for skewed distributions. If Jeff Bezos happens to fall into your sample, it's not going to drastically affect your estimate of central tendency. (Though, while he's there, you might want to ask for a donation to the Dustin Fife Needs Money Foundation). 
+
+
+### Central Tendency in JASP
+
+To compute central tendency in JASP, you're actually going to have to go outside the Visual Modeling module. Instead, you click on the Descriptives module (left-most graphical button):
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/screenshots/Desktop 2021-01-05 at 9.34.24 AM.png")
+```
+
+Once there, you can send variables from the variable box on the left over to the "Variables" box on the right:
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/screenshots/Desktop 2021-01-05 at 9.36.28 AM.png")
+```
+
+That will then give you a table  with a mean and median. It won't give you the mode, however. To get that, you have to click on the "Statistics" collapsible menu and select "Mode":
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/screenshots/Desktop 2021-01-05 at 9.37.49 AM.png")
+```
+
+
+### Central Tendency in R
+
+To compute central tendency in R, we're going to use three functions: `mean`, `median`, and `table`. (You thought I'd say `mode`, didn't you?)
+
+For example, we can compute the mean/median as follows 
+
+```{r, echo=TRUE}
+require(flexplot)
+mean(paranormal$conviction)
+median(paranormal$conviction)
+```
+
+We could also use `tidyverse` to do it:
+
+```{r, echo=TRUE}
+require(tidyverse)
+paranormal %>% summarize(mean.value = mean(conviction), median.value = median(conviction))
+```
+
+And the mode? Well, it's actually a little tough. Remember, for the mode, we have to make sure we have a nominal or discrete variable. Once we have our variable selected, we use the `table` function to get a summary table, telling us how many times each unique value occurs:
+
+```{r}
+table(paranormal$experiences.type)
+```
+
+Then we just look up which value occurs most frequently (in this case, "saw ghost"). 
+
+We could simplify this process by sorting the table:
+
+```{r}
+sort(table(paranormal$experiences.type))
+```
+
+## Variability: How precise are the scores?
+
+Remember, for our tennis analogy, the goal of doing all this statistical analysis is to run as little as possible. With central tendency, we learned *where* to stand. But, in preparation for our next match, we might want to know how much we can expect to run during a match. Perhaps for some opponents, we will hardly have to run at all because all their hits generally land in the same place. For other opponents, we might expect to traverse the entire range of the court. 
+
+That's what variability is--it's simply a measure that tells us how far we would expect to run. Or, put differently, it tells us what kind of *spread* we might expect from our opponents' hits. 
+
+Like I said earlier, these numbers we're computing (or, these *statistics*) are just a single number that attempts to convey information we can already see visually. A single number is never quite going to capture all the information we can readily see. 
+
+Let's look at an example:
+
+```{r}
+d1 = data.frame(x=rnorm(1000, 20, 1))
+d2 = data.frame(x=rnorm(1000, 20, 7))
+require(patchwork)
+p1 = flexplot(x~1, data=d1) + coord_cartesian(xlim=c(0, 40))
+p2 = flexplot(x~1, data=d2) + coord_cartesian(xlim=c(0, 40))
+p1 + p2
+```
+
+These two distributions have the same mean, but look very different. What's different? 
+
+They have different amounts of precision. Or different amount of uncertainty. Or they have more variability. Or they have more spread. 
+
+That's just a bunch of different ways of saying the same thing. 
+
+So, how do we measure that spread (or uncertainty, or variability, or precision)?
+
+There are three common measures: the range, the standard deviation, and the median absolute deviation. 
+
+### Range
+
+Let's return to our tennis analogy, shall we? One way we can estimate variability is by simply finding the left-most hit on the court, then find the right-most hit on the court, then compute the distance between them. 
+
+Easy, eh?
+
+That's what a range is. All we have to do is subtract the smallest score from the highest score. Let's look at an example dataset:
+
+```{r}
+set.seed(132234)
+d = rnorm(10, 33, 4) %>% round()
+cat(paste0(d, collapse=","))
+```
+
+Just for fun, let's sort the dataset so it's easier to see which score is highest/lowest:
+
+```{r}
+cat(paste0(sort(d), collapse=","))
+```
+
+The range is simply the maximum score (`r max(d)`) minus the minimum score ( `r min(d)`), which equals `r max(d) - min(d)`.
+
+That gives us a rough idea of the spread or variability in our distribution. 
+
+#### Advantages/Disadvantages of the Range
+
+The advantage of the range is it's quick and easy. The problem is when we have outliers. Let's say we have a dataset with very little variability (e.g., 1, 2, 2, 3, 3, 3, 4, and 4). Here, our range is 4 - 1 = 3. But, let's say we collect another datapoint and the next scores is 55. What's our range now? 55 - 1 = 54. 
+
+The range can be misleading in this case because it seems to suggest we have more variability than we actually have if we have outliers. 
+
+
+### Deviations, Standard Deviation, and Variance
+
+Let's travel back to tennisland. Like I said, we would like to know how much running we might expect during a tennis match. Knowing that information will give us a competitive advantage. Maybe if we know we won't have to run very much, we spend the hour before our match meditating instead of warming up our body. 
+
+We could, of course, look at the distribution of hits (i.e., a histogram). But maybe we want to condense that information into a number. 
+
+One number we could compute is the *average* amount we expect to run per hit. Or, put differently, *on average* how much do we have to run for any given hit?
+
+Sounds intuitive. Let's go ahead and look at a dataset to see how we would go about doing that. The table below shows the court position (in feet) in the first column, followed by the number of feet we'd have to run, assuming we stand at the mean. Negative numbers mean we move to the left. Positive numbers mean we move to the right. 
+
+```{r}
+d = data.frame(location = c(0  ,   5, 10, 10, 15, 15, 15, 20, 20, 25, 30), 
+               distance = c(-15, -10, -5, -5,  0,  0,  0,  5,  5, 10, 15))
+knitr::kable(d, col.names = c("Court Location (ft)", "Distance Run"))
+```
+
+In stats-ese, we call the second column "deviations." Deviations indicate how far from the mean a particular score is. 
+
+Well that's nice. Now let's go ahead and compute the average deviation, or compute the average distance we'd have to run. Remember, we start by summing the scores:
+
+-15 + -10 + -5 + -5 + 0 + 0 + 0 + 5 + 5 + 10 + 15 = 0
+
+Uh oh. Well that didn't work too well. This says that, on average, we ran zero feet. 
+
+That's can't be right. 
+
+Give me a minute to figure out why....
+
+[sound effects of papers shuffling, cussing, machines whirring, and R2D2 beeping]
+
+Okay, I figured it out. The problem we're having is the negatives and the positives cancel each other out. Let's rearrange the math to make that obvious:
+
+~~-15~~ + ~~15~~ + ~~-10~~ + ~~10~~ + ~~-5~~ + ~~5~~ + ~~-5~~ + ~~5~~ + 0 + 0 + 0
+
+By the way, this isn't just a convenient set of numbers where the deviations *happen* to sum to zero. Deviations (or differences from means) *always* sum to zero. 
+
+So we're stuck, I guess. 
+
+Well, it was a nice thought. 
+
+"Wait a minute!" you might say. "Why not just compute the average of the *absolute values* of the deviations?"
+
+Well, young genius, that's a fine idea. Let's try that:
+
+\begin{align}
+15 + 15 + 10 + 10 + 5 + 5 + 5 + 0 + 0 + 0 &= 65 \\
+65 / 10 &= 6.5
+\end{align}
+
+Well, look at that! That number actually makes sense. It seems to say that, on average, we can expect to run about 6.5 feet for every hit (if we stand at the mean). 
+
+But (here's the twist of the century) *that's not the standard deviation we just computed*. When we compute the standard deviation, we actually don't take the absolute value of the scores. Instead we square them. 
+
+```{block, type = 'rmdnote'}
+
+### Why do we square deviations instead of computing the absolute value?
+
+It turns out that squaring deviations has some nice mathematical properties that we don't get if we take the absolute value. For one, the square root function is differentiable through its entire range, whereas the absolute value function is not differentiable at zero. It turns out, we end up computing derivatives for the more advanced statistics. Also, variances (which are a function of the squared deviations) can be added easily for independent variables. Another reason is that squared deviations are mathematically linked to Euclidean distances. 
+
+In short, squaring the deviations makes the math much easier. 
+```
+
+So, let's go ahead and compute the average of the squared distances:
+
+\begin{align}
+15^2 + 15^2 + 10^2 + 10^2 + 5^2 + 5^2 + 5^2 + 0^2 + 0^2 + 0^2 &= \\
+225 + 225 + 100 + 100 + 25 + 25 + 25 + 0^2 + 0^2 + 0^2 &= 725 \\
+65 / 10 &= 72.5
+\end{align}
+
+Hmmm....that doesn't sound right. We ran an average of 72.5 feet? That can't be right. The maximum deviation was only 15 feet!
+
+Oh wait...
+
+Oh, I see the problem. Remember how we squared things? So that 72.5 is actually how many *squared* feet we ran. Let's go back to our original variables by taking the square root of 72.5:
+
+$\sqrt{72.5} = 8.51$
+
+That's much better. So, on 'average' we ran about 8.51 feet per hit. Notice I've put average in airquotes because we technically didn't compute the average (because we had to square the values first). 
+
+By the way, that first number (72.5) is called the *variance*, which is the average of the squared deviations. The second number (8.51) is called the standard deviation. 
+
+If we wanted to be fancy, we can even use mathematical symbols:
+
+\begin{align} 
+\text{variance} = s^2 &= 72.5 \\
+\text{standard deviation} = s &= 8.51
+\end{align}
+
+If we wanted to be *real* fancy (like, Gray Poupon fancy), we could even write the equation of each of these in mathematical symbols:
+
+\begin{align}
+\text{variance} = s^2 &= \frac{(X-\bar{X})^2}{N} \\
+\text{standard deviation} = s &= \sqrt{\frac{(X-\bar{X})^2}{N}}
+
+\end{align}
+
+Here, $X$ is the score, $\bar{X}$ is the mean, and $N$ is the number of scores you have. 
+
+In summary, a deviation is the distance of a score from the mean. Negative numbers mean it's less than the mean, while positive numbers mean it's larger than the mean. Deviations sum to zero, so we can't compute their average. Instead, we square them. The average of the squared deviations is called the variance, and the square root of the variance is called the standard deviation. 
+
+```{block, type='rmdnote'}
+
+### Dividing by N-1?
+
+You might see some textbooks dividing by N-1 instead of dividing by N when computing the standard deviation/variance. There's a good reason for that. Long story short, we divide by N when we don't intend to make inferences beyond our sample. We divide by N-1 when we do intend to make inferences. 
+
+And, it actually matters less and less the larger the sample size. Think of it this way, whether you divide your deviations by 10,231 or 10,230 isn't going to make that much of a difference. 
+
+By default, all stats programs are going to be dividing by N-1, but I present it as dividing by N so you can easily see the link between the concept of average deviation and the standard deviation. 
+
+```
+
+#### Advantages/Disadvantages of the Standard Deviation
+
+Remember how I said the mean formed the bases of nearly all advanced statistics? Let me be a little more clear about that. The mean is the basis of all measures of central tendency for advanced statistics. Likewise, the standard deviation/variance form the basis of all measures of spread for advanced statistics. The reason for this is that they have very nice mathematical properties. For more information on that, see the note below. 
+
+The disadvantages? They have all the same disadvantages of the mean. If we have extreme outliers or skewness, these measures of spread can be misleading. Once again, if Jeff Bezos were in our samnple, the standard deviation might say our 'average' deviation from the mean is $1,000,000. (I'm actually writing this *just* as Elon Musk topped Jeff Bezos as the richest person in the world. Here's to mars!)
+
+```{block, type='rmdnote'}
+
+# The Least Squares Criteria
+
+The mean satisfies the least squares criteria. 
+
+WTF??
+
+Yeah, I know. We stats folks like to use complicated terminology. Let's go back to the tennis example. It just so happens that if you were to compute the mean location of all the tennis balls, then stand at that location, *you will run the least amount possible*. Or, there is *no other place* on the entire court where you could stand that will result in fewer steps traveled, but at the mean. 
+
+I know that sounds really weird to talk about that, but it's an important principle. It's so important that the mean, and this property in particular, becomes the foundation of nearly all of statistics. Soon we'll talk about the general linear model, which is the foundation of nearly all statistics. Guess what....
+
+The general linear model is based on the mean, which is the only measure of central tendency that satisfies the least squares criteria. 
+```
+
+
+### Median Absolute Deviation
+
+So, we already talked about two different measures of spread. One (the range) just tells us the difference between the largest and smallest score. Or, for our tennis example, the number of feet between the right-most and left-most hits. The second (standard deviation) tells us the "average" distance the scores are from the mean (or the average distance we'd have to run in our tennis example). 
+
+Supposing you are as clever as I assume you are, you might be saying, "hey...wait a minute. If the standard deviation gets screwed up by skewness, can't you compute the median deviation and fix that problem?"
+
+You're damn smart, I'll give you that. 
+
+Yes, yes you can. Rather than computing the mean distance from the mean, we can instead compute the median distance from the median. We call that the median absolute deviation, or MAD for short. [Insert joke about being mad about statistics. But make it funny]. 
+
+Let's look at a quick example, shall we?
+
+```{r}
+d = c(1,2,2,3,3,3,4,4,15)
+deviations = data.frame(score=d, deviation = abs(d-median(d)))
+knitr::kable(deviations)
+```
+
+The first column is our dataset, and the second column is the absolute value of the difference between each score and the median (which is `r median(d)`). If we were to now sort those deviations:
+
+```{r}
+cat(paste0(sort(abs(d-median(d))), collapse=", "))
+```
+
+The middle score is `r median(abs(d-median(d)))`. Easy peasy. 
+
+#### Advantages/Disadvantages of the MAD
+
+The primary disadvantage of the MAD is that it frustrates me. I can't explain why, it just makes me MAD. 
+
+Aside from that, another disadvantage is the mathematical properties of it are not as nice. So it's rarely used in advanced statistics. 
+
+But, it is quite nice when you have skewed data and/or outliers. 
+
+Alright, enough talk about about variability. Let's compute it, shall we?
+
+### Variability in JASP
+
+You already know how to do this, btw. Just as before, you go to the descriptives module. By default, JASP computes the standard deviation, but not the range/MAD. To do so, just click on the buttons next to them:
+
+```{r, echo=FALSE}
+knitr::include_graphics("images/screenshots/images 2021-01-11 at 10.21.17 AM.png")
+```
+
+### Variability in R
+
+To compute the range in R, you can use the `range` function:
+
+```{r, echo =T}
+range(paranormal$conviction)
+```
+
+Notice, however, it gives you the max and min. So to compute the actual range, you just compute the difference. Or you can do that in R using the `diff` function (which simply computes the difference between values):
+
+```{r}
+diff(range(paranormal$conviction))
+```
+
+To compute the standard deviation, you just use the `sd` function:
+
+```{r}
+sd(paranormal$conviction)
+```
+
+And for the variance:
+
+```{r}
+var(paranormal$conviction)
+```
+
+TO compute the MAD, you can use the `mad` function:
+
+```{r}
+mad(paranormal$conviction)
+```
+
+But, the MAD function in R actually multiplies the actual MAD by 1.4826. Why? Well, if you multiply the MAD by 1.4826, the MAD as the standard deviation are equal for very large symmetric distributions. To get that actual MAD, you can type:
+
+```{r}
+mad(paranormal$conviction, constant = 1)
+```
+
+## Z-Scores and Probability

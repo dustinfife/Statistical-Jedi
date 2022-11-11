@@ -1,0 +1,24 @@
+h1:univariate-estimates Univariate Estimates
+h2:central-tendency-whats-the-most-likely-score Central Tendency: What’s the most likely score?
+h3:mean Mean
+h4:advantages-of-the-mean Advantages of the Mean
+h4:disadvantages Disadvantages
+h3:mode Mode
+h4:disadvantages-of-the-mode Disadvantages of the Mode
+h4:advantages-of-the-mode Advantages of the Mode
+h3:median Median
+h4:disadvantages-of-the-median Disadvantages of the Median
+h4:advantages-of-the-median Advantages of the Median
+h3:central-tendency-in-jasp Central Tendency in JASP
+h3:central-tendency-in-r Central Tendency in R
+h2:variability-how-precise-are-the-scores Variability: How precise are the scores?
+h3:range Range
+h4:advantagesdisadvantages-of-the-range Advantages/Disadvantages of the Range
+h3:deviations-standard-deviation-and-variance Deviations, Standard Deviation, and Variance
+h4:advantagesdisadvantages-of-the-standard-deviation Advantages/Disadvantages of the Standard Deviation
+h3:median-absolute-deviation Median Absolute Deviation
+h4:advantagesdisadvantages-of-the-mad Advantages/Disadvantages of the MAD
+h3:variability-in-jasp Variability in JASP
+h3:variability-in-r Variability in R
+h2:z-scores-and-probability Z-Scores and Probability
+

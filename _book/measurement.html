@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Measurement | stats-jedi.knit</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Measurement | stats-jedi.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Measurement | stats-jedi.knit" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-01-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ethics.html"/>
+<link rel="next" href="univariate-distributions.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparison-statistics"><i class="fa fa-check"></i>Model Comparison Statistics</a>
+<ul>
+<li><a href="model-comparisons.html#r2"><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="measurement" class="section level1">
+<h1>Measurement</h1>
+<p>When I was a lad (7th grade, that is), I took algebra. My teacher was trying to sell math as an important life skill.</p>
+<p>Alas, I was <del>lizdexic</del> dyslexic, so Math wasn’t my favorite subject. But, for some reason, I’ve always had a fascination with Albert Einstein. So, when Ms. Miller said his name, I lifted my head from between my folded arms.</p>
+<p>“Einstein was a mathemetician, you know…” she said.</p>
+<p>I scoffed. “No, Einstein was a scientist.”</p>
+<p>“Scientists use math.”</p>
+<p>That truly puzzled me. Scientists use <em>math</em>??? But…they’re scientists?</p>
+<p>I really couldn’t figure out why in the world a scientist would ever use math. To me, a scientist was someone in a lab coat who boiled acids in petri dishes or launched rockets into space.</p>
+<p>Why in the world would a scientist use math?</p>
+<p>In retrospect, the answer was obvious: scientists <em>measure</em> things, like the temperature of a liquid or the speed of a rocket.</p>
+<p>Okay…so they measure things. Aaaaand?????</p>
+<p>Think about what it means to <em>measure</em> something: we take an abstract concept (like how fast something is traveling) and convert it to a <em>number</em> (like kilometers per hour).</p>
+<p>And, once you have converted something in the world (e.g., speed, temperature, depression, age) into a <em>number</em>….</p>
+<p>You can use math.</p>
+<p>So, scientists study how things work. To study how things work, they have to measure how these things behave. Measuring converts “things” to numbers. Once they’re represented as numbers, we can use math.</p>
+<p>Ironically, it wasn’t until college I saw that connection.</p>
+<div class="rmdnote">
+<p>
+Technically, most people don’t really use math in science. They use statistics.
+</p>
+<p>
+And what’s the difference between statistics and math?
+</p>
+<p>
+Statistics = Math + Error.
+</p>
+<p>
+That’s it! Just look at the two plots below. The first plot is a cartesian plot of <span class="math inline"><span class="math inline">\(X\)</span></span> and <span class="math inline"><span class="math inline">\(Y\)</span></span>. We have a bunch of numbers for <span class="math inline"><span class="math inline">\(X\)</span></span> and <span class="math inline"><span class="math inline">\(Y\)</span></span> and a line. The second plot looks similar to the first, but the dots don’t all fall on the line. Or, in other words, the <em>line</em> is the math part. Because not all dots fall on the line, we have “error” in predicting these <span class="math inline"><span class="math inline">\(Y\)</span></span> values. So, Statistics = Math + Error.
+</p>
+</div>
+<p><img src="stats-jedi_files/figure-html/mathvsstats-1.png" width="672" /></p>
+<div id="why-am-i-talking-about-measurement" class="section level2">
+<h2>Why am I talking about measurement?</h2>
+<p>I’m glad you asked. Or, I’m glad I asked. This whole chapter, I’ve been mad at myself. I hate when information is presented without context. “Here’s a bunch of stuff people need to know about statistics! But don’t ask me why!”</p>
+<p>Alas, this chapter is largely theoretical, without much practical information.</p>
+<p>So why am I telling you this?</p>
+<p>Two reasons. First, I can’t yet be practical (and show you <em>how</em> to compute important statistics related to measurement) without you knowing what a correlation is, how to compute it, and how to visualize it. I could, of course, put the measurement chapter <em>after</em> I teach you all that stuff, but that would be weird; we need to <em>measure</em> variables before we can <em>compute</em> them. So, this chapter has to be theoretical.</p>
+<p>Second, I put measurement front-and-center to emphasize that, without good measures, there’s no point in doing statistics.</p>
+<p>So, just because I’m not giving you the “how,” that doesn’t mean this chapter isn’t important. (In fact, aside from Ethics, this is probably the most important chapter).</p>
+</div>
+<div id="constructs" class="section level2">
+<h2>Constructs</h2>
+<p>So, scientists study <em>things</em>. (I know, that’s outrageously specific). We study things like rocks (geologists), bodies (biology), chemicals (chemistry), motion (physics), etc. Sometimes, the things we study can be observed. We can see rocks. We can see bodies (or even the insides of bodies).</p>
+<p>Other times, we can’t see these things. We can’t see gravity. But we can see gravity’s influence on other things.</p>
+<p>For us psychologists, we drew the short end of the stick. <em>Most</em> of what we study can’t be observed. We can’t see depression, or stress, or attention, or schizophrenia. Like gravity or atoms, we can only infer its influence on other things. For example, you can’t see anger, but you can observe its influence when your mom hurls pancakes, fresh of the skillet, on your older brother’s face. (True story, btw. My older brother was screaming for pancakes and my mom got fed up…I’m only a <em>little</em> satisfied every time I think of that story. Sorry Jordan.).</p>
+<p>These “things” we study, that cannot be observed, but only inferred by their influence on other things, are called construct. Stress is a construct. Anger is a construct. Sex drive is a construct.</p>
+<p>Before we science the sh%&amp; out of constructs, we have to convert them to numbers. To do that, we have to use “operational definitions.”</p>
+</div>
+<div id="operational-definitions" class="section level2">
+<h2>Operational Definitions</h2>
+<p>So, we have a construct, or a thing that we want to study that cannot be directly observed. Remember, though we can’t observe them, we know they exist because of the things we <em>can</em> observe.</p>
+<p>An operational definition is how we make that conversion from unobserved to observed.</p>
+<p>We should probably make an official definition, huh? Okay….</p>
+<p><strong>Operational definitions are the objective criteria we use to quantify our constructs.</strong></p>
+<p>Let’s do an example. Let’s say I want to measure anger. How do you know anger exists? You see manifestations of it. One manifestation is punching people in the face.</p>
+<p>So, perhaps, you decide to “operationalize” anger by counting the number of times a participant punched someone in the face during the duration of an experiment. That would work as an operational definition! (It’s a bad definition, btw, but it’s technically an operational definition. We’ll get into good versus bad in the next few sections).</p>
+<p>What makes this operational definition work is that it fits three criteria:</p>
+<ul>
+<li><p><em>Our operational definition is observable</em>. A punch to someone’s face can be observed. Magnetic chalkra fields cannot. So, check.</p></li>
+<li><p><em>Our operational definition is objective</em>. In other words, if two people were to observe the behavior of interest (a participant punching someone in the face), we expect the two would agree on the value. It would be quite rare for two to disagree. (“I don’t know, it looked more like a yawn to me.”) So, a punch to the face is objective. One’s subjective evaluation of someone’s body language is not. (There are ways we can make subjective opinions more objective, but I’m not going to get into that).</p></li>
+<li><p><em>The measure is specific</em>. Notice we qualified our criteria by saying it had to be a punch (not hit, caress, brush) in the face (not shoulder, stomach, kidney, etc.), during a particular duration. When operational definitions are specific, they’re more likely to be objective. For example, if we said our OD of anger was the number of times someone expressed anger, that’s not very specific! What counts as an expression of anger? Furrowed eyebrows? Heavy breathing? Punching holes in drywall?</p></li>
+</ul>
+<p>But, of course, our OD might meet all the criteria, but really suck. Maybe our OD of anger is number of times the participant’s eyebrows lower more than 2mm from their resting face within the first 60 minute after the experimenter states a pre-determined sequence of “your mom” insults. That there is specific! But it’s a bad definition for anger. Maybe they lowered their eyebrows because they were confused, or concentrating as they tried to figure out why they were being insulted, or maybe they have a resting butch face.</p>
+<p>So, a good OD doesn’t necessarily mean we’re actually measuring what we want to measure. To determine that, we need to understand what <em>validity</em> is.</p>
+</div>
+<div id="validity" class="section level2">
+<h2>Validity</h2>
+<p>Validity means “truth.” If one makes an invalid argument, that means they’re speaking falsehoods.</p>
+<p>When speaking of measurement, <strong>validity means we have actually measured what we think we measured.</strong></p>
+<p>A valid measurement of anger measures anger. No more, no less.</p>
+<p>A valid measurement of gravity measures gravity. No more, no less.</p>
+<p>A valid measure of blood pressure measures blood pressure. No more, no less.</p>
+<p>Let’s consider some <em>invalid</em> measures. Maybe let’s use a table, eh?</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Construct</th>
+<th>Operational Definition</th>
+<th>What’s wrong with it?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>The flu</td>
+<td># of times someone sneezes in an hour</td>
+<td>People who sneeze might have allergies, and sometimes sneezing isn’t a symptom of the flu</td>
+</tr>
+<tr class="even">
+<td>Intelligence among monkeys</td>
+<td>Their score on a written intelligence test</td>
+<td>Monkeys can’t read. Need I say more?</td>
+</tr>
+<tr class="odd">
+<td>A house’s hauntedness</td>
+<td>Electromagnetic Field (EMF) machine</td>
+<td>Why would ghosts give off electrical signals? Also, other things give off electrical signals (like, you know, power lines)</td>
+</tr>
+</tbody>
+</table>
+<p>So, you feeling good about what validity is?</p>
+<p>The next question, of course, is how in the world you determine whether your measure is valid.</p>
+<p>Actually, that’s a bad question. Measures don’t divide nicely into valid and invalid measures. Instead, our measures have varying <em>degrees</em> of validity.
+But, again, how do you determine the degree to which your measures are valid?</p>
+<div id="evaluating-validity" class="section level3">
+<h3>Evaluating Validity</h3>
+<p>It turns out, evaluating validity isn’t easy (at least in psychology). And, it’s subjective. (But remember from the ethics chapter that subjectivity isn’t necessarily a bad thing). To evaluate validity, we eventually <em>make a subjective judgment call where we weigh the evidence.</em></p>
+<p>What sorts of evidence are we looking for? Usually, we consider three forms of evidence:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Content validity</em>. This one is the hardest to grasp, methinks. Essentially this says our operational definitions measure <em>all</em> aspects of the construct, and do not measure things they should not. For example, depression is generally considered to be comprised of sadness, hopelessness, and a lack of motivation. If our measure only measures sadness (and not hopelessness and motivation), we have failed in content validity. Likewise, if our measure of depression measures how many times people frown, you might accidentally be measuring concentration!</p>
+<p>The best way to evaluate content validity is to have experts in the area evaluate your measure. If you get a bunch of depression experts to assess your measure, and they all agree you seem to have hit all the important aspects of depression (and no more), you probably have good content validity.</p></li>
+<li><p><em>Face validity</em>. Face validity refers to the degree to which our operational definitions <em>appear</em> to measure what we’re trying to measure. If we’re measuring blood pressure, but our operational definition uses a breathalyzer, that’s pretty poor face validity! Likewise, if we’re measuring stress and we ask people how frequently they yodel, again we have poor face validity.</p>
+<p>Generally we want high face validity. However, in psychology we tend to use a <em>lot</em> of self-report stuff. In these situations, face validity might be bad. Why? Well, let me illustrate with a story. Starting in high school, I began to suspect I was dyslexic. When I entered college, I struggled with completing my tests on time. I knew if I had a dyslexia diagnosis, I’d get more time! So, when they began asking me questions, I was <em>highly</em> motivated to perform poorly. It was an honest struggle not to miss questions on purpose so I could get that diagnosis. If I had more questionable ethics, I might have scored poorly, but not because I had a learning disability, but because I was motivated to <em>look</em> like I had a learning disability. When measures have high face validity, they’re easier to fake.</p>
+<p>But, I think generally people agree it’s worth the cost. It’s very hard (and quite rare) to have self-report questions with low face validity and high content validity.</p></li>
+<li><p><em>Criterion validity.</em> This is kinda sorta a tangential way to gather evidence of validity. Let’s say we want to develop a measure of nerdiness. Also suppose there’s some theory out there that suggests nerds are more successful in their careers. We have two constructs (nerdiness and success in careers). If that is indeed the case, then our measure of nerdiness should be correlated with measures of success.</p>
+<p>This may be the easiest way to gather evidence of validity. There’s mountains of statistics we could use that compute associations between two measures.</p></li>
+</ol>
+<p>Alas, my discussion of validity is painfully brief. There are many of my type (i.e., quantitative psychologists) who believe validity is the most important part of statistics. I don’t think I disagree. You can have amazing visuals, robust statistics, and beautiful statistical models that say amazing things about the world. But if your instruments don’t actually measure what you think they’re measuring, you’re screwed!</p>
+<p>Despite it’s importance, this book isn’t about measurement. It’s about statistics. And, I’m a poor teacher of measurement issues. So, I will end this section with an embarassing admission: validity is more important than I have time to cover, but I won’t cover it and just pretend we have valid measures for the remainder of the book.</p>
+<p>Yikes. I can practically hear my colleagues throwing this textbook into a crackling fire and dismissing me as a fraud. (If you are using a digital text, that’s a very expensive act of frustration).</p>
+</div>
+</div>
+<div id="reliability" class="section level2">
+<h2>Reliability</h2>
+<p>So, yeah, it’s kinda hard to do validity. Reliability, on the other hand, is easy! (Or easier).</p>
+<p>What is reliability, you ask?</p>
+<p><strong>Reliability refers to the consistency of a measure</strong>.</p>
+<p>Here’s the basic idea. Let’s say you’re measuring the age of a mummy using carbon dating. To do so, you take samples from 10 different sections of the same skeleton. Maybe your first sample says the mummy is 2,000 years old. And maybe the second says the mummy is 10,000 years old. Then the third says it’s ten minutes old. Then the next says it was actually born in the future, but has returned via a wormhole in your mother’s garbage disposal.</p>
+<p>In other words, our measure is <em>inconsistent</em>, or it varies from one occasion to the next.</p>
+<p>That sucks.</p>
+<p>Why does it suck? Because we can never be sure if the numbers we use are even close to their “true” value. When this happens, our statistical models have a real hard time picking out any patterns.</p>
+<div id="evaluating-reliability" class="section level3">
+<h3>Evaluating reliability</h3>
+<p>Luckily for us, measuring reliability is much easier than measuring validity. (There will be nuances I’m going to ignore because, again, this is a book about statistics, not measurement.) All it requires of us is that we have <em>at least</em> two different measures of the same people. Why two? Well, you can’t very well measure consistency with only one score! How consistent is an athlete who only plays a single game? You don’t know! You can’t know until you measure them more than once.</p>
+<p>Generally, we have three ways of measuring reliability. Each of these ways gives us two measures of the same person (or thing, if you’re not measuring people). The first (test-retest) gives us 2+ scores by measuring people 2+ times. The second (internal consistency) only mesures once, but divides each person’s answers into 2+ splits. The third (interrater) utilizes two different raters of an event (e.g., how many times a child throws a tantrum).</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Test-retest reliability</em>. We can assess the consistency of a measure by measuring the same people (or things, if you study things.) multiple times. So maybe I measure your depression today, then measure you again in a few weeks. I can then correlate your scores. (We’ll talk more about how to do this later. I’ll even show you examples!). Now, I have an objective measure of the reliability of the test. Easy peasy! (Kinda…it’s actually a bit tedious to measure people more than once. If you’re measuring rocks or lethal bacteria, consider yourself lucky!…unless, of course, you get attacked by said lethal bacteria. Or rocks. In which case, my apologies for being insensitive).</p></li>
+<li><p><em>Internal consistency reliability</em>. It’s tedious to measure the same person more than once. So, internal consistency is the lazy little brother of test-retest reliability. Let’s say we have a questionnaire measuring motivation, and let’s say that questionnaire has 10 questions. The basic idea behind internal consistency, is we split the test in half (maybe first five versus second five). Then we compute the sums for each half and, now that we have a pair of scores for each person, we can correlate their two scores. (Again, we’ll talk more about what it means to “correlate” two things later). In reality, there’s some fancy-pantsy statistics that allow us to (metaphorically) split the test more than once, but the idea is the same.</p></li>
+<li><p><em>Interrater reliability</em>. The first two measures work quite well if you’re using self-report measures. Not so well when we measure using <em>raters</em>. Let’s say we have five people watching my measurement YouTube video. We can ask each of them to rate the amazingness of my video (say, on a scale of 1-10). Once again, we now have multiple measurements of the same person, which means we can assess consistency. And, once again, we can easily compute some statistics that measure how consistent our raters are.</p></li>
+</ol>
+<p>As with validity, there’s no (good) criteria for “reliable” versus “unreliable.” There are some folks out there who try to establish “benchmarks” for what good reliability numbers are, but I favor a subjective judgment that weighs the various sources of evidence.</p>
+</div>
+<div id="increasing-reliability" class="section level3">
+<h3>Increasing Reliability</h3>
+<p>So, let’s say you develop your measure of the construct of interest and you’re super excited to make world-changing discoveries.</p>
+<p>Theeeen you compute reliability. And it sucks.</p>
+<p>Oops.</p>
+<p>What now?</p>
+<p>Fortunately, it’s pretty easy to increase a measure’s reliability. All you do is make the measure longer. Maybe your measure of depression is 10 items. Make it 20. Maybe you measure the age of a fossil with 5 samples. Make it 10. Maybe you measure acceleration by dropping 10 bowling balls off of a skyscraper. Drop 20.</p>
+<p>Why does that work?</p>
+<p>Let me put it this way. Say you’re going on a date with a fella for the first time. You, obviously, want to know if this guy is a creep. After one date, perhaps you start to think this guy’s quite swell; he makes you laugh, he’s complimentary, and he smells like daisies. But, you can’t assess his reliability yet. Is he always this way? Or is he putting on a good show.</p>
+<p>Now, on the second date, he’s not as funny, doesn’t compliment you nearly as much, and he smells like Old Spice instead of daisies. Lame. So, maybe he’s no Prince Charmain, but worth a third date.</p>
+<p>And a fourth.</p>
+<p>And a fifth.</p>
+<p>Now, 50 years and thousands of dates later, that dude’s your husband. After so many dates, you have a pretty good idea of whether this person’s swell. Why? Because you have “measured” that person for decades.</p>
+<p>It’s the same with our measures of constructs. Say you compute someone’s depression score using a measure with only five items. You’d be far less confident in their score than if you had 1,000 items. (Although having people complete 1,000 items is cruel. And it might induce depression.) If you measure the age of a fossil 50 times (and average the age estimate), you can be pretty confident that average score is much more reliable than if you only measured 5 times.</p>
+<p>In short, when we have lots of items (or lots of measurements), we can become increasingly certain about our scores.</p>
+</div>
+</div>
+<div id="variable-types" class="section level2">
+<h2>Variable types</h2>
+<div id="predictor-versus-outcome-variables" class="section level3">
+<h3>Predictor versus Outcome Variables</h3>
+<p>One critical skill you need to develop is the ability to distinguish predictor versus outcome variables. Why? Because eventually, we will have to <em>explicitly</em> tell our statistics software which variable (or variables) is the predictor, and which is the outcome.</p>
+<p>The outcome variable is the variable that is influenced by the predictor variable. The predictor variable is the variable that is either (1) manipulated directly by the experimenter (when this happens, we often call it an “independent variable”), or (2) posited by the researcher to have an influence on the dependent variable.</p>
+<p>Another way to think of it is the outcome variable is the <em>effect</em> while the predictor variable is the <em>cause</em>. (Some statisticians are quite ready to pounce on that statement. “Correlation is not causation!” they’ll say. Just chill, ya’ll, then read the note below). Or, the <em>predictor</em> comes <em>before</em> the <em>outcome</em>.</p>
+<p>When trying to decide which is which, consider these questions:</p>
+<ul>
+<li>Are you trying to predict a future value? If so, that variable you’re trying to predict is the outcome. The variable(s) you use to make that predictor are the predictors.</li>
+<li>Are you trying to see what happens to a variable after you introduce a change in the environment? The change in the environment is the predictor, the “what happens” is the outcome.</li>
+<li>Does one variable come before the other? If so, the variable that comes first is the predictor and the varaible that comes after is the outcome.</li>
+</ul>
+<p>So, let’s look at some examples. Let’s consider a few scenarios to guide us through our predictor versus outcome decision:</p>
+<ul>
+<li>The association between how much you eat in the morning and your energy that day. The third question will help with this one. Eating breakfast in the morning comes before energy expenditure throughout the day. So, breakfast amount is the predictor and energy is the outcome.</li>
+</ul>
+<p>Let’s do another:</p>
+<ul>
+<li>Mean difference in depression for treatment versus control groups. The second question helps. We have introduced a change in the environment (assigning to treatment versus control group). That makes group (treatment versus control) the predictor (or independent variable in this case), and depression the outcome.</li>
+</ul>
+<p>And another:</p>
+<ul>
+<li>The association between stress and academic achievement. This is more tricky. It’s tricky because either variable can fill either role. And it really depends on your research question and intuition. Some people might be trying to understand how academic achievement might cause changes in stress. If this is the case, stress is the outcome. Others might want to see how one’s stress affects (or causes changes in) academic achievement. In this case, stress is the predictor and academic achievemen is the outcome.</li>
+</ul>
+<p>If it helps, ask yourself, “what do I think is causing what?” The cause is the predictor, the effect is the outcome. Just don’t say that in front of a statistician, or they might throw a book at you. Or a calculator. (Statisticians are known to carry calculators).</p>
+<div class="rmdnote">
+<h1 id="why-are-statisticians-cranky-about-cause-and-effect">
+Why are statisticians cranky about cause and effect?
+</h1>
+<p>
+That’s a good question. For decades, intro stats books have taught that correlation does not imply causation. For example, there’s a correlation between ice cream consumption and heat strokes. Does that mean eating ice cream causes heat strokes? Of course not. Rather, heat causes both an increase in ice cream consumption and number of heat strokes. This statement (correlation does not imply causation) is a good reminder that an observed relationship doesn’t necessarily mean we have evidence of causation.
+</p>
+<p>
+However, <em>our job as scientists is to find causation!</em> That’s what science is about! The way I see it, we often begin looking for causation by finding correlation. Once we’ve found correlation, we then start using more advanced statistical or methodological designs to build evidence in favor of a causal link.
+</p>
+</div>
+<p>Let me address one more caveat before moving on. I see a lot of students confuse <em>variables</em> with <em>levels</em>. Let’s say we have a treatment group and a control group. Some students think their predictor variable is the treatment group and the outcome variable is the control group. That is not the case! The predictor variable is actually group (treatment versus control) and the outcome is something else (maybe depression, or stress, or flu symptoms).</p>
+<p>Treatment and control are <em>levels</em> within the predictor variable. Don’t mix the two up!</p>
+</div>
+<div id="measurement-scales" class="section level3">
+<h3>Measurement scales</h3>
+<p>We’re at the home stretch. Maybe it’s time for a joke.</p>
+<div class="rmdjoke">
+<p>
+What’s the best thing about Switzerland?
+</p>
+<p>
+I don’t know, but the flag is a big plus.
+</p>
+</div>
+<p>Every statistics book makes a big deal about “measurement types.” I’m starting to feel peer-pressure, so I’m going to talk about them too.</p>
+<p>There are four types of measurement “scales.” In other words, when we measure a construct, our operational definitions we take will take one of four forms. These forms are:</p>
+<ol style="list-style-type: decimal">
+<li>Nominal. Nominal, or “named” variables are categories, like gender (male and female), or political ideology (republican and democrat), or book genre (science fiction versus fantasy versus romance versus contemporary). When we measure a construct using a nominal scales, that means we simply assign things different labels. One important thing about nominal variables is there is no inherent ordering of them. Males are no more gender-y than females. Republicans are no more political idology-y than democrats. Science fiction books are no more book genre-y than romance.</li>
+<li>Ordinal. When we measure a construct using an ordinal scale, we also use labels, but the labels have a specific order. Suppose we are speed-dating and we rank-order the dates in terms of attractiveness (e.g., 1st, 2nd, 3rd). Now, we <em>can</em> say 1st is <em>more</em> attractive than 2nd, 3rd, etc. We cannot, however, order their hair color (e.g., red hair is more hairy than blonde). What we cannot say is <em>how much</em> more attractive 1st is than 2nd, 3rd, etc. Also, it wouldn’t make sense to compute a mean of rankings (e.g., the average ranking of these fine specimens was 5.5). Averaging ranks is kinda meaningless. If we want to compute means (or many other statistics), we need interval scales.</li>
+<li>Interval. Like ordinal scales, interval scales have a specific order, but the distance between points in the scale are equal. With our attractiveness rankings (1st versus 2nd), our ordinal scale didn’t tell us how much more attractive 1st was than 2nd. Interval scales have equal separation between numbers. I know, that’s all very abstract. Temperature (e.g., in Farenheit) is an interval scale. That means the difference between 60 and 70 degrees is exactly the same as the difference between 10 and 20 degrees. Why is that important? Because, when we use statistics on data, we make the assumption the spaces between numbers is meaningful. When we make that assumption, we can compute statistics. We cannot compute statistics on ordinal variables (kinda….more on that in a minute).</li>
+<li>Ratio. Ratio scales are like interval scales. The only difference is that ratio scales have a “true zero” point. That means a value of zero actually means an absence of that variable. If I have 0 children, I truly have zero children. If I have a Farenheit temperature of zero, I do <em>not</em> have no temperature.</li>
+</ol>
+<p>Golly, that was hard to do. I hate technicality for the sake of technicality. I never understood why we made a big deal about these measurement types. Let’s go ahead and simplify things. <em>We really only care about two measurement types:</em></p>
+<ol style="list-style-type: decimal">
+<li>Categorical variables.</li>
+<li>Numeric variables.</li>
+</ol>
+<p>Categorical variables comprise nominal and ordinal variables, while numeric variables comprise interval and ratio variables.</p>
+<p>Why is this distinction necessary? Because, when we’re doing statistics, we cannot use many statistics on categorical variables. You cannot compute the mean of gender. (You can compute the mode, or most frequently occuring score). The mean serves as the foundation of all of statistics, so that means we cannot do the majority of statistics with categorical variables.</p>
+<p>“Wait a minute! Did he just say we cannot use statistics when we have categorical variables????? Well, I’m screwed, because I really wanted to study gender!”</p>
+<p>No worries, young researcher. You can still use statistics for categorical variables. However, the categorical variables <em>must</em> be <em>predictor</em> variables, not <em>outcome</em> variables, at least in this class. So, you can use gender to predict IQ (no contest…girls are smarter). You can use gender to predict height (sorry ladies, girls are shorter). You can use gender to predict empathy.</p>
+<p>There <em>are</em> statistical methods out there that can predict categorical variables, but those methods (called generalized linear models) are beyond the scope of this book. Sorry!</p>
+<p>Also, the type of variable (categorical versus numeric) determines the type of plots we use. They also determine the statistics we can compute. If you have a categorical predictor (e.g., treatment versus control conditions), you can compute mean differences between groups, but you cannot compute a correlation coefficient. (Actually, you kinda can….but I’m not going to get into that in this book. Check out <a href="http://https://en.wikipedia.org/wiki/Polychoric_correlation">wikipedia</a> if you’re interestedf). If you have a numeric predictor and a numeric outcome, you might compute a slope and an intercept (which you wouldn’t compute for categorical variables….again, kinda).</p>
+<p>I know, I’m being evasive and oddly hedged. There’s a reason for that. I’ll eventually show you the numeric versus categorical distinction isn’t all that important, but it’s helpful to think of that distinction as important, at least at the beginning of the book. Eventually, I’ll start bending those rules to show you when it’s helpful to consider categorical variables as numeric variables.</p>
+</div>
+</div>
+<div id="take-home-message" class="section level2">
+<h2>Take-home message</h2>
+<p>Science is interested in studying constructs, or things we cannot see but want to know about (like depression, gravity, or rock age). More specifically, we’re interested in studying <em>relationships</em> between constructs. Some constructs are independent variables (the causes) and some are dependent variables (the effects). To make these constructs study-able, we have to convert the unobservable constructs into something we can measure. We do so by using operational definitions, which are the criteria we use that assign numbers to constructs. Operational definitions are specific, objective, and observable. Once we’ve created operational definitions of our constructs, we should probably assess their validity (i.e., the degree to which these operational definitions actually measure the construct we want them to measure), and their reliability (i.e., how consistently they measure what they’re measuring).</p>
+<p>Our operational definitions (or measures) of our constructs will fall into one of four types: nominal (named labels only), ordinal (ordered labels), interval (numbered variables with no true zero), and ratio (numbered variables with a true zero). However, we really only care about which variables are categorical (nominal/ordinal) and which are numeric (interval/ratio). We care about this because, at least for this textbook, our outcome variables must be numeric and our predictor variables can be numeric or categorical.</p>
+<p>Now, go eat a breakfast pizza. You’ve earned it!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ethics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="univariate-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-Measurement.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

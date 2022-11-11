@@ -1,0 +1,28 @@
+h1:the-general-linear-model The General Linear Model
+h2:wax-on-wax-off Wax on, wax off
+h2:what-is-a-model What is a model
+h2:what-is-the-general-linear-model What is the general linear model
+fig:decisiongtreeglm This diagram shows the old way of doing things. It is hopelessly complicated and it is much better to just use a linear model.
+h2:what-makes-a-good-statistical-model What makes a good statistical model?
+h2:prediction-versus-group-differences Prediction Versus Group Differences
+h3:out-with-the-old-in-with-the-shiny Out with the old, in with the shiny
+h2:one-sample-t-test One-Sample T-Test
+h3:traditional-analysis Traditional Analysis
+h3:one-sample-t-test-as-a-lm One-Sample T-Test as a LM
+h2:independent-sample-t-test Independent Sample T-Test
+h3:preparing-data-for-a-t-test Preparing Data for a t-test
+h3:traditional-t-test-analysis Traditional t-test Analysis
+h3:lm-approach LM Approach
+h2:related-t-test Related t-test
+h3:traditional-related-t-test-analysis Traditional Related t-test Analysis
+h3:lm-analysis-of-a-related-t-test LM Analysis of a Related t-test
+h2:anova ANOVA
+h3:traditional-analysis-of-anova Traditional Analysis of ANOVA
+h4:multiple-comparisons Multiple comparisons
+h3:anova-as-a-lm ANOVA as a LM
+h2:regression Regression
+h3:traditional-regression-analysis Traditional Regression Analysis
+h3:lm-approach-1 LM Approach
+h2:categorical-outcome-variables Categorical Outcome Variables
+h2:its-all-the-same It’s All the Same!
+

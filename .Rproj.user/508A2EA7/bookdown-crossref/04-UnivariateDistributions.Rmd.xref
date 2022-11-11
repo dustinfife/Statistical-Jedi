@@ -1,0 +1,29 @@
+h1:univariate-distributions Univariate Distributions
+h2:categorical-variables Categorical Variables
+h3:column-sorting Column Sorting
+h3:visualizing Visualizing
+h4:line-chart Line Chart
+h4:pie-charts Pie Charts
+h4:bar-charts Bar Charts
+h3:interpreting-bar-charts Interpreting Bar Charts
+h4:redundant-labels Redundant Labels
+fig:redundant Illustration of 
+h4:unknownunexpected-labels Unknown/Unexpected Labels
+fig:unknownlabels Illustration of 
+h4:swapped-labels Swapped Labels
+h4:small-sample-sizes Small Sample Sizes
+h4:practice Practice
+h4:visualizing-bar-charts-in-r Visualizing Bar Charts in R
+h4:visualizing-bar-charts-in-jasp Visualizing Bar Charts in JASP
+h2:numeric-variables Numeric Variables
+h3:what-to-look-out-for What to Look Out For
+h4:normal-bell-curved-distributions Normal (Bell-Curved) Distributions
+h4:outliers Outliers
+h4:skewness Skewness
+h4:zero-inflated-data Zero-Inflated Data
+h4:bimodal-data Bimodal data
+h4:visualizing-histograms-in-r Visualizing Histograms in R
+tab:unitab11 Example data where R will convert a numeric variable to a character. Sometimes R treats numbers as nominal variables. This often happens when you import a column with nominal values (in this case 
+h4:visualizing-histograms-in-jasp Visualizing Histograms in JASP
+tab:uni Example data where R will convert a numeric variable to a character. Sometimes R treats numbers as nominal variables. This often happens when you import a column with nominal values (in this case 
+

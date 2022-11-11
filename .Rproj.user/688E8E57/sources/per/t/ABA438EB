@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1608762268829.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2315022353",
+    "id" : "ABA438EB",
+    "lastKnownWriteTime" : 1615991909,
+    "last_content_update" : 1615991909,
+    "path" : "~/Dropbox/research/Statistical Framework/Intro Book V 2/01-intro.Rmd",
+    "project_path" : "01-intro.Rmd",
+    "properties" : {
+        "cursorPosition" : "3,1",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

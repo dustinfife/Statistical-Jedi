@@ -1,0 +1,24 @@
+h1:diagnostics Diagnostics
+h2:models-are-tools.-and-they-dont-have-feelings. Models are tools. And they don’t have feelings.
+fig:diagnosticsnonlinear The blue line is clearly a poor-fitting model. Red is good. Yay.
+h2:residuals Residuals
+h2:diagnostic-tool-1-histogram-of-the-residuals Diagnostic tool # 1: Histogram of the residuals
+h3:sensitivity-analyses Sensitivity Analyses
+h2:diagnostic-tool-2-residual-dependence-rd-plot-for-linearity Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity
+h3:statistical-models-are-lazy Statistical Models are Lazy
+fig:diagnosticsrepeat This relationship is NOT linear, but the fit might deceive us into thinking it is!
+h3:residual-dependence-plots Residual Dependence Plots
+h3:how-to-fix-nonlinearity How to Fix Nonlinearity
+h4:what-is-a-quadratic-term What is a Quadratic Term?
+h3:how-to-tell-if-nonlinearity-is-a-problem How to tell if nonlinearity is a problem?
+h3:how-much-nonlinearity-is-too-much How much nonlinearity is too much?
+h2:diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity
+h3:spread-location-sl-plots Spread-Location (SL) Plots
+h2:outliers Outliers
+h2:independence Independence
+h3:why-do-models-assume-independence Why do models assume independence?
+h3:what-happens-if-you-violate-the-independence-assumption What happens if you violate the independence assumption?
+h3:how-to-detect-and-handle-dependent-data How to detect and handle dependent data?
+h2:summary Summary
+h1:section 
+

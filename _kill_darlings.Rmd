@@ -1,0 +1,311 @@
+---
+title: "Kill My Darlings"
+author: "Dustin Fife"
+date: "11/6/2020"
+output: html_document
+---
+
+#### Heteroscedasticity
+
+That's a fun word to say, isn't it? Heter-skidasssssss-ticityyyyyyyyyyyyy.
+
+I don't care if you're alone or in a crowded library, I want you to shout that phrase. Own it. Love it. Feel it in your inner bones. 
+
+What is heteroscedasticity, you ask? As with most things, it's probably best 
+
+
+When I was in my final year of graduate school, I applied for a post-doc. As part of the application process, I had to perform an analysis of a dataset containing value-added scores for a bunch of elementary school children. 
+
+And I gotta say, it was tough. It required a type of analysis I'd never done before, and there was a whole lot of weird idiosyncrasies in the dataset. It required dozens of hours. 
+
+I wrote a report and apparently it was good enough that they decided to fly me out to Boston for an interview. But, in the process, they gave me *another* dataset that was even more tricky than the first! They then told me I'd present my results to a committee of about a dozen research professionals. 
+
+[Warning: I'm going to use a lot of jargon in the next few sentences. I'm merely doing this to show off and give you a sense that I was legit amazing with my analysis. You don't have to know the meaning of hardly any of these words.]
+
+But I was ready. This second analysis wanted us to determine whether training students in C++ (a computer software) improved students overall GPA. I'm not going to go into details, but it was a complex analysis, requiring multiple imputation, propensity score matching, and latent discriminant score analysis. 
+
+And my conclusion? There was a statistically significant effect of C++ training on students' overall grades, after adjusting for baseline GPA, SES, grade, and gender. 
+
+I was sure I'd nailed the analysis. How could I not when I'd used so many impressive words?
+
+And what did the massively-intimidating committee have to say?
+
+"Statistically significant, you say?" They asked. 
+
+They then showed me a plot of the very same analysis
+
+
+#### Things That Can Screw Up Our Analysis
+
+Remember, we don't study variables in isolation. One of the primary purposes of statistics is to model *relationships* between variables. To do that, we often have to make assumptions about how our data behave. For categorical variables, there are two things we ought to look out for: (1) missing data, and (2) group imbalances. 
+
+##### Missing Data
+
+Missing data happens all the time. Sometimes people just don't answer a question. We might have information about their GPA, income, frequency of bowel movements, sexual habits, and whether they pee in the shower. All of these questions might cause people to decide they don't want to answer it. 
+
+Other times, data are missing because people ran out of time to complete a questionnaire, people dropped out of a study, equipment failed while measuring, etc. 
+
+This can *sometimes* present problems with data analysis. For example, let's say we're doing a study where we testing whether exposure to violent images desensitizes combate veterans. Maybe you have a treatment and control group. (The control group might view images of kittens instead). 
+
+Some might drop out of the study. The reason they drop out is crucial. If one guy drops out because he moved, no big deal. If some drop out because they lost interest, probably no big deal. If you have some drop out because it triggered too much anxiety, we have problems. 
+
+Why?
+
+Because the people who stick with it in the treatment group are going to have higher scores, not because the treatment works, but because the people who had the most severe PTSD dropped out of the study. 
+
+Here's all I'm going to say about missing data: it may matter greatly, it may not. If the reason they dropped out is related to the outcome variable, it's a problem. If not, it shouldn't be a problem. 
+
+So, how do you identify it? Quite easily, at least with categorical variables. Let's look at an example:
+
+```{r missing_data, fig.cap="Bargraph illustrating missing data"}
+group = sample(c(
+        "Kitten Images", "Violent Images"
+        ), size = 229, prob=c(.5, .5), replace=T) %>% 
+  as.data.frame()
+names(group) = "Group"
+head(group)
+group$Group[group$Group=="Violent Images"][1:30] = NA
+
+flexplot(Group~1, data=group) + labs(x="Treatment Condition")
+  
+```
+
+
+Why does it not care?
+
+Good question. The next section is a review for some. I've already taught this in the technical sidenote boxes. But I'm going to show you again. Why am I being technical? After all, you will never have to do these sorts of conversions. The computer will do it for you in the background. So why am I showing you how to do this? Two reason: first, so *you* can know that it really doesn't matter that a variable is numeric or categorical. Second, it will help you interpret some of the estimates that are outputted from R. 
+
+### Converting Categorical Variables to Numeric Variables
+
+Remember, the GLM is just regression. We can use regression to compute mean differences between groups. But to do that, we have to convert the grouping variable to a numeric variable. This is often called "dummy coding." Why? Who knows. But I find it offensive. So instead, I'm going to call it "zero-fying." To use regression for categorical variables, we must zero-fy the categorical variables. 
+
+And it turns out it's pretty simple to do. 
+
+To illustrate, let's take a look at the avengers dataset. Suppose we're interested in seeing how superheros and nonsuperheros differ in strength. The strength variable means the number of pounds they can benchpress. 
+
+BTW, these are pretty buff dudes. Just sayin'. 
+
+First, let's read in the dataset and select only those variables we're interested in:
+
+```{r}
+require(flexplot)
+require(tidyverse) # for easy filtering of dataset
+data("avengers")
+d = avengers %>% select(strength, superpower)
+```
+
+Now we can look at the first few rows:
+
+```{r, eval = FALSE, echo=TRUE}
+head(d)
+```
+
+```{r,echo=FALSE, results="asis"}
+knitr::kable(head(d))
+```
+
+The superpower column is categorical. Remember, to use regression for categorical variables, we have to convert it to a number. But how?
+
+It's actually pretty easy when we only have two groups. We can just make one group equal to zero and the other equal to one. If I were to turn "no" to zero, we would get:
+
+```{r, results="asis", echo=FALSE}
+d$numbered_superhero = factor(avengers$superpower, 
+                              levels=c("no", "yes"), 
+                              labels=c(0,1))
+knitr::kable(head(d))
+```
+
+Now that superhero is a numeric variable, we can just run a regression as we always have. Regression (or the GLM) will then try to fit a *line* through the datapoints as it always does. Let's go ahead and look at that:
+
+```{r, echo=FALSE}
+mod = lm(strength~superpower, data=d)
+plot = flexplot(strength~superpower, data=d %>% 
+           mutate(superpower = 
+                    factor(superpower, levels=c("no", "yes"), labels=c("0 (no)", "1 (yes)"), ordered=T)), 
+           spread="stdev")
+#plot$layers[[2]] = NULL
+#plot$layers[[2]] = NULL
+#plot$layers[[2]] = NULL
+plot + stat_summary(fun.y=mean, colour="red", geom="line", aes(group = 1))
+
+```
+
+Do you see it, young padawan? The regression line passes through the mean of the two groups. In other words, when you use regression with two groups, the line will pass through the mean of the two groups. 
+
+Also, remember how we decided those without superpowers have a score of 0 on the superpower variable? Also, remember how we said the y-intercept is the expected value of Y (strength in this case) when X (superpower in this case) equals zero. That means the y-intercept is actually the mean of the no superpower group (because, again, it is the predicted value of strength when superpower = 0). 
+
+Also, remember that the slope is the expected change in Y for every point change in X. A point change in X means that one goes from not having a superpower (i.e., superpower = 0) to having a superpower (i.e., superpower = 1). So, the slope is the *same thing as the difference between means*. 
+
+In summary, with two groups, when you convert a grouping variable to a numeric variable, the intercept is equal to the group mean of whichever variable is assigned a zero and the slope is equal to the difference in means betwen groups. 
+
+But, as I said, you don't have to do the conversion. R will do it for you. Let's see that:
+
+```{r}
+model = lm(strength~superpower, data=d)
+estimates = coef(model)
+estimates
+```
+
+This tells us that the mean for those without superpowers, the intercept, is `r round(coef(model)[1], digits=2)` and the difference between those with and without superpower is `r round(coef(model)[2], digits=2)`. 
+
+Pretty cool, eh?
+
+Like I said, R will do that conversion for you in the background and will, quite randomly, choose which group is assigned a value of zero. How do you know which group is assigned as zero? It's actually pretty easy to tell. Let's look at R's summary of the model:
+
+```{r}
+summary(model)
+```
+
+Notice that, just below the intercept, it says "supwerpoweryes." R is telling you that, relative to the intecept, the group labeled "yes" differs by an average of `r round(coef(model)[1], digits=2)`. In other words, whichever group is *not* listed is the group that was assigned zero.
+
+If you want to avoid that sort of mental gymnastics (i.e., figuring out which group was the referent group and figuring out group means from slopes/intercepts), you can use the `estimates` function in flexplot:
+
+```{r}
+estimates(model)
+```
+
+I find that function easier to interpret than R's built-in summary. *And*, my `estimates` function bans p-values. So there's that. 
+
+## Categorical GLMs for Three + Groups (ANOVA)
+
+Once again, we used to make a big deal about two versus three + groups in the old way. Why? Because if there are three +  groups, we could use a hypothesis test to tell us *if* there's *some* difference *somewhere* between groups. But it did not tell us where the difference was. So we had to subsequently perform multiple comparisons to see where that difference actually was. 
+
+And, technically, using the GLM doesn't really overcome that limitation. If we want to do a hypothesis test, we still have to test each possible pairing of groups to see which is significant, and these tests have to be corrected for multiple comparisons. 
+
+But...gross. Who the hell wants to use hypothesis tests? 
+
+Not me. 
+
+I'm much more interested in seeing how different the groups are. And if that's the case, this two versus three + distinction isn't important. Instead, we just use the GLM. 
+
+### Converting Three + Categories to Numeric Variables
+
+How do you convert three + groups to numeric variables. Your intuition might tell you to simply assign a number to each group. For example, the control group might be 0, Treatment A might be 1, and Treatment B might be 2. But, alas, it's not that simple. 
+
+Why?
+
+Let's look at the figure below. This plot shows three groups with numbers 0, 1, and 2. If we treat those groups as numbers, regression is going to treat them as numbers and fit a straight line that passes through all groups. But, oops! It fits poorly because the amount of difference between the three groups is *different*; the difference between behaviorist and control is large, but the difference between behaviorist and cognitive is tiny. If the amount by which groups differ is different, using this strategy is going to fail miserably. 
+
+```{r, echo=FALSE}
+data("exercise_data")
+mod = lm(weight.loss~therapy.type, data=exercise_data %>% mutate(therapy.type = as.numeric(therapy.type)))
+
+plot = flexplot(weight.loss~therapy.type, data=exercise_data %>% 
+           mutate(therapy.type = 
+                    factor(therapy.type, levels=c("control", "beh", "cog"), 
+                           labels=c("0 (control)", "1 (behaviorist)", "2 (cognitive)"), ordered=T)), 
+           spread="stdev")
+#plot$layers[[2]] = NULL
+#plot$layers[[2]] = NULL
+#plot$layers[[2]] = NULL
+plot + geom_abline(slope=coef(mod)[1], intercept=coef(mod)[2])
+```
+
+So, what do we do instead? We actually create *two* variables: one variable indicates whether that score belongs to the behaviorist group and one variable that indicates whether that score belongs to the cognitive group. Let's look at the data, shall we?
+
+```{r, echo=FALSE, results='asis'}
+d = exercise_data %>% select(weight.loss, therapy.type) %>% 
+  mutate(cognitive.group = ifelse(therapy.type=="cog", 1, 0)) %>% 
+  mutate(behaviorist.group = ifelse(therapy.type=="beh", 1, 0))
+knitr::kable(head(d))
+
+```
+
+Now, we two new variables: cognitive.group and behaviorist.group. A one indicates that person belonged to the cog or beh group, respectively. 
+
+It might seem counterintuitive that we only zero-fy *two* groups, rather than all three. Shouldn't you have a third group called control.group that has ones for all those in the control group?
+
+You could, but it's not necessary. These groups are mutually exclusive. If an individual doesn't belong to the cognitive group and they don't belong to the behaviorist group, they *must* belong to the control group. So, if cognitive.group = 0 and behaviorist.group = 0, that score belongs to the control group. 
+
+Make sense? 
+
+Once again, though, *you don't need to do this conversion*. The computer will do it for you. 
+
+Let's go ahead and run the model, letting R do the conversion in the background:
+
+```{r}
+model = lm(weight.loss~therapy.type, data=exercise_data)
+summary(model)
+```
+
+As before, you can look at the summary to see which group was the reference group by identifying which group was *not* mentioned. We have therapy.typecog and therapy.typebeh, which means that control was the referent group. 
+
+But what if you wanted the behaviorist group (beh) to be the referent group? Well, that's pretty easy to change in R:
+
+```{r}
+exercise_data$therapy.type = relevel(exercise_data$therapy.type, ref="beh")
+```
+
+Now if we run the model again, the control group will show up under the coefficients, while the beh group will not:
+
+```{r}
+model = lm(weight.loss~therapy.type, data=exercise_data)
+summary(model)
+```
+
+But, as before, I prefer to use the estimates function in flexplot to get my summary:
+
+```{r}
+estimates(model)
+```
+
+
+
+
+Missing data
+Group imbalances
+
+## $\chi^2$ Analysis
+
+Is gender associated with political party?
+
+Does favorite color predict gender?
+
+These are questions that are answered with a $\chi^2$ analysis. For these analyses, we have two categorical predictors. 
+
+### Traditional Analysis
+
+To do this in R, we would use the `chisq.test` function:
+
+```{r}
+chisq_model = chisq.test(exercise_data$therapy.type, exercise_data$gender)
+chisq_model
+```
+
+According to the $\chi^2$'s p-value, our variables do not seem to be associated. 
+
+### GLM Analysis of $\chi^2$?
+
+Alas, this analysis doesn't fit nicely into the GLM framework. GLM's require the outcome variable to be numeric. With a $\chi^2$, our outcome variable is categorical. 
+
+That doesn't mean we can't do any sort of analyses. It must means we won't be using the "lm" command. 
+
+We can visualize this with flexplot, but not using the "visualize" command (at least not as of this writing):
+
+```{r glmchi}
+flexplot(therapy.type~gender, data=exercise_data)
+```
+
+
+## The Language of Interaction Effects
+
+One skill that's important to learn when doing statistics is translating a verbal hypothesis into a statistical model. 
+
+How do you know when your verbal hypothesis indicates you should model an interaction? Let's look at a few examples:
+
+* Does the effect of A on B depend on C?
+* Does the strength of the A/B effect depend on C?
+* How does A moderate the influence of B on C?
+
+Each of these could be translated into a statistical model. 
+
+
+We know that's just a single number, but, being as savvy as we are, we recognize that underlying this correlation there's a sampling distribution. Just for fun, let's go ahead and plot that sampling distribution below. (Of course, the sampling distribution isn't accessible because none of us live in Groundhog Day...that I know of. But, that's the beauty of computers! I can simulate the sampling distribution). Just for fun, I've added a line that shows where our sample falls in that distribution. According to this sampling distribution (which, again, we never have access to), the true value of the mean difference is 0.4. So, our value of `r diff.val` is pretty close!
+
+```{r cltcorrelation}
+vals = data.frame(difference = rnorm(10000, .4, 1/sqrt(50)))
+flexplot(difference~1, data=vals) +
+  geom_vline(xintercept = diff.val, col="red")
+1.2/sqrt(50)
+```
+

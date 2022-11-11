@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Univariate Distributions | stats-jedi.knit</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Univariate Distributions | stats-jedi.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Univariate Distributions | stats-jedi.knit" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-02-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="measurement.html"/>
+<link rel="next" href="univariate-estimates.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics">The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li><a href="bivariate-estimates.html#cohens-d">Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-glm"><i class="fa fa-check"></i>One-Sample T-Test as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>GLM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-glm"><i class="fa fa-check"></i>ANOVA as a GLM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#glm-approach-1"><i class="fa fa-check"></i>GLM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html"><i class="fa fa-check"></i>Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="multivariate-general-linear-models.html"><a href="multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2">Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-interaction-effects.html"><a href="multivariate-glms-interaction-effects.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparison-statistics"><i class="fa fa-check"></i>Model Comparison Statistics</a>
+<ul>
+<li><a href="model-comparisons.html#r2"><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi:
+<div style="font-size: .8em;">
+Responsibilities, Routines, and Rituals
+</div></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="univariate-distributions" class="section level1">
+<h1>Univariate Distributions</h1>
+<div id="categorical-variables" class="section level2">
+<h2>Categorical Variables</h2>
+<p>Congratulations, young witch! You have been selected to attend Hogwarts School of Witchcraft and Wizardry! You are both thrilled, and a bit afraid. Okay, you’re terrified. Why, you ask? Because you come from a long line of dark wizards. You know that running through your blood is a propensity for the sinister. If only you could avoid being sorted into the house of Slytherin!</p>
+<center>
+<img src="drawings/shoulder_devil.jpg" style="margin:auto" width=500>
+</center>
+<p><br></p>
+<p>What are your chances? How likely is it that you will be placed in Slytherin?</p>
+<p>You are not an ordinary witch. Whilst your peers fancy themselves mystics of the highest order, you are rationale. Empirical.</p>
+<p>You require data.</p>
+<p>So, you hack in to the mainframe of Hogwarts’ computer and find exactly the sort of data you need.</p>
+<p>Are you ready?</p>
+<p>Here it is:</p>
+<pre><code>#&gt;   [1] &quot;Ravenclaw&quot;  &quot;Hufflepuff&quot; &quot;Slytherin&quot;  &quot;Slytherin&quot;  &quot;Ravenclaw&quot; 
+#&gt;   [6] &quot;Hufflepuff&quot; &quot;Ravenclaw&quot;  &quot;Ravenclaw&quot;  &quot;Gryffindor&quot; &quot;Hufflepuff&quot;
+#&gt;  [11] &quot;Slytherin&quot;  &quot;Gryffindor&quot; &quot;Slytherin&quot;  &quot;Hufflepuff&quot; &quot;Ravenclaw&quot; 
+#&gt;  [16] &quot;Slytherin&quot;  &quot;Gryffindor&quot; &quot;Gryffindor&quot; &quot;Ravenclaw&quot;  &quot;Gryffindor&quot;
+#&gt;  [21] &quot;Slytherin&quot;  &quot;Ravenclaw&quot;  &quot;Gryffindor&quot; &quot;Ravenclaw&quot;  &quot;Ravenclaw&quot; 
+#&gt;  [26] &quot;Hufflepuff&quot; &quot;Slytherin&quot;  &quot;Hufflepuff&quot; &quot;Slytherin&quot;  &quot;Hufflepuff&quot;
+#&gt;  [31] &quot;Slytherin&quot;  &quot;Hufflepuff&quot; &quot;Gryffindor&quot; &quot;Hufflepuff&quot; &quot;Ravenclaw&quot; 
+#&gt;  [36] &quot;Gryffindor&quot; &quot;Hufflepuff&quot; &quot;Hufflepuff&quot; &quot;Ravenclaw&quot;  &quot;Gryffindor&quot;
+#&gt;  [41] &quot;Slytherin&quot;  &quot;Ravenclaw&quot;  &quot;Hufflepuff&quot; &quot;Slytherin&quot;  &quot;Hufflepuff&quot;
+#&gt;  [46] &quot;Slytherin&quot;  &quot;Ravenclaw&quot;  &quot;Slytherin&quot;  &quot;Gryffindor&quot; &quot;Gryffindor&quot;
+#&gt;  [51] &quot;Hufflepuff&quot; &quot;Gryffindor&quot; &quot;Hufflepuff&quot; &quot;Ravenclaw&quot;  &quot;Ravenclaw&quot; 
+#&gt;  [56] &quot;Hufflepuff&quot; &quot;Hufflepuff&quot; &quot;Hufflepuff&quot; &quot;Hufflepuff&quot; &quot;Gryffindor&quot;
+#&gt;  [61] &quot;Slytherin&quot;  &quot;Slytherin&quot;  &quot;Hufflepuff&quot; &quot;Gryffindor&quot; &quot;Ravenclaw&quot; 
+#&gt;  [66] &quot;Slytherin&quot;  &quot;Slytherin&quot;  &quot;Gryffindor&quot; &quot;Ravenclaw&quot;  &quot;Slytherin&quot; 
+#&gt;  [71] &quot;Slytherin&quot;  &quot;Gryffindor&quot; &quot;Hufflepuff&quot; &quot;Ravenclaw&quot;  &quot;Hufflepuff&quot;
+#&gt;  [76] &quot;Hufflepuff&quot; &quot;Hufflepuff&quot; &quot;Slytherin&quot;  &quot;Hufflepuff&quot; &quot;Slytherin&quot; 
+#&gt;  [81] &quot;Hufflepuff&quot; &quot;Ravenclaw&quot;  &quot;Hufflepuff&quot; &quot;Ravenclaw&quot;  &quot;Gryffindor&quot;
+#&gt;  [86] &quot;Ravenclaw&quot;  &quot;Gryffindor&quot; &quot;Hufflepuff&quot; &quot;Hufflepuff&quot; &quot;Ravenclaw&quot; 
+#&gt;  [91] &quot;Hufflepuff&quot; &quot;Gryffindor&quot; &quot;Hufflepuff&quot; &quot;Gryffindor&quot; &quot;Ravenclaw&quot; 
+#&gt;  [96] &quot;Ravenclaw&quot;  &quot;Ravenclaw&quot;  &quot;Ravenclaw&quot;  &quot;Slytherin&quot;  &quot;Gryffindor&quot;
+...</code></pre>
+<p>So…what are your chances of being assigned in Slytherin?</p>
+<p>Go ahead. I’ll wait.</p>
+<p>Alright, alright. I get it. There’s little chance you can make sense of the data above. Why? Because it’s not presented in a format that our brains can really make sense of. The “bandwidth” of our brains is limited. We can only really make sense of a small amount of information at a time.</p>
+<p>Fortunately for us, there’s a way to “chunk” this information, as they say, or to condense the thousands upon thousands of datapoints into only a few.</p>
+<p>Well, more specifically, only four:</p>
+<p>Hufflepuff
+Gryffindor
+Ravenclaw
+Slytherin</p>
+<p>We know there’s only four unique values one can be assigned to. It that’s the case, wouldn’t it make more sense to just count the number of times each person was assigned into each house?</p>
+<p>So let’s do that:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">House</th>
+<th align="right">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Gryffindor</td>
+<td align="right">231</td>
+</tr>
+<tr class="even">
+<td align="left">Hufflepuff</td>
+<td align="right">278</td>
+</tr>
+<tr class="odd">
+<td align="left">Ravenclaw</td>
+<td align="right">228</td>
+</tr>
+<tr class="even">
+<td align="left">Slytherin</td>
+<td align="right">247</td>
+</tr>
+</tbody>
+</table>
+<p>Notice we added a column called “Frequency,” which is just an overly sophisticated way of saying “count.” So, according to the table, there were 231 students assigned to Gryffindor, 278 students assigned to Hufflepuff, 228 assigned to Ravenclaw, and 247 students assigned to Slytherin.</p>
+<div id="column-sorting" class="section level3">
+<h3>Column Sorting</h3>
+<p>If you’re unusually quirky, and perhaps a little OCD, you may have noticed the rows of the table are sorted alphabetically. But we could just as easily rearrange it alphabetically by the last letter:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">House</th>
+<th align="right">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Hufflepuff</td>
+<td align="right">278</td>
+</tr>
+<tr class="even">
+<td align="left">Slytherin</td>
+<td align="right">247</td>
+</tr>
+<tr class="odd">
+<td align="left">Gryffindor</td>
+<td align="right">231</td>
+</tr>
+<tr class="even">
+<td align="left">Ravenclaw</td>
+<td align="right">228</td>
+</tr>
+</tbody>
+</table>
+<p>Or, perhaps, by which house you prefer to be in:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">House</th>
+<th align="right">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ravenclaw</td>
+<td align="right">228</td>
+</tr>
+<tr class="even">
+<td align="left">Hufflepuff</td>
+<td align="right">278</td>
+</tr>
+<tr class="odd">
+<td align="left">Gryffindor</td>
+<td align="right">231</td>
+</tr>
+<tr class="even">
+<td align="left">Slytherin</td>
+<td align="right">247</td>
+</tr>
+</tbody>
+</table>
+<p>You could really sort it any way you want, amiright? Why? Because there’s nothing inherent in the ordering of the houses. They are not ordinal variables.</p>
+<p>By default, I tend to sort things by frequency.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">House</th>
+<th align="right">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ravenclaw</td>
+<td align="right">228</td>
+</tr>
+<tr class="even">
+<td align="left">Gryffindor</td>
+<td align="right">231</td>
+</tr>
+<tr class="odd">
+<td align="left">Slytherin</td>
+<td align="right">247</td>
+</tr>
+<tr class="even">
+<td align="left">Hufflepuff</td>
+<td align="right">278</td>
+</tr>
+</tbody>
+</table>
+<p>Why do I sort by frequency? The table above tells you two pieces of information at a glance: the number in each house, and which houses have the most students. Yeah, they’re kinda the same information, but the above table organizes it better so it’s more readily apparent.</p>
+<p>Make sense?</p>
+<p>What you just did, without even knowing it, was summarize the univariate distribution of the dataset. WTF is a distribution?</p>
+<p>A distribution of a variable is a description of which values occur and how frequently they occur.</p>
+<p>In this case, the variable is house placement. The table is a description of how frequently each value occurs. Or, the table is a description of the distribution of house assignment.</p>
+</div>
+<div id="visualizing" class="section level3">
+<h3>Visualizing</h3>
+<p>Remember, our first line of defense against the statistical dark arts is visualization. How then can we visualize these data? There are two bad ways to visualize it: line charts and pie charts. And there’s one good way: a bar chart.</p>
+<div class="rmdrant">
+<p>
+The term ‘data’ is plural. So, it’s not appropriate to say, “My data is funky.” You would say, “My data <em>are</em> funky.”
+</p>
+<p>
+So, yeah, don’t mess that up.
+</p>
+</div>
+<div id="line-chart" class="section level4">
+<h4>Line Chart</h4>
+<p>Let’s look at that table again, shall we?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">House</th>
+<th align="right">Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ravenclaw</td>
+<td align="right">228</td>
+</tr>
+<tr class="even">
+<td align="left">Gryffindor</td>
+<td align="right">231</td>
+</tr>
+<tr class="odd">
+<td align="left">Slytherin</td>
+<td align="right">247</td>
+</tr>
+<tr class="even">
+<td align="left">Hufflepuff</td>
+<td align="right">278</td>
+</tr>
+</tbody>
+</table>
+<p>We have two columns. Each column kinda sorta represents a variable. It’s kinda sorta because frequency isn’t really a variable. Frequency is a characteristic of the variables. But we can “cheat” and pretend frequency is a variable.</p>
+<p>So…how do we visualize two variables?</p>
+<p>Hmmm. Remember back in algebra we learned about Cartesian graphs? Lemme jog your memory:</p>
+<p><img src="stats-jedi_files/figure-html/uni_cartesian-1.png" width="672" /></p>
+<p>Look familiar?</p>
+<p>A Cartesian graph is a way to display numbers in such a way that we can visualize patterns.</p>
+<p>But, remember, we kinda sorta have two variables: house assignment and frequency. So let’s label the X-axis (i.e., the line that’s horizontal) with one variable, and label the Y axis (i.e., the line that’s vertical) with the other. How’s that sound?</p>
+<p><img src="stats-jedi_files/figure-html/uni_freq-1.png" width="672" /></p>
+<p>Now we can add what we call the “tick” marks and labels, which show possible values our variables can take:</p>
+<p><img src="stats-jedi_files/figure-html/uni_tick-1.png" width="672" /></p>
+<p>Now that we have our tick locations, let’s go ahead and put dots for every value in our table</p>
+<p><img src="stats-jedi_files/figure-html/uni_dots-1.png" width="480" /></p>
+<p>A line graph simply connects the dots:</p>
+<p><img src="stats-jedi_files/figure-html/uni_line-1.png" width="480" /></p>
+<p>This is what we call a line chart. (Any ideas why? Don’t think too hard.)</p>
+<p>Line charts simply represent the frequency of each category as a dot, then connect the dots with lines. Or, we could just as easily remove the dots:</p>
+<p><img src="stats-jedi_files/figure-html/uni_nodots-1.png" width="480" /></p>
+<p>Remember how I said line graphs are kind of useless? Why, you ask? Our brains are wired to interpret lines a certain way. When we view a line, we see it as a trend (Zacks &amp; Tversky, 1999).</p>
+<p>Allow me to demonstrate. Let’s say we sorted by frequency, then displayed that as a line graph:</p>
+<p><img src="stats-jedi_files/figure-html/uni_linegraph-1.png" width="480" /></p>
+<p>Your mind will automatically tell you there’s a downward trend.</p>
+<p>Trend of what? What is trending downward? Frequency. Frequency of what? Um…er…House’ness?</p>
+<p>Because the points are connected, your brain wants to understand what is trending. But nothing’s trending because the order is arbitrary.</p>
+<p>So, in short, it’s a bad idea to use lines to display data when the x-axis contains categorical information.</p>
+<p>Before we move on to the next section, let’s pause for a joke. This is a long one, but it’s pretty funny.</p>
+<div class="rmdjoke">
+<p>
+A man once went to buy a horse. He found the horse he liked, and the man decided to take the horse for a ride. He tried to get the horse to go, but it wouldn’t budge.
+</p>
+<p>
+“How do I get it to move?” the man asked.
+</p>
+<p>
+“That’s a unique horse. She responds to verbal commands, not nudges. To get her to walk, just say ‘Whoa.’”
+</p>
+<p>
+With a “whoa,” the horse began moving.
+</p>
+<p>
+“How do I get her to trot?” the man asked.
+</p>
+<p>
+“Say, ‘whoa, whoa,’” said the trainer.
+</p>
+<p>
+“And to gallop?”
+</p>
+<p>
+“You say, ‘Hallelujah.’”
+</p>
+<p>
+“And how do you get it to stop?” asked the man.
+</p>
+<p>
+“You say amen.”
+</p>
+<p>
+“Huh,” said the man. “That’s odd. I’ll take her.”
+</p>
+<p>
+So the man buys this unique horse. That evening he takes it for a stroll. With a “whoa,” the horse starts to trot, but the horse sees a snake and veers far off the path toward a cliff.
+</p>
+<p>
+Struggling to gain control, the man says, “Whoa whoa whoa!”
+</p>
+<p>
+Oops.
+</p>
+<p>
+The horse goes faster, right toward the edge of the cliff!
+</p>
+<p>
+But the man can’t remember how to make the horse stop. They near the edge of the cliff and the man says an audible prayer. “Dear God. Spare my life. Stop this horse! Amen.”
+</p>
+<p>
+The horse suddenly stops, only inches from the edge of the cliff.
+</p>
+<p>
+The man let’s out a massive breath. “Hallelujah.”
+</p>
+</div>
+</div>
+<div id="pie-charts" class="section level4">
+<h4>Pie Charts</h4>
+<p>Ya’ll ever seen a pie chart? Pie charts are bad. Why? Well…pie charts make me hungry. And I’m trying to lose weight.</p>
+<p>So that’s bad.</p>
+<p>But there’s a more scientific reason to not like pie charts. Suppose we have the pie chart shown below, which lists which sort of cake people prefer. (I know. it’s cruel to show cake preferences in pie charts).</p>
+<p><img src="stats-jedi_files/figure-html/uni_pie-1.png" width="672" /></p>
+<p>Now, riddle me this: proportionally, how many more people prefer chocolate than carrot cake? (Honestly, who was the genius who thought putting vegetables in a cake was a good idea? What’s next? Okra cake???) Is it 4x? 8x?</p>
+<p>Now let’s show that same information as a bar chart:</p>
+<p><img src="stats-jedi_files/figure-html/uni_bar-1.png" width="672" /></p>
+<p>Now what do you say? More than likely, your brain will choose a much larger number as a bar chart than as a pie chart. Why? It turns out our brains have a really hard time detecting differences in area, but are really good at determining differences in height <span class="citation">(<a href="#ref-Cleveland1984" role="doc-biblioref">Cleveland and McGill 1984</a>)</span>.</p>
+<p>It gets even worse when trying to tell differences in volume. I once purchased mulch for my garden from the Home Depot. As I stood before a tower of mulch, I mentally tried to estimate how much mulch I’d need to buy. The bags looked tiny! So I bought 50.</p>
+<p>And ended up returning 40 of them.</p>
+<p>Why? Because (a) I didn’t plan ahead, and (b) our brains are not wired to estimate volume or area. But we’re pretty good at estimating height. So, we should probably avoid barcharts if we’re interested in comparing two slices of the pie.</p>
+</div>
+<div id="bar-charts" class="section level4">
+<h4>Bar Charts</h4>
+<p>In review, line charts suck because they deceive you into believing there’s some sort of underlying trend. Pie charts suck because our brains aren’t very good at deciphering differences in area. Bar charts are the best tool we have to visualize differences in frequencies between category values.</p>
+<p>With that, here’s the house dataset displayed as a barchart, both sorted alphabetically (left) and by frequency (right). I prefer to sort by frequency unless there’s an inherent order, that way I can tell at a glance which groups have the highest frequency.</p>
+<p><img src="stats-jedi_files/figure-html/uni_freqbar-1.png" width="672" /></p>
+</div>
+</div>
+<div id="interpreting-bar-charts" class="section level3">
+<h3>Interpreting Bar Charts</h3>
+<p>Alright. Now that we’ve settled on the best approach to visualizing categorical variables. What now? First, it’s important to ask yourself the following question: what does this MEAN???</p>
+<p>I suppose it seems kinda obvious. Of course you should be asking yourself what a graph means. But I have seen too many students look at a graph and make statistical statements (e.g., Group A has 2x more people in it than Group B), but do so without considering what it means about our own data (e.g., if the groups were randomly assigned, the groups should be equal!).</p>
+<p>Remember, a graph is a visual representation of something in the real world, whether it be political affiliation, Hogwarts class, gender, or age. Let’s not pretend the graph itself is the thing we’re studying. We’re studying characteristics. We’re studying data. We’re studying a research question. So don’t turn off that part of your brain that is interested in substantive conclusions when looking at a graph.</p>
+<p>Sometimes the data just don’t make sense. I once had a colleague who was studying sexual behavior among adolescents. One 15-year-old was asked how many sexual partners they had had.</p>
+<p>1,000.</p>
+<p>Right. You wish.</p>
+<p>Like in this example, sometimes the numbers we have are not to be believed.</p>
+<p>There are, as I see it, four potential data problems to look out for:</p>
+<ol style="list-style-type: decimal">
+<li>redundant labels</li>
+<li>unknown labels</li>
+<li>swapped labels</li>
+<li>small sample sizes.</li>
+</ol>
+<p>There may be more, but I’m too tired to think of more.</p>
+<p>So, let’s talk about what all these mean and give some examples.</p>
+<div id="redundant-labels" class="section level4">
+<h4>Redundant Labels</h4>
+<p>Let’s say you’re interested in studying social dynamics among high school students. To do so, you solicit their class standing (Freshman, Sophomore, Junion, and Senior). But, partway through your study, you switch from Qualtrics to Surveymonkey. After all, nothing screams “professional researcher” like a Surveymonkey link. (Bonus professional points if you send it from a personalize email, like naughtyhottie78@hotmail.com).</p>
+<p>No big deal, right? You can merge your data from Surveymonkey to Qualtrics. So you do. Except you forget to capitalize Freshman. If we plotted a barchart of our data, we might see something like this:</p>
+<div class="figure"><span style="display:block;" id="fig:redundant"></span>
+<img src="stats-jedi_files/figure-html/redundant-1.png" alt="Illustration of 'Redundant Labels,' a problem to look out for when plotting bar plots." width="672" />
+<p class="caption">
+Figure 1: Illustration of ‘Redundant Labels,’ a problem to look out for when plotting bar plots.
+</p>
+</div>
+<p>Obviously, aside from a nasty case of improper capitalization, there’s no difference between “Freshman” and “freshman,” and we should treat the two as the same. When you plot it, it gives you a chance to see it quite readily.</p>
+</div>
+<div id="unknownunexpected-labels" class="section level4">
+<h4>Unknown/Unexpected Labels</h4>
+<p>Alright, story time. Although, I must issue a trigger-warning: If you believe in Santa Clause, don’t read this.</p>
+<p>I have a sister that is 11 years younger than me. Before she was old enough to realize Santa Clause didn’t feel safe enough to visit the slums in which we lived, my parents assigned me and my younger brother to wrap the gifts from “Santa.”</p>
+<p>Never trust devious teenagers with the task of wrapping presents from Santa.</p>
+<p>Honestly though, it started as an honest mistake. My little brother, instead of writing, “From Santa,” accidentally wrote, “From Satan.” He (and I) thought it was <em>hilarious</em>. So, of course, we labeled the remaining presents as coming from Satan. She was too young to read, so there was no harm in it. (Although, she did go through a Marilyn Manson stage, and did try to eviscerate our pet poodle).</p>
+<p>Anyway, let’s say we collected all the presents and wanted to make sure everybody was giving their fair share. If we were to plot the distribution of presents we might see this:</p>
+<div class="figure"><span style="display:block;" id="fig:unknownlabels"></span>
+<img src="stats-jedi_files/figure-html/unknownlabels-1.png" alt="Illustration of 'Unknown Labels,' a problem to look out for when plotting bar plots." width="672" />
+<p class="caption">
+Figure 2: Illustration of ‘Unknown Labels,’ a problem to look out for when plotting bar plots.
+</p>
+</div>
+<p><em>Note: My family calls me “Dusty” instead of Dustin. If you try to call me Dusty, I’ll likely punch you in the face. Only my mommy can call me that.</em></p>
+<p>What would you conclude? Well, it sure loooks like Santa’s not pulling his own weight! He’s even being beat by Satan!</p>
+<p>(Luckily for me, they don’t even notice how I’ve evaded gift-giving).</p>
+<p>Again, what does this MEAN? We have an unknown person in our family, Satan. (Actually, the way I behaved as a kid, it wouldn’t surprise me if he was a member of our family). Sometimes this happens with our data. Maybe there’s a computer glitch that alters the label of a group. Or maybe you do a find and replace in excel, looking for cuss words, and accidentally replace the group “Shellshocked” with “Sheckshocked.” (Special thanks to <a href="https://www.thewordfinder.com/wordlist/words-containing-word-hell/">thewordfinder.com</a> for the assistance with that joke). Or, perhaps, you have participants writing their answers, rather than giving them a forced-choice question.</p>
+<p>It could happen and plots readily reveal when they do.</p>
+</div>
+<div id="swapped-labels" class="section level4">
+<h4>Swapped Labels</h4>
+<p>Let’s say we’re trying to make a name for ourselves in the very lucrative “flatter yourself with personality tests on Facebook” business. To do so, you design a questionnaire that boasts it will find your celebrity soul-mate. All the users have to do is answer a series of questions:</p>
+<ol style="list-style-type: decimal">
+<li>Do you sing in the shower?</li>
+<li>Have you ever passed gas in a quiet library?</li>
+<li>Have you been on a blind date with a non-human?</li>
+<li>Do you believe in ghosts?</li>
+<li>Can you grow horns from your forehead?</li>
+</ol>
+<p>Let’s say you, being the empirically-centered, money-hungry social networking mogul that you are, decide to plot the number of times people endorsed each item:</p>
+<p><img src="stats-jedi_files/figure-html/uni_singing-1.png" width="672" /></p>
+<p>(BTW, this is still a bar graph; I just flipped the X/Y axis to make it easier to see the labels for each question).</p>
+<p>Again, what does this MEAN?</p>
+<p>Notice anything odd here?</p>
+<p>Do you find it odd that so many people have reported they can grow horns from their forehead? Do you also find it odd how so few people sing in the shower? Clearly, these data are not to be believed. (Although I certainly think it’s possible, if not probable that most people have passed gas in a quiet library…speaking from personal experience).</p>
+<p>In all likelyhood, our labels got mixed up somehow. And, this isn’t out of the ordinary. For many survey software, like Qualtrics, it’s quite common for labels to be converted into numbers. For example, “Do you sing in the shower” might be coded as 1, “Do you believe in ghosts” as 2, etc. When we then download our Qualtrics survey, we have to manually conver those numbers back into labels.</p>
+<p>Yeah, that’s just asking for human error, including swapping labels. Barplots can often help identify this problem, especially if we expect large differences in the number of people in each category. (It also helps when we can easily judge how likely certain values are within each category, as in this example).</p>
+</div>
+<div id="small-sample-sizes" class="section level4">
+<h4>Small Sample Sizes</h4>
+<p>Bargraphs can help us identify problems with our data: we might see redundant labels (e.g., male, female, trans, and men), unknown/unexpected labels (e.g., male, female, trans, and pokemon), and swapped labels (e.g., more males than females in a survey of young mothers). Any of these issues require us to correct the dataset before we begin to analyze it.</p>
+<p>Other times, however, we see things that are funky, but not because the values are wrong, but because they might present problems with how we analyze data. One of these issues is small sample sizes.</p>
+<p>We’ll go into more detail in later chapters about why small samples sizes can be a problem for data analysis. For now, think of it this way: the smaller our sample size, the more uncertain we should be about any statistic we compute.</p>
+<p>Let’s look at an example.</p>
+<p><img src="stats-jedi_files/figure-html/uni_smalln-1.png" width="672" /></p>
+<p>In our sample, we only have 6 Flat Earthers. Whatever information we want to compute about Flat Earthers is probably going to be pretty uncertain because we have such a small sample size.</p>
+</div>
+<div id="practice" class="section level4">
+<h4>Practice</h4>
+<p>For this practice, we’re going to be looking at the paranormal dataset. This is a dataset I simulated, but it’s more fun to pretend it’s a real dataset.</p>
+<p>This dataset comes from a sample of 394 individuals who attended comic con. The dataset contains self-reported answers to the questions listed in the table below.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Variable Name</th>
+<th align="left">Variable Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>conviction</td>
+<td align="left">Degree of conviction that the paranormal exist (likert scale)</td>
+</tr>
+<tr class="even">
+<td>fear</td>
+<td align="left">Self-reported rating of fear of being abducted by aliens</td>
+</tr>
+<tr class="odd">
+<td>time</td>
+<td align="left">How many minutes they spend a month investigating the paranormal</td>
+</tr>
+<tr class="even">
+<td>kidnapped</td>
+<td align="left">Self-report of whether they’ve been kidnapped by aliens</td>
+</tr>
+<tr class="odd">
+<td>experiences.type</td>
+<td align="left">Type of paranormal experiences they’ve had</td>
+</tr>
+<tr class="even">
+<td>income</td>
+<td align="left">Self-reported annual income</td>
+</tr>
+<tr class="odd">
+<td>blogs</td>
+<td align="left">Number of paranormal blogs they follow</td>
+</tr>
+<tr class="even">
+<td>age</td>
+<td align="left">Age (in years)</td>
+</tr>
+<tr class="odd">
+<td>gender</td>
+<td align="left">Gender</td>
+</tr>
+<tr class="even">
+<td>political</td>
+<td align="left">Political affiliation</td>
+</tr>
+</tbody>
+</table>
+<p>Each of these variables has at least <em>one</em> problem. Can you spot them?</p>
+</div>
+<div id="visualizing-bar-charts-in-r" class="section level4">
+<h4>Visualizing Bar Charts in R</h4>
+<p>It’s finally time to start doing some analyses! Yay yay yay yay!!!!</p>
+<p>I’m not going to go into details about R. I’m going to assume you have a working understanding. If you don’t, be sure to follow my <a href="https://youtube.com/playlist?list=PL8F480DgtpW_YohihrrQ_dvCtrs_pINBa">YouTube playlist on getting started with R</a>.</p>
+<p>First, let’s go ahead and load the flexplot package:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="univariate-distributions.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the flexplot package</span></span>
+<span id="cb2-2"><a href="univariate-distributions.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span></code></pre></div>
+<p>…then take a peak at that dataset.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="univariate-distributions.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load the paranormal dataset</span></span>
+<span id="cb3-2"><a href="univariate-distributions.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;paranormal&quot;</span>)</span>
+<span id="cb3-3"><a href="univariate-distributions.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># take a peak at the first six rows of the dataset</span></span>
+<span id="cb3-4"><a href="univariate-distributions.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(paranormal)</span></code></pre></div>
+<pre><code>#&gt;   conviction fear time kidnapped experiences.type  income blogs age gender
+#&gt; 1         44    6  126       yes    eerie feeling 75-100K     1  27 female
+#&gt; 2         14    0  167       yes        saw ghost 75-100K     1  56 female
+#&gt; 3         21    0  110       yes        saw ghost  50-75K     0  25   male
+#&gt; 4         45    1  138       yes        saw ghost   &gt;100K     1  27 female
+#&gt; 5         36    7   35       yes        saw ghost  50-75K     2  43 female
+#&gt; 6         22    0   15       yes        saw ghost  50-75K     0  56  women
+#&gt;     political
+#&gt; 1    democrat
+#&gt; 2 independent
+#&gt; 3    democrat
+#&gt; 4    democrat
+#&gt; 5    democrat
+#&gt; 6    democrat</code></pre>
+<p>You could also peak at a dataset by using <code>view(paranormal)</code> or <code>str(paranormal)</code>. Whatever suits your fancy.</p>
+<p>To create a barchart in R, it’s actually quite simple. You simply pick a categorical variable (say, kidnapped) and use the following code:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="univariate-distributions.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(kidnapped<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>paranormal)</span></code></pre></div>
+<p>This is basically telling flexplot to visualize the univariate distribution of kidnapped, and <code>data=paranormal</code> is telling flexplot where to look for the variable kidnapped.</p>
+<p>There is one problem you may run into. Remember how I said flexplot sorts the axis according to sample size? What if you have an ordinal variable? For example, let’s look at the variable called “coc.rec” in the nsduh dataset. This variable asks people how recently they had cocaine. When we visualize that, the categories are out of order:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="univariate-distributions.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(coc.rec<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>nsduh)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/rUnorderedCategories-1.png" width="672" /></p>
+<p>WTF is Flexplot doing? Well, it assumes the order of the cocaine frequency variable doesn’t matter. Often (if not usually) the order of categorical variables doesn’t matter (e.g., eye color). If the order doesn’t matter, then Flexplot tries to be helpful and sort the axis by the sample size.</p>
+<p>Alas, that’s not helpful here because order <em>does</em> matter. So, we need to tell R that coc.rec is an ordinal variable. Here’s how we do it:</p>
+<p>Whoa, that’s a lot of code. Lemme break it down. We’re creating a new variable called coc.rec. (Or, we’re replacing the old value of coc.rec with the new value). To do so, we’re converting the old value of coc.rec to a factor, then we’re telling what levels the factor can take (never, past 30 days, &gt;30 &lt; 12 mo, etc.), then we’re telling R this order is important! It will assume whatever order you gave it is the right order when you say <code>ordered=T</code>.</p>
+<p>It’s important to specify the labels in the right order. Then, once we say <code>ordered=T</code>, R will remember that “never” comes before “past 30 days,” and so on.</p>
+<p>Now when we visualize it, we’re good!</p>
+<p><img src="stats-jedi_files/figure-html/rOrderedCategories-1.png" width="672" /></p>
+<p>Now, your task is to visualize <code>experiences.type</code>, <code>income</code>, <code>gender</code>, and <code>political</code>. One of those variables will require the nominal-to-ordinal conversion.</p>
+<p>What problems can you find?</p>
+</div>
+<div id="visualizing-bar-charts-in-jasp" class="section level4">
+<h4>Visualizing Bar Charts in JASP</h4>
+<p>I’m not going to go into detail here about how to install JASP and load the Visual Modeling module. If you need help, be sure to <a href="https://youtube.com/playlist?list=PL8F480DgtpW8pF6MmNaEUR95n1RmIgasP">visit my YouTube playlist on getting started with JASP</a>.</p>
+<p>Once you have JASP up and running, be sure to load the <a href="http://http://quantpsych.net/data/paranormal.csv">paranormal dataset</a>.</p>
+<p>After that, click on the “Visual Modeling” button, then click on “Flexplot”:</p>
+<p><img src="images/screenshots/images%202020-12-02%20at%2010.22.16%20AM.png" width="102" style="display: block; margin: auto;" /></p>
+<p>Now, to visualize a barchart, simply move one of the variables in the left box into the “Dependent Variable” box:</p>
+<p><img src="images/screenshots/images%202020-12-02%20at%2010.23.47%20AM.png" width="310" style="display: block; margin: auto;" /></p>
+<p>Flexplot will then automatically generate a barchart.</p>
+<p>There is one problem you may run into. Remember how I said flexplot sorts the axis according to sample size? What if you have an ordinal variable? For example, let’s look at the variable called “coc.rec” in the nsduh dataset. This variable asks people how recently they had cocaine. When we visualize that, the categories are out of order:</p>
+<p><img src="stats-jedi_files/figure-html/jaspUnorderedCategories-1.png" width="672" /></p>
+<p>To fix it, we need to tell R that coc.rec is an ordinal variable. Unfortunately, it’s really annoying to do that in JASP. But, I did <a href="https://youtu.be/QAiETl83arI">create a video on my YouTube channel</a> that teaches you how to convert a nominal variable to an ordinal variable. Once we do that, our plot should look like this:</p>
+<p><img src="stats-jedi_files/figure-html/jaspOrderedCategories-1.png" width="672" /></p>
+<p>Now when we visualize it, we’re good!</p>
+<p>So, your task is to visualize <code>experiences.type</code>, <code>income</code>, <code>gender</code>, and <code>political</code>. What problems can you find?</p>
+</div>
+</div>
+</div>
+<div id="numeric-variables" class="section level2">
+<h2>Numeric Variables</h2>
+<p>Whew! We made it through all that.</p>
+<p>Now what?</p>
+<p>Well, we’ve only covered categorical variables. There’s still pesky numeric variables to consider. Fortunately, it’s not all that much different from barcharts. Except for one minor complication…</p>
+<p>But before we get to that, let me tell you about my lifestyle. I am an introvert at my core. I would <em>really</em> rather spend some time in the woods than at a party. For that reason, I live on four wooded acres of land. I have only one neighbor, and I could walk outside in my underwear without worrying about what people might think.</p>
+<p>That’s how I like it.</p>
+<p>Because I live nestled in the forest, one of my regular chores is cleaning up dead trees. It’s not terribly safe to walk around the woods when you have a standing dead tree. (We call those “widow makers”). So, every fall, I search out the trees that never leafed during the spring, power on the chainsaw, and pray I don’t get killed. (Seriously, cutting down trees is extremely dangerous!)</p>
+<p>Once the tree is felled, I cut of the branches, section those branches into firewood-sized pieces, then “buck” the tree itself (which is fancy talk for cutting it into firewood-length sections). Next I split the wood. At this point, I have <em>lots</em> of wood to sort through.</p>
+<p>You see, some parts of the tree are great for burning quick and hot. We call that kindling. Some parts burn really slow, but they take a <em>lot</em> of energy to get going. These are the logs. Then, there’s the stuff in between, meant to assist the first in transitioning from kindling to slow-burning logs.</p>
+<p>So, now that I’ve felled an entire tree, I now have to sort the wood into three “bins.” Now, I don’t actually have bins I use, I simply put them in orderly piles. But let’s pretend I have bins.
+How do I decide which pieces of wood go in which bins? If the stick is smaller than two fingers, it goes in the kindling bin. If it’s thicker than two fingers, but no thicker than my forearm, it goes in the medium pile. The rest goes in the log pile.</p>
+<p>I happen to use three bins. Some people like to use five bins. Maybe a five-bin setup might have something like this:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Criteria</th>
+<th align="center">Bin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 1 finger’s width</td>
+<td align="center">Tinder</td>
+</tr>
+<tr class="even">
+<td>1-2 finger’s width</td>
+<td align="center">Kindling</td>
+</tr>
+<tr class="odd">
+<td>2 fingers - 1 forearm width</td>
+<td align="center">Small Logs</td>
+</tr>
+<tr class="even">
+<td>1-2 forearm’s width</td>
+<td align="center">Medium Logs</td>
+</tr>
+<tr class="odd">
+<td>2+ forearm widths</td>
+<td align="center">Large Logs</td>
+</tr>
+</tbody>
+</table>
+<p>Or, you can do an 8-bin setup, or a 10-bin, etc. No matter how many bins you have, you’re not actually changing the amount of wood; instead, you’re changing how it’s sorted.</p>
+<p>Sometimes, I have so many logs in one bin, I have to pull out another bin. Then I finally stack the bins into different piles, with the bins sorted according to size, kinda like the image below. Here, the forklift is stacking bins of the same size. When you do this, you can tell, at a glance, which number has the highest frequency. In the image below, the bin labeled “4” has the most, while #1 has the least.</p>
+<p><img src="drawings/forklift_numbers.jpg" alt="drawing"/></p>
+<p>So, what does this have to do with stats? Not much. I’m just looking out the window and noticing there’s a standing dead tree right next to my house.</p>
+<p>Except, there is one thing…</p>
+<p>Let’s say we wanted to do a barcharts of the following numeric variable:</p>
+<pre><code>#&gt; 10 11 12 14 15 16 17 18 19 20</code></pre>
+<p>We could, as we did before, make a barchart of these data:</p>
+<p><img src="stats-jedi_files/figure-html/uni_bartwo-1.png" width="672" />
+Well that’s a boring plot!</p>
+<p>Why?</p>
+<p>The problem we’re having is that every person in our dataset has a unique value. It wasn’t like our Harry Potter house dataset. This is very common with numeric variables. Even if each person doesn’t have a unique score, there will be very few duplicates, so a barchart doesn’t help us.</p>
+<p>What we do instead is “bin” our data. See how I did that there? Just like I do with my firewood, we can choose to categorize our data into “bins.” For this dataset, we might decide to use three bins:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Criteria</th>
+<th align="center">Bin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt; 13</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td>13-17</td>
+<td align="center">15</td>
+</tr>
+<tr class="odd">
+<td>&gt;17</td>
+<td align="center">18</td>
+</tr>
+</tbody>
+</table>
+<p>Now let’s look at the “barchart” of the data:</p>
+<p><img src="stats-jedi_files/figure-html/uni_flexbar-1.png" width="672" /></p>
+<p>We could also choose to do 4 bins:</p>
+<p><img src="stats-jedi_files/figure-html/uni_3-1.png" width="672" /></p>
+<p>When we visualize numeric variables, we do something very similar to this. But we don’t call them “barcharts.” Instead, we call them “histograms.”</p>
+<p>There are two key differences between barcharts and histograms:</p>
+<ol style="list-style-type: decimal">
+<li>Histograms “bin” the values of the variables.</li>
+<li>Histograms have no spaces between categories, while barcharts do.</li>
+</ol>
+<p>Let’s look at the second point for a minutes. I’m going to plot two variables, side by side. The first variable is categorical (therapy.type). The second is numeric (weight.loss).</p>
+<p><img src="stats-jedi_files/figure-html/uni_4-1.png" width="672" /></p>
+<p>Notice there are gaps between categories on the X-axis for the categorical variable, but not for the numeric variable.</p>
+<p>Why?</p>
+<p>This is just a visual reminder about the type of data we’re working with. Putting a gap between categories is a visual reminder we’re dealing with discrete data; there’s nothing in between beh and cog, for example. On the other hand, for the histogram, there are no gaps. This too is a visual reminder that we are dealing with numeric data and, that the placement of our bins is arbitrary.</p>
+<div id="what-to-look-out-for" class="section level3">
+<h3>What to Look Out For</h3>
+<p>Just like with barcharts, there are certain things we’re looking for when visualizing histograms. What we <em>want</em> is a bell-curve or normal distribution. What we don’t want is skewness, zero-inflated-ness, and outliers.</p>
+<p>Let’s go ahead and unscramble these ideas, shall we?</p>
+<p>Actually, let’s pause for a joke. This is getting long and I’m getting bored.</p>
+<div class="rmdjoke">
+<p>
+What did the left eye say to the right eye?
+</p>
+<p>
+Between us, something smells.
+</p>
+</div>
+<div id="normal-bell-curved-distributions" class="section level4">
+<h4>Normal (Bell-Curved) Distributions</h4>
+<p>Let’s start by looking at a normal distribution:</p>
+<p><img src="stats-jedi_files/figure-html/uni_5-1.png" width="672" /></p>
+<p>What is this telling us? It’s saying that the most frequent height is around 66 inches (because the height of the bars around 66 inches is highest…no pun intended). Also, the further you get from the center (66 inches), the fewer and fewer people there are that have these scores. That makes sense. It’s very common to see people who are 66 inches (5’6”). It’s very rare to see someone 79 inches (6’5”), or someone 58 inches (4’10”).</p>
+<p>Notice how that plot looks like one of those big bells they used to ring to summon the fire department? That’s why we call it the “bell-curved” distribution. This is what we want. Why?</p>
+<p>Well, bells are cool. So there’s that.</p>
+<p>But also for other reasons. The answer(s) are a bit technical and we’ll get into that more in later chapters. But let’s put it this way: when we have normal distributions, it’s easy to guess what someone’s score is; we simply guess they have a score in the center.</p>
+<p>It turns out, nature likes normal distributions…</p>
+<ul>
+<li>Most people are of average intelligence. Very few people are geniuses, and very few people are dumber than rocks.</li>
+<li>Most adults have hearts that weigh around 325 grams. Very few adults would survive a heart weighing less than 200 grams or more than 600 grams.</li>
+<li>Most people’s resting heart rate is around 70 beats per minute. Very few people’s hearts average less than 50 and very few people’s average more than 120.</li>
+</ul>
+<p>Why does nature like normal distributions? Because of natural selection, mostly. If one’s heart is too big, it expends a lot of energy to pump and will be more likely to lead to heart attacks. If one’s heart is too small, it’s going to struggle to keep up with the body’s need for renewed blood.</p>
+<p>Statisticians are like nature. We like normal distributions too. It just makes things easier down the road.</p>
+</div>
+<div id="outliers" class="section level4">
+<h4>Outliers</h4>
+<p>What is an outlier? Well, it’s a datapoint that is way out there. Let’s take a look, shall we?</p>
+<p><img src="stats-jedi_files/figure-html/ch4_outliers-1.png" width="672" /></p>
+<p>Here we have a histogram showing the weight loss of 300 people. Most people loose around 5 pounds, but some gain weight, and some lose more. But there’s one person who lost 130 pounds! (For my non-American friends, that’s 59 kg). Notice how that oulier really squishes the other values together in order to fit that outlier in the same graph. That’s quite common (and quite annoying).</p>
+<p>What do we do when we encounter an outlier? First, we ask ourselves if that particular value is possible. So, is it possible someone lost 130 pounds? Yes! It’s very rare, but it has been known to happen.</p>
+<p>But sometimes we have situations where a value isn’t possible. Look at the graph below.</p>
+<p><img src="stats-jedi_files/figure-html/ch4_outliers2-1.png" width="672" /></p>
+<p>Once again, we see that the histogram has squished the <span class="math inline">\(X\)</span> axis, making it hard to see the distribution of scores around 0.</p>
+<p>What’s going on here? Well, we have someone reporting -999 sexual partners. Is that possible? How do you unsex a person?</p>
+<p>It doesn’t make sense. This is clearly a situation where the outlier doesn’t make sense. Some stats programs (e.g., SPSS) require you to put a symbol in for missing data. One common “symbol” people use is the number -999. That’s all well and good if the computer knows -999 means missing. But if you try to then export your data into R, you’re going to have some problems because R’s going to treat it as a number!</p>
+<p>Outliers can really screw things up because they tend to pull statistical estimates away from the most frequent scores. Fortunately, outliers become less and less of a problem as the sample size increases.</p>
+</div>
+<div id="skewness" class="section level4">
+<h4>Skewness</h4>
+<p>Not all distributions are normal. Some are not quite symmetric. Let’s look at an example:</p>
+<p><img src="stats-jedi_files/figure-html/uni_7-1.png" width="672" /></p>
+<p>What’s happening here? Here we have the distribution of reaction time. There’s a very clear lower limit; you can’t react <em>before</em> the stimuli occurs. (Unless you’re psychic. If so, props to you.) However, there’s no upper limit to reaction time. Just ask Flash the Sloth:</p>
+<center>
+<img src="images/sloth.jpg" width="320" />
+</center>
+<p>In these situations, we expect the distribution to <em>not</em> be symmetrical. Instead, we say it’s “positively skewed.”</p>
+<p>But we can also have negative skew:</p>
+<p><img src="stats-jedi_files/figure-html/uni_8-1.png" width="672" /></p>
+<p>In the previous example, we had a lower limit we could not pass (reaction time &lt; 0). Here we have an upper limit; humans can only live so long.</p>
+<p>One way to think about skewness is that it’s a <em>pattern</em> of having outliers. Remember, an outlier means we have one (or maybe a handful) of scores that are way beyond the center of the distribution. Skewness means we have more than just a handful of scores; instead, we have a pattern of scores that are outliers, and those become less likely as we go further from the center of the data.</p>
+<p>BTW, I’m embarrassed to admit, but I often get positive and negative skew mixed up. The easiest way I’ve found to keep them straight is to remember that the <em>tail</em> points in the direction of the skewness. So, if the tail points toward the negative side, it’s negative skew. If the tail points toward the positive side, it’s positive skew.</p>
+<p>We’ll talk more about why skewness is a problem throughout this book. For now, I’ll refer to my previous reason: for skewed distributions, it’s harder to guess what someone’s score is going to be.</p>
+</div>
+<div id="zero-inflated-data" class="section level4">
+<h4>Zero-Inflated Data</h4>
+<p>Zero-inflated data are just an extreme case of skewed data. It turns out, the graphs we saw earlier with positive/negative skew actually aren’t that big of a deal. Most models we use can deal with them.</p>
+<p>They cannot deal with zero-inflated data.</p>
+<p>Let’s look at an example, shall we?</p>
+<p><img src="stats-jedi_files/figure-html/ch4_zeroinf-1.png" width="672" /></p>
+<p>What does this graph tell us? It suggests most people haven’t ever cooked a brisket. (That’s a shame really. Smoked brisket is to die for). Fewer have cooked one. Even fewer have cooked two, and so on. We call this “zero-inflated.”</p>
+<p>Why?</p>
+<p>Because the score of zero is inflated. (Did it really need to be said?)</p>
+<p>Lots of things we might study are zero-inflated, including:</p>
+<ul>
+<li>Number of times someone’s been incarcertated</li>
+<li>Number of times someone’s been in a serious car accident</li>
+<li>Number of times one has kissed Brad Pitt</li>
+</ul>
+<p>Notice what’s in common among all these? They’re all counts!</p>
+<p>When we have count data, it’s not uncommon to also have zero-inflated data.</p>
+<p>When the underlying distribution is zero-inflated, the traditional statistics most people use will have <em>serious</em> problems.</p>
+<p>So, if you have zero-inflated data, you can’t use traditional statistics.</p>
+</div>
+<div id="bimodal-data" class="section level4">
+<h4>Bimodal data</h4>
+<p>Ah, bimodality. Odd distribution, you are.</p>
+<p>What does it look like? Glad you asked…</p>
+<p><img src="stats-jedi_files/figure-html/ch4_bimod-1.png" width="672" />
+There’s something called the “mode” which we’ll talk about next chapter. Long story short, the mode is the most frequently occurring score. In the image above, we seem to have one primary mode (around 35) and a secondary around 185.</p>
+<p>Why is that a problem? Eventually, we’re going to try to ask an important question…</p>
+<p>“What is the most likely score?”</p>
+<p>Bimodal distributions make that hard to answer. Is it the average? Well, no, because the average often falls between the two modes, where there aren’t that many scores. Likewise for the median. (We’ll talk more about the mean and median in the next chapter).</p>
+<p>Maybe you want to say it’s the score with the highest frequency (which, again, we call the mode). Well, you have two modes. So which one do you choose?</p>
+<p>Yeah, so things get a little hairy.</p>
+<p>But, this isn’t always a problem, as we’ll find out later. Bimodal data <em>can</em> screw things up, but it’s not a guarantee. What bimodal data <em>should</em> do is cause you to wonder.</p>
+<p>Why?</p>
+<p>Because nature doesn’t often work that way. Often, when we see bimodal data, that simply means we have accidentally merged two underlying variables into one (like males and females in our example). Maybe this is on purpose. Maybe not. Either way, it ought to cause us to think a bit about what this means.</p>
+<p>Capische?</p>
+</div>
+<div id="visualizing-histograms-in-r" class="section level4">
+<h4>Visualizing Histograms in R</h4>
+<p>Ready for more analyses? I know you are!!!!!</p>
+<p>By the way, Flexplot is pretty amazing. Remember how we visualized barcharts?</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="univariate-distributions.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(y<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>d)</span></code></pre></div>
+<p>Well, we visualize histograms using the exact same code.</p>
+<p>“Well then,” you might say, “how do I tell flexplot to visualize a histogram instead of a barchart?”</p>
+<p>You don’t. Flexplot is smart enough to figure that out for you.</p>
+<p>But, alas, sometimes flexplot makes a mistake. Sometimes when you import a numeric variable into R, it converts it to a nominal variable. For example, let’s say we create a dataset like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="univariate-distributions.html#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">some_numbers =</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>))</span></code></pre></div>
+<p>Notice that we’re surrounding the numbers within quotes. That’s a fancy way of telling R these numbers are actually <em>nominal</em>. You wouldn’t actually do that, but sometimes it happens. For example, let’s say you have a dataset like this:</p>
+<table>
+<caption><span id="tab:unitab11">Table 1: </span>Example data where R will convert a numeric variable to a character. Sometimes R treats numbers as nominal variables. This often happens when you import a column with nominal values (in this case ‘missing’) intermixed with numeric values.</caption>
+<thead>
+<tr class="header">
+<th align="left">numbers</th>
+<th align="left">categories</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">B</td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="left">A</td>
+</tr>
+<tr class="odd">
+<td align="left">missing</td>
+<td align="left">E</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">D</td>
+</tr>
+<tr class="odd">
+<td align="left">12</td>
+<td align="left">C</td>
+</tr>
+</tbody>
+</table>
+<p>Notice the “numbers” column has a bunch of numbers, but it also has a value labeled “missing.” R will notice that and assume <em>all</em> the values should be nominal. Oops!</p>
+<p>Fixing it is easy. We just have to convert it to numeric. But, to be safe, we ought to convert it to a character (nominal) variable first.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="univariate-distributions.html#cb10-1" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>number <span class="ot">=</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(data<span class="sc">$</span>number))</span></code></pre></div>
+<p>Your job is to plot the numeric variables in the paranomal dataset. Be forewarned, one of those variables is treated as a nominal variable!</p>
+<div class="rmdnote">
+<h1 id="factors-versus-character-variables">
+Factors versus character variables
+</h1>
+<p>
+In an earlier chapter, I mentioned the difference between nominal and ordinal variables. R actually has three different categorical variable types: character, factor, and ordered factor. The only difference between a character and factor is that a character can be <em>any</em> value, whereas a factor can only take on certain values. For example, if you have only three groups (e.g., Treatment A, Treatment B, and Control), you might want to specify that variable is a factor. This prevents certain values from being added to the dataset. For example, if you tried to add a row to the dataset called “TRT A,” R will throw an error.
+</p>
+<p>
+Why is this important? Most of the time, it isn’t. But, underlying a factor, R assigns a <em>number</em>. So, if we have Treatment A, Treatment B, and Control, R actually treats the value Treatment A as 1, Treatment B as 2, and control as 3. (Well, technically, it will probably call Control 1 because it sorts the variable values alphabetically).
+</p>
+<p>
+So, let’s say we have a variable called <code>var</code> and its values are <code>“11,” “12,” and “13”</code>. If we used the R code <code>var = as.numeric(var)</code>, it would return <code>1, 2, 3</code>. Why? Because it’s going to return the underlying number behind the factor. That’s why you have to first convert it to a character, <em>then</em> convert it to a number.
+</p>
+<p>
+It’s kind of annoying, actually.
+</p>
+</div>
+</div>
+<div id="visualizing-histograms-in-jasp" class="section level4">
+<h4>Visualizing Histograms in JASP</h4>
+<p>Ready for more analyses? I know you are!!!!!</p>
+<p>By the way, Flexplot is pretty amazing. Remember how we visualized barcharts by just moving categorical variables into the Dependent Variable box?</p>
+<p><img src="images/screenshots/images%202020-12-17%20at%2011.05.10%20AM.png" width="433" /></p>
+<p>Well, we visualize histograms the same way</p>
+<p>“Well then,” you might say, “how do I tell flexplot to visualize a histogram instead of a barchart?”</p>
+<p>You don’t. Flexplot is smart enough to figure that out for you.</p>
+<p>But, alas, sometimes flexplot makes a mistake. Sometimes when you import a numeric variable into R, it converts it to a nominal variable. For example, in the paranormal dataset, notice jasp treats the “blog” variable as an ordinal variable:</p>
+<p><img src="images/screenshots/images%202020-12-17%20at%2011.11.17%20AM.png" width="154" /></p>
+<p>This is actually quite common in JASP for two reasons. First, any variable that has less than 20 unique values, JASP will automatically treat as a nominal variable. Second, if any values for a column are nominal, JASP will treat the entire column as nominal. For example, let’s say you have a dataset like this:</p>
+<table>
+<caption>(#tab:uni_jasp23)Example data where R will convert a numeric variable to a character. Sometimes R treats numbers as nominal variables. This often happens when you import a column with nominal values (in this case ‘missing’) intermixed with numeric values.</caption>
+<thead>
+<tr class="header">
+<th align="left">numbers</th>
+<th align="left">categories</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">14</td>
+<td align="left">A</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">E</td>
+</tr>
+<tr class="odd">
+<td align="left">missing</td>
+<td align="left">D</td>
+</tr>
+<tr class="even">
+<td align="left">17</td>
+<td align="left">B</td>
+</tr>
+<tr class="odd">
+<td align="left">20</td>
+<td align="left">C</td>
+</tr>
+</tbody>
+</table>
+<p>Notice the “numbers” column has a bunch of numbers, but it also has a value labeled “missing.” JASP will notice that and assume <em>all</em> the values should be nominal. Oops!</p>
+<p>Fixing it is easy. In either case, we just have to convert it to numeric. We do this by clicking the symbol next to the variable:</p>
+<p><img src="images/screenshots/images%202020-12-17%20at%2011.15.46%20AM.png" width="80" /></p>
+<p>Then we select “Scale.” Easy peasy!</p>
+<p>Your job is to plot the numeric variables in the paranomal dataset. Be forewarned, one of those variables is treated as a nominal variable!</p>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Cleveland1984" class="csl-entry">
+Cleveland, William S, and Robert McGill. 1984. <span>“<span class="nocase">Graphical perception: Theory, experimentation, and application to the development of graphical methods</span>.”</span> <em>Journal of the American Statistical Association</em> 79 (387): 531–54.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="measurement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="univariate-estimates.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-UnivariateDistributions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
