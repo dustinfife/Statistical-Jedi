@@ -583,7 +583,7 @@
         {
             "DOI": "10.1111/rssa.12378",
             "ISSN": "1467985X",
-            "URL": "http://arxiv.org/abs/1709.01449",
+            "URL": "https://arxiv.org/abs/1709.01449",
             "abstract": "Bayesian data analysis is about more than just computing a posterior distribution, and Bayesian visualization is about more than trace plots of Markov chains. Practical Bayesian data analysis, like all data analysis, is an iterative process of model building, inference, model checking and evaluation, and model expansion. Visualization is helpful in each of these stages of the Bayesian workflow and it is indispensable when drawing inferences from the types of modern, high dimensional models that are used by applied researchers.",
             "author": [
                 {
@@ -2137,7 +2137,7 @@
         {
             "DOI": "10.18637/jss.v085.i04",
             "ISSN": "15487660",
-            "URL": "http://arxiv.org/abs/1511.05604",
+            "URL": "https://arxiv.org/abs/1511.05604",
             "abstract": "This article describes blavaan, an R package for estimating Bayesian structural equation models (SEMs) via JAGS and for summarizing the results. It also describes a novel parameter expansion approach for estimating specific types of models with residual covariances, which facilitates estimation of these models in JAGS. The methodology and software are intended to provide users with a general means of estimating Bayesian SEMs, both classical and novel, in a straightforward fashion. Users can estimate Bayesian versions of classical SEMs with lavaan syntax, they can obtain state-of-the-art Bayesian fit measures associated with the models, and they can export JAGS code to modify the SEMs as desired. These features and more are illustrated by example, and the parameter expansion approach is explained in detail.",
             "author": [
                 {
@@ -3121,7 +3121,7 @@
         {
             "DOI": "10.1214/10-STS330",
             "ISSN": "08834237",
-            "URL": "http://arxiv.org/abs/1101.0891",
+            "URL": "https://arxiv.org/abs/1101.0891",
             "abstract": "Statistical modeling is a powerful tool for developing and testing theories by way of causal explanation, prediction, and description. In many disciplines there is near-exclusive use of statistical modeling for causal explanation and the assumption that models with high explanatory power are inherently of high predictive power. Conflation between explanation and prediction is common, yet the distinction must be understood for progressing scientific knowledge. While this distinction has been recognized in the philosophy of science, the statistical literature lacks a thorough discussion of the many differences that arise in the process of modeling for an explanatory versus a predictive goal. The purpose of this article is to clarify the distinction between explanatory and predictive modeling, to discuss its sources, and to reveal the practical implications of the distinction to each step in the modeling process.  Institute of Mathematical Statistics, 2010.",
             "author": [
                 {
@@ -3294,7 +3294,7 @@
         {
             "DOI": "10.1098/rsos.160384",
             "ISSN": "20545703",
-            "URL": "http://arxiv.org/abs/1605.09511",
+            "URL": "https://arxiv.org/abs/1605.09511",
             "abstract": "Poor research design and data analysis encourage false-positive findings. Such poor methods persist despite perennial calls for improvement, suggesting that they result from something more than just misunderstanding. The persistence of poor methods results partly from incentives that favour them, leading to the natural selection of bad science. This dynamic requires no conscious strategizing—no deliberate cheating nor loafing— by scientists, only that publication is a principal factor for career advancement. Some normative methods of analysis have almost certainly been selected to further publication instead of discovery. In order to improve the culture of science, a shift must be made away from correcting misunderstandings and towards rewarding understanding. We support this argument with empirical evidence and computational modelling. We first present a 60-year meta-analysis of statistical power in the behavioural sciences and show that power has not improved despite repeated demonstrations of the necessity of increasing power. To demonstrate the logical consequences of structural incentives, we then present a dynamic model of scientific communities in which competing laboratories investigate novel or previously published hypotheses using culturally transmitted research methods. As in the real world, successful labs produce more ‘progeny,’ such that their methods are more often copied and their students are more likely to start labs of their own. Selection for high output leads to poorer methods and increasingly high false discovery rates. We additionally show that replication slows but does not stop the process of methodological deterioration. Improving the quality of research requires change at the institutional level.",
             "annote": "This was an excellent article that used an evolutionary model to describe how incentivizing researchers for publications will necessarily lead to bad science. Unfortunately, they didn’t offer any real concrete suggestions about how to fix things, other than saying institutional pressures need to change.",
             "author": [
@@ -6396,7 +6396,7 @@
         {
             "DOI": "10.7554/eLife.21451",
             "ISSN": "2050084X",
-            "URL": "http://arxiv.org/abs/1609.00494",
+            "URL": "https://arxiv.org/abs/1609.00494",
             "abstract": "Science is facing a “replication crisis” in which many experimental findings cannot be replicated and are likely to be false. Does this imply that many scientific facts are false as well? To find out, we explore the process by which a claim becomes fact. We model the community’s confidence in a claim as a Markov process with successive published results shifting the degree of belief. Publication bias in favor of positive findings influences the distribution of published results. We find that unless a sufficient fraction of negative results are published, false claims frequently can become canonized as fact. Data-dredging, p-hacking, and similar behaviors exacerbate the problem. Should negative results become easier to publish as a claim approaches acceptance as a fact, however, true and false claims would be more readily distinguished. To the degree that the model reflects the real world, there may be serious concerns about the validity of purported facts in some disciplines.",
             "author": [
                 {
@@ -6663,7 +6663,7 @@
         {
             "DOI": "10.3758/s13423-015-0913-5",
             "ISSN": "15315320",
-            "URL": "http://arxiv.org/abs/1412.3416",
+            "URL": "https://arxiv.org/abs/1412.3416",
             "abstract": "Many psychologists do not realize that exploratory use of the popular multiway analysis of variance harbors a multiple-comparison problem. In the case of two factors, three separate null hypotheses are subject to test (i.e., two main effects and one interaction). Consequently, the probability of at least one Type I error (if all null hypotheses are true) is 14 % rather than 5 %, if the three tests are independent. We explain the multiple-comparison problem and demonstrate that researchers almost never correct for it. To mitigate the problem, we describe four remedies: the omnibus F test, control of the familywise error rate, control of the false discovery rate, and preregistration of the hypotheses.",
             "author": [
                 {
@@ -8002,7 +8002,7 @@
         {
             "DOI": "10.1002/sim.8086",
             "ISSN": "10970258",
-            "URL": "http://arxiv.org/abs/1712.03198",
+            "URL": "https://arxiv.org/abs/1712.03198",
             "abstract": "Simulation studies are computer experiments that involve creating data by pseudo-random sampling. A key strength of simulation studies is the ability to understand the behavior of statistical methods because some “truth” (usually some parameter/s of interest) is known from the process of generating the data. This allows us to consider properties of methods, such as bias. While widely used, simulation studies are often poorly designed, analyzed, and reported. This tutorial outlines the rationale for using simulation studies and offers guidance for design, execution, analysis, reporting, and presentation. In particular, this tutorial provides a structured approach for planning and reporting simulation studies, which involves defining aims, data-generating mechanisms, estimands, methods, and performance measures (“ADEMP”); coherent terminology for simulation studies; guidance on coding simulation studies; a critical discussion of key performance measures and their estimation; guidance on structuring tabular and graphical presentation of results; and new graphical presentations. With a view to describing recent practice, we review 100 articles taken from Volume 34 of Statistics in Medicine, which included at least one simulation study and identify areas for improvement.",
             "author": [
                 {
@@ -14480,7 +14480,7 @@
             "ISBN": "9788578110796",
             "ISSN": "15457885",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "We have empirically assessed the distribution of published effect sizes and estimated power by extracting more than 100,000 statistical records from about 10,000 cognitive neuroscience and psychology papers published during the past 5 years. The reported median effect size was d=0.93 (inter-quartile range: 0.64-1.46) for nominally statistically significant results and d=0.24 (0.11-0.42) for non-significant results. Median power to detect small, medium and large effects was 0.12, 0.44 and 0.73, reflecting no improvement through the past half-century. Power was lowest for cognitive neuroscience journals. 14% of papers reported some statistically significant results, although the respective F statistic and degrees of freedom proved that these were non-significant; p value errors positively correlated with journal impact factors. False report probability is likely to exceed 50% for the whole literature. In light of our findings the recently reported low replication success in psychology is realistic and worse performance may be expected for cognitive neuroscience.",
             "author": [
                 {
@@ -14764,7 +14764,7 @@
             "ISBN": "9788578110796",
             "ISSN": "1082989X",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "applicability for this approach.",
             "author": [
                 {
@@ -14989,7 +14989,7 @@
             "ISBN": "0022-0957 (Print)$\\backslash$n0022-0957 (Linking)",
             "ISSN": "1467985X",
             "PMID": "10340204",
-            "URL": "http://arxiv.org/abs/1508.05453",
+            "URL": "https://arxiv.org/abs/1508.05453",
             "abstract": "We argue that the words \"objectivity\" and \"subjectivity\" in statistics discourse are used in a mostly unhelpful way, and we propose to replace each of them with broader collections of attributes, with objectivity replaced by transparency, consensus, impartiality, and correspondence to observable reality, and subjectivity replaced by awareness of multiple perspectives and context dependence. The advantage of these reformulations is that the replacement terms do not oppose each other. Instead of debating over whether a given statistical method is subjective or objective (or normatively debating the relative merits of subjectivity and objectivity in statistical practice), we can recognize desirable attributes such as transparency and acknowledgment of multiple perspectives as complementary goals. We demonstrate the implications of our proposal with recent applied examples from pharmacology, election polling, and socioeconomic stratification.",
             "author": [
                 {
@@ -17293,7 +17293,7 @@
             "ISBN": "1531-5320 (Electronic) 1069-9384 (Linking)",
             "ISSN": "15315320",
             "PMID": "28685272",
-            "URL": "http://arxiv.org/abs/1109.6471",
+            "URL": "https://arxiv.org/abs/1109.6471",
             "abstract": "Bayesian hypothesis testing presents an attractive alternative to p value hypothesis testing. Part I of this series outlined several advantages of Bayesian hypothesis testing, including the ability to quantify evidence and the ability to monitor and update this evidence as data come in, without the need to know the intention with which the data were collected. Despite these and other practical advantages, Bayesian hypothesis tests are still reported relatively rarely. An important impediment to the widespread adoption of Bayesian tests is arguably the lack of user-friendly software for the run-of-the-mill statistical problems that confront psychologists for the analysis of almost every experiment: the t-test, ANOVA, correlation, regression, and contingency tables. In Part II of this series we introduce JASP (http://www.jasp-stats.org), an open-source, cross-platform, user-friendly graphical software package that allows users to carry out Bayesian hypothesis tests for standard statistical problems. JASP is based in part on the Bayesian analyses implemented in Morey and Rouder’s BayesFactor package for R. Armed with JASP, the practical advantages of Bayesian hypothesis testing are only a mouse click away.",
             "author": [
                 {
@@ -18214,7 +18214,7 @@
             "ISBN": "0003-1305 1537-2731",
             "ISSN": "15372731",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/1011.1669",
+            "URL": "https://arxiv.org/abs/1011.1669",
             "abstract": "Additional reading: http://www.nature.com/news/statisticians-issue-warning-over-misuse-of-p-values-1.19503",
             "author": [
                 {
@@ -18532,7 +18532,7 @@
             "DOI": "10.1073/pnas.1711786114",
             "ISSN": "0027-8424",
             "PMID": "29531095",
-            "URL": "http://arxiv.org/abs/1710.01946",
+            "URL": "https://arxiv.org/abs/1710.01946",
             "abstract": "It appears paradoxical that science is producing outstanding new results and theories at a rapid rate at the same time that researchers are identifying serious problems in the practice of science that cause many reports to be irreproducible and invalid. Certainly, the practice of science needs to be improved, and scientists are now pursuing this goal. However, in this perspective, we argue that this seeming paradox is not new, has always been part of the way science works, and likely will remain so. We first introduce the paradox. We then review a wide range of challenges that appear to make scientific success difficult. Next, we describe the factors that make science work—in the past, present, and pre-sumably also in the future. We then suggest that remedies for the present practice of science need to be applied selectively so as not to slow progress and illustrate with a few examples. We conclude with arguments that communication of science needs to empha-size not just problems but the enormous successes and benefits that science has brought and is now bringing to all elements of modern society. scientometrics | science history | scientific progress | reproducibility | science communication",
             "author": [
                 {
@@ -19762,7 +19762,7 @@
                 ]
             },
             "page": "862-868",
-            "title": "The {Assessment} of {Reliability} {Under} {Range} {Restriction}: {A} {Comparison} of \\backslash${}alpha, ømega,$ and {Test}-retest {Reliability} for {Dichotomous} {Data}",
+            "title": "The {Assessment} of {Reliability} {Under} {Range} {Restriction}: {A} {Comparison} of \\backslash${alpha, ømega,$ and {Test}-retest {Reliability} for {Dichotomous} {Data}",
             "type": "article-journal",
             "volume": "72"
         },
@@ -21001,7 +21001,7 @@
             "ISBN": "1099-0720",
             "ISSN": "10990720",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Many charts and graphs do not convey information effectively. This article develops a way of analysing the information in charts and graphs that reveals the design flaws in the display. The analytic scheme requires isolating four types of constituents in a display, and specifying their structure and interrelations at a syntactic, semantic, and pragmatic level of analysis. As the description is constructed, one checks for violations of ‘acceptability principles’, which are derived from facts about human visual information processing and from an analysis of the nature of symbols. Violations of these principles reveal the source of potential difficulties in using a display.",
             "author": [
                 {
@@ -21026,7 +21026,7 @@
             "ISBN": "1069-9384",
             "ISSN": "15315320",
             "PMID": "22837590",
-            "URL": "http://arxiv.org/abs/1105.1486",
+            "URL": "https://arxiv.org/abs/1105.1486",
             "abstract": "Traditional Null Hypothesis Testing procedures are poorly adapted to theory testing. The methodology can mislead researchers in several ways, including: (a) a lack of power can result in an erroneous rejection of the theory; (b) the focus on directionality (ordinal tests) rather than more precise quantitative predictions limits the information gained; and (c) the misuse of probability values to indicate effect size. An alternative approach is proposed which involves employing the theory to generate explicit effect size predictions that are compared to the effect size estimates and related confidence intervals to test the theoretical predictions. This procedure is illustrated employing the Transtheoretical Model. Data from a sample (N = 3,967) of smokers from a large New England HMO system were used to test the model. There were a total of 15 predictions evaluated, each involving the relation between Stage of Change and one of the other 15 Transtheoretical Model variables. For each variable, omega-squared and the related confidence interval were calculated and compared to the predicted effect sizes. Eleven of the 15 predictions were confirmed, providing support for the theoretical model. Quantitative predictions represent a much more direct, informative, and strong test of a theory than the traditional test of significance.",
             "author": [
                 {
@@ -22125,7 +22125,7 @@
             "DOI": "10.1073/pnas.1711786114",
             "ISSN": "0027-8424",
             "PMID": "29531095",
-            "URL": "http://arxiv.org/abs/1710.01946",
+            "URL": "https://arxiv.org/abs/1710.01946",
             "abstract": "It appears paradoxical that science is producing outstanding new results and theories at a rapid rate at the same time that researchers are identifying serious problems in the practice of science that cause many reports to be irreproducible and invalid. Certainly, the practice of science needs to be improved, and scientists are now pursuing this goal. However, in this perspective, we argue that this seeming paradox is not new, has always been part of the way science works, and likely will remain so. We first introduce the paradox. We then review a wide range of challenges that appear to make scientific success difficult. Next, we describe the factors that make science work—in the past, present, and pre-sumably also in the future. We then suggest that remedies for the present practice of science need to be applied selectively so as not to slow progress and illustrate with a few examples. We conclude with arguments that communication of science needs to empha-size not just problems but the enormous successes and benefits that science has brought and is now bringing to all elements of modern society. scientometrics | science history | scientific progress | reproducibility | science communication",
             "author": [
                 {
@@ -22317,7 +22317,7 @@
             "ISBN": "10944281",
             "ISSN": "10944281",
             "PMID": "147",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "In management research, theory testing confronts a paradox described by Meehl in which designing studies with greater methodological rigor puts theories at less risk of falsification. This paradox exists because most management theories make predictions that are merely directional, such as stating that two variables will be positively or negatively related. As methodological rigor increases, the probability that an estimated effect will differ from zero likewise increases, and the likelihood of finding support for a directional prediction boils down to a coin toss. This paradox can be resolved by developing theories with greater precision, such that their propositions predict something more meaningful than deviations from zero. This article evaluates the precision of theories in management research, offers guidelines for making theories more precise, and discusses ways to overcome barriers to the pursuit of theoretical precision.",
             "annote": "Such a good article. Gives 5(?) ways to increase the precision of hypotheses and argues for more meaningful metrics, embracing negative results, and spending more time refining theories. So good.",
             "author": [
@@ -22620,7 +22620,7 @@
             "ISBN": "1548-7091",
             "ISSN": "15487105",
             "PMID": "25719825",
-            "URL": "http://arxiv.org/abs/NIHMS150003",
+            "URL": "https://arxiv.org/abs/NIHMS150003",
             "abstract": "The reliability and reproducibility of science are under scrutiny. However, a major cause of this lack of repeatability is not being considered: the wide sample-to-sample variability in the P value. We explain why P is fickle to discourage the ill-informed practice of interpreting analyses based predominantly on this statistic.",
             "author": [
                 {
@@ -22740,8 +22740,8 @@
             "DOI": "10.1038/ncomms16024",
             "ISBN": "9781557528209",
             "ISSN": "20411723",
-            "URL": "http://arxiv.org/abs/1612.08072",
-            "abstract": "The inherently nonlinear interaction between light and motion in cavity optomechanical systems has experimentally been studied in a linearized description in all except highly driven cases. Here we demonstrate a nanoscale optomechanical system, in which the interaction between light and motion is so large (single-photon cooperativity $C_0 ^3$) that thermal motion induces optical frequency fluctuations larger than the intrinsic optical linewidth. The system thereby operates in a fully nonlinear regime, which pronouncedly impacts the optical response, displacement measurement, and radiation pressure backaction. Experiments show that the apparent optical linewidth is dominated by thermomechanically-induced frequency fluctuations over a wide temperature range. The nonlinearity induces breakdown of the traditional cavity optomechanical descriptions of thermal displacement measurements. Moreover, we explore how radiation pressure backaction in this regime affects the mechanical fluctuation spectra. The strong nonlinearity could serve as a resource to control the motional state of the resonator. We demonstrate the use of highly nonlinear transduction to perform a quadratic measurement of position while suppressing linear transduction.",
+            "URL": "https://arxiv.org/abs/1612.08072",
+            "abstract": "The inherently nonlinear interaction between light and motion in cavity optomechanical systems has experimentally been studied in a linearized description in all except highly driven cases. Here we demonstrate a nanoscale optomechanical system, in which the interaction between light and motion is so large (single-photon cooperativity $C_0 3$) that thermal motion induces optical frequency fluctuations larger than the intrinsic optical linewidth. The system thereby operates in a fully nonlinear regime, which pronouncedly impacts the optical response, displacement measurement, and radiation pressure backaction. Experiments show that the apparent optical linewidth is dominated by thermomechanically-induced frequency fluctuations over a wide temperature range. The nonlinearity induces breakdown of the traditional cavity optomechanical descriptions of thermal displacement measurements. Moreover, we explore how radiation pressure backaction in this regime affects the mechanical fluctuation spectra. The strong nonlinearity could serve as a resource to control the motional state of the resonator. We demonstrate the use of highly nonlinear transduction to perform a quadratic measurement of position while suppressing linear transduction.",
             "author": [
                 {
                     "family": "Gelman",
@@ -22912,7 +22912,7 @@
             "ISBN": "0007-0912$\\backslash$r1471-6771",
             "ISSN": "17456924",
             "PMID": "28727961",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "The past several years have been a time for soul searching in psychology, as we have gradually come to grips with the reality that some of our cherished findings are less robust than we had assumed. Nevertheless, the replication crisis highlights the operation of psychological science at its best, as it reflects our growing humility. At the same time, institutional variables, especially the growing emphasis on external funding as an expectation or de facto requirement for faculty tenure and promotion, pose largely unappreciated hazards for psychological science, including (a) incentives for engaging in questionable research practices, (b) a single-minded focus on programmatic research, (c) intellectual hyperspecialization, (d) disincentives for conducting direct replications, (e) stifling of creativity and intellectual risk taking, (f) researchers promising more than they can deliver, and (g) diminished time for thinking deeply. Preregistration should assist with (a), but will do little about (b) through ...",
             "annote": "Big take home message: grants have a few major negative effects on research and not all of them are fixed by pre registration.",
             "author": [
@@ -23187,7 +23187,7 @@
             "ISBN": "1476-4687 (Electronic)$\\backslash$r0028-0836 (Linking)",
             "ISSN": "00280836",
             "PMID": "24482835",
-            "URL": "http://arxiv.org/abs/NIHMS150003",
+            "URL": "https://arxiv.org/abs/NIHMS150003",
             "abstract": "Francis S. Collins and Lawrence A. Tabak discuss initiatives that the US National Institutes of Health is exploring to restore the self-correcting nature of preclinical research.",
             "author": [
                 {
@@ -23656,7 +23656,7 @@
             "ISBN": "0269-994X",
             "ISSN": "0269994X",
             "PMID": "22837590",
-            "URL": "http://arxiv.org/abs/1105.1486",
+            "URL": "https://arxiv.org/abs/1105.1486",
             "abstract": "Traditional Null Hypothesis Testing procedures are poorly adapted to theory testing. The methodology can mislead researchers in several ways, including: (a) a lack of power can result in an erroneous rejection of the theory; (b) the focus on directionality (ordinal tests) rather than more precise quantitative predictions limits the information gained; and (c) the misuse of probability values to indicate effect size. An alternative approach is proposed which involves employing the theory to generate explicit effect size predictions that are compared to the effect size estimates and related confidence intervals to test the theoretical predictions. This procedure is illustrated employing the Transtheoretical Model. Data from a sample (N = 3,967) of smokers from a large New England HMO system were used to test the model. There were a total of 15 predictions evaluated, each involving the relation between Stage of Change and one of the other 15 Transtheoretical Model variables. For each variable, omega-squared and the related confidence interval were calculated and compared to the predicted effect sizes. Eleven of the 15 predictions were confirmed, providing support for the theoretical model. Quantitative predictions represent a much more direct, informative, and strong test of a theory than the traditional test of significance.",
             "author": [
                 {
@@ -24308,7 +24308,7 @@
             "ISBN": "1545-7885 (Electronic) 1544-9173 (Linking)",
             "ISSN": "15457885",
             "PMID": "25768323",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "A focus on novel, confirmatory, and statistically significant results leads to substantial bias in the scientific literature. One type of bias, known as “p-hacking,” occurs when researchers collect or select data or statistical analyses until nonsignificant results become significant. Here, we use text-mining to demonstrate that p-hacking is widespread throughout science. We then illustrate how one can test for p-hacking when performing a meta-analysis and show that, while p-hacking is probably common, its effect seems to be weak relative to the real effect sizes beingmeasured. This result suggests that p-hacking probably does not drastically alter scientific consensuses drawn from meta-analyses.",
             "author": [
                 {
@@ -25172,7 +25172,7 @@
             "ISBN": "1011770956",
             "ISSN": "14679280",
             "PMID": "22508865",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Cases of clear scientific misconduct have received significant media attention recently, but less flagrantly questionable research practices may be more prevalent and, ultimately, more damaging to the academic enterprise. Using an anonymous elicitation format supplemented by incentives for honest reporting, we surveyed over 2,000 psychologists about their involvement in questionable research practices. The impact of truth-telling incentives on self-admissions of questionable research practices was positive, and this impact was greater for practices that respondents judged to be less defensible. Combining three different estimation methods, we found that the percentage of respondents who have engaged in questionable practices was surprisingly high. This finding suggests that some questionable practices may constitute the prevailing research norm.",
             "author": [
                 {
@@ -25306,7 +25306,7 @@
             "ISBN": "1082-989X (Print) 1082-989X (Linking)",
             "ISSN": "1082989X",
             "PMID": "16392993",
-            "URL": "http://arxiv.org/abs/sui",
+            "URL": "https://arxiv.org/abs/sui",
             "abstract": "A broad theory of scientific method is sketched that has particular relevance for the behavioral sciences. This theory of method assembles a complex of specific strategies and methods that are used in the detection of empirical phenomena and the subsequent construction of explanatory theories. A characterization of the nature of phenomena is given, and the process of their detection is briefly described in terms of a multistage model of data analysis. The construction of explanatory theories is shown to involve their generation through abductive, or explanatory, reasoning, their development through analogical modeling, and their fuller appraisal in terms of judgments of the best of competing explanations. The nature and limits of this theory of method are discussed in the light of relevant developments in scientific methodology.",
             "author": [
                 {
@@ -25486,7 +25486,7 @@
             "ISBN": "9788578110796",
             "ISSN": "15315320",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Predicting the binding mode of flexible polypeptides to proteins is an important task that falls outside the domain of applicability of most small molecule and protein−protein docking tools. Here, we test the small molecule flexible ligand docking program Glide on a set of 19 non-\\alpha-helical peptides and systematically improve pose prediction accuracy by enhancing Glide sampling for flexible polypeptides. In addition, scoring of the poses was improved by post-processing with physics-based implicit solvent MM- GBSA calculations. Using the best RMSD among the top 10 scoring poses as a metric, the success rate (RMSD ≤ 2.0 Å for the interface backbone atoms) increased from 21% with default Glide SP settings to 58% with the enhanced peptide sampling and scoring protocol in the case of redocking to the native protein structure. This approaches the accuracy of the recently developed Rosetta FlexPepDock method (63% success for these 19 peptides) while being over 100 times faster. Cross-docking was performed for a subset of cases where an unbound receptor structure was available, and in that case, 40% of peptides were docked successfully. We analyze the results and find that the optimized polypeptide protocol is most accurate for extended peptides of limited size and number of formal charges, defining a domain of applicability for this approach.",
             "author": [
                 {
@@ -25588,7 +25588,7 @@
             "ISBN": "1095-9203 (Electronic)$\\backslash$r0036-8075 (Linking)",
             "ISSN": "10959203",
             "PMID": "26315443",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "A paper from the Open Science Collaboration (Research Articles, 28 August 2015, aac4716) attempting to replicate 100 published studies suggests that the reproducibility of psychological science is surprisingly low.We show that this article contains three statistical errors and provides no support for such a conclusion. Indeed, the data are consistent with the opposite conclusion, namely, that the reproducibility of psychological science is quite high.",
             "author": [
                 {
@@ -26667,7 +26667,7 @@
             "ISBN": "9788578110796",
             "ISSN": "15315320",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Inference using significance testing and Bayes fac-tors is compared and contrasted in five case studies based on real research. The first study illustrates that the methods will often agree, both in motivating researchers to conclude that H1 is supported better than H0, and the other way round, that H0 is better supported than H1. The next four, however, show that the methods will also often disagree. In these cases, the aim of the paper will be to motivate the sensible evidential conclusion, and then see which approach matches those intu-itions. Specifically, it is shown that a high-powered non-sig-nificant result is consistent with no evidence for H0 over H1 worth mentioning, which a Bayes factor can show, and, con-versely, that a low-powered non-significant result is consistent with substantial evidence for H0 over H1, again indicated by Bayesian analyses. The fourth study illustrates that a high-powered significant result may not amount to any evidence for H1 over H0, matching the Bayesian conclusion. Finally, the fifth study illustrates that different theories can be eviden-tially supported to different degrees by the same data; a fact that P-values cannot reflect but Bayes factors can. It is argued that appropriate conclusions match the Bayesian inferences, but not those based on significance testing, where they disagree.",
             "author": [
                 {
@@ -27635,7 +27635,7 @@
             "ISBN": "1745-6924 (Electronic) 1745-6916 (Linking)",
             "ISSN": "17456924",
             "PMID": "27474140",
-            "URL": "http://arxiv.org/abs/15334406",
+            "URL": "https://arxiv.org/abs/15334406",
             "abstract": "A recent study of the replicability of key psychological findings is a major contribution toward understanding the human side of the scientific process. Despite the careful and nuanced analysis reported, the simple narrative disseminated by the mass, social, and scientific media was that in only 36% of the studies were the original results replicated. In the current study, however, we showed that 77% of the replication effect sizes reported were within a 95% prediction interval calculated using the original effect size. Our analysis suggests two critical issues in understanding replication of psychological studies. First, researchers’ intuitive expectations for what a replication should show do not always match with statistical estimates of replication. Second, when the results of original studies are very imprecise, they create wide prediction intervals—and a broad range of replication effects that are consistent with the original estimates. This may lead to effects that replicate successfully, in that replication results are consistent with statistical expectations, but do not provide much information about the size (or existence) of the true effect. In this light, the results of the Reproducibility Project: Psychology can be viewed as statistically consistent with what one might expect when performing a large-scale replication experiment.",
             "author": [
                 {
@@ -31664,7 +31664,7 @@
         {
             "DOI": "10.18637/jss.v085.i04",
             "ISSN": "15487660",
-            "URL": "http://arxiv.org/abs/1511.05604",
+            "URL": "https://arxiv.org/abs/1511.05604",
             "abstract": "This article describes blavaan, an R package for estimating Bayesian structural equation models (SEMs) via JAGS and for summarizing the results. It also describes a novel parameter expansion approach for estimating specific types of models with residual covariances, which facilitates estimation of these models in JAGS. The methodology and software are intended to provide users with a general means of estimating Bayesian SEMs, both classical and novel, in a straightforward fashion. Users can estimate Bayesian versions of classical SEMs with lavaan syntax, they can obtain state-of-the-art Bayesian fit measures associated with the models, and they can export JAGS code to modify the SEMs as desired. These features and more are illustrated by example, and the parameter expansion approach is explained in detail.",
             "author": [
                 {
@@ -32648,7 +32648,7 @@
         {
             "DOI": "10.1214/10-STS330",
             "ISSN": "08834237",
-            "URL": "http://arxiv.org/abs/1101.0891",
+            "URL": "https://arxiv.org/abs/1101.0891",
             "abstract": "Statistical modeling is a powerful tool for developing and testing theories by way of causal explanation, prediction, and description. In many disciplines there is near-exclusive use of statistical modeling for causal explanation and the assumption that models with high explanatory power are inherently of high predictive power. Conflation between explanation and prediction is common, yet the distinction must be understood for progressing scientific knowledge. While this distinction has been recognized in the philosophy of science, the statistical literature lacks a thorough discussion of the many differences that arise in the process of modeling for an explanatory versus a predictive goal. The purpose of this article is to clarify the distinction between explanatory and predictive modeling, to discuss its sources, and to reveal the practical implications of the distinction to each step in the modeling process.  Institute of Mathematical Statistics, 2010.",
             "author": [
                 {
@@ -32821,7 +32821,7 @@
         {
             "DOI": "10.1098/rsos.160384",
             "ISSN": "20545703",
-            "URL": "http://arxiv.org/abs/1605.09511",
+            "URL": "https://arxiv.org/abs/1605.09511",
             "abstract": "Poor research design and data analysis encourage false-positive findings. Such poor methods persist despite perennial calls for improvement, suggesting that they result from something more than just misunderstanding. The persistence of poor methods results partly from incentives that favour them, leading to the natural selection of bad science. This dynamic requires no conscious strategizing—no deliberate cheating nor loafing— by scientists, only that publication is a principal factor for career advancement. Some normative methods of analysis have almost certainly been selected to further publication instead of discovery. In order to improve the culture of science, a shift must be made away from correcting misunderstandings and towards rewarding understanding. We support this argument with empirical evidence and computational modelling. We first present a 60-year meta-analysis of statistical power in the behavioural sciences and show that power has not improved despite repeated demonstrations of the necessity of increasing power. To demonstrate the logical consequences of structural incentives, we then present a dynamic model of scientific communities in which competing laboratories investigate novel or previously published hypotheses using culturally transmitted research methods. As in the real world, successful labs produce more ‘progeny,’ such that their methods are more often copied and their students are more likely to start labs of their own. Selection for high output leads to poorer methods and increasingly high false discovery rates. We additionally show that replication slows but does not stop the process of methodological deterioration. Improving the quality of research requires change at the institutional level.",
             "annote": "This was an excellent article that used an evolutionary model to describe how incentivizing researchers for publications will necessarily lead to bad science. Unfortunately, they didn’t offer any real concrete suggestions about how to fix things, other than saying institutional pressures need to change.",
             "author": [
@@ -36122,7 +36122,7 @@
         {
             "DOI": "10.3758/s13423-015-0913-5",
             "ISSN": "15315320",
-            "URL": "http://arxiv.org/abs/1412.3416",
+            "URL": "https://arxiv.org/abs/1412.3416",
             "abstract": "Many psychologists do not realize that exploratory use of the popular multiway analysis of variance harbors a multiple-comparison problem. In the case of two factors, three separate null hypotheses are subject to test (i.e., two main effects and one interaction). Consequently, the probability of at least one Type I error (if all null hypotheses are true) is 14 % rather than 5 %, if the three tests are independent. We explain the multiple-comparison problem and demonstrate that researchers almost never correct for it. To mitigate the problem, we describe four remedies: the omnibus F test, control of the familywise error rate, control of the false discovery rate, and preregistration of the hypotheses.",
             "author": [
                 {
@@ -37439,7 +37439,7 @@
         {
             "DOI": "10.1002/sim.8086",
             "ISSN": "10970258",
-            "URL": "http://arxiv.org/abs/1712.03198",
+            "URL": "https://arxiv.org/abs/1712.03198",
             "abstract": "Simulation studies are computer experiments that involve creating data by pseudo-random sampling. A key strength of simulation studies is the ability to understand the behavior of statistical methods because some “truth” (usually some parameter/s of interest) is known from the process of generating the data. This allows us to consider properties of methods, such as bias. While widely used, simulation studies are often poorly designed, analyzed, and reported. This tutorial outlines the rationale for using simulation studies and offers guidance for design, execution, analysis, reporting, and presentation. In particular, this tutorial provides a structured approach for planning and reporting simulation studies, which involves defining aims, data-generating mechanisms, estimands, methods, and performance measures (“ADEMP”); coherent terminology for simulation studies; guidance on coding simulation studies; a critical discussion of key performance measures and their estimation; guidance on structuring tabular and graphical presentation of results; and new graphical presentations. With a view to describing recent practice, we review 100 articles taken from Volume 34 of Statistics in Medicine, which included at least one simulation study and identify areas for improvement.",
             "author": [
                 {
@@ -43784,7 +43784,7 @@
             "ISBN": "9788578110796",
             "ISSN": "15457885",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "We have empirically assessed the distribution of published effect sizes and estimated power by extracting more than 100,000 statistical records from about 10,000 cognitive neuroscience and psychology papers published during the past 5 years. The reported median effect size was d=0.93 (inter-quartile range: 0.64-1.46) for nominally statistically significant results and d=0.24 (0.11-0.42) for non-significant results. Median power to detect small, medium and large effects was 0.12, 0.44 and 0.73, reflecting no improvement through the past half-century. Power was lowest for cognitive neuroscience journals. 14% of papers reported some statistically significant results, although the respective F statistic and degrees of freedom proved that these were non-significant; p value errors positively correlated with journal impact factors. False report probability is likely to exceed 50% for the whole literature. In light of our findings the recently reported low replication success in psychology is realistic and worse performance may be expected for cognitive neuroscience.",
             "author": [
                 {
@@ -44068,7 +44068,7 @@
             "ISBN": "9788578110796",
             "ISSN": "1082989X",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "applicability for this approach.",
             "author": [
                 {
@@ -44307,7 +44307,7 @@
             "ISBN": "0022-0957 (Print)$\\backslash$n0022-0957 (Linking)",
             "ISSN": "1467985X",
             "PMID": "10340204",
-            "URL": "http://arxiv.org/abs/1508.05453",
+            "URL": "https://arxiv.org/abs/1508.05453",
             "abstract": "We argue that the words \"objectivity\" and \"subjectivity\" in statistics discourse are used in a mostly unhelpful way, and we propose to replace each of them with broader collections of attributes, with objectivity replaced by transparency, consensus, impartiality, and correspondence to observable reality, and subjectivity replaced by awareness of multiple perspectives and context dependence. The advantage of these reformulations is that the replacement terms do not oppose each other. Instead of debating over whether a given statistical method is subjective or objective (or normatively debating the relative merits of subjectivity and objectivity in statistical practice), we can recognize desirable attributes such as transparency and acknowledgment of multiple perspectives as complementary goals. We demonstrate the implications of our proposal with recent applied examples from pharmacology, election polling, and socioeconomic stratification.",
             "author": [
                 {
@@ -46611,7 +46611,7 @@
             "ISBN": "1531-5320 (Electronic) 1069-9384 (Linking)",
             "ISSN": "15315320",
             "PMID": "28685272",
-            "URL": "http://arxiv.org/abs/1109.6471",
+            "URL": "https://arxiv.org/abs/1109.6471",
             "abstract": "Bayesian hypothesis testing presents an attractive alternative to p value hypothesis testing. Part I of this series outlined several advantages of Bayesian hypothesis testing, including the ability to quantify evidence and the ability to monitor and update this evidence as data come in, without the need to know the intention with which the data were collected. Despite these and other practical advantages, Bayesian hypothesis tests are still reported relatively rarely. An important impediment to the widespread adoption of Bayesian tests is arguably the lack of user-friendly software for the run-of-the-mill statistical problems that confront psychologists for the analysis of almost every experiment: the t-test, ANOVA, correlation, regression, and contingency tables. In Part II of this series we introduce JASP (http://www.jasp-stats.org), an open-source, cross-platform, user-friendly graphical software package that allows users to carry out Bayesian hypothesis tests for standard statistical problems. JASP is based in part on the Bayesian analyses implemented in Morey and Rouder’s BayesFactor package for R. Armed with JASP, the practical advantages of Bayesian hypothesis testing are only a mouse click away.",
             "author": [
                 {
@@ -47532,7 +47532,7 @@
             "ISBN": "0003-1305 1537-2731",
             "ISSN": "15372731",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/1011.1669",
+            "URL": "https://arxiv.org/abs/1011.1669",
             "abstract": "Additional reading: http://www.nature.com/news/statisticians-issue-warning-over-misuse-of-p-values-1.19503",
             "author": [
                 {
@@ -47850,7 +47850,7 @@
             "DOI": "10.1073/pnas.1711786114",
             "ISSN": "0027-8424",
             "PMID": "29531095",
-            "URL": "http://arxiv.org/abs/1710.01946",
+            "URL": "https://arxiv.org/abs/1710.01946",
             "abstract": "It appears paradoxical that science is producing outstanding new results and theories at a rapid rate at the same time that researchers are identifying serious problems in the practice of science that cause many reports to be irreproducible and invalid. Certainly, the practice of science needs to be improved, and scientists are now pursuing this goal. However, in this perspective, we argue that this seeming paradox is not new, has always been part of the way science works, and likely will remain so. We first introduce the paradox. We then review a wide range of challenges that appear to make scientific success difficult. Next, we describe the factors that make science work—in the past, present, and pre-sumably also in the future. We then suggest that remedies for the present practice of science need to be applied selectively so as not to slow progress and illustrate with a few examples. We conclude with arguments that communication of science needs to empha-size not just problems but the enormous successes and benefits that science has brought and is now bringing to all elements of modern society. scientometrics | science history | scientific progress | reproducibility | science communication",
             "author": [
                 {
@@ -49084,7 +49084,7 @@
                 ]
             },
             "page": "862-868",
-            "title": "The {Assessment} of {Reliability} {Under} {Range} {Restriction}: {A} {Comparison} of \\backslash${}alpha, ømega,$ and {Test}-retest {Reliability} for {Dichotomous} {Data}",
+            "title": "The {Assessment} of {Reliability} {Under} {Range} {Restriction}: {A} {Comparison} of \\backslash${alpha, ømega,$ and {Test}-retest {Reliability} for {Dichotomous} {Data}",
             "type": "article-journal",
             "volume": "72"
         },
@@ -50324,7 +50324,7 @@
             "ISBN": "1099-0720",
             "ISSN": "10990720",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Many charts and graphs do not convey information effectively. This article develops a way of analysing the information in charts and graphs that reveals the design flaws in the display. The analytic scheme requires isolating four types of constituents in a display, and specifying their structure and interrelations at a syntactic, semantic, and pragmatic level of analysis. As the description is constructed, one checks for violations of ‘acceptability principles’, which are derived from facts about human visual information processing and from an analysis of the nature of symbols. Violations of these principles reveal the source of potential difficulties in using a display.",
             "author": [
                 {
@@ -50349,7 +50349,7 @@
             "ISBN": "1069-9384",
             "ISSN": "15315320",
             "PMID": "22837590",
-            "URL": "http://arxiv.org/abs/1105.1486",
+            "URL": "https://arxiv.org/abs/1105.1486",
             "abstract": "Traditional Null Hypothesis Testing procedures are poorly adapted to theory testing. The methodology can mislead researchers in several ways, including: (a) a lack of power can result in an erroneous rejection of the theory; (b) the focus on directionality (ordinal tests) rather than more precise quantitative predictions limits the information gained; and (c) the misuse of probability values to indicate effect size. An alternative approach is proposed which involves employing the theory to generate explicit effect size predictions that are compared to the effect size estimates and related confidence intervals to test the theoretical predictions. This procedure is illustrated employing the Transtheoretical Model. Data from a sample (N = 3,967) of smokers from a large New England HMO system were used to test the model. There were a total of 15 predictions evaluated, each involving the relation between Stage of Change and one of the other 15 Transtheoretical Model variables. For each variable, omega-squared and the related confidence interval were calculated and compared to the predicted effect sizes. Eleven of the 15 predictions were confirmed, providing support for the theoretical model. Quantitative predictions represent a much more direct, informative, and strong test of a theory than the traditional test of significance.",
             "author": [
                 {
@@ -51419,7 +51419,7 @@
             "DOI": "10.1073/pnas.1711786114",
             "ISSN": "0027-8424",
             "PMID": "29531095",
-            "URL": "http://arxiv.org/abs/1710.01946",
+            "URL": "https://arxiv.org/abs/1710.01946",
             "abstract": "It appears paradoxical that science is producing outstanding new results and theories at a rapid rate at the same time that researchers are identifying serious problems in the practice of science that cause many reports to be irreproducible and invalid. Certainly, the practice of science needs to be improved, and scientists are now pursuing this goal. However, in this perspective, we argue that this seeming paradox is not new, has always been part of the way science works, and likely will remain so. We first introduce the paradox. We then review a wide range of challenges that appear to make scientific success difficult. Next, we describe the factors that make science work—in the past, present, and pre-sumably also in the future. We then suggest that remedies for the present practice of science need to be applied selectively so as not to slow progress and illustrate with a few examples. We conclude with arguments that communication of science needs to empha-size not just problems but the enormous successes and benefits that science has brought and is now bringing to all elements of modern society. scientometrics | science history | scientific progress | reproducibility | science communication",
             "author": [
                 {
@@ -51611,7 +51611,7 @@
             "ISBN": "10944281",
             "ISSN": "10944281",
             "PMID": "147",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "In management research, theory testing confronts a paradox described by Meehl in which designing studies with greater methodological rigor puts theories at less risk of falsification. This paradox exists because most management theories make predictions that are merely directional, such as stating that two variables will be positively or negatively related. As methodological rigor increases, the probability that an estimated effect will differ from zero likewise increases, and the likelihood of finding support for a directional prediction boils down to a coin toss. This paradox can be resolved by developing theories with greater precision, such that their propositions predict something more meaningful than deviations from zero. This article evaluates the precision of theories in management research, offers guidelines for making theories more precise, and discusses ways to overcome barriers to the pursuit of theoretical precision.",
             "annote": "Such a good article. Gives 5(?) ways to increase the precision of hypotheses and argues for more meaningful metrics, embracing negative results, and spending more time refining theories. So good.",
             "author": [
@@ -51914,7 +51914,7 @@
             "ISBN": "1548-7091",
             "ISSN": "15487105",
             "PMID": "25719825",
-            "URL": "http://arxiv.org/abs/NIHMS150003",
+            "URL": "https://arxiv.org/abs/NIHMS150003",
             "abstract": "The reliability and reproducibility of science are under scrutiny. However, a major cause of this lack of repeatability is not being considered: the wide sample-to-sample variability in the P value. We explain why P is fickle to discourage the ill-informed practice of interpreting analyses based predominantly on this statistic.",
             "author": [
                 {
@@ -51991,8 +51991,8 @@
             "DOI": "10.1038/ncomms16024",
             "ISBN": "9781557528209",
             "ISSN": "20411723",
-            "URL": "http://arxiv.org/abs/1612.08072",
-            "abstract": "The inherently nonlinear interaction between light and motion in cavity optomechanical systems has experimentally been studied in a linearized description in all except highly driven cases. Here we demonstrate a nanoscale optomechanical system, in which the interaction between light and motion is so large (single-photon cooperativity $C_0 ^3$) that thermal motion induces optical frequency fluctuations larger than the intrinsic optical linewidth. The system thereby operates in a fully nonlinear regime, which pronouncedly impacts the optical response, displacement measurement, and radiation pressure backaction. Experiments show that the apparent optical linewidth is dominated by thermomechanically-induced frequency fluctuations over a wide temperature range. The nonlinearity induces breakdown of the traditional cavity optomechanical descriptions of thermal displacement measurements. Moreover, we explore how radiation pressure backaction in this regime affects the mechanical fluctuation spectra. The strong nonlinearity could serve as a resource to control the motional state of the resonator. We demonstrate the use of highly nonlinear transduction to perform a quadratic measurement of position while suppressing linear transduction.",
+            "URL": "https://arxiv.org/abs/1612.08072",
+            "abstract": "The inherently nonlinear interaction between light and motion in cavity optomechanical systems has experimentally been studied in a linearized description in all except highly driven cases. Here we demonstrate a nanoscale optomechanical system, in which the interaction between light and motion is so large (single-photon cooperativity $C_0 3$) that thermal motion induces optical frequency fluctuations larger than the intrinsic optical linewidth. The system thereby operates in a fully nonlinear regime, which pronouncedly impacts the optical response, displacement measurement, and radiation pressure backaction. Experiments show that the apparent optical linewidth is dominated by thermomechanically-induced frequency fluctuations over a wide temperature range. The nonlinearity induces breakdown of the traditional cavity optomechanical descriptions of thermal displacement measurements. Moreover, we explore how radiation pressure backaction in this regime affects the mechanical fluctuation spectra. The strong nonlinearity could serve as a resource to control the motional state of the resonator. We demonstrate the use of highly nonlinear transduction to perform a quadratic measurement of position while suppressing linear transduction.",
             "author": [
                 {
                     "family": "Gelman",
@@ -52163,7 +52163,7 @@
             "ISBN": "0007-0912$\\backslash$r1471-6771",
             "ISSN": "17456924",
             "PMID": "28727961",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "The past several years have been a time for soul searching in psychology, as we have gradually come to grips with the reality that some of our cherished findings are less robust than we had assumed. Nevertheless, the replication crisis highlights the operation of psychological science at its best, as it reflects our growing humility. At the same time, institutional variables, especially the growing emphasis on external funding as an expectation or de facto requirement for faculty tenure and promotion, pose largely unappreciated hazards for psychological science, including (a) incentives for engaging in questionable research practices, (b) a single-minded focus on programmatic research, (c) intellectual hyperspecialization, (d) disincentives for conducting direct replications, (e) stifling of creativity and intellectual risk taking, (f) researchers promising more than they can deliver, and (g) diminished time for thinking deeply. Preregistration should assist with (a), but will do little about (b) through ...",
             "annote": "Big take home message: grants have a few major negative effects on research and not all of them are fixed by pre registration.",
             "author": [
@@ -52438,7 +52438,7 @@
             "ISBN": "1476-4687 (Electronic)$\\backslash$r0028-0836 (Linking)",
             "ISSN": "00280836",
             "PMID": "24482835",
-            "URL": "http://arxiv.org/abs/NIHMS150003",
+            "URL": "https://arxiv.org/abs/NIHMS150003",
             "abstract": "Francis S. Collins and Lawrence A. Tabak discuss initiatives that the US National Institutes of Health is exploring to restore the self-correcting nature of preclinical research.",
             "author": [
                 {
@@ -52907,7 +52907,7 @@
             "ISBN": "0269-994X",
             "ISSN": "0269994X",
             "PMID": "22837590",
-            "URL": "http://arxiv.org/abs/1105.1486",
+            "URL": "https://arxiv.org/abs/1105.1486",
             "abstract": "Traditional Null Hypothesis Testing procedures are poorly adapted to theory testing. The methodology can mislead researchers in several ways, including: (a) a lack of power can result in an erroneous rejection of the theory; (b) the focus on directionality (ordinal tests) rather than more precise quantitative predictions limits the information gained; and (c) the misuse of probability values to indicate effect size. An alternative approach is proposed which involves employing the theory to generate explicit effect size predictions that are compared to the effect size estimates and related confidence intervals to test the theoretical predictions. This procedure is illustrated employing the Transtheoretical Model. Data from a sample (N = 3,967) of smokers from a large New England HMO system were used to test the model. There were a total of 15 predictions evaluated, each involving the relation between Stage of Change and one of the other 15 Transtheoretical Model variables. For each variable, omega-squared and the related confidence interval were calculated and compared to the predicted effect sizes. Eleven of the 15 predictions were confirmed, providing support for the theoretical model. Quantitative predictions represent a much more direct, informative, and strong test of a theory than the traditional test of significance.",
             "author": [
                 {
@@ -53540,7 +53540,7 @@
             "ISBN": "1545-7885 (Electronic) 1544-9173 (Linking)",
             "ISSN": "15457885",
             "PMID": "25768323",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "A focus on novel, confirmatory, and statistically significant results leads to substantial bias in the scientific literature. One type of bias, known as “p-hacking,” occurs when researchers collect or select data or statistical analyses until nonsignificant results become significant. Here, we use text-mining to demonstrate that p-hacking is widespread throughout science. We then illustrate how one can test for p-hacking when performing a meta-analysis and show that, while p-hacking is probably common, its effect seems to be weak relative to the real effect sizes beingmeasured. This result suggests that p-hacking probably does not drastically alter scientific consensuses drawn from meta-analyses.",
             "author": [
                 {
@@ -54383,7 +54383,7 @@
             "ISBN": "1011770956",
             "ISSN": "14679280",
             "PMID": "22508865",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Cases of clear scientific misconduct have received significant media attention recently, but less flagrantly questionable research practices may be more prevalent and, ultimately, more damaging to the academic enterprise. Using an anonymous elicitation format supplemented by incentives for honest reporting, we surveyed over 2,000 psychologists about their involvement in questionable research practices. The impact of truth-telling incentives on self-admissions of questionable research practices was positive, and this impact was greater for practices that respondents judged to be less defensible. Combining three different estimation methods, we found that the percentage of respondents who have engaged in questionable practices was surprisingly high. This finding suggests that some questionable practices may constitute the prevailing research norm.",
             "author": [
                 {
@@ -54517,7 +54517,7 @@
             "ISBN": "1082-989X (Print) 1082-989X (Linking)",
             "ISSN": "1082989X",
             "PMID": "16392993",
-            "URL": "http://arxiv.org/abs/sui",
+            "URL": "https://arxiv.org/abs/sui",
             "abstract": "A broad theory of scientific method is sketched that has particular relevance for the behavioral sciences. This theory of method assembles a complex of specific strategies and methods that are used in the detection of empirical phenomena and the subsequent construction of explanatory theories. A characterization of the nature of phenomena is given, and the process of their detection is briefly described in terms of a multistage model of data analysis. The construction of explanatory theories is shown to involve their generation through abductive, or explanatory, reasoning, their development through analogical modeling, and their fuller appraisal in terms of judgments of the best of competing explanations. The nature and limits of this theory of method are discussed in the light of relevant developments in scientific methodology.",
             "author": [
                 {
@@ -54697,7 +54697,7 @@
             "ISBN": "9788578110796",
             "ISSN": "15315320",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Predicting the binding mode of flexible polypeptides to proteins is an important task that falls outside the domain of applicability of most small molecule and protein−protein docking tools. Here, we test the small molecule flexible ligand docking program Glide on a set of 19 non-\\alpha-helical peptides and systematically improve pose prediction accuracy by enhancing Glide sampling for flexible polypeptides. In addition, scoring of the poses was improved by post-processing with physics-based implicit solvent MM- GBSA calculations. Using the best RMSD among the top 10 scoring poses as a metric, the success rate (RMSD ≤ 2.0 Å for the interface backbone atoms) increased from 21% with default Glide SP settings to 58% with the enhanced peptide sampling and scoring protocol in the case of redocking to the native protein structure. This approaches the accuracy of the recently developed Rosetta FlexPepDock method (63% success for these 19 peptides) while being over 100 times faster. Cross-docking was performed for a subset of cases where an unbound receptor structure was available, and in that case, 40% of peptides were docked successfully. We analyze the results and find that the optimized polypeptide protocol is most accurate for extended peptides of limited size and number of formal charges, defining a domain of applicability for this approach.",
             "author": [
                 {
@@ -54799,7 +54799,7 @@
             "ISBN": "1095-9203 (Electronic)$\\backslash$r0036-8075 (Linking)",
             "ISSN": "10959203",
             "PMID": "26315443",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "A paper from the Open Science Collaboration (Research Articles, 28 August 2015, aac4716) attempting to replicate 100 published studies suggests that the reproducibility of psychological science is surprisingly low.We show that this article contains three statistical errors and provides no support for such a conclusion. Indeed, the data are consistent with the opposite conclusion, namely, that the reproducibility of psychological science is quite high.",
             "author": [
                 {
@@ -55819,7 +55819,7 @@
             "ISBN": "9788578110796",
             "ISSN": "15315320",
             "PMID": "25246403",
-            "URL": "http://arxiv.org/abs/arXiv:1011.1669v3",
+            "URL": "https://arxiv.org/abs/arXiv:1011.1669v3",
             "abstract": "Inference using significance testing and Bayes fac-tors is compared and contrasted in five case studies based on real research. The first study illustrates that the methods will often agree, both in motivating researchers to conclude that H1 is supported better than H0, and the other way round, that H0 is better supported than H1. The next four, however, show that the methods will also often disagree. In these cases, the aim of the paper will be to motivate the sensible evidential conclusion, and then see which approach matches those intu-itions. Specifically, it is shown that a high-powered non-sig-nificant result is consistent with no evidence for H0 over H1 worth mentioning, which a Bayes factor can show, and, con-versely, that a low-powered non-significant result is consistent with substantial evidence for H0 over H1, again indicated by Bayesian analyses. The fourth study illustrates that a high-powered significant result may not amount to any evidence for H1 over H0, matching the Bayesian conclusion. Finally, the fifth study illustrates that different theories can be eviden-tially supported to different degrees by the same data; a fact that P-values cannot reflect but Bayes factors can. It is argued that appropriate conclusions match the Bayesian inferences, but not those based on significance testing, where they disagree.",
             "author": [
                 {
@@ -56751,7 +56751,7 @@
             "ISBN": "1745-6924 (Electronic) 1745-6916 (Linking)",
             "ISSN": "17456924",
             "PMID": "27474140",
-            "URL": "http://arxiv.org/abs/15334406",
+            "URL": "https://arxiv.org/abs/15334406",
             "abstract": "A recent study of the replicability of key psychological findings is a major contribution toward understanding the human side of the scientific process. Despite the careful and nuanced analysis reported, the simple narrative disseminated by the mass, social, and scientific media was that in only 36% of the studies were the original results replicated. In the current study, however, we showed that 77% of the replication effect sizes reported were within a 95% prediction interval calculated using the original effect size. Our analysis suggests two critical issues in understanding replication of psychological studies. First, researchers’ intuitive expectations for what a replication should show do not always match with statistical estimates of replication. Second, when the results of original studies are very imprecise, they create wide prediction intervals—and a broad range of replication effects that are consistent with the original estimates. This may lead to effects that replicate successfully, in that replication results are consistent with statistical expectations, but do not provide much information about the size (or existence) of the true effect. In this light, the results of the Reproducibility Project: Psychology can be viewed as statistically consistent with what one might expect when performing a large-scale replication experiment.",
             "author": [
                 {
@@ -58565,7 +58565,7 @@
         {
             "DOI": "10.7554/eLife.21451",
             "ISSN": "2050084X",
-            "URL": "http://arxiv.org/abs/1609.00494",
+            "URL": "https://arxiv.org/abs/1609.00494",
             "abstract": "Science is facing a “replication crisis” in which many experimental findings cannot be replicated and are likely to be false. Does this imply that many scientific facts are false as well? To find out, we explore the process by which a claim becomes fact. We model the community’s confidence in a claim as a Markov process with successive published results shifting the degree of belief. Publication bias in favor of positive findings influences the distribution of published results. We find that unless a sufficient fraction of negative results are published, false claims frequently can become canonized as fact. Data-dredging, p-hacking, and similar behaviors exacerbate the problem. Should negative results become easier to publish as a claim approaches acceptance as a fact, however, true and false claims would be more readily distinguished. To the degree that the model reflects the real world, there may be serious concerns about the validity of purported facts in some disciplines.",
             "author": [
                 {
@@ -58634,7 +58634,7 @@
         {
             "DOI": "10.1111/rssa.12378",
             "ISSN": "1467985X",
-            "URL": "http://arxiv.org/abs/1709.01449",
+            "URL": "https://arxiv.org/abs/1709.01449",
             "abstract": "Bayesian data analysis is about more than just computing a posterior distribution, and Bayesian visualization is about more than trace plots of Markov chains. Practical Bayesian data analysis, like all data analysis, is an iterative process of model building, inference, model checking and evaluation, and model expansion. Visualization is helpful in each of these stages of the Bayesian workflow and it is indispensable when drawing inferences from the types of modern, high dimensional models that are used by applied researchers.",
             "author": [
                 {

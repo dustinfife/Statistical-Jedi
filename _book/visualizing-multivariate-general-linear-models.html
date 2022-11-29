@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Visualizing Multivariate General Linear Models | The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Visualizing Multivariate General Linear Models | The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Visualizing Multivariate General Linear Models | The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2022-11-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="the-general-linear-model.html"/>
+<link rel="next" href="multivariate-glms-conditioning-effects.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics"><i class="fa fa-check"></i>The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i>But there’s a better way</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i>The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i>The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i>Ethics</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i>History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i>Dederick Stapel</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i>Darryl Bem</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i>The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i>P-hacking</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i>The Scientific Method Movement</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i>Values versus Ethics</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i>The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i>1. Protecting humanity</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i>2. Seek truth</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i>3. Openness and transparency.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i>4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i>5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i>Making Change</a></li>
+<li class="chapter" data-level="" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i>Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i>Measurement</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i>Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i>Constructs</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i>Operational Definitions</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i>Validity</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i>Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i>Reliability</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i>Evaluating reliability</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i>Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i>Variable types</a>
+<ul>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i>Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i>Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i>Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i>Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i>Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i>Column Sorting</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i>Visualizing</a></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i>Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i>Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i>What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i>Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i>Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i>Mean</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i>Mode</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i>Median</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i>Central Tendency in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i>Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i>Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i>Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i>Median Absolute Deviation</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i>Variability in JASP</a></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i>Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i>Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html"><i class="fa fa-check"></i>Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#avengers-dataset"><i class="fa fa-check"></i>Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i>Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i>Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i>Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for"><i class="fa fa-check"></i>Problems to look out for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#practice-1"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i>Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#what-to-look-for-1"><i class="fa fa-check"></i>What to look for</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#problems-to-look-out-for-1"><i class="fa fa-check"></i>Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#other-bivariate-plots"><i class="fa fa-check"></i>Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i>Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="" data-path="bivariate-visualizations.html"><a href="bivariate-visualizations.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i>Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i>Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i>Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i>Conditional Estimates</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i>Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i>Slopes and Intercepts</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i>Making Predictions</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i>When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i>Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i>Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i>Slopes and Intercepts for Categorical Predictors?</a></li>
+<li class="chapter" data-level="" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#cohens-d"><i class="fa fa-check"></i>Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i>Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i>Residuals</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i>Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i>Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i>Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i>Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i>Residual Dependence Plots</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i>How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i>How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i>How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i>Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i>Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i>Outliers</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i>Independence</a>
+<ul>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i>Why do models assume independence?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i>What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i>How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html"><i class="fa fa-check"></i>The General Linear Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i>Wax on, wax off</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-a-model"><i class="fa fa-check"></i>What is a model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-is-the-general-linear-model"><i class="fa fa-check"></i>What is the general linear model</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i>What makes a good statistical model?</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i>Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i>Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i>One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis"><i class="fa fa-check"></i>Traditional Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#one-sample-t-test-as-a-lm"><i class="fa fa-check"></i>One-Sample T-Test as a LM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i>Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i>Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i>Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#lm-approach"><i class="fa fa-check"></i>LM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#related-t-test"><i class="fa fa-check"></i>Related t-test</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i>Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#lm-analysis-of-a-related-t-test"><i class="fa fa-check"></i>LM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova"><i class="fa fa-check"></i>ANOVA</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i>Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#anova-as-a-lm"><i class="fa fa-check"></i>ANOVA as a LM</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#regression"><i class="fa fa-check"></i>Regression</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i>Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#lm-approach-1"><i class="fa fa-check"></i>LM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i>Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="" data-path="the-general-linear-model.html"><a href="the-general-linear-model.html#its-all-the-same"><i class="fa fa-check"></i>It’s All the Same!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html"><i class="fa fa-check"></i>Visualizing Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i>What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i>Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i>Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#what-are-we-looking-for-when-studying-a-flexplot-visual"><i class="fa fa-check"></i>What are we looking for when studying a flexplot visual?</a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#identifying-trends-in-flexplot"><i class="fa fa-check"></i>Identifying trends in Flexplot</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#identifying-nonparallel-lines-in-flexplot"><i class="fa fa-check"></i>Identifying nonparallel lines in Flexplot</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#identifying-nonlinear-effects"><i class="fa fa-check"></i>Identifying nonlinear effects</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i>Encoding Additional Dimensions Using Added Variable Plots</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#dustins-cool-modifications-to-added-variable-plots"><i class="fa fa-check"></i>Dustin’s Cool Modifications to Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="visualizing-multivariate-general-linear-models.html"><a href="visualizing-multivariate-general-linear-models.html#practice-2"><i class="fa fa-check"></i>Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i>Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i>Multicollinearity</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i>Controlling by conditioning</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i>Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i>All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i>Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i>1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i>2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i>3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i>4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i>Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i>Slopes</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i>R squared.</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2"><i class="fa fa-check"></i>Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i>ANCOVA</a></li>
+<li class="chapter" data-level="" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i>Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html"><i class="fa fa-check"></i>Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#visualizing-interaction-effects"><i class="fa fa-check"></i>Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i>A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#interactions-between-numeric-variables"><i class="fa fa-check"></i>Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#simple-slopes-analysis"><i class="fa fa-check"></i>Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i>The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#the-glm-for-interaction-effects"><i class="fa fa-check"></i>The GLM for interaction effects</a></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i>Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i>Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i>Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#estimates-for-interactions"><i class="fa fa-check"></i>Estimates for interactions</a></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#applied-analyses-1"><i class="fa fa-check"></i>Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#factorial-anova"><i class="fa fa-check"></i>Factorial ANOVA</a></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#multiple-regression-1"><i class="fa fa-check"></i>Multiple Regression</a></li>
+<li class="chapter" data-level="" data-path="mvinteractions.html"><a href="mvinteractions.html#mediation-analysis"><i class="fa fa-check"></i>Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i>Probability</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i>Why and when we need probability?</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i>Finite Samples</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i>Infinite sets</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i>Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i>How to ensure a representative sample</a></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i>Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i>Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i>Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i>Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i>A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i>Tom’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i>Egon’s Approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i>What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i>The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i>Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i>Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i>Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i>Strengths</a></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i>Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i>Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i>Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i>Groundhog Day</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i>The Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i>Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i>Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i>Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i>Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i>Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i>Confidence intervals</a></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i>p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i>Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i>Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i>The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparisons-are-tools-not-procedures"><i class="fa fa-check"></i>Model comparisons are tools, not procedures</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i>Visual model comparisons</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-model.comparison-function"><i class="fa fa-check"></i>The <code>model.comparison</code> function</a>
+<ul>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i>AIC/BIC</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i>Bayes Factors</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i>p values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#r2"><i class="fa fa-check"></i><span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i>The predicted values</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#what-if-the-statistics-disagree"><i class="fa fa-check"></i>What if the statistics disagree?</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#hierarchical-regressions-nested-model-comparisons-in-spss"><i class="fa fa-check"></i>Hierarchical Regressions: Nested Model Comparisons in SPSS</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#non-nested-models"><i class="fa fa-check"></i>Non-nested models</a></li>
+<li class="chapter" data-level="" data-path="model-comparisons.html"><a href="model-comparisons.html#summary-2"><i class="fa fa-check"></i>Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualizing-multivariate-general-linear-models" class="section level1 hasAnchor">
+<h1>Visualizing Multivariate General Linear Models<a href="visualizing-multivariate-general-linear-models.html#visualizing-multivariate-general-linear-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Years ago I was chit-chatting with my dad. I don’t remember how it came up, but we were talking about the death penalty. I am vehemently opposed to the death penalty. My dad, on the other hand, is in favor. As we debated the pros and cons, I mentioned certain races were disproportionately affected.</p>
+<p>“Hogwash,” he said. “I’ve seen the statistics. They say that black men are no more likely than white men to receive the death penalty.”</p>
+<p>“True,” I said. I was familiar with the statistic he was quoting.</p>
+<p>But that’s not the whole story. If a black man kills another black person, he is just as likely to get the death penalty as a white man who kills a white person. However, if a black man kills a <em>white</em> person, they are <em>much</em> more likely to receive the death penalty than if a white man kills a black person.</p>
+<p>That there is unfair, you see. (Not to mention the fact that it’s government-sponsored killing, and all that).</p>
+<p>My dad’s response?</p>
+<p>“Well son,” he said, “That just goes to show you can use statistics to prove anything.”</p>
+<p>That pissed me off, I must admit. It was a dismissal of my argument–a protestation that said my statistics were no better than his. But, as we’ll learn, simple bivariate effects (in this case, race and death penalty) are always less complete than multivariate effects (in this case, race of perpetrator <em>and</em> race of victim).</p>
+<div id="what-is-a-multivariate-relationship" class="section level2 hasAnchor">
+<h2>What is a multivariate relationship?<a href="visualizing-multivariate-general-linear-models.html#what-is-a-multivariate-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>That there is a tricky question. And, you’ll probably get different answers, depending on who you ask. Technically, multivariate means multiple variables. So, I suppose, any analysis that has more than one variable is a multivariate analysis.</p>
+<p>But, I’ve actually seen people refer to multivariate relationships in one of two ways:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>When one performs an analysis of multiple <strong>dependent</strong> variables.</em> When statisticians use the word multivariate, they tend to be referring to this sort of analysis, where multiple dependent variables are investigated. These situations call for using Multivariate Analysis of Variance (MANOVA), factor analysis, principle component analysis, structural equation modeling, and canonical correlations. I personally find many (but not all) of these sorts of analyses archaic and quite useless. They are largely atheoretical, they confuse exploratory and confirmatory research, and they’re hard to make sense of. That is <em>not</em> what this chapter is about.</p></li>
+<li><p><em>When one performs an analysis of multiple <strong>independent</strong> variables.</em> Most everybody, with the exception of heritage breed statisticians, use the term multivariate to refer to situations where multiple independent variables are used. This is what <em>I</em> mean when I say multivariate in this textbook. Does that make me a mutt-breed statistician? Maybe. But, sometimes you have to sacrifice authenticity for practicality.</p></li>
+</ol>
+<p>So, yes, this chapter (and those that follow) are referring to situations where we try to predict a single outcome variable from multiple predictor variables. Yay.</p>
+</div>
+<div id="reasons-to-use-multivariate-glms" class="section level2 hasAnchor">
+<h2>Reasons to use multivariate GLMs<a href="visualizing-multivariate-general-linear-models.html#reasons-to-use-multivariate-glms" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The world is rarely simple. Rarely does one variable <em>alone</em> cause another variable. Rather, variables work together to produce causes. Or, one variable’s effects are contingent upon another’s. We use mutivariate GLMs to gain a more complete picture of what is influencing our outcome variable.</p>
+<p>But, that’s a bit vague and stuff. Let me be a little more specific. <strong>There are three reasons you would want to do a multivariate analysis</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p><em>Study interaction effects.</em> Sometimes variables “interact,” which means their influence depends on other variable(s). For example, the annoyance I feel (outcome variable) about having department meetings (predictor variable #1) <em>depends</em> on whether there’s food there (predictor variable #2); I’m happy to attend department meetings if they have baklava and pizza. Otherwise, bleeh.</p></li>
+<li><p>You want to <em>control</em> for things you’re not interested in. For example, you might know depressed people tend to have crappy social lives, but you don’t care about studying social functioning. You really care about depression’s unique influence on, say, health. If that’s the case, we want to “control” for social functioning.</p></li>
+<li><p>To improve predictions. Long story short, the more variables you have, the better your predictions. So, naturally, if you want to predict who will be the next world wood-chopping champion, you can add more predictors (e.g., bicep circumference, years of experience, beard length).</p></li>
+</ol>
+<p>Before I confabulate about each of these reasons, let’s take a mini-break to look at some pictures. Why not, eh? Pictures are pretty.</p>
+<p>Though, as to not bother my mythical editor, I’m going to embed these pretty pictures within the process of data analysis.</p>
+</div>
+<div id="visualizing-multivariate-relationships-in-flexplot" class="section level2 hasAnchor">
+<h2>Visualizing Multivariate Relationships in Flexplot<a href="visualizing-multivariate-general-linear-models.html#visualizing-multivariate-relationships-in-flexplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous section, I said there are three primary reasons for doing a multivariate analysis: to study interaction effects, to control for things, and to improve predictions. I’m going to temporarily put the third reason (prediction) aside and focus on interactions and conditioning. These two approaches have very different visualization strategies. But, before I can share those strategies, I need to show you some tools.</p>
+<div id="encoding-additional-dimension-using-colorslinessymbols-or-panels" class="section level3 hasAnchor">
+<h3>Encoding Additional Dimension Using Colors/Lines/Symbols or Panels<a href="visualizing-multivariate-general-linear-models.html#encoding-additional-dimension-using-colorslinessymbols-or-panels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As a reminder, flexplot is essentially God-like in its ability to visualize data. For univariate data, remember all we have to do is write the variable name, followed by <code>~1</code>, then the dataset. For example…</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualizing-multivariate-general-linear-models.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span>
+<span id="cb1-2"><a href="visualizing-multivariate-general-linear-models.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(avengers)</span>
+<span id="cb1-3"><a href="visualizing-multivariate-general-linear-models.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(speed<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmuniv-1.png" width="672" /></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="visualizing-multivariate-general-linear-models.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(superpower<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmuniv-2.png" width="672" /></p>
+<p>For bivariate data, the pattern is similar, except we now put <code>outcome~predictor, data=dataset</code>. In the background, flexplot is going to figure out whether to plot a scatterplot or bee swarm plot:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="visualizing-multivariate-general-linear-models.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(speed<span class="sc">~</span>superpower, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmbivar-1.png" width="672" /></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="visualizing-multivariate-general-linear-models.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(speed<span class="sc">~</span>agility, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmbivar-2.png" width="672" /></p>
+<p>Yes, flexplot can read your mind. (Just make sure your computer is password protected. Flexplot hasn’t yet figured out how to steal your secret recipes from your documents folder, but it’s also pretty smart…so, yeah.)</p>
+<p>For multivariate relationships, flexplot is even more powerful. In fact, when I originally conceptualized it, my whole purpose was to develop an easy interface for multivariate visualizations. So, that’s where it truly shines.</p>
+<p>When trying to visualize interactions, it is important to see all the variables simultaneously. But how exactly do you visualize multivariate data? Alas, we humans can really only see in 3-4 dimensions (width, height, depth, and time). But that’s not even true. We don’t actually see depth. Instead, we rely on sharpness, size, and shading to mimic a third dimension. Even 3D movies aren’t truly 3D–they just trick our vision into believing we’re actually seeing in 3D.</p>
+<p>We <em>could</em> use the same tricks for visualization to see three-dimensional data. For example,</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualizing-multivariate-general-linear-models.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(scatterplot3d)</span>
+<span id="cb5-2"><a href="visualizing-multivariate-general-linear-models.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(avengers)</span>
+<span id="cb5-3"><a href="visualizing-multivariate-general-linear-models.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scatterplot3d</span>(avengers<span class="sc">$</span>speed, avengers<span class="sc">$</span>agility, avengers<span class="sc">$</span>superpower)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglm3d-1.png" width="672" /></p>
+<p>(By the way, I wouldn’t bother installing that package. We won’t use it again.)</p>
+<p>I just find these sorts of plots hard to understand. If I were able to view them as a hologram projection, I might find them useful. (Help us Obi Wan, you’re our only hope!). But as a static picture, it’s a bit tough to tell what’s going on. And, 3D plots are limited to three variables; good luck visualizing four dimensions!</p>
+<p>So what do we do instead? We can embed the third dimension in the same two-dimensional plot using a different mode of representation.</p>
+<p>Lemme show you what I mean. Let’s visualize the same data using flexplot:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="visualizing-multivariate-general-linear-models.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>speed <span class="sc">+</span> superpower, <span class="at">data=</span>avengers, <span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmflex1-1.png" width="672" /></p>
+<p>Notice how I’ve embedded a third variable (superpower) in the same plot as the two-dimensional data. From this, it’s much easier to see the multivariate relationship: superheroes tend to decrease slightly in agility when speed increases, while non-superheroes tend to increase.</p>
+<p>Nice.</p>
+<p>Let’s look at another example, but this time with two numeric variables:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="visualizing-multivariate-general-linear-models.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength <span class="sc">+</span> speed, <span class="at">data=</span>avengers, <span class="at">method=</span><span class="st">&quot;lm&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmnumerictwo-1.png" width="672" /></p>
+<p>What did Flexplot do? Well, you done handed it a numeric variable and asked it to plot three variables at the same time. Since Flexplot refuses to resort to 3D plots, you gave it no other option. It decided to break speed into three equal segments (think of it as slow, average, and fast). Then it plotted the datapoints for the slow folks in red, the average folks in green, and the fast folks in blue. It plotted these levels as separate lines (dotted, dashed, and dot-dashed) and symbols (circles, squares, triangles).</p>
+<p>But now it’s hard to see what’s going on. Sure, we can see the lines alright, but the raw data are such a jumbled mess it’s impossible to tell whether the regression lines actually fit the data.</p>
+<p>Quite a conundrum, that.</p>
+<p>So, what to do? Well, let’s investigate another technique called paneling. Paneling means that, rather than plotting the three levels of the strength variable as separate lines/colors/symbols, it plots each of the three levels in their own scatterplot (called a panel). To specify a panel, we use the code <code>y~x | z</code>. In other words, we replace the <code>+</code> with a <code>|</code>. That button’s right above the return button.</p>
+<p>Let’s take a look, see:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="visualizing-multivariate-general-linear-models.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength <span class="sc">|</span> speed, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmpanel-1.png" width="672" /></p>
+<p>Now we’re talking! Now there’s no overlaps and we can see that some of these relationships are actually quite curvilinear (particularly the strength/agility relationship for the slow folks).</p>
+<p>Maybe we’ll model that curvilinearity with some quadratic lines:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualizing-multivariate-general-linear-models.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength <span class="sc">|</span> speed, <span class="at">data=</span>avengers, <span class="at">method=</span><span class="st">&quot;quadratic&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmquadratic-1.png" width="672" /></p>
+<p>That’s better.</p>
+<p>But now we have a new problem; when the third variable was in the same panel, it was easy to make comparisons across the third variable. But now, it’s much harder. For example, in the image above, which curved line is higher on agility? The average speed folks or the slow folks?</p>
+<p>Hard to say.</p>
+<p>But, we can use a visual aid called a “ghost line.” A ghost line repeats the line from one panel to another panel. Let’s look at an example:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="visualizing-multivariate-general-linear-models.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>strength <span class="sc">|</span> speed, <span class="at">data=</span>avengers, </span>
+<span id="cb10-2"><a href="visualizing-multivariate-general-linear-models.html#cb10-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method=</span><span class="st">&quot;quadratic&quot;</span>, </span>
+<span id="cb10-3"><a href="visualizing-multivariate-general-linear-models.html#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.line=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmghost-1.png" width="672" /></p>
+<p>Now we’re getting somewhere! As you can see, the ghost line duplicates the relationship from the middle panel across to the other panels. Now it’s very clear that the curve from the slow group (right-most plot) is higher in agility than the other two.</p>
+<div class="rmdnote">
+<p>
+<em>Why call it ‘Ghost Line’?</em>
+</p>
+<p>
+Ghost line is kind of a funny name, isn’t it? How did I come up with
+that name? Well, back when I was a teenager, Nintendo 64 came it. That,
+my friends, was a brilliant game. One of its hallmark games was
+Mariokart. In Mariokart, you could choose which character to race with
+(e.g., Bowser, Mario, Luigi), then you would circle a track, trying to
+avoid shell-missiles.
+</p>
+<p>
+Anyhow, as I recall, whenever you were racing and set a speed record,
+the game would actually record your every move during the entire race.
+You then had the option to turn on the “ghost racer.” This ghost racer
+was a semi-transparent image of the exact race that holds the record.
+The basic idea was that you could try to race against the best race ever
+recorded.
+</p>
+<p>
+Cool idea and cool concept. So much so, that I decided I would borrow
+the idea. Like in Mariokart, the ghost line doesn’t actually reflect
+anything in that particular panel, but it is a representation of
+something outside the panel.
+</p>
+</div>
+<p>Ghost lines, it turns out are essential for doing multivariate analyses, particularly when we start adding even <em>more</em> variables to the analysis. They make it easy to compare fits across panels.</p>
+<p>Let’s look at another example, but this time we’ll panel on two variables:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="visualizing-multivariate-general-linear-models.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(shots.taken<span class="sc">~</span>agility <span class="sc">|</span> speed <span class="sc">+</span> superpower, <span class="at">data=</span>avengers, </span>
+<span id="cb11-2"><a href="visualizing-multivariate-general-linear-models.html#cb11-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method=</span><span class="st">&quot;quadratic&quot;</span>, </span>
+<span id="cb11-3"><a href="visualizing-multivariate-general-linear-models.html#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.line=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmghost2-1.png" width="672" /></p>
+<p>Notice how <em>nearly every single datapoint</em> for the superhero plots (the bottom panel) are below the fit of the ghost line. In other words, superheroes are taking far fewer shots than non-superheroes. We would not be able to see this without the ghost line.</p>
+<p>We’ll see several examples in later chapters where the ghost line is essential to helping us figure out what’s going on.</p>
+<p>By the way, you may have noticed that the ghost line generally picks the middle-most panel as the reference. But, you can tell Flexplot which panel to reference from. Suppose, for example, if we wanted to reference from the fast panel for superheroes. To do so, we would need to specify a list that tells flexplot the speed and superpower value to reference from:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="visualizing-multivariate-general-linear-models.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(shots.taken<span class="sc">~</span>agility <span class="sc">|</span> speed <span class="sc">+</span> superpower, <span class="at">data=</span>avengers, </span>
+<span id="cb12-2"><a href="visualizing-multivariate-general-linear-models.html#cb12-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method=</span><span class="st">&quot;quadratic&quot;</span>, </span>
+<span id="cb12-3"><a href="visualizing-multivariate-general-linear-models.html#cb12-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.line=</span><span class="st">&quot;red&quot;</span>,</span>
+<span id="cb12-4"><a href="visualizing-multivariate-general-linear-models.html#cb12-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.reference =</span> <span class="fu">list</span>(<span class="at">speed=</span><span class="fl">4.5</span>, <span class="at">superpower=</span><span class="st">&quot;yes&quot;</span>))</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmghostref-1.png" width="672" /></p>
+<p>Here, we’ve chosen a value for speed that is in the range of the left-most panel (4.5 is within the 4.3-4.9 range) and told flexplot to choose “yes” as the superpower value. We could also specify slow non-superheroes:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="visualizing-multivariate-general-linear-models.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(shots.taken<span class="sc">~</span>agility <span class="sc">|</span> speed <span class="sc">+</span> superpower, <span class="at">data=</span>avengers, </span>
+<span id="cb13-2"><a href="visualizing-multivariate-general-linear-models.html#cb13-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method=</span><span class="st">&quot;quadratic&quot;</span>, </span>
+<span id="cb13-3"><a href="visualizing-multivariate-general-linear-models.html#cb13-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.line=</span><span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb13-4"><a href="visualizing-multivariate-general-linear-models.html#cb13-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.reference =</span> <span class="fu">list</span>(<span class="at">speed=</span><span class="fl">5.2</span>, <span class="at">superpower=</span><span class="st">&quot;no&quot;</span>))</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmghostref2-1.png" width="672" /></p>
+<p>Notice I also changed the color of the ghost line to orange.</p>
+<p>By the way, you can (realistically) visualize up to four predictor variables. For example:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="visualizing-multivariate-general-linear-models.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(shots.taken<span class="sc">~</span>agility <span class="sc">+</span> superpower <span class="sc">|</span> speed <span class="sc">+</span> strength, <span class="at">data=</span>avengers, </span>
+<span id="cb14-2"><a href="visualizing-multivariate-general-linear-models.html#cb14-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb14-3"><a href="visualizing-multivariate-general-linear-models.html#cb14-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ghost.line=</span><span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmfourvars-1.png" width="672" /></p>
+<p>Now, Flexplot is representing the second variable as different lines/colors/symbols while paneling the remaining two variables (speed and strength). Also, the ghost line is referencing off of the middle-most panel for the superheroes.</p>
+<p>Don’t worry about interpreting this plot yet; I’ll soon give you some cool tricks you can use to figure out what’s going on here. The important take-home message for you is understanding how you can control the display of flexplot.</p>
+<p>In summary, flexplot visualizes multivariate data by encoding additional variables as either a separate color/symbol/line, or in separate panels. To encode a variable as a color/line/symbol, use <code>y~x+z</code>. To encode as separate panels, use <code>y~x|z</code>. When we panel, it makes it hard to compare fits, so we can use “ghost lines” to repeat the pattern from one panel to another.</p>
+</div>
+</div>
+<div id="what-are-we-looking-for-when-studying-a-flexplot-visual" class="section level2 hasAnchor">
+<h2>What are we looking for when studying a flexplot visual?<a href="visualizing-multivariate-general-linear-models.html#what-are-we-looking-for-when-studying-a-flexplot-visual" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So, these graphics are all well and good, but what’s the point? What information do they tell us? Or, maybe the better question is what are we looking for when studying a flexplot visual?</p>
+<p>That’s a fantastic question! Pat yourself on the back and buy yourself some ice cream :)</p>
+<p>There are three things we’re looking for when looking at a Flexplot graphic:</p>
+<ol style="list-style-type: decimal">
+<li><p>Trends on the X-axis. This indicates a main effect of the variable on the X-axis.</p></li>
+<li><p>Nonparallel lines. This indicates there’s an interaction between the variable on the X-axis and one of the other variables.</p></li>
+<li><p>Nonlinear effects. This is why Flexplot defaults to showing loess lines: if there are nonlinear effects, it will detect them.</p></li>
+</ol>
+<p>I know, that was a lot of information. Let’s go ahead and talk about each of these buggers, one at a time, shall we?</p>
+<div id="identifying-trends-in-flexplot" class="section level3 hasAnchor">
+<h3>Identifying trends in Flexplot<a href="visualizing-multivariate-general-linear-models.html#identifying-trends-in-flexplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You already know this. Trust me. Remember back in our <a href="#bivariate_visuals">bivariate visualization chapter</a> we identified any association between two variables by any sort of slope between X and Y. It’s no different for multivariate plots.</p>
+<p>The image below shows two plots; the left image has no trend. The plot on the right has a trend.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="visualizing-multivariate-general-linear-models.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123324</span>)</span>
+<span id="cb15-2"><a href="visualizing-multivariate-general-linear-models.html#cb15-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">400</span>)</span>
+<span id="cb15-3"><a href="visualizing-multivariate-general-linear-models.html#cb15-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> .<span class="dv">5</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(x), <span class="dv">0</span>, <span class="fu">sqrt</span>(<span class="dv">1</span><span class="fl">-.5</span><span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb15-4"><a href="visualizing-multivariate-general-linear-models.html#cb15-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb15-5"><a href="visualizing-multivariate-general-linear-models.html#cb15-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">z=</span>z)</span>
+<span id="cb15-6"><a href="visualizing-multivariate-general-linear-models.html#cb15-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">flexplot</span>(y<span class="sc">~</span>x <span class="sc">|</span> z, <span class="at">data=</span>d, <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Flexplot with a Trend (Slope)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="visualizing-multivariate-general-linear-models.html#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>))</span>
+<span id="cb15-8"><a href="visualizing-multivariate-general-linear-models.html#cb15-8" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="fu">flexplot</span>(y<span class="sc">~</span>z <span class="sc">|</span> x, <span class="at">data=</span>d, <span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span>F) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Flexplot without a Trend (Slope)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="visualizing-multivariate-general-linear-models.html#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">18</span>))</span>
+<span id="cb15-10"><a href="visualizing-multivariate-general-linear-models.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(patchwork)</span>
+<span id="cb15-11"><a href="visualizing-multivariate-general-linear-models.html#cb15-11" aria-hidden="true" tabindex="-1"></a> a <span class="sc">+</span> b</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmtrend-1.png" width="672" /></p>
+</div>
+<div id="identifying-nonparallel-lines-in-flexplot" class="section level3 hasAnchor">
+<h3>Identifying nonparallel lines in Flexplot<a href="visualizing-multivariate-general-linear-models.html#identifying-nonparallel-lines-in-flexplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>I’m not going to get into too much detail on this one in this chapter. That’s the subject of my <a href="mvinteractions.html#mvinteractions">chapter on interaction effects</a>. But it’s helpful for you to know this now, so you know why I’m telling you all this information.</p>
+<p>Let’s look at a graphic first. The plot on the left shows mostly parallel lines (with a red ghost line). Notice all the lines are parallel to one another. What does that mean? It says that the relationship between X and Y is consistent: it doesn’t matter the level of Z, the relationship between X and Y is consistently strong and positive. In the right plot, on the other hand, the relationship between X and Y changes drastically, depending on the level of Z; when Z is low, the relationship is essentially zero. As Z increases, the relationship between X and Y strengthens.</p>
+<p><img src="stats-jedi_files/figure-html/mvglminteraction-1.png" width="672" /></p>
+<p>We call this an “interaction effect.” An interaction effect says that the effect of one variable on another (e.g., X on Y) depends on the level of a third variable (Z in this case). Interaction effects are pretty freaking important in stats–if they exist and we fail to identify them, it really screws up our model! So we want to be able to identify them. With ghost lines (and Flexplot), we have a way: if the lines are not approximately parallel, there’s an interaction in the data that needs to be modeled.</p>
+</div>
+<div id="identifying-nonlinear-effects" class="section level3 hasAnchor">
+<h3>Identifying nonlinear effects<a href="visualizing-multivariate-general-linear-models.html#identifying-nonlinear-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like interaction effects, nonlinear effects are important to detect, if they’re there. If we miss them (and don’t model them), it really screws up our model and we might not even know it!</p>
+<p>Fortunately, it’s easy to identify nonlinear effects. We just ask Flexplot to show loess lines. Remember that loess lines bend with the data. So, if there’s a bend, it will show that bend. Here’s an example below. The plot on the left shows no nonlinear effects. The one on the right shows a nonlinear effect.</p>
+<p><img src="stats-jedi_files/figure-html/mvglmnonlinear-1.png" width="672" /></p>
+<p>These multipaneled flexplots are kind of tricky to interpret, but they’re pretty necessary. They allow us to detect interaction/nonlinear effects. Assuming there are none of these sorts of effects, we can use a <em>much simpler visualization tool</em> called Added Variable Plots.</p>
+<p>But, that condition is pretty important, so I’m going to say it again, but with bold this time: <strong>added variable plots are an easy to interpret multivariate plot, but you can only use them if there are no interactions/nonlinear effects in your model.</strong></p>
+<p>(This statement is actually a bit simplified, and you can actually use them for visualizing models with these sorts of effects, but I’m not going to get into that here. If you’re interested, you can read about it <a href="https://psyarxiv.com/avu2n/">in a paper I wrote</a>. )</p>
+</div>
+<div id="encoding-additional-dimensions-using-added-variable-plots" class="section level3 hasAnchor">
+<h3>Encoding Additional Dimensions Using Added Variable Plots<a href="visualizing-multivariate-general-linear-models.html#encoding-additional-dimensions-using-added-variable-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Earlier I said we used multivariate analyses for two primary purposes: (1) to identify interactions, and (2) to “control” for other variables. The previous section displayed the additional variables colors/symbols/lines or as separate panels. These plots are great for identifying detecting interactions. (Again, we’ll review how this is done later). If there are no interactions, we can simplify the visualization immensely by using added variable plots (or AVPs).</p>
+<p>Before we talk about AVPs, though, let me offer some definitions of important terms. Let’s say you know that one’s social support structure affects health. You also know that depression affects health, but you want to see the unique effect of depression on health, above and beyond social structure. When doing this sort of analysis, we have three types of variables: the outcome variable (you already know what this is), the “control” variable, and the “interest” variable.</p>
+<p><strong>The control variable is the variable you’re trying to control for.</strong> Usually, we don’t care about this variable. In our example, social support is the control variable.</p>
+<p><strong>The interest variable is the variable whose unique effect you’re interested in studying.</strong> In this example, our interest variable is depression, because that’s the variable whose influence we’re actually interested in studying.</p>
+<p>You can have multiple control variables (e.g., what is the effect of depression on health, after controlling for a. social support, and b. exercise frequency). You could also have multiple interest variables, but this is less common.</p>
+<p>Let me quickly tell you what AVPs do, before I go into more detail:</p>
+<p><strong>AVPs fit a model between the control variable(s) and the outcome, calculates the residuals, then plots those residuals against the interest variable.</strong></p>
+<p>Again, I’ll go over this in detail and explain <em>why</em> we do this. But, before I lose your interest or before I lose you in the details, here’s an example of an AVP in R:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="visualizing-multivariate-general-linear-models.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">added.plot</span>(agility<span class="sc">~</span>speed <span class="sc">+</span> strength, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmavp1-1.png" width="672" /></p>
+<p>By default, AVP’s control for the first variable(s) entered (speed), then plot the last variable entered (strength) on the x-axis.</p>
+<div id="what-do-avps-do-and-why" class="section level4 hasAnchor">
+<h4>What Do AVPs Do and Why?<a href="visualizing-multivariate-general-linear-models.html#what-do-avps-do-and-why" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This will be easiest to explain with a simple example. Let’s say we have the following dataset:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">health</th>
+<th align="right">depression</th>
+<th align="right">support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+</tr>
+</tbody>
+</table>
+<p>Here, <code>support</code> is our control variable. Let’s go ahead and look at a scatterplot of that model:</p>
+<p><img src="stats-jedi_files/figure-html/mvglmavpfitmod-1.png" width="672" /></p>
+<p>The regression line has the equation: <span class="math inline">\(\text{health} = 20 + NA\times \text{support}\)</span>. Let’s go ahead and put each person’s predicted score back in the table, as well as their residual:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">health</th>
+<th align="right">depression</th>
+<th align="right">support</th>
+<th align="right">prediction</th>
+<th align="right">residual</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="right">20</td>
+<td align="right">12</td>
+<td align="right">50</td>
+<td align="right">20</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>Just for fun, go ahead and verify that the column labeled <code>prediction</code> is equal to 20 + NA<span class="math inline">\(\times\)</span> support. Also, go ahead and verify that the column labeled <code>residual</code> is equal to health - prediction.</p>
+<p>Now, we have all we need to create an AVP. All we have to do is plot depression on the <span class="math inline">\(X\)</span> axis and the column labeled “residual” on the <span class="math inline">\(Y\)</span> axis:</p>
+<p><img src="stats-jedi_files/figure-html/mvglmresiduals-1.png" width="672" /></p>
+<p>What is this telling us? Remember what a residual means: <em>a residual tells us what remains in the outcome variable after removing the effect of whatever we modeled</em>. Here, we modeled the effect of social support on health. So, this residual represents health, after removing the effect of social support.</p>
+<p>And that, my friends, is exactly what we were looking for! Whenever we are trying to “control” or “condition” on some variable, the appropriate visual to use is an AVP.</p>
+<p>By the way, I didn’t invent AVPs. (I wish I had!). But, I did have made a few cool modifications to them.</p>
+</div>
+</div>
+<div id="dustins-cool-modifications-to-added-variable-plots" class="section level3 hasAnchor">
+<h3>Dustin’s Cool Modifications to Added Variable Plots<a href="visualizing-multivariate-general-linear-models.html#dustins-cool-modifications-to-added-variable-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>I think most people would be confused looking at added variable plots. Remember, we’re plotting <em>residuals</em>, which means your outcome variable will now be centered on zero. I think if reviewers see this, they might have a heart attack.</p>
+<p>“Wait a minute!” they might say, “Your DV ranges from 10-60 and yet your Y-axis ranges from -10 to 10. Clearly the authors are bozos and have done something wrong! Reject!”</p>
+<p>Of course, you, being the wise statistical Jedi that you are, would recognize that it’s plotting a <em>residual</em>, not a raw score. To avoid confusion from under-educated reviewers, Flexplot actually adds the mean of the DV back into the residuals. This makes sure the Y axis is on the same scale as the original DV. Flexplot also relabels the <span class="math inline">\(Y\)</span>-axis to highlight that it’s showing <em>residuals</em> not actual outcome scores. (In this case, it would say <code>health | support</code>).</p>
+<p>So, in short, AVPs literally fit a linear model predicting the outcome from the control variable(s), compute the residuals, then plot the interest variable against the residuals. These plots visually show us the effect of the interest variable, after controlling for the control variable(s).</p>
+<p>These were small modifications, I admit. Rescaling the residuals and adding labels to the Y-axis is more intuitive, but the next modification is more extreme. We’re going to combine the awesomeness of Flexplot with the awesomeness of AVPs.</p>
+<p>Remember how Flexplot is able to visualize multiple variables at a time? After a bit of math, I figured out how to extend AVPs to multivariate plots. Let’s look at an example:</p>
+<p><img src="stats-jedi_files/figure-html/mvglmmvavp-1.png" width="672" /></p>
+<p>THe above plot is showing the relationship between two predictor variables (therapy.type and motivation) on weight loss, after controlling for health/muscle gain (and their interaction). That’s pretty sweet.</p>
+<div id="using-flexplot-to-do-avps" class="section level4 hasAnchor">
+<h4>Using Flexplot To Do AVPs<a href="visualizing-multivariate-general-linear-models.html#using-flexplot-to-do-avps" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There’s really two ways to use AVPs. One way is easy, but less flexible. The other is harder, but much more flexible. If you only have one interest variable and your control variables have simple relationships with the outcome, you can create AVPs like this:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="visualizing-multivariate-general-linear-models.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">added.plot</span>(ptsd<span class="sc">~</span>agility <span class="sc">+</span> north_south, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmavpeasy-1.png" width="672" /></p>
+<p>The last variable entered (in this case, <code>north_south</code>) will be treated as the interest variable. All others will be control variables. Here’s an example with multiple control variables:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="visualizing-multivariate-general-linear-models.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">added.plot</span>(ptsd<span class="sc">~</span>agility <span class="sc">+</span> speed <span class="sc">+</span> superpower <span class="sc">+</span> kills <span class="sc">+</span> north_south, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmavpeasy2-1.png" width="672" /></p>
+<p>(These plots seem to say that, even after controlling for agility, speed, superpowers, and # of kills, which battlefield one fought on [north versus south] <em>still</em> predicts ptsd).</p>
+<p>Sometimes, however, you might want to have multiple interest variables. Or maybe you have quadratic and/or interaction effects you need to model for the control variables. In that case, you’ll need to add the <code>lm.formula</code> argument to AVP:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="visualizing-multivariate-general-linear-models.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">added.plot</span>(ptsd<span class="sc">~</span>willpower <span class="sc">+</span> north_south, <span class="at">data=</span>avengers, </span>
+<span id="cb19-2"><a href="visualizing-multivariate-general-linear-models.html#cb19-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">lm_formula =</span> ptsd<span class="sc">~</span>minutes.fighting <span class="sc">+</span> <span class="fu">I</span>(minutes.fighting<span class="sc">^</span><span class="dv">2</span>))</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/mvglmcomplex-1.png" width="672" /></p>
+<p>The above example fits a quadratic (nonlinear) regression between <code>minutes.fighting</code> and <code>ptsd</code>, then plots willpower and north_south against these residuals. In other words, <code>minutes.fighting</code> (and the nonlinear effect of <code>minutes.fighting</code>) are the “control variables” and willpower and north_south are the interest variables.</p>
+</div>
+</div>
+</div>
+<div id="summary-1" class="section level2 hasAnchor">
+<h2>Summary<a href="visualizing-multivariate-general-linear-models.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For this book, “multivariate” means we have multiple independent variables. We use multivariate analyses when we want to model interactions, when we want to control for things, and/or when we want to predict things. If we’re trying to visualize interactions, we can use flexplot to represent a variable as a color/symbol/line or as separate panels. If we’re trying to visualize after we’ve controlled for variables, we use AVPs.</p>
+</div>
+<div id="practice-2" class="section level2 hasAnchor">
+<h2>Practice<a href="visualizing-multivariate-general-linear-models.html#practice-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Describe how each of the following relationships will look. Try drawing a plot that matches your expectations. Then plot the actual relationships. How close were you?</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="visualizing-multivariate-general-linear-models.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(superpower<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avenger)</span>
+<span id="cb20-2"><a href="visualizing-multivariate-general-linear-models.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(speed<span class="sc">~</span>agility <span class="sc">+</span> superpower, <span class="at">data=</span>avenger)</span>
+<span id="cb20-3"><a href="visualizing-multivariate-general-linear-models.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>superpower <span class="sc">|</span> speed, <span class="at">data=</span>avenger)</span>
+<span id="cb20-4"><a href="visualizing-multivariate-general-linear-models.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>speed <span class="sc">+</span> strength <span class="sc">|</span> superpower, <span class="at">data=</span>avenger)</span>
+<span id="cb20-5"><a href="visualizing-multivariate-general-linear-models.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">flexplot</span>(agility<span class="sc">~</span>speed <span class="sc">|</span> strength <span class="sc">+</span> superpower, <span class="at">data=</span>avenger)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Suppose we wanted to plot the relationship between agility and speed, after controlling for superpower. How would you use an AVP to do that?</p></li>
+<li><p>Suppose our interest variables are speed and agility, our outcome variable is ptsd, and our control variables are kills and injuries (and the interaction between the two). How would you use an AVP to visualize that?</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="the-general-linear-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multivariate-glms-conditioning-effects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/10-MultivariateGLMs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

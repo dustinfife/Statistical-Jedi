@@ -1,0 +1,17 @@
+flexplot
+ggplot2
+knitr
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+patchwork
+cowplot
+ggtext
+MASS
+scatterplot3d
+scales

@@ -4,7 +4,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Bivariate Visualizations
+# Bivariate Visualizations {#bivariate_visuals}
 
 After I graduated with my PhD, I worked for three years at the Oklahoma Medical Research Foundation (OMRF). I was the lead biostatistician of clinical research. 
 

@@ -9,7 +9,11 @@ I was an undergraduate once. And...let’s just say the statistics force wasn’
 
 And so I did. 
 
-In retrospect, it was kind of a dumb idea. I wasn’t terribly interested in the project. And I hate inconveniencing people. Yet here I was, barging into professors’ offices, begging for them to let me inconvenience them *and* their students to conduct a study. 
+In retrospect, it was kind of a dumb idea. I wasn’t terribly interested in the project. And it required me to collect data from human participants. 
+
+I hate inconveniencing people. 
+
+Yet here I was, barging into professors’ offices, begging for them to let me inconvenience them *and* their students to conduct a study. 
 
 I still have nightmares about my data collection endeavors. 
 
@@ -17,7 +21,7 @@ Well, I finally collected the data I needed and went to my mentor for analysis. 
 
 Well, it turns out, neither did my mentor. Unbeknownst to me, the data I collected and the research question I asked required an extremely sophisticated analysis. Neither my mentor nor I had any idea how to even begin to start answering the question. 
 
-So, I did what any daunted student would do...I went to the [Statistics Jedis](http://https://statistics.byu.edu/) themselves. You see, my friends, at my alma mater, we were graced with the presence of a statistics jedi training facility (translation...a department of statistics). And since I was a padawan in training there anyhow, I went to see one of my professors.
+So, I did what any daunted student would do...I went to the [Statistics Jedis](http://https://statistics.byu.edu/) themselves. You see, my friends, at my alma mater, we were graced with the presence of a statistics Jedi training facility (translation...a department of statistics). And since I was a padawan in training there anyhow, I went to see one of my professors.
 
 <img src="drawings/schaalje.jpg" alt="drawing" style="width:500px; float:right;"/>
 

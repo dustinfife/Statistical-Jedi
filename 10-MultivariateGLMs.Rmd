@@ -1,4 +1,4 @@
-# Multivariate General Linear Models
+# Visualizing Multivariate General Linear Models
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
@@ -28,25 +28,25 @@ That there is a tricky question. And, you'll probably get different answers, dep
 
 But, I've actually seen people refer to multivariate relationships in one of two ways:
 
-1. *When one performs an analysis of multiple **dependent** variables.* When statisticians use the word multivariate, they tend to be referring to this sort of analysis, where multiple dependent variables are investigated. These situations call for using Multivariate Analysis of Variance (MANOVA), factor analysis, principle component analysis, structural equation modeling, and canonical correlations. I personally find many of these sorts of analyses archaic and quite useless. They are largely atheoretical, they confuse exploratory and confirmatory research, and they're hard to make sense of. That is *not* what this chapter is about. 
+1. *When one performs an analysis of multiple **dependent** variables.* When statisticians use the word multivariate, they tend to be referring to this sort of analysis, where multiple dependent variables are investigated. These situations call for using Multivariate Analysis of Variance (MANOVA), factor analysis, principle component analysis, structural equation modeling, and canonical correlations. I personally find many (but not all) of these sorts of analyses archaic and quite useless. They are largely atheoretical, they confuse exploratory and confirmatory research, and they're hard to make sense of. That is *not* what this chapter is about. 
 
 2. *When one performs an analysis of multiple **independent** variables.* Most everybody, with the exception of heritage breed statisticians, use the term multivariate to refer to situations where multiple independent variables are used. This is what *I* mean when I say multivariate in this textbook. Does that make me a mutt-breed statistician? Maybe. But, sometimes you have to sacrifice authenticity for practicality. 
 
-So, yes, this chapter (and those that follow) are referring to situations where we have multiple predictor variables we are using to model a single outcome variable. Yay. 
+So, yes, this chapter (and those that follow) are referring to situations where we try to predict a single outcome variable from multiple predictor variables. Yay. 
 
 ## Reasons to use multivariate GLMs
  
 The world is rarely simple. Rarely does one variable *alone* cause another variable. Rather, variables work together to produce causes. Or, one variable's effects are contingent upon another's. We use mutivariate GLMs to gain a more complete picture of what is influencing our outcome variable. 
 
-But, that's a bit vague and stuff. Let me be a little more specific. *There are three reasons you would want to do a multivariate analysis*:
+But, that's a bit vague and stuff. Let me be a little more specific. **There are three reasons you would want to do a multivariate analysis**:
 
-1. Study interaction effects. Sometimes variables "interact," which means their influence depends on other variable(s). For example, the annoyance I feel (outcome variable) about having department meetings (predictor variable #1) *depends* on whether there's food there (predictor variable #2); I'm happy to attend department meetings if they have baklava and pizza. Otherwise, bleeh. 
+1. *Study interaction effects.* Sometimes variables "interact," which means their influence depends on other variable(s). For example, the annoyance I feel (outcome variable) about having department meetings (predictor variable #1) *depends* on whether there's food there (predictor variable #2); I'm happy to attend department meetings if they have baklava and pizza. Otherwise, bleeh. 
 
 2. You want to *control* for things you're not interested in. For example, you might know depressed people tend to have crappy social lives, but you don't care about studying social functioning. You really care about depression's unique influence on, say, health. If that's the case, we want to "control" for social functioning. 
 
-3. To improve predictions. Long story short, the more variables you have, the better your predictions. So, naturally, if you want to predict who will be the next world wood-chopping champion will be, you can add more predictors (e.g., bicep circumference, years of experience, beard length). 
+3. To improve predictions. Long story short, the more variables you have, the better your predictions. So, naturally, if you want to predict who will be the next world wood-chopping champion, you can add more predictors (e.g., bicep circumference, years of experience, beard length). 
 
-Before we confabulate about each of these reasons, let's take a mini break to look at some pictures. Why not, eh? Pictures are pretty. 
+Before I confabulate about each of these reasons, let's take a mini-break to look at some pictures. Why not, eh? Pictures are pretty. 
 
 Though, as to not bother my mythical editor, I'm going to embed these pretty pictures within the process of data analysis. 
 
@@ -124,7 +124,7 @@ flexplot(agility~strength | speed, data=avengers)
 
 Now we're talking! Now there's no overlaps and we can see that some of these relationships are actually quite curvilinear (particularly the strength/agility relationship for the slow folks).
 
-Maybe we'll correct that curvilinearity with some quadratic lines:
+Maybe we'll model that curvilinearity with some quadratic lines:
 
 ```{r mvglmquadratic}
 flexplot(agility~strength | speed, data=avengers, method="quadratic")
@@ -144,23 +144,23 @@ flexplot(agility~strength | speed, data=avengers,
          ghost.line="red")
 ```
 
-Now we're getting somewhere! As you can see, the ghost line duplicates the relationship from the middle panel across to the other panels. Now it's very clear that the curve from the fast group (left-most plot) is lower, while the curve from the slow group (right-most plot) is higher in agility. 
+Now we're getting somewhere! As you can see, the ghost line duplicates the relationship from the middle panel across to the other panels. Now it's very clear that the curve from the slow group (right-most plot) is higher in agility than the other two. 
 
 
 ```{block, type='rmdnote'}
 
 *Why call it 'Ghost Line'?*
 
-Ghost line is kind of a funny name, isn't it? How did I come up with that name? Well, back when I was a teenager, Nintendo 64 came it. That, my friends, was a brilliant videogaming system. One of its hallmark games was Mariokart. In Mariokart, you could choose which character to race with (e.g., Bowser, Mario, Luigi), then you would circle a track, trying to avoid shell-missiles. 
+Ghost line is kind of a funny name, isn't it? How did I come up with that name? Well, back when I was a teenager, Nintendo 64 came it. That, my friends, was a brilliant game. One of its hallmark games was Mariokart. In Mariokart, you could choose which character to race with (e.g., Bowser, Mario, Luigi), then you would circle a track, trying to avoid shell-missiles. 
 
 Anyhow, as I recall, whenever you were racing and set a speed record, the game would actually record your every move during the entire race. You then had the option to turn on the "ghost racer." This ghost racer was a semi-transparent image of the exact race that holds the record. The basic idea was that you could try to race against the best race ever recorded. 
 
 Cool idea and cool concept. So much so, that I decided I would borrow the idea. Like in Mariokart, the ghost line doesn't actually reflect anything in that particular panel, but it is a representation of something outside the panel. 
 ```
 
-Ghost lines, it turns out are essential for doing multivariate analyses, particularly when we start adding even *more* variables to the analysis. 
+Ghost lines, it turns out are essential for doing multivariate analyses, particularly when we start adding even *more* variables to the analysis. They make it easy to compare fits across panels.
 
-Let's look at another example:
+Let's look at another example, but this time we'll panel on two variables:
 
 ```{r mvglmghost2}
 flexplot(shots.taken~agility | speed + superpower, data=avengers, 
@@ -206,26 +206,125 @@ Don't worry about interpreting this plot yet; I'll soon give you some cool trick
 
 In summary, flexplot visualizes multivariate data by encoding additional variables as either a separate color/symbol/line, or in separate panels. To encode a variable as a color/line/symbol, use `y~x+z`. To encode as separate panels, use `y~x|z`. When we panel, it makes it hard to compare fits, so we can use "ghost lines" to repeat the pattern from one panel to another. 
 
-Regardless of whether you encode additional variables as colors/symbols/lines or as separate panels, these sorts of plots are excellent for detecting interactions, which we'll discuss shortly. But, they can induce information overload. 
+## What are we looking for when studying a flexplot visual?
 
-If you don't have interactions, these sorts of plots are needlessly complicated. As an alternative, we can use "added variable plots."
+So, these graphics are all well and good, but what's the point? What information do they tell us? Or, maybe the better question is what are we looking for when studying a flexplot visual?
+
+That's a fantastic question! Pat yourself on the back and buy yourself some ice cream :)
+
+There are three things we're looking for when looking at a Flexplot graphic:
+
+(1) Trends on the X-axis. This indicates a main effect of the variable on the X-axis.
+
+(2) Nonparallel lines. This indicates there's an interaction between the variable on the X-axis and one of the other variables.
+
+(3) Nonlinear effects. This is why Flexplot defaults to showing loess lines: if there are nonlinear effects, it will detect them. 
+
+I know, that was a lot of information. Let's go ahead and talk about each of these buggers, one at a time, shall we?
+
+### Identifying trends in Flexplot
+
+You already know this. Trust me. Remember back in our [bivariate visualization chapter](#bivariate_visuals) we identified any association between two variables by any sort of slope between X and Y. It's no different for multivariate plots. 
+
+The image below shows two plots; the left image has no trend. The plot on the right has a trend. 
+
+```{r mvglmtrend}
+set.seed(123324)
+x = rnorm(400)
+y = .5*x + rnorm(length(x), 0, sqrt(1-.5^2))
+z = rnorm(100)
+d = data.frame(x=x, y=y, z=z)
+a = flexplot(y~x | z, data=d, method="lm", se=F) + labs(title="Flexplot with a Trend (Slope)") +
+  theme(plot.title = element_text(size=18))
+b = flexplot(y~z | x, data=d, method="lm", se=F) + labs(title="Flexplot without a Trend (Slope)") +
+  theme(plot.title = element_text(size=18))
+require(patchwork)
+ a + b
+
+
+```
+
+### Identifying nonparallel lines in Flexplot
+
+I'm not going to get into too much detail on this one in this chapter. That's the subject of my [chapter on interaction effects](#mvinteractions). But it's helpful for you to know this now, so you know why I'm telling you all this information. 
+
+Let's look at a graphic first. The plot on the left shows mostly parallel lines (with a red ghost line). Notice all the lines are parallel to one another. What does that mean? It says that the relationship between X and Y is consistent: it doesn't matter the level of Z, the relationship between X and Y is consistently strong and positive. In the right plot, on the other hand, the relationship between X and Y changes drastically, depending on the level of Z; when Z is low, the relationship is essentially zero. As Z increases, the relationship between X and Y strengthens. 
+
+```{r mvglminteraction, echo=FALSE}
+set.seed(123324)
+n = 800
+x = rnorm(n)
+z1 = rnorm(n)
+z2 = rnorm(n)
+y1 = .5*x + .3*z1 + rnorm(length(x), 0, sqrt(1-.5^2))
+y2 = .5*x + .3*z2 + .4*z2*x + rnorm(length(x), 0, sqrt(1-.5^2))
+
+d = data.frame(x=x, y1=y1, y2=y2, z1=z1, z2=z2)
+
+require(flexifiers)
+a = flexplot(y1~x | z1, data=d, method="lm", se=F, ghost.line="red") + 
+  labs(title="Flexplot with Parallel Lines", x="X", y="Y") +
+  theme(plot.title = element_text(size=14)) %>%
+  modify_labels(row_panels="Z")
+b = flexplot(y2~x | z2, data=d, method="lm", se=F, ghost.line="red") + 
+  labs(title="Flexplot with Nonparallel Lines", x="X", y="Y") +
+  theme(plot.title = element_text(size=14)) %>%
+  modify_labels(col_panels="Z")
+
+require(patchwork)
+a + b
+```
+
+We call this an "interaction effect." An interaction effect says that the effect of one variable on another (e.g., X on Y) depends on the level of a third variable (Z in this case). Interaction effects are pretty freaking important in stats--if they exist and we fail to identify them, it really screws up our model! So we want to be able to identify them. With ghost lines (and Flexplot), we have a way: if the lines are not approximately parallel, there's an interaction in the data that needs to be modeled. 
+
+### Identifying nonlinear effects
+
+Like interaction effects, nonlinear effects are important to detect, if they're there. If we miss them (and don't model them), it really screws up our model and we might not even know it!
+
+Fortunately, it's easy to identify nonlinear effects. We just ask Flexplot to show loess lines. Remember that loess lines bend with the data. So, if there's a bend, it will show that bend. Here's an example below. The plot on the left shows no nonlinear effects. The one on the right shows a nonlinear effect. 
+
+```{r mvglmnonlinear, echo=FALSE}
+set.seed(123324)
+n = 800
+x = rnorm(n)
+y1 = .5*x  + rnorm(length(x), 0, sqrt(1-.5^2))
+y2 = .5*x -.2*x^2 + rnorm(length(x), 0, sqrt(1-.5^2))
+
+d = data.frame(x=x, y1=y1, y2=y2)
+
+a = flexplot(y1~x , data=d, method="loess", se=F) + 
+  labs(title="Flexplot without nonlinear effects", x="X", y="Y") +
+  theme(plot.title = element_text(size=14)) 
+b = flexplot(y2~x , data=d, method="loess", se=F) + 
+  labs(title="Flexplot with nonlinear effects", x="X", y="Y") +
+  theme(plot.title = element_text(size=14)) 
+
+require(patchwork)
+a + b
+```
+
+These multipaneled flexplots are kind of tricky to interpret, but they're pretty necessary. They allow us to detect interaction/nonlinear effects. Assuming there are none of these sorts of effects, we can use a *much simpler visualization tool* called Added Variable Plots. 
+
+But, that condition is pretty important, so I'm going to say it again, but with bold this time: **added variable plots are an easy to interpret multivariate plot, but you can only use them if there are no interactions/nonlinear effects in your model.**
+
+(This statement is actually a bit simplified, and you can actually use them for visualizing models with these sorts of effects, but I'm not going to get into that here. If you're interested, you can read about it [in a paper I wrote](https://psyarxiv.com/avu2n/). )
+
 
 ### Encoding Additional Dimensions Using Added Variable Plots
 
-Earlier I said we used multivariate analyses for two primary purposes: (1) to identify interactions, and (2) to "control" for other variables. The previous section displayed the additional variables colors/symbols/lines or as separate panels. These plots are great for detecting interactions. If there are no interactions, we can simplify the visualization immensely by using added variable plots (or AVPs).
+Earlier I said we used multivariate analyses for two primary purposes: (1) to identify interactions, and (2) to "control" for other variables. The previous section displayed the additional variables colors/symbols/lines or as separate panels. These plots are great for identifying detecting interactions. (Again, we'll review how this is done later). If there are no interactions, we can simplify the visualization immensely by using added variable plots (or AVPs).
 
 Before we talk about AVPs, though, let me offer some definitions of important terms. Let's say you know that one's social support structure affects health. You also know that depression affects health, but you want to see the unique effect of depression on health, above and beyond social structure. When doing this sort of analysis, we have three types of variables: the outcome variable (you already know what this is), the "control" variable, and the "interest" variable. 
 
 **The control variable is the variable you're trying to control for.** Usually, we don't care about this variable. In our example, social support is the control variable. 
 
-**The interest variable is the variable whose unique effect you're interested in studying.** In this example, our interest variable is depression, because that's the variables whose influence we're actually interested in studying. 
-'re trying to visualize the effect of depression on health, above and beyond s
+**The interest variable is the variable whose unique effect you're interested in studying.** In this example, our interest variable is depression, because that's the variable whose influence we're actually interested in studying. 
 
 You can have multiple control variables (e.g., what is the effect of depression on health, after controlling for a. social support, and b. exercise frequency). You could also have multiple interest variables, but this is less common. 
 
-Let me summarize what AVPs do, before I go into more detail:
+Let me quickly tell you what AVPs do, before I go into more detail:
 
-**AVPs fit a model between the control variable(s) and the outcome, then plot those residuals against the interest variable.**
+**AVPs fit a model between the control variable(s) and the outcome, calculates the residuals, then plots those residuals against the interest variable.**
 
 Again, I'll go over this in detail and explain *why* we do this. But, before I lose your interest or before I lose you in the details, here's an example of an AVP in R:
 
@@ -285,9 +384,29 @@ What is this telling us? Remember what a residual means: *a residual tells us wh
 
 And that, my friends, is exactly what we were looking for! Whenever we are trying to "control" or "condition" on some variable, the appropriate visual to use is an AVP. 
 
-By the way, I didn't invent AVPs. (I wish I had!). But, I did modify them. I think most people would be confused looking at the plot above. So, flexplot makes two modifications: first, it relabels to axis (in this case, it would say `health | support`). This is because most people don't know what a residual is. Second, flexplot adds the mean of the outcome variable to every residual score. Why? Remember residuals always have a mean of zero. If the original variable had a mean of 15, then suddenly the plot showed it had a mean of zero, it would confuse people. So, I decided to add the mean of the outcome variable back in, to prevent confusion. 
+By the way, I didn't invent AVPs. (I wish I had!). But, I did have made a few cool modifications to them. 
+
+### Dustin's Cool Modifications to Added Variable Plots
+
+I think most people would be confused looking at added variable plots. Remember, we're plotting *residuals*, which means your outcome variable will now be centered on zero. I think if reviewers see this, they might have a heart attack. 
+
+"Wait a minute!" they might say, "Your DV ranges from 10-60 and yet your Y-axis ranges from -10 to 10. Clearly the authors are bozos and have done something wrong! Reject!"
+
+Of course, you, being the wise statistical Jedi that you are, would recognize that it's plotting a *residual*, not a raw score. To avoid confusion from under-educated reviewers, Flexplot actually adds the mean of the DV back into the residuals. This makes sure the Y axis is on the same scale as the original DV. Flexplot also relabels the $Y$-axis to highlight that it's showing *residuals* not actual outcome scores. (In this case, it would say `health | support`). 
 
 So, in short, AVPs literally fit a linear model predicting the outcome from the control variable(s), compute the residuals, then plot the interest variable against the residuals. These plots visually show us the effect of the interest variable, after controlling for the control variable(s). 
+
+These were small modifications, I admit. Rescaling the residuals and adding labels to the Y-axis is more intuitive, but the next modification is more extreme. We're going to combine the awesomeness of Flexplot with the awesomeness of AVPs.
+
+Remember how Flexplot is able to visualize multiple variables at a time? After a bit of math, I figured out how to extend AVPs to multivariate plots. Let's look at an example:
+
+```{r mvglmmvavp, echo=FALSE}
+added.plot(weight.loss~motivation + therapy.type, 
+    lm_formula = weight.loss~health*muscle.gain, 
+    data=exercise_data)
+```
+
+THe above plot is showing the relationship between two predictor variables (therapy.type and motivation) on weight loss, after controlling for health/muscle gain (and their interaction). That's pretty sweet. 
 
 #### Using Flexplot To Do AVPs
 

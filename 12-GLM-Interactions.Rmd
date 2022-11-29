@@ -4,7 +4,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Multivariate GLMs: Interaction Effects
+# Multivariate GLMs: Interaction Effects {#mvinteractions}
 
 It depends. 
 

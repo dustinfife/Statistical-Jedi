@@ -17,4 +17,4 @@ scatterplot3d
 scales
 Rcpp
 rstanarm
-base
+flexifiers
