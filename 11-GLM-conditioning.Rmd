@@ -84,7 +84,9 @@ The overlap between circles represents the degree of correlation (more overlap =
 \end{tikzpicture}
 ```
 
-How then, do we disentangle the explanations? We use conditioning!
+By the way, somehow there's this weird rumor out there that says linear models assume we don't have multicollinearity. *That is false!* LMs don't really care about whether you have multicollinearity. Let me say that again: **we never assume our variables are uncorrelated with one another.**
+
+Sure, it might make it more difficult to interpret our model, but that doesn't make it an assumption. Though, in reality, it is a real genuine problem because it becomes difficult to figure out which explanation is correct. How then, do we disentangle the explanations? We use conditioning!
 
 ## Controlling by conditioning
 
@@ -106,7 +108,7 @@ It's customary to put the covariate first, then put the interest variable. Why? 
 
 ## Why is the covariate put first? Type I/II/III Sums of Squares!
 
-This whole book is based on the GLM. But it used to be that people thought in terms of ANOVA models. To compute an ANOVA, you essentially compute two or more types of variances, then divide those variances. Whenever we have multiple variables, especially if those variables are not under the control of the experimenter, there's a good possibility the variables will be correlated. When variables are correlated, it becomes hard to figure out which variable gets "credit" for predicting the outcome. 
+This whole book is based on the LM. But it used to be that people thought in terms of ANOVA models. To compute an ANOVA, you essentially compute two or more types of variances, then divide those variances. Whenever we have multiple variables, especially if those variables are not under the control of the experimenter, there's a good possibility the variables will be correlated. When variables are correlated, it becomes hard to figure out which variable gets "credit" for predicting the outcome. 
 
 If you look at the Venn diagram above, you'll notice that I've defined "credit" by a variable's unique contribution; hard work uniquely contributes to income by the amount designated in red. Another name for unique credit is "Type III Sums of Squares." Why that name? Well, long story short, an ANOVA is trying to explain variance. Another name for variance is sums of squares. So Type III Sums of Squares is a fancy way of saying, "Variance explained, according to the third type of defining variance explained."
 
@@ -116,11 +118,11 @@ I think it's pretty stupid to give one variable more credit than another, just b
 
 ```
 
-If we were to write the above equation for the GLM using our own variables, we would put:
+If we were to write the above equation for the LM using our own variables, we would put:
 
 $\text{Income} = b_0 + b_1\text{Parental Wealth} + b_2\text{Hard Work} + e$
 
-Once again, we want to know the unique contribution of hard work, controlling for parental wealth. To condition, we could divide our sample based on the covariate, into different wealth brackets. Suppose, for example, we divide our sample into three groups: those who make less than $20K, those who make less than $50K, and those that make more than $50K. 
+Once again, we want to know the unique contribution of hard work, controlling for parental wealth. One way to think about conditioning is that we might divide our sample based on the covariate, into different wealth brackets. Suppose, for example, we divide our sample into three groups: those who make less than $20K, those who make less than $50K, and those that make more than $50K. 
 
 ```{r conditioningpanelgroups, echo = FALSE}
 b0 = 20000; 
@@ -164,7 +166,7 @@ cowplot::plot_grid(a,b, nrow=2)
 
 ## Conditioning is just residualizing
 
-In reality, statistical models don't actually separate the groups to do conditioning. Instead, the models residualize things. 
+In reality, statistical models don't actually separate the groups into distinct groups when conditioning. Instead, the models "residualize" things. 
 
 And, it turns out, we've already talked about this. Remember back in the diagnostics chapter how I mentioned that a model is comprised of two components:
 
@@ -188,13 +190,11 @@ Well, not quite. There's always a catch. This time, there's four: (1) Conditioni
 
 ### 1. Conditioning will not prove causation. 
 
-You've probably heard many marginally-educated souls repeat the mantra that correlation does not prove causation. And it's true.
-
-But, correlation can provide evidence for causation. For example, a lack of correlation between race and death penalty is evidence that there's no relationship between race and death penalty. But, it's very weak and misleading evidence. As I mentioned, once you condition on the race of the victim, a much different picture emerges. 
+You've probably heard many marginally-educated souls repeat the mantra that correlation does not prove causation. And it's true. But, correlation can provide evidence for causation. For example, a lack of correlation between race and death penalty is evidence that there's no relationship between race and death penalty. But, it's very weak and misleading evidence. As I mentioned in my chapter on [visualizing multivariate models](#vizmvglms), once you condition on the race of the victim, a much different picture emerges. 
 
 The problem with using conditioning as evidence for causality is that there are *always* an infinite number of variables you can condition on. Is there a strong correlation between processed food consumption and heart disease? Sure, let's say there is. But maybe it's not processed food consumption per se, but perhaps people who are health-conscious tend to both consume less processed food *and* they tend to exercise more regularly. So, maybe we condition on exercise and find there's *still* a relationship between the two. Has our evidence for causation strengthened?  
 
-Certainly, but we still have weak evidence. Maybe our covariate should really be wealth; wealthy people can afford non-processed foods and they have more to spend on top-notch health care. Okay, so maybe we control for that and *still* find a strong relationship between processed food consumption and heart disease. Has our evidence for causation strengthened?
+Certainly, but we still have weak evidence. Maybe our covariate should really be wealth; wealthy people can afford non-processed foods and they have more money to spend on top-notch health care. Okay, so maybe we control for that and *still* find a strong relationship between processed food consumption and heart disease. Has our evidence for causation strengthened?
 
 Yes, but, once again, it is still weak. So maybe we control for age, race, geographic area, type of salt used, shoe size, and knowledge of 80's pop culture. After all that, we might still find a relationship, but there's *always* a possibility there's some covariate we haven't yet controlled for.
 
@@ -242,11 +242,11 @@ There's this weird habit I have seen in the world of research. Seems these folks
 
 It wouldn't be the first time everybody else is doing something stupid. 
 
-Here's the problem: by conditioning thoughtlessly, you may be conditioning on the very thing you're trying to model. I once heard of a statistician who was trying to demonstrate there's no such thing as racial profiling. To do so, he built a model that predicted who would be pulled over using an interest variable (race) and several covariates. For simplicity, let's say the covariates were type of car driven, the clothing the person wore, the accent with which they spoke, and religion. After controlling for these variables, the statistician found no relationship between race and the probability of being pulled over. 
+Here's the problem: by conditioning thoughtlessly, you may be conditioning on the very thing you're trying to model. I've heard this called "controlling for a mediator." I once heard of a statistician who was trying to demonstrate there's no such thing as racial profiling. To do so, he built a model that predicted who would be pulled over using an interest variable (race) and several covariates. For simplicity, let's say the covariates were type of car driven, the clothing the person wore, the accent with which they spoke, and religion. After controlling for these variables, the statistician found no relationship between race and the probability of being pulled over. 
 
 Here's the problem with this analysis: these covariates (type of car driven, clothing, accent, and religion) are *heavily* influenced by one's culture. It would be extremely unusual to see an African American male driving a horse-drawn carriage, wearing overalls, speaking with a German accent, and attending Mennonite church services. You might even go so far as to say that skin color (e.g., black versus tan versus white) is meaningless by itself. These factors (car driven, clothing, etc.) are so heavily influenced by cultural factors that, once you control for them, you have actually controlled for the very thing you're trying to model. 
 
-So, before you try to control for a particular covariate, spend some time thinking about whether you actually want to control for it. Perhaps, as in the example I use, controlling for that thing yields the interest variable meaningless. 
+So, before you try to control for a particular covariate, spend some time thinking about whether you actually want to control for it. Perhaps, as in the example I use, controlling for that thing renders the interest variable meaningless. 
 
 ### 3. Only study and interpret the effects of the interest variable
 
@@ -254,7 +254,7 @@ Multivariate GLMs are kind of dangerous, at least if they're approached from the
 
 Heart Disease = $b_0 + b_1$ SES $+ b_2$ exercise $+ b_3$ age $+ b_4$processed foods $+e$
 
-Note that we don't care about $b_1-b_3$; we only care about $b_4$. Even though that's all we care about, the computer doesn't know that. So, it will report estimates for *everything* we have in the model, even the variables we don't care about. The problem is much worse if you're using anything but flexplot because the computer will report p-values *for each and every variable in the model*. So, we might start our analysis with the idea that we will study the effect of processed foods, but our eyes might be pulled to look at the whopping SES effect, or the statistically significant exercise effect. 
+Note that we don't care about $b_1-b_3$; we only care about $b_4$. Even though that's all we care about, the computer doesn't know that. So, it will report estimates for *everything* we have in the model, even the variables we don't care about. The problem is much worse if you're using anything but Flexplot because the computer will report p-values *for each and every variable in the model*. So, we might start our analysis with the idea that we will study the effect of processed foods, but our eyes might be drawn to that whopping SES effect, or the statistically significant exercise effect. 
 
 There are two problems with doing that. First, if we are lured by the significance of p-values, we are deceiving ourselves; in this situation, p-values have no probabilistic meaning. Remember a p-value only means something if we have specified our sample size in advance, met all the assumptions, and *perform one test* (or control for multiple comparisons). Nearly all statistical packages out there disregard this fact and default to reporting p-values for every single parameter in the model. 
 
@@ -264,8 +264,7 @@ Multivariate GLMs (or multiple regression) are not a means for performing a fish
 
 ### 4. Conditioning with interaction effects. 
 
-One final problem with conditioning: it only makes sense if there are no interaction effects in the model. Alas, I have not explained what interaction effects are. That is the topic of the next chapter. For now, know this, young padawan: there is great danger in conditioning if a covariate interacts with the interest variable. If there is an interaction, the conditioned analysis is senseless. 
-
+One final problem with conditioning: it only makes sense if there are no interaction effects in the model. Alas, I have not explained what interaction effects are. That is the topic of the [next chapter](#mvinteractions). For now, know this, young padawan: there is great danger in conditioning if a covariate interacts with the interest variable. If there is an interaction, the conditioned analysis is senseless. 
 
 
 ```{block, type="rmdnote"}
@@ -288,6 +287,56 @@ Fortunately, very few variables are truly uncorrelated, so I suspect this sort o
 ```
 
 All these reasons suggest that we ought to be very careful when we condition. Our choice of what to condition on ought to be carefully considered in light of theory. Then, this should be followed by targeted hypotheses and our interpretation should only focus on the parameters that are actually of interest. 
+
+## When should you use a conditioning analysis?
+
+Lemme review for a minute: once we step into multivariate analyses, we have to worry about multicollinearity (or the fact that our variables are correlated with one another). When they're correlated, it's more difficult to tell which variable gets "credit" for predicting the outcome. By default, we assign credit by subtracting out any shared relationship between our predictor variables and assigning any remaining "signal" to our interest variable. We call these sorts of analyses *conditioning analyses*. 
+
+Let me say that, but more definition-like:
+
+**A conditioning analysis is interested in determining the effect of an interest variable, after subtracting out the effect of one or more covariates. **
+
+So, when would you ever want to do this? Let me give some examples, where this might be interesting:
+
+* We know that there's a genetic component of depression. But, once we subtract out the effect of genetics, what is the net effect of poverty on depression?
+* If we assume control for time of day, what is the effect of using live bait on fishing success?
+* How effective is exercise at improving health, once we control for nutrition?
+* Assuming resources are equal, what is the effect of sunlight on pilfering behaviors among chipmunks?
+* If two teams have point guards of equivalent skills, what effect does rebounds have on winning percentages in basketball games?
+
+There are common phrases you might hear that indicates a conditioning analysis:
+
+* "What is the effect of X on Y, after controlling for Z?"
+* "How does X effect Y, holding Z constant?"
+* "If we assume everyone has the same value of Z, how strong is the relationship between X and Y?"
+
+These are all similar ways of saying the same thing. In all cases, we're interested in a conditioning analysis. These phrases are so common, you might actually be asking, *when will I NOT have a conditioning analysis*?
+
+Good question! Here are phrases that indicate it's not really about conditioning anymore:
+
+* Which variable is the best predictor of Y--A, B, C, or D? This is really a data mining question, and not so much about conditioning anymore.[^datamining]
+* Does the relationship between X and Y depend on Z? This type of question is for studying *interaction* effects, which is the topic of the next chapter. 
+* How strongly are X and Y associated? This type of question doesn't involve conditioning, because you're only looking at two variables.
+* Can we categorize these variables (or people) depending on their response patterns on these predictor variables? This type of question is what I call a "clustering" question. 
+
+So, again, with a conditioning analysis, we're interested in determining the effect of our interest variable on the outcome, after subtracting out the effect of the covariate. 
+
+[^datamining]: This requires a bit of elaboration. When you're doing data mining, usually you're also doing a conditioning analysis. For example, you might try to determine which variable has the largest net effect among all the others. Data mining is a totally different procedure that I don't go into in this book. Unfortunately, it has its own set of rules and techniques that I can't go into here. 
+
+Once we've determined we're doing a conditioning analysis, the next step is to set up our linear model. Fortunately, that's pretty easy to do. All we have to do is identify our outcome variable, our interest variable, and our covariate. Once we've done that, we're ready to fit our model:
+
+$\text{outcome} = b_0 + b_1 \times \text{covariate} + b_2 \times \text{interest variable}$
+
+Or, if you're in R:
+
+```{r, echo=T, eval=F}
+mod = lm(outcome~covariate + interest, data=d)
+```
+
+Remember, the order of the variables doesn't matter, but conventionally, we put the interest variable at the end. 
+
+Now that we're ready to fit our model, it's important to know what sorts of estimates a multivariate model will spit out. So, without further ado...
+
 
 ## Additional Estimates of Interest
 
@@ -317,9 +366,9 @@ But what does that mean?
 
 Let's say there's two fellows competing in a punch force competition: Andre and Alfred. Let's say both have equal punch force, equal bicep circumference and equal grunt volume. However, Andre decides to alter his training regime. After doing so, he gains exactly an inch of bicep circumference. However, *his grunt volume has not changed at all!* 
 
-What can we expect Andre's new punch force value to be? Our prediction of his increase in punch force is *exactly* equal to whatever $b_1$ is. Why? Because his grunt volume didn't change. Or, we could say because his grunt volume is "held constant."
+What can we expect Andre's new punch force value to be? Our prediction of his increase in punch force is *exactly* equal to whatever $b_1$ is. Why? Because his grunt volume didn't change. Or, we could say his grunt volume is "held constant."
 
-Alfred, on the other hand, also started a new training program. This program also yields an inch in bicep circumference, but it also gives him a decibel in grunt volume. (It's a very holistic training program). How much do we expect punch force to increase? It is *not* $b_2$ because his grunt volume did not remain the same. Instead, it's actually $b_1 + b_2$ because both grunt volume and bicep circumference increased by exactly one unit. 
+Alfred, on the other hand, also started a new training program. This program also yields an inch in bicep circumference, but it also gives him a extra decibel in grunt volume. (It's a very holistic training program). How much do we expect punch force to increase? It is *not* $b_2$ because his grunt volume did not remain the same. Instead, it's actually $b_1 + b_2$ because both grunt volume and bicep circumference increased by exactly one unit. 
 
 This little example may make that whole "holding constant" distinction seem unimportant. But it's actually quite important when there's multicollinearity present. Let's say we have a new model:
 
@@ -329,7 +378,7 @@ Anybody know the correlation between bicep circumference in inches and circumfer
 
 So, let's think about what the parameter $b_1$ means: it tells us the expected change in punch force if we were to gain an inch of bicep circumference *while gaining no centimeters*. 
 
-That's actually not possible. You can't gain an inch while gaining no inches in centimeters. So, not surprisingly, our value of $b_1$ will be zero.
+That's actually not possible. You can't gain an inch while gaining no inches in centimeters. So, not surprisingly, our value of $b_1$ will be zero. (Well, technically, it can't be estimated, but you get the idea). 
 
 So what does this tell us? The slopes actually tell us *the unique contribution of a predictor variable*. The more strongly an interest variable is associated with a covariate, the smaller we should expect a slope to be. 
 
@@ -387,7 +436,7 @@ Model 1's $R^2$ was `r round(estimates(speed.model)$r.squared[1], digits=2)` and
 
 So, the semi-partial tells us how much our model improves in its ability to predict when we add that particular variable to our existing model. 
 
-You could, of course, compute the semi-partial "by hand," by computing the $R^2$ for a pair of models, then subtract the two, but flexplot will actually do that for you. Let's look at this code again:
+You could, of course, compute the semi-partial "by hand," by computing the $R^2$ for a pair of models, then subtract the two, but Flexplot will actually do that for you. Let's look at this code again:
 
 ```{r}
 estimates(speed.model.2)
@@ -396,6 +445,7 @@ estimates(speed.model.2)
 Notice that second section labeled "Semi-Partial R squared"? Nice, that. Ya'll can thank me now. I accept cash, check, and Subway coupons. 
 
 So, in summary, a semi-partial tells you how much adding a single predictor improves our prediction above and beyond a model without that variable. 
+
 
 
 ## Applied Analyses
@@ -408,21 +458,38 @@ We would traditionally call this an Analysis of Covariance (ANCOVA). ANCOVAs are
 
 For this analysis, we're going to look at the exercise_data dataset. We know from previous analyses that the behaviorist/cognitive groups lost more weight than the control group. But we know that weight loss is heavily influence by motivation. It's possible that we accidentally put a bunch of motivated people in the control group and unmotivated people in the treatment groups. In other words, maybe we don't believe that random assignment didn't work very well. If that's the case, we might want to "control" or "condition" on motivation.
 
-So, our research question might be:
+Before we start our analysis, it's going to be helpful to state our research question. That might be: 
 
   *Once we control for motivation, those in the treatment groups (cognitive and behaviorist) will have more weight loss than those in the control group*
     
 Nice. 
 
-Now let's look at the univariate plots. 
+But that's probably not enough. It's usually a good idea to convert this research question into a statistical model:
 
-```{r conditioning7}
+$$\text{weight loss} = b_0 + b_1 \times \text{motivation} + b_2 \times \text{group}$$
+
+Here, motivation is our covariate and group is our interest variable. 
+
+After I state my hypothesis, I like to start by visualizing the univariate plots. Let's go ahead and do that:
+
+
+```{r, eval=FALSE}
 flexplot(weight.loss~1, data=exercise_data)
 flexplot(motivation~1, data=exercise_data)
 flexplot(therapy.type~1, data=exercise_data)
 ```
 
-Nothing surprising here, especially since we've already seen these plots. 
+```{r, conditioningy, echo=FALSE}
+a = flexplot(weight.loss~1, data=exercise_data)
+b = flexplot(motivation~1, data=exercise_data)
+c = flexplot(therapy.type~1, data=exercise_data)
+require(patchwork)
+a+b+c
+```
+
+
+
+Nothing surprising here, especially since we've already seen these plots; motivation and weight loss are about normally distributed, and we have about the same number of people in each group (there there are slighly more in the behaviorist group). All is as expected, so we'll go ahead and move on to the next step. 
 
 Now let's visualize the statistical model. We could do it in multiple ways. First, let's put all the data out there at the same time, using a paneled plot. (Not I'm also asking flexplot to show standard errors, instead of medians/interquartile ranges):
 
@@ -459,13 +526,13 @@ I'm intentionally not going to interpret the numeric estimates because motivatio
 
 #### Reporting Results for an ANCOVA
 
-I know I'm kind of a weird fellow and have different ideas. You kinda need to be quirky to change the way statsitics is taught and used. However, it also means that, if you are following my approach, you might not be sure how to go about reporting results. If you're focusing heavily on visualization while the rest of the world is still obsessed with p-values, how do you report information? 
+I know I'm kind of a weird fellow and have different ideas. You kinda need to be quirky to change the way statistics is taught and used. However, it also means that, if you are following my approach, you might not be sure how to go about reporting results. If you're focusing heavily on visualization while the rest of the world is still obsessed with p-values, how do you report information? 
 
-Good question, that. I'm going to give three examples. Why three? Because some of you are going to be comfortable being "radicals"--people who give the finger to convention and entirely embrace the new way of doing statistics. Some (I'll call them the "traditionalists") don't want to risk abandoning convention if fear a precious publication will not pass the review process. The traditionalists want to better report statistics, but not at great personal risks. That's okay! I have a template for you! Finally, there are the "conventionalists," who want to deviate from convention as little as possible. That's okay too. I simply ask that you at least push against the boundaries a little. 
+Good question, that. I'm going to give three examples. Why three? Because some of you are going to be comfortable being "radicals"--people who give the finger to convention and entirely embrace the new way of doing statistics. Some (I'll call them the "traditionalists") don't want to risk abandoning convention for fear a precious publication will not pass the review process. The traditionalists want to better report statistics, but not at great personal risks. That's okay! I have a template for you! Finally, there are the "conventionalists," who want to deviate from convention as little as possible. That's okay too. I simply ask that you at least push against the boundaries a little. 
 
 Here's the basic approach for each:
 
-1. Radicals will not report visuals/estimates/confidence intervals/Bayes factors. They will refuse to report p-values and they will refer to analyses using GLM terminology. 
+1. Radicals will report visuals/estimates/confidence intervals/Bayes factors. They will refuse to report p-values and they will refer to analyses using LM terminology. 
 2. Traditionalists will report visuals/estimates/confidence intervals/Bayes factors. They will use traditional terminology and report p-values but will not use them to guide their commentary of the results. 
 3. Conventionalists will report/interpret p-values as is typical, but will supplement their analysis with visuals/estimates/confidence intervals/Bayes factors.
 
@@ -482,13 +549,19 @@ When reporting from a "radical" perspectives, I generally have three sections. T
 <div style="margin-left: 40px;">
 We fit a linear model predicting weight loss from motivation and therapy group. First, however, we studied the univariate distributions (see Appendix A), as well as the diagnostics. The diagnostics suggest the residuals of the model are approximately normally-distributed, the model is approximately linear, and the variance is approximately constant. 
 
-Once the viability of the assumptions was established, we visualized the model using an added-variable plot (see Figure \@ref(fig:mvcondavp)). According to the figure and Table \@ref(tab:estimatesradical), the cognitive and behavioral groups consistently lost more weight than the control group, after controlling for motivation. Therapy group explained `r semip[1]*100`\% of the model's variance. 
+Once the viability of the assumptions was established, we visualized the model using an added-variable plot (see Figure \@ref(fig:mvcondavp)). According to the figure and Table \@ref(tab:estimatesradical), the cognitive and behavioral groups consistently lost more weight than the control group, after controlling for motivation. 
+
+We also performed a model comparison between two models:
+
+Full Model: $$\text{weight loss} = b_0 + b_1 \times \text{motivation} + b_2 \times \text{group}$$
+Reduced Model: $$\text{weight loss} = b_0 + b_1 \times \text{motivation} $$
+
+These results are presented in Table xxx. The AIC, BIC, and Bayes Factor all favor the reduced model, and group explained `r semip[1]*100`\% of the model's variance.  
 </div>
 
 ```{r estimatesradical, echo=FALSE}
 options(knitr.kable.NA = '')
 knitr::kable(estimates(ancova.model)$difference.matrix, digits=2, caption = "Mean Differences and confidence intervals for the behaviorist, cognitive, and control groups.")
-?kable
 ```
 
 

@@ -1,4 +1,4 @@
-# Visualizing Multivariate General Linear Models
+# Visualizing Multivariate General Linear Models {#vizmvglms}
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set(
@@ -262,13 +262,13 @@ y2 = .5*x + .3*z2 + .4*z2*x + rnorm(length(x), 0, sqrt(1-.5^2))
 d = data.frame(x=x, y1=y1, y2=y2, z1=z1, z2=z2)
 
 require(flexifiers)
-a = flexplot(y1~x | z1, data=d, method="lm", se=F, ghost.line="red") + 
+a = (flexplot(y1~x | z1, data=d, method="lm", se=F, ghost.line="red") + 
   labs(title="Flexplot with Parallel Lines", x="X", y="Y") +
-  theme(plot.title = element_text(size=14)) %>%
+  theme(plot.title = element_text(size=14))) %>%
   modify_labels(row_panels="Z")
-b = flexplot(y2~x | z2, data=d, method="lm", se=F, ghost.line="red") + 
+b = (flexplot(y2~x | z2, data=d, method="lm", se=F, ghost.line="red") + 
   labs(title="Flexplot with Nonparallel Lines", x="X", y="Y") +
-  theme(plot.title = element_text(size=14)) %>%
+  theme(plot.title = element_text(size=14))) %>%
   modify_labels(col_panels="Z")
 
 require(patchwork)

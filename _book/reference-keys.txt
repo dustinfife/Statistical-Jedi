@@ -1,0 +1,9 @@
+fig:mvcondmodelplot
+fig:mvcondavp
+tab:estimatesradical
+fig:mrmultivar
+fig:mrquad
+fig:mrdiag
+fig:mravp
+tab:mrestimates
+tab:mrestimates2
