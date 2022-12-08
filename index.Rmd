@@ -4,7 +4,8 @@ author: "Dustin Fife"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
-  bookdown::gitbook:
+  html_document:
+    toc: true
     number_sections: false
 documentclass: book
 bibliography: [book.bib, packages.bib, book_citations.bib, references.bib]

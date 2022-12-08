@@ -16,13 +16,17 @@ Fortunately, for overzealous photographers like myself, by hacking photoshop's l
 
 Our brains are wired in such a way that we're not very good at judging absolutes; we're much better at judging relative differences. The same applies for statistical models: our estimates are *really* bad at telling you whether the model fits well, but statistical models are quite good at telling you which of two models is better. 
 
+I think I'm going to say that again...in case you weren't paying attention:
+
+** Statistics suck at telling us if a model fits. But statistics is really good at telling us which of two models fit better. **
+
 ## Nested versus non-nested Models
 
 Alright, I'm going to qualify what I was just saying; statistical models are really good at telling which of two *nested* models fits better. 
 
 "Why, Fifedog...what are nested models?"
 
-So glad you asked, wise student. 
+So glad you asked, wise student. (And who told you my high school nickname?)
 
 Let me give a somewhat technical definition first, then I'll illustrate with some examples.
 
@@ -43,7 +47,7 @@ $$
 \end{align}
 $$
 
-The second model ($y = A$) is said to be *nested* within the other model ($y = A + B$). Let's look at a non-nested model:
+The second model ($y = A$) is said to be *nested* within the other model ($y = A + B$) because you can delete $B$ to get $A$ alone. Let's look at a non-nested model:
 
 $$
 \begin{align}
@@ -98,7 +102,7 @@ Before I explain what I mean by those four magical words, I need to cover a basi
 
 This can be a very technical topic, but I'm not going to be technical. But here's the basic idea: every time we add a variable (or a term, like an interaction term), our model will *always* improve in fit. (Well, technically, it might not change at all, but it can't get worse.) 
 
-That's good, right? Well, no. The problem is that we can add *anything* to the model to improve fit. We can improve our prediction of temperature by adding my daily weight to our prediction model. It will improve the fit (very slightly). But we know that my weight has nothing to do with the temperature. So, if our model is filled with predictors that really have nothing to do with our outcome of interest, we're adding useless information.
+That's good, right? Well, no. The problem is that we can add *anything* to the model to improve fit. We can improve our prediction of barometric pressure by adding my daily weight to our prediction model. It will improve the fit (very slightly). But we know that my weight has nothing to do with barometric pressure. So, if our model is filled with predictors that really have nothing to do with our outcome of interest, we're adding useless information.
 
 But there's a more sinister problem with adding useless predictors: the model will "overfit." Overfitting means that the model is fitting both the "signal" and the noise. The practical implications of that is that if we overfit, we will have very poor replication rates. 
 
@@ -106,7 +110,9 @@ So, let me say that all much more concisely: adding variables always improves pr
 
 Got it?
 
-Now we return to those four magical words: Is it worth It? When we ask our statistical models that questions, we're asking whether the improvement in fit is worth the cost of potentially overfitting. 
+Now we return to those four magical words: Is it worth it? 
+
+When we ask our statistical models that questions, we're asking whether the improvement in fit is worth the cost of potentially overfitting. 
 
 Fortunately, we have several tools we can use to determine whether the added complexity is worth it. 
 
@@ -128,7 +134,7 @@ Here are some examples:
 
 *An ANOVA traditionally asks whether there are mean differences between groups (e.g., control, treatment A, treatment B) on some outcome. A model comparison asks whether the inclusion of group membership (control, treatment A, treatment B) improves fit above and beyond using a single mean for each group. 
 *An ANCOVA asks whether group means are different after controlling for a covariate. A model comparison asks whether the inclusion of group membership improves prediction above and beyond predicting from the covariate alone.
-*Traditionally, testing for an interaction asks whether the interaction effect differs from zero. A model comparison asks if a model which allows the slopes to differ is substantially better than a model that does not allow the slopes to differ. 
+*Traditionally, testing for an interaction asks whether the interaction effect differs from zero. A model comparison asks if a model which allows the slopes to differ depending on the third variable is substantially better than a model that does not allow the slopes to differ. 
 
 Many of the analyses we've already been doing can be re-framed as a model comparison:
 
@@ -144,7 +150,7 @@ Just about all (if not all!) analyses can be reframed as a model comparison. Bec
 
 ## Visual model comparisons
 
-Are you at all surprised that I begin with visualizations? You probably shouldn't be.
+Are you at all surprised that I begin with visualizations? You probably shouldn't be. I feel like we're friends at this point and might even be able to finish each other's sandwiches. (Catch that Frozen reference?)
 
 Flexplot has various tools that allow you to visually compare two models. Perhaps the coolest tool is the `compare.fits` function. Let me go ahead and show you how it works with an example, then I'll explain the deets:
 
@@ -165,11 +171,11 @@ Let's talk about the arguments first. `compare.fits` requires four major argumen
 3. A fitted model. For now, that means a model fit with the `lm` function. 
 4. (Optional). A second model that we wish to compare to the first. If we omit this, `compare.fits` will just visualize the one model. (In which case, it's really no different than using the `visualize` function). 
 
-So, in short, this function will visually compare two models. In the plot above, one in blue is the reduced model and the red one is the full model. 
+So, in short, this function will visually compare two models. In the plot above, the one in blue is the reduced model and the red one is the full model. 
 
 So, what are we looking for when viewing two plots in compare.fits?
 
-We are looking for *different predictions*. In this case, the two models have similar predictions, at least in some instances. For example, both models predict ptsd scores near 8 when injuries are low (0-3) for the south battlefield. However, they have a larger difference in their predictions for the north battle field (maybe 8 versus 7.7). 
+We are looking for *different predictions*. In this case, the two models have similar predictions, at least in some instances. For example, both models predict ptsd scores near four most of the time.
 
 ```{block, type='rmdnote', echo=TRUE}
 ## Do we want parallel lines in `compare.fits`?
@@ -184,19 +190,32 @@ So, don't confuse the two approaches. Lemme make it more clear with a bulleted l
 ```
 
 
-Let's look at another example with a more drastic difference. This time, we'll fit a model with/without injuries (while leaving north_south in both):
+Let's look at another example with a more drastic difference. This time, we'll fit a model predicting Covid symptom severity from health and mask-wearing behaviors:
+
+```{r, echo=FALSE}
+set.seed(2323)
+mat = matrix(c(
+  1, .1, .6,
+  .1, 1, .3,
+  .6, .3, 1),
+      nrow = 3
+)
+require(tidyverse)
+d = data.frame(MASS::mvrnorm(300, c(0,0,0), mat)) %>%
+  set_names("health", "mask_behaviors", "symptom_severity")
+```
 
 ```{r modcompav2, echo=TRUE}
 require(flexplot)
-full    = lm(ptsd~north_south + injuries, data=avengers)
-reduced = lm(ptsd~north_south           , data=avengers)
-compare.fits(ptsd~injuries | north_south, 
-             data=avengers, 
+full    = lm(symptom_severity ~ health + mask_behaviors, data=d)
+reduced    = lm(symptom_severity ~ health                 , data=d)
+compare.fits(symptom_severity~mask_behaviors | health, 
+             data=d, 
              model1 = full,
              model2 = reduced)
 ```
 
-Now our two models are *drastically* different. For example, the left-most plot says the full model predicts a ptsd score over 8 for those with no injuries, while the reduced model  predicts a score just over 7.
+Now our two models are quite different from one another. For example, in the right plot the two model's predictions are different by nearly a full standard deviation (1 point). 
 
 So, again, let me say it again, but with emphasis. *When using `compare.fits`, we're trying to see whether the two models produced drastically different predictions`. 
 
@@ -216,7 +235,7 @@ All it requires is two models (preferably nested). It will then report several s
 
 ### AIC/BIC
 
-The AIC is short for Akaike's Information Criteria. It is defined as:
+The AIC is short for Akaike's Information Criteria. This statistic won the award for the "Most Fun Statistic to Say" seven years running. It's pronounced: awe-ka-ick-ee. It is defined as:
 
 $$ AIC = 2k - 2ln(\hat L)$$
 where $k$ is the number of parameters and $\hat L$ is the likelihood function. 
@@ -247,9 +266,9 @@ $$ BIC = k \text{ ln}(n) - 2ln(\hat L)$$
 
 where $n$ is the sample size. 
 
-BIC tends to be more conservative than the AIC. (In other words, the BIC will generally favor the reduced model moreso than the AIC). Fortunately, the two usually agree. 
+BIC tends to be more conservative than the AIC. (In other words, the BIC will generally favor the reduced model more so than the AIC). Fortunately, the two usually agree. 
 
-Like the AIC, the numbers associated with the BIC cannot be interpreted in isolation. Rather, we use the BIC from two models and favor the model with the lower BIC. 
+Like the AIC, the model with the smaller BIC is the favored model. Also like the AIC, the numbers associated with the BIC cannot be interpreted in isolation. Rather, we use the BIC from two models and favor the model with the lower BIC. 
 
 ### Bayes Factors
 
@@ -265,7 +284,7 @@ So, the model that has Bayes factor values larger than 1 is the better fitting m
 
 That there is quite intuitive. Going back to our previous example, the evidence in favor of the full model (which includes injuries) is `r model.comparison(full, reduced)$statistics$bayes.factor[1]` times larger than the reduced model. (That's a *massive* difference!)
 
-By convention, Bayes factors larger than around 10 are considered fairly strong evidence in favor of that model. One thing you'll have to remember about the BF is that anything near 1 is *ambiguous*. For some reason (likely the extensive training we all receive in p-values), it's tempting to interpret a BF of, say 1.5, as saying the reduced model should be favored. This is not the case! Rather, 1.5 says the BF is having a really hard time deciding between the two. 
+By convention, Bayes factors larger than around 10 are considered fairly strong evidence in favor of that model. One thing you'll have to remember about the BF is that anything near 1 is *ambiguous*. For some reason (likely the extensive training we all receive in p-values), it's tempting to interpret a BF of, say 1.1, as saying the reduced model should be favored. This is not the case! Rather, 1.1 says the BF is having a really hard time deciding between the two. 
 
 ### p values
 
@@ -276,6 +295,8 @@ You: Aren't you diametrically opposed to p-values?
 Me: Usually.
 
 You: So...why are you reporting p-values in the software that *you* developed?
+
+Me: I'm sorry, I'm not taking questions at this time. Please contact my PR office for further inquiries. 
 
 You got me. 
 
@@ -329,7 +350,7 @@ For one, computing p-values (e.g, with the `summary` function) computes way more
 
 But there's a third reason to prefer `model.comparison` over the `summary` function: the `summary` function cannot compute p-values for certain types of model comparisons. 
 
-Let's say you want to see the effect of speed *and* agility on ptsd, after controlling for minutes.fighting and injuries. In this case, our two models would be:
+Let's say you want to see the effect of speed *and* agility on ptsd, after controlling for minutes.fighting *and* injuries. In this case, our two models would be:
 
 full model: ```ptsd~minutes.fighting + injuries + speed + agility```
 reduced model: ```ptsd~minutes.fighting + injuries```
@@ -340,14 +361,13 @@ Now the full model has *two* variables the reduced model doesn't. There's no way
 
 The final statistic the `model.comparison` function returns is the model's $R^2$. We're all familiar with this metric, so I won't go into much detail. But, `model.comparison` makes it very easy to compare model r squared values. 
 
-
 ### The predicted values
 
-Back when I was talking about `compare.fits`, I was trying, by eye, to tell you how different two model's predictions are. For example, I said Figure \@ref(fit:modcompav2) predicted over 8 versus over 7 for the north battlefield/0 injuries folks for the full/reduced model, respectively. 
+Back when I was talking about `compare.fits`, I was trying, by eye, to tell you how different two model's predictions are. For example, I said the two models in Figure \@ref(fit:modcompav2) differed by about 1 standard deviation. 
 
-Perhaps, it might be a smidge better to have more concrete values than having to eyeball things. That's what these predicted value are. 
+Perhaps, it might be a smidgen better to have more concrete values than having to eyeball things. That's what these predicted value are. 
 
-Bascially, what `model.comparison` does in the background is it uses both models to predict scores for each individual. For example, the full model might predict a ptsd score of 7.6, while the reduced model might predict a ptsd score of 5.4. Then `model.comparison` will compute the difference in prediction. In this example (7.6 versus 5.4), the difference will be 2.2. It will compute this difference for *all* scores in the dataset. The predicted_difference section tells you the percentiles of these differences. 
+Bascially, what `model.comparison` does in the background is it uses both models to predict scores for each individual. For example, the full model might predict a symptom severity score of 1.2, while the reduced model might predict a symptom severity score of .18. Then `model.comparison` will compute the difference in prediction. In this example (1.2 versus .18), the difference will be .02. It will compute this difference for *all* scores in the dataset. The predicted_difference section tells you the percentiles of these differences. 
 
 Let's go ahead and pull up these statistics for the two models we compared earlier (with versus without flexibility). Let's show that again:
 
@@ -355,7 +375,7 @@ Let's go ahead and pull up these statistics for the two models we compared earli
 model.comparison(full, reduced)$predicted_differences
 ```
 
-This is telling you that the *minimum* difference between the two models is `r prediff[1]`. It also says that 25% of scores differ by no more than `r prediff[2]`, 50% differ by no more than `r prediff[3]`, 75% differ by no more than `r prediff[4]`, and that maximum difference in prediction is `r prediff[5]`. Remember that the ptsd scale ranges from about 5 to 10, so a difference of around 0.05 is really tiny. In other words, these two models are generating *very* similar predictions. 
+This is telling you that the *minimum* difference between the two models is `r prediff[1]`. It also says that 25% of scores differ by no more than `r prediff[2]`, 50% differ by no more than `r prediff[3]`, 75% differ by no more than `r prediff[4]`, and that maximum difference in prediction is `r prediff[5]`. 
 
 ### What if the statistics disagree?
 
@@ -363,7 +383,7 @@ That there is a good question. And it happens! Most of the time, the AIC/BIC/BF/
 
 What then?
 
-You may not like the answer, but I'm going to tell you anyway. In those cases, it's best to say that the answer is ambiguous. The reality is that the evidence isn't strong either way. So, my best recommendation is to report that the evidence is ambiguous, then collect more data. 
+You may not like the answer, but I'm going to have to be straight with you. It's time you learn some hard truths and stiffen up that upper lip, young soldier. When these statistics disagree, that tells you your answer is ambiguous. The reality is that the evidence isn't strong either way. So, my best recommendation is to report that the evidence is ambiguous, then collect more data. 
 
 You might be uncomfortable with that. It's understandable. As humans, we don't like ambiguity. As scientists, we've been trained to reject ambiguity and uncertainty. That has, unfortunately, been to our detriment. In the past, when we *should* have been ambiguous under uncertainty, we instead were bold. That led to the replication crisis. So, it's high time we allow ambiguity into our conclusions and scientific dialogue. 
 
@@ -399,6 +419,8 @@ model.comparison(full, reduced)
 
 *Hierarchical Regressions are model comparisons*. I have no idea why SPSS decided to use different terminology than what statisticians use. It's quite frustrating, actually. It makes it seem like what I teach is foreign, when it's not at all. 
 
+Damned IBM. 
+
 ## Non-nested models
 
 This chapter has been primarily devoted to nested models, and this book isn't intended to really go too deeply into non-nested models. But, many of the research questions we ask cannot be assessed with a nested model comparison:
@@ -415,7 +437,7 @@ Fortunately, you can still use AIC/BIC/BF/predicted differences in exactly the s
 
 ## Summary
 
-Statistics is really terrible at determining whether a mdoel fits. It's really good at telling you which of two models fit better. There are two types of models: nested models (meaning we can delete one part of a model to get the other model), and non-nested models. 
+Statistics is really terrible at determining whether a model fits. It's really good at telling you which of two models fit better. There are two types of models: nested models (meaning we can delete one part of a model to get the other model), and non-nested models. 
 
 When comparing models, it's important to keep in mind the complexity versus fit tradeoff: adding variables always improve prediction in that dataset, but it may not cross-validate well. So we ask the computer to tell us whether adding variables improves prediction *enough* to justify adding complexity to our model. 
 

@@ -1,4 +1,7 @@
 book_filename: "stats-jedi"
+bookdown::gitbook:
+    toc:
+      collapse: section
 language:
   ui:
     chapter_name: "Chapter "
