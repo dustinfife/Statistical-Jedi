@@ -4,7 +4,7 @@ h3:a-simple-visual-trick-to-tell-if-theres-an-interaction A simple visual trick 
 h2:interactions-between-numeric-variables Interactions between numeric variables
 h3:simple-slopes-analysis Simple Slopes Analysis
 h3:the-flexplot-approach-to-interpreting-interactions The Flexplot Approach to Interpreting Interactions
-h2:the-glm-for-interaction-effects The GLM for interaction effects
+h2:the-lm-for-interaction-effects The LM for interaction effects
 h2:common-things-people-screw-up-in-the-literature Common things people screw up in the literature
 h3:gripe-1.-interpreting-main-effects-when-interactions-exist Gripe #1. Interpreting main effects when interactions exist
 h3:gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova Gripe #2: Failing to check whether interactions exist when doing an ANCOVA

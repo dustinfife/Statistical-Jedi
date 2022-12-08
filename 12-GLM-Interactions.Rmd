@@ -92,7 +92,7 @@ ALWAYS!
 
 (How do you think *I* got to be so attractive!)
 
-By the way, this rule holds, no matter whether you have numeric or categorical variables. But, with categorical variables, sometimes we have to imagine lines pointing from the means. 
+By the way, this parallel slopes rule holds, no matter whether you have numeric or categorical variables. But, with categorical variables, sometimes we have to imagine lines passing through the means. 
 
 Let's look at some examples:
 
@@ -142,11 +142,12 @@ Is there an interaction effect going on here? Absolutely! The lines are not para
 
 ## Interactions between numeric variables
 
-In my experience, researchers tend to have an aversion to investigating and interpreting interactions between two numeric variables. Rarely are interactions even mentioned in stats textbooks. When people do try to investigate interactions between numeric variables, they often convert numeric variables into categorical variables prior to analysis in what's called a "simple slopes analysis."
+In my experience, researchers tend to have an aversion to investigating and interpreting interactions between two numeric variables. Rarely are numeric interactions even mentioned in stats textbooks. When people do try to investigate interactions between numeric variables, they often convert numeric variables into categorical variables prior to analysis in what's called a "simple slopes analysis."
 
 ### Simple Slopes Analysis
 
 Back in the stone ages, people used to do what's called a "simple slopes analysis." Alright, so that was a misleading statement. People *still* do simple slopes analyses. The purpose of a simple slopes analysis is to understand the nature of an interaction. 
+
 You (typically) do a simple slopes analysis after you've detected a statistically significant interaction. (I almost vomited writing the words ['statistically significant'](http://https://youtu.be/n4N2GXlkzqI)). In other words, interactions are an afterthought, at best. 
 
 In my mind, understanding interactions should never be an afterthought. 
@@ -154,14 +155,18 @@ In my mind, understanding interactions should never be an afterthought.
 Let's look at an example, shall we? Below, is an anova summary table of the avengers dataset:
 
 ```{r, echo=FALSE, results='asis'}
-require(flexplot)
 amod = lm(shots.taken~speed*superpower, data=avengers)
-options(knitr.kable.NA = '')
-papaja::apa_table(anova(amod), digits=3, caption="A Table Illustrating a 'Statistically Significant' Interaction Effect.")
+anova_table = amod %>% anova %>%
+  set_names("DF", "SS", "MS", "F", "p") %>%
+  mutate(`F` = round(`F`, digits=1),
+         p = format.pval(p, digits=3, eps = .001, nsmall=3)) %>%
+  data.frame
+anova_table["Residuals",c("F", "p")] = ""
+papaja::apa_table(anova_table, caption="A Table Illustrating a 'Statistically Significant' Interaction Effect.")
 
 ```
 
-My oh my, how significant that interaction is. 
+My oh my, how significant that interaction is!
 
 Once our results tell us something we should have predicted in advance (i.e., an interaction is present), we now want to know the nature of the interaction. What does it look like?
 
@@ -209,7 +214,7 @@ Good question!
 
 I've got three answers. First, when we categorize a numeric variable *for just the plots*, it does nothing to the actual numbers. So the slopes, p-values, bayes factors, semi-partial correlations, etc. are unaffected by how I plot them. 
 
-Second, as opposed to a simple slopes analysis, we're *not* categorizing all continuous variables. Notice in the plot below, we have *not* converted speed to a categorical variable. Compared to the simple slopes plot, this has a richness of information. We only categorize when we have to, and even then, it's just for visualization purposes. 
+Second, as opposed to a simple slopes analysis, we're *not* categorizing *all* continuous variables. Notice in the plot below, we have *not* converted speed to a categorical variable. Compared to the simple slopes plot, this has a richness of information. We only categorize when we have to, and even then, it's just for visualization purposes. 
 
 ```{r glmintintflex}
 flexplot(shots.taken~speed + superpower, data=avengers)
@@ -228,8 +233,7 @@ a+b
 
 So, in short, there's no reason to fear numeric interactions. Flexplot handles these with aplomb and a-cherry, and provided you view the data from multiple angles, you'll circumvent any problems with categorizing numeric variables.  
 
-
-## The GLM for interaction effects
+## The LM for interaction effects
 
 See how clever I am? I *started* with visuals long before I went to the math. I'd-a lost you if I'd started with the math.
 
@@ -263,13 +267,13 @@ How do you tell R to model an interaction? Well, there's actually two ways to do
 
 ```{r}
  # method 1:
-mod_interaction = lm(iq~agility + speed + agility:speed, data=avengers)
-mod_interaction_2 = lm(iq~agility*speed, data=avengers)
+mod_interaction   = lm(iq~agility + speed + agility:speed, data=avengers)
+mod_interaction_2 = lm(iq~agility * speed, data=avengers)
 ```
 
 Both ways are identical in this situation. The second method (`agility*speed`) is simply a shortcut. The asterisk just tells R to model all main effects and interactions between those variables. So, if we did `agility*speed*superpower`, it would model all three main effects, all three two-way interactions (agility/speed, agility/superpower, and speed/superpower), and the three-way interaction (agility/speed/superpower). 
 
-As before, we can use the phenomenal cosmic power of flexplot to automate the visualization:
+As before, we can use the phenomenal cosmic power of Flexplot to automate the visualization:
 
 ```{r glmintautomate}
 visualize(mod_interaction, plot="model")
@@ -289,7 +293,7 @@ knitr::kable(d)
 
 Notice how, when we zero-fy a categorical variable, we end up getting a lot of zeros in the interaction variable. More specifically, all non-superheroes now have a score of zero.
 
-Let's think a bit deeper about that, but using the GLM:
+Let's think a bit deeper about that, but using the LM. But first, let me say again--*you* don't have to do this. R is doing it for you. 
 
 iq = $b_0$ + $b_1$agility + $b_2$ superpower + $b_3$ agility $\times$ superpower
 
@@ -336,9 +340,9 @@ It's quite common in the literature to see researchers make a smacking big deal 
 
 **You should never interpret a main effect when there's an interaction in the model!**
 
-Again, I'm sorry to resort to such tactics, but I've had it up to here with this misunderstanding :)
+Again, I'm sorry to resort to such tactics, but I've had it up to here $^{-}$ with this misunderstanding!
 
-Let's think about why that is...When you have an interaction in the model, that means the main effects are not consistent. Let's look at a graph, shall we? I'm reproducing the volture data:
+Let's think about why that is...When you have an interaction in the model, that means the main effects are not consistent. Let's look at the volture graph again: 
 
 ```{r glmintmeint, echo=FALSE}
 flexplot(poisoned~rot.degree | species, data=volture, method="lm") +
@@ -348,7 +352,9 @@ flexplot(poisoned~rot.degree | species, data=volture, method="lm") +
         axis.ticks.y = element_blank())
 ```
 
-Now, let me ask you, what is the effect of rot on the probability of being poisoned? Are you struggling to answer the question? I hope so! 
+Now, let me ask you, what is the effect of rot on the probability of being poisoned? 
+
+Are you struggling to answer the question? I hope so! 
 
 Why? Because the effect of rot *depends* on species. 
 
@@ -382,7 +388,9 @@ That also means we ought to be quite careful about what variables we decide to c
 
 ## Estimates for interactions
 
-I've been dreading this section. Why? Okay, remember how I said that you can't really disentangle the main effects from the interaction? Likewise, you can't really disentangle the interaction from the main effects. The whole model really ought to be interpreted in context. So, an estimate of the *interaction effect* is probably going to be misleading.  
+I've been dreading this section. 
+
+Why? Okay, remember how I said that you can't really disentangle the main effects from the interaction? Likewise, you can't really disentangle the interaction from the main effects. The whole model really ought to be interpreted in context. So, an estimate of the *interaction effect* is probably going to be misleading.  
 
 Let me get a bit more technical for a bit. I promise, I'll return to "stats for dummies"-level writing in a bit. 
 
@@ -399,7 +407,7 @@ But main effects and interactions can't really be (psychologically) interpreted 
 
 So, it would be nice to have a Cohen's d-like effect size measure for what is considered small, medium, and large effects sizes for interactions. (And there have been attempts to do this). But, that would be misleading because these really are dependent on the nature of the main effects. 
 
-Having said that, flexplot does report the "semi-partial $R^2$. You can interpret that, but it can be misleading, [as I wrote in a blog post once](http://https://quantpsych.net/some-thoughts-on-interaction-terms-coefficients-semi-partial-correlations-and-standardized-betas-greater-than-one/). Instead, here's what I recommend:
+Having said that, Flexplot does report the "semi-partial $R^2$. You can interpret that, but it can be misleading, [as I wrote in a blog post once](http://https://quantpsych.net/some-thoughts-on-interaction-terms-coefficients-semi-partial-correlations-and-standardized-betas-greater-than-one/). Instead, here's what I recommend:
 
 1. Fit a model without the main effects and interaction.
 2. Fit a model with the main effects and interaction.
@@ -425,7 +433,7 @@ Now we can compute the difference in $R^2$ using the `model.comparison` function
 model.comparison(mod_small, mod_interactions)
 ```
 
-```{r}
+```{r, echo = FALSE}
 rsq = round(summary(mod_interactions)$r.squared*100, digits=2)
 ```
 
@@ -438,7 +446,8 @@ mod_small_control = lm(shots.taken~strength, data=avengers)
 mod_interactions_control = lm(shots.taken~strength + speed*superpower, data=avengers)
 model.comparison(mod_small_control, mod_interactions_control)
 ```
-```{r}
+
+```{r, echo=FALSE}
 diffr = round(diff(model.comparison(mod_small_control, mod_interactions_control)$statistics$rsq), digits=2)
 ```
 

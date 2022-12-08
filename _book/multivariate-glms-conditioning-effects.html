@@ -704,6 +704,30 @@ this sort of situation is rare.
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="multivariate-glms-conditioning-effects.html#cb1-1" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">=</span> <span class="fu">lm</span>(outcome<span class="sc">~</span>covariate <span class="sc">+</span> interest, <span class="at">data=</span>d)</span></code></pre></div>
 <p>Remember, the order of the variables doesn’t matter, but conventionally, we put the interest variable at the end.</p>
 <p>Now that we’re ready to fit our model, it’s important to know what sorts of estimates a multivariate model will spit out. So, without further ado…</p>
+<div class="rmdnote">
+<p>
+<em>Conditioning Versus Mediation</em>
+</p>
+<p>
+As I talk about conditioning analyses, you might be saying to
+yourself, “wow, dude…this sounds an awful lot like mediation
+analysis.
+</p>
+<p>
+Right you are. It’s a lot like it. But it’s not the same thing.
+Mediation is different. With mediation we hypothesize that our interest
+variable only affects our outcome because of the covariate (though we’d
+call it a mediator, not a covariate). Or, in other words, the only
+reason we observe a relationship between the interest variable and the
+outcome is because of the covariate.
+</p>
+<p>
+Mediation will try to determine this with conditioning. More
+specifically, if, after conditioning, the relationship between the
+interest variable and the outcome vanishes, then we have conditioning.
+In other words, mediation is a specific type of conditioning.
+</p>
+</div>
 </div>
 <div id="additional-estimates-of-interest" class="section level2 hasAnchor">
 <h2>Additional Estimates of Interest<a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest" class="anchor-section" aria-label="Anchor link to header"></a></h2>

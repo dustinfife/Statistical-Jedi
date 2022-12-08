@@ -44,6 +44,7 @@ No.
 
 Why? There's lots of reasons, but for today, we'll focus on one: you can't disentangle hard work from a host of other possible explanations. Sure Tim works harder, but he was also incentivized to work harder. And he had many more resources. And he had parents with enough time to invest in his development. These other factors (incentivized to work hard, resources, parental investment) are *highly* correlated with work ethic and it makes it really difficult to determine whether its the work ethic or something else that caused Tim to be successful. 
 
+
 ## Multicollinearity
 
 This little example illustrates something we call "multicollinearity," or "collinearity." Collinearity means that we have predictor variables that are correlated with one another. When we have variables that are correlated, it's hard to figure out which variable is causing the outcome. Once again, is it work ethic? Parental wealth? Resources? Love and affection? Access to clean drinking water? 
@@ -336,6 +337,18 @@ mod = lm(outcome~covariate + interest, data=d)
 Remember, the order of the variables doesn't matter, but conventionally, we put the interest variable at the end. 
 
 Now that we're ready to fit our model, it's important to know what sorts of estimates a multivariate model will spit out. So, without further ado...
+
+```{block, type="rmdnote"}
+*Conditioning Versus Mediation*
+
+As I talk about conditioning analyses, you might be saying to yourself, "wow, dude...this sounds an awful lot like mediation analysis. 
+
+Right you are. It's a lot like it. But it's not the same thing. Mediation is different. With mediation we hypothesize that our interest variable only affects our outcome because of the covariate (though we'd call it a mediator, not a covariate). Or, in other words, the only reason we observe a relationship between the interest variable and the outcome is because of the covariate. 
+
+Mediation will try to determine this with conditioning. More specifically, if, after conditioning, the relationship between the interest variable and the outcome vanishes, then we have conditioning. In other words, mediation is a specific type of conditioning. 
+
+```
+
 
 
 ## Additional Estimates of Interest
