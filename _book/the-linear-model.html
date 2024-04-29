@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 The Linear Model | The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 The Linear Model | The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 The Linear Model | The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Dustin Fife" />
+
+
+<meta name="date" content="2024-03-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="diagnostics.html"/>
+<link rel="next" href="vizmvglms.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The Order of the Statistical Jedi</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#the-power-of-repetition-and-myummcomplicated-history-with-statistics"><i class="fa fa-check"></i><b>2.1</b> The power of repetition (and my…umm…<em>complicated</em> history with statistics)</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#but-theres-a-better-way"><i class="fa fa-check"></i><b>2.2</b> But there’s a better way</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#the-curriculum-hasnt-changed-in-50-years"><i class="fa fa-check"></i><b>2.3</b> The Curriculum Hasn’t Changed in 50 Years!</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#the-general-linear-model-approach"><i class="fa fa-check"></i><b>2.4</b> The General Linear Model Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ethics.html"><a href="ethics.html"><i class="fa fa-check"></i><b>3</b> Ethics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ethics.html"><a href="ethics.html#history-of-the-replication-crisis"><i class="fa fa-check"></i><b>3.1</b> History of the Replication Crisis</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ethics.html"><a href="ethics.html#dederick-stapel"><i class="fa fa-check"></i><b>3.1.1</b> Dederick Stapel</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ethics.html"><a href="ethics.html#darryl-bem"><i class="fa fa-check"></i><b>3.1.2</b> Darryl Bem</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ethics.html"><a href="ethics.html#the-p-hacking-article"><i class="fa fa-check"></i><b>3.1.3</b> The “P-Hacking” Article</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ethics.html"><a href="ethics.html#p-hacking"><i class="fa fa-check"></i><b>3.2</b> P-hacking</a></li>
+<li class="chapter" data-level="3.3" data-path="ethics.html"><a href="ethics.html#the-scientific-method-movement"><i class="fa fa-check"></i><b>3.3</b> The Scientific Method Movement</a></li>
+<li class="chapter" data-level="3.4" data-path="ethics.html"><a href="ethics.html#values-versus-ethics"><i class="fa fa-check"></i><b>3.4</b> Values versus Ethics</a></li>
+<li class="chapter" data-level="3.5" data-path="ethics.html"><a href="ethics.html#the-open-science-values"><i class="fa fa-check"></i><b>3.5</b> The Open Science Values</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ethics.html"><a href="ethics.html#protecting-humanity"><i class="fa fa-check"></i><b>3.5.1</b> 1. Protecting humanity</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ethics.html"><a href="ethics.html#seek-truth"><i class="fa fa-check"></i><b>3.5.2</b> 2. Seek truth</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ethics.html"><a href="ethics.html#openness-and-transparency."><i class="fa fa-check"></i><b>3.5.3</b> 3. Openness and transparency.</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ethics.html"><a href="ethics.html#humility-and-skepticism."><i class="fa fa-check"></i><b>3.5.4</b> 4. Humility and skepticism.</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ethics.html"><a href="ethics.html#dissemination."><i class="fa fa-check"></i><b>3.5.5</b> 5. Dissemination.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ethics.html"><a href="ethics.html#making-change"><i class="fa fa-check"></i><b>3.6</b> Making Change</a></li>
+<li class="chapter" data-level="3.7" data-path="ethics.html"><a href="ethics.html#further-data-analysis-ethics."><i class="fa fa-check"></i><b>3.7</b> Further data analysis ethics.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="measurement.html"><a href="measurement.html"><i class="fa fa-check"></i><b>4</b> Measurement</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="measurement.html"><a href="measurement.html#why-am-i-talking-about-measurement"><i class="fa fa-check"></i><b>4.1</b> Why am I talking about measurement?</a></li>
+<li class="chapter" data-level="4.2" data-path="measurement.html"><a href="measurement.html#constructs"><i class="fa fa-check"></i><b>4.2</b> Constructs</a></li>
+<li class="chapter" data-level="4.3" data-path="measurement.html"><a href="measurement.html#operational-definitions"><i class="fa fa-check"></i><b>4.3</b> Operational Definitions</a></li>
+<li class="chapter" data-level="4.4" data-path="measurement.html"><a href="measurement.html#validity"><i class="fa fa-check"></i><b>4.4</b> Validity</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="measurement.html"><a href="measurement.html#evaluating-validity"><i class="fa fa-check"></i><b>4.4.1</b> Evaluating Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="measurement.html"><a href="measurement.html#reliability"><i class="fa fa-check"></i><b>4.5</b> Reliability</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="measurement.html"><a href="measurement.html#evaluating-reliability"><i class="fa fa-check"></i><b>4.5.1</b> Evaluating reliability</a></li>
+<li class="chapter" data-level="4.5.2" data-path="measurement.html"><a href="measurement.html#increasing-reliability"><i class="fa fa-check"></i><b>4.5.2</b> Increasing Reliability</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="measurement.html"><a href="measurement.html#variable-types"><i class="fa fa-check"></i><b>4.6</b> Variable types</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="measurement.html"><a href="measurement.html#predictor-versus-outcome-variables"><i class="fa fa-check"></i><b>4.6.1</b> Predictor versus Outcome Variables</a></li>
+<li class="chapter" data-level="4.6.2" data-path="measurement.html"><a href="measurement.html#measurement-scales"><i class="fa fa-check"></i><b>4.6.2</b> Measurement scales</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="measurement.html"><a href="measurement.html#take-home-message"><i class="fa fa-check"></i><b>4.7</b> Take-home message</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="univariate-distributions.html"><a href="univariate-distributions.html"><i class="fa fa-check"></i><b>5</b> Univariate Distributions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="univariate-distributions.html"><a href="univariate-distributions.html#categorical-variables"><i class="fa fa-check"></i><b>5.1</b> Categorical Variables</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="univariate-distributions.html"><a href="univariate-distributions.html#column-sorting"><i class="fa fa-check"></i><b>5.1.1</b> Column Sorting</a></li>
+<li class="chapter" data-level="5.1.2" data-path="univariate-distributions.html"><a href="univariate-distributions.html#visualizing"><i class="fa fa-check"></i><b>5.1.2</b> Visualizing</a></li>
+<li class="chapter" data-level="5.1.3" data-path="univariate-distributions.html"><a href="univariate-distributions.html#interpreting-bar-charts"><i class="fa fa-check"></i><b>5.1.3</b> Interpreting Bar Charts</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="univariate-distributions.html"><a href="univariate-distributions.html#numeric-variables"><i class="fa fa-check"></i><b>5.2</b> Numeric Variables</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="univariate-distributions.html"><a href="univariate-distributions.html#what-to-look-out-for"><i class="fa fa-check"></i><b>5.2.1</b> What to Look Out For</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="univariate-estimates.html"><a href="univariate-estimates.html"><i class="fa fa-check"></i><b>6</b> Univariate Estimates</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-whats-the-most-likely-score"><i class="fa fa-check"></i><b>6.1</b> Central Tendency: What’s the most likely score?</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mean"><i class="fa fa-check"></i><b>6.1.1</b> Mean</a></li>
+<li class="chapter" data-level="6.1.2" data-path="univariate-estimates.html"><a href="univariate-estimates.html#mode"><i class="fa fa-check"></i><b>6.1.2</b> Mode</a></li>
+<li class="chapter" data-level="6.1.3" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median"><i class="fa fa-check"></i><b>6.1.3</b> Median</a></li>
+<li class="chapter" data-level="6.1.4" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-jasp"><i class="fa fa-check"></i><b>6.1.4</b> Central Tendency in JASP</a></li>
+<li class="chapter" data-level="6.1.5" data-path="univariate-estimates.html"><a href="univariate-estimates.html#central-tendency-in-r"><i class="fa fa-check"></i><b>6.1.5</b> Central Tendency in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-how-precise-are-the-scores"><i class="fa fa-check"></i><b>6.2</b> Variability: How precise are the scores?</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="univariate-estimates.html"><a href="univariate-estimates.html#range"><i class="fa fa-check"></i><b>6.2.1</b> Range</a></li>
+<li class="chapter" data-level="6.2.2" data-path="univariate-estimates.html"><a href="univariate-estimates.html#deviations-standard-deviation-and-variance"><i class="fa fa-check"></i><b>6.2.2</b> Deviations, Standard Deviation, and Variance</a></li>
+<li class="chapter" data-level="6.2.3" data-path="univariate-estimates.html"><a href="univariate-estimates.html#median-absolute-deviation"><i class="fa fa-check"></i><b>6.2.3</b> Median Absolute Deviation</a></li>
+<li class="chapter" data-level="6.2.4" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-jasp"><i class="fa fa-check"></i><b>6.2.4</b> Variability in JASP</a></li>
+<li class="chapter" data-level="6.2.5" data-path="univariate-estimates.html"><a href="univariate-estimates.html#variability-in-r"><i class="fa fa-check"></i><b>6.2.5</b> Variability in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="univariate-estimates.html"><a href="univariate-estimates.html#z-scores-and-probability"><i class="fa fa-check"></i><b>6.3</b> Z-Scores and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html"><i class="fa fa-check"></i><b>7</b> Bivariate Visualizations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#avengers-dataset"><i class="fa fa-check"></i><b>7.1</b> Avengers Dataset</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#visualizing-bivariate-relationships-in-r-using-flexplot"><i class="fa fa-check"></i><b>7.1.1</b> Visualizing bivariate relationships in R using Flexplot</a></li>
+<li class="chapter" data-level="7.1.2" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#visualizing-bivariate-relationships-in-jasp-using-visual-modeling"><i class="fa fa-check"></i><b>7.1.2</b> Visualizing bivariate relationships in JASP using Visual Modeling</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#scatterplots-numeric-on-numeric"><i class="fa fa-check"></i><b>7.2</b> Scatterplots: Numeric on numeric</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#what-to-look-for"><i class="fa fa-check"></i><b>7.2.1</b> What to look for</a></li>
+<li class="chapter" data-level="7.2.2" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#problems-to-look-out-for"><i class="fa fa-check"></i><b>7.2.2</b> Problems to look out for</a></li>
+<li class="chapter" data-level="7.2.3" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#practice-1"><i class="fa fa-check"></i><b>7.2.3</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#beeswarm-plots-categorical-on-numeric"><i class="fa fa-check"></i><b>7.3</b> Beeswarm plots: Categorical on Numeric</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#what-to-look-for-1"><i class="fa fa-check"></i><b>7.3.1</b> What to look for</a></li>
+<li class="chapter" data-level="7.3.2" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#problems-to-look-out-for-1"><i class="fa fa-check"></i><b>7.3.2</b> Problems to look out for</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#other-bivariate-plots"><i class="fa fa-check"></i><b>7.4</b> Other Bivariate Plots</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#logistic-plots-numeric-on-binary"><i class="fa fa-check"></i><b>7.4.1</b> Logistic Plots: Numeric on Binary</a></li>
+<li class="chapter" data-level="7.4.2" data-path="bivariate_visuals.html"><a href="bivariate_visuals.html#association-plots-categorical-on-categorical"><i class="fa fa-check"></i><b>7.4.2</b> Association Plots: Categorical on Categorical</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html"><i class="fa fa-check"></i><b>8</b> Bivariate Estimates</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#statistics-help-us-predict-things"><i class="fa fa-check"></i><b>8.1</b> Statistics Help Us Predict Things</a></li>
+<li class="chapter" data-level="8.2" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#conditional-estimates"><i class="fa fa-check"></i><b>8.2</b> Conditional Estimates</a></li>
+<li class="chapter" data-level="8.3" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-numeric-predictors"><i class="fa fa-check"></i><b>8.3</b> Estimates for Numeric Predictors</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts"><i class="fa fa-check"></i><b>8.3.1</b> Slopes and Intercepts</a></li>
+<li class="chapter" data-level="8.3.2" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#making-predictions"><i class="fa fa-check"></i><b>8.3.2</b> Making Predictions</a></li>
+<li class="chapter" data-level="8.3.3" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#when-slopesintercepts-dont-make-sense"><i class="fa fa-check"></i><b>8.3.3</b> When Slopes/Intercepts Don’t Make Sense</a></li>
+<li class="chapter" data-level="8.3.4" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#correlation-coefficients"><i class="fa fa-check"></i><b>8.3.4</b> Correlation Coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#estimates-for-categorical-predictors"><i class="fa fa-check"></i><b>8.4</b> Estimates for Categorical Predictors</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#slopes-and-intercepts-for-categorical-predictors"><i class="fa fa-check"></i><b>8.4.1</b> Slopes and Intercepts for Categorical Predictors?</a></li>
+<li class="chapter" data-level="8.4.2" data-path="bivariate-estimates.html"><a href="bivariate-estimates.html#cohens-d"><i class="fa fa-check"></i><b>8.4.2</b> Cohen’s <span class="math inline">\(d\)</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i>Diagnostics</a>
+<ul>
+<li class="chapter" data-level="8.5" data-path="diagnostics.html"><a href="diagnostics.html#models-are-tools.-and-they-dont-have-feelings."><i class="fa fa-check"></i><b>8.5</b> Models are tools. And they don’t have feelings.</a></li>
+<li class="chapter" data-level="8.6" data-path="diagnostics.html"><a href="diagnostics.html#residuals"><i class="fa fa-check"></i><b>8.6</b> Residuals</a></li>
+<li class="chapter" data-level="8.7" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-1-histogram-of-the-residuals"><i class="fa fa-check"></i><b>8.7</b> Diagnostic tool # 1: Histogram of the residuals</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="diagnostics.html"><a href="diagnostics.html#sensitivity-analyses"><i class="fa fa-check"></i><b>8.7.1</b> Sensitivity Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-2-residual-dependence-rd-plot-for-linearity"><i class="fa fa-check"></i><b>8.8</b> Diagnostic tool # 2: Residual Dependence (RD) Plot for Linearity</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="diagnostics.html"><a href="diagnostics.html#statistical-models-are-lazy"><i class="fa fa-check"></i><b>8.8.1</b> Statistical Models are Lazy</a></li>
+<li class="chapter" data-level="8.8.2" data-path="diagnostics.html"><a href="diagnostics.html#residual-dependence-plots"><i class="fa fa-check"></i><b>8.8.2</b> Residual Dependence Plots</a></li>
+<li class="chapter" data-level="8.8.3" data-path="diagnostics.html"><a href="diagnostics.html#how-to-fix-nonlinearity"><i class="fa fa-check"></i><b>8.8.3</b> How to Fix Nonlinearity</a></li>
+<li class="chapter" data-level="8.8.4" data-path="diagnostics.html"><a href="diagnostics.html#how-to-tell-if-nonlinearity-is-a-problem"><i class="fa fa-check"></i><b>8.8.4</b> How to tell if nonlinearity is a problem?</a></li>
+<li class="chapter" data-level="8.8.5" data-path="diagnostics.html"><a href="diagnostics.html#how-much-nonlinearity-is-too-much"><i class="fa fa-check"></i><b>8.8.5</b> How much nonlinearity is too much?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="diagnostics.html"><a href="diagnostics.html#diagnostic-tool-3-scale-location-sl-plots-for-homoscedasticity"><i class="fa fa-check"></i><b>8.9</b> Diagnostic tool # 3: Scale-Location (SL) Plots for Homoscedasticity</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="diagnostics.html"><a href="diagnostics.html#spread-location-sl-plots"><i class="fa fa-check"></i><b>8.9.1</b> Spread-Location (SL) Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="diagnostics.html"><a href="diagnostics.html#outliers-1"><i class="fa fa-check"></i><b>8.10</b> Outliers</a></li>
+<li class="chapter" data-level="8.11" data-path="diagnostics.html"><a href="diagnostics.html#independence"><i class="fa fa-check"></i><b>8.11</b> Independence</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="diagnostics.html"><a href="diagnostics.html#why-do-models-assume-independence"><i class="fa fa-check"></i><b>8.11.1</b> Why do models assume independence?</a></li>
+<li class="chapter" data-level="8.11.2" data-path="diagnostics.html"><a href="diagnostics.html#what-happens-if-you-violate-the-independence-assumption"><i class="fa fa-check"></i><b>8.11.2</b> What happens if you violate the independence assumption?</a></li>
+<li class="chapter" data-level="8.11.3" data-path="diagnostics.html"><a href="diagnostics.html#how-to-detect-and-handle-dependent-data"><i class="fa fa-check"></i><b>8.11.3</b> How to detect and handle dependent data?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="diagnostics.html"><a href="diagnostics.html#summary"><i class="fa fa-check"></i><b>8.12</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="the-linear-model.html"><a href="the-linear-model.html"><i class="fa fa-check"></i><b>9</b> The Linear Model</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="the-linear-model.html"><a href="the-linear-model.html#wax-on-wax-off"><i class="fa fa-check"></i><b>9.1</b> Wax on, wax off</a></li>
+<li class="chapter" data-level="9.2" data-path="the-linear-model.html"><a href="the-linear-model.html#what-is-a-model"><i class="fa fa-check"></i><b>9.2</b> What is a model?</a></li>
+<li class="chapter" data-level="9.3" data-path="the-linear-model.html"><a href="the-linear-model.html#what-is-the-linear-model"><i class="fa fa-check"></i><b>9.3</b> What is the Linear Model?</a></li>
+<li class="chapter" data-level="9.4" data-path="the-linear-model.html"><a href="the-linear-model.html#what-makes-a-good-statistical-model"><i class="fa fa-check"></i><b>9.4</b> What makes a good statistical model?</a></li>
+<li class="chapter" data-level="9.5" data-path="the-linear-model.html"><a href="the-linear-model.html#prediction-versus-group-differences"><i class="fa fa-check"></i><b>9.5</b> Prediction Versus Group Differences</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="the-linear-model.html"><a href="the-linear-model.html#out-with-the-old-in-with-the-shiny"><i class="fa fa-check"></i><b>9.5.1</b> Out with the old, in with the shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="the-linear-model.html"><a href="the-linear-model.html#one-sample-t-test"><i class="fa fa-check"></i><b>9.6</b> One-Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="the-linear-model.html"><a href="the-linear-model.html#traditional-analysis"><i class="fa fa-check"></i><b>9.6.1</b> Traditional Analysis</a></li>
+<li class="chapter" data-level="9.6.2" data-path="the-linear-model.html"><a href="the-linear-model.html#one-sample-t-test-as-a-lm"><i class="fa fa-check"></i><b>9.6.2</b> One-Sample T-Test as a LM</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="the-linear-model.html"><a href="the-linear-model.html#independent-sample-t-test"><i class="fa fa-check"></i><b>9.7</b> Independent Sample T-Test</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="the-linear-model.html"><a href="the-linear-model.html#preparing-data-for-a-t-test"><i class="fa fa-check"></i><b>9.7.1</b> Preparing Data for a t-test</a></li>
+<li class="chapter" data-level="9.7.2" data-path="the-linear-model.html"><a href="the-linear-model.html#traditional-t-test-analysis"><i class="fa fa-check"></i><b>9.7.2</b> Traditional t-test Analysis</a></li>
+<li class="chapter" data-level="9.7.3" data-path="the-linear-model.html"><a href="the-linear-model.html#lm-approach"><i class="fa fa-check"></i><b>9.7.3</b> LM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="the-linear-model.html"><a href="the-linear-model.html#related-t-test"><i class="fa fa-check"></i><b>9.8</b> Related t-test</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="the-linear-model.html"><a href="the-linear-model.html#traditional-related-t-test-analysis"><i class="fa fa-check"></i><b>9.8.1</b> Traditional Related t-test Analysis</a></li>
+<li class="chapter" data-level="9.8.2" data-path="the-linear-model.html"><a href="the-linear-model.html#lm-analysis-of-a-related-t-test"><i class="fa fa-check"></i><b>9.8.2</b> LM Analysis of a Related t-test</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="the-linear-model.html"><a href="the-linear-model.html#anova"><i class="fa fa-check"></i><b>9.9</b> ANOVA</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="the-linear-model.html"><a href="the-linear-model.html#traditional-analysis-of-anova"><i class="fa fa-check"></i><b>9.9.1</b> Traditional Analysis of ANOVA</a></li>
+<li class="chapter" data-level="9.9.2" data-path="the-linear-model.html"><a href="the-linear-model.html#anova-as-a-lm"><i class="fa fa-check"></i><b>9.9.2</b> ANOVA as a LM</a></li>
+</ul></li>
+<li class="chapter" data-level="9.10" data-path="the-linear-model.html"><a href="the-linear-model.html#regression"><i class="fa fa-check"></i><b>9.10</b> Regression</a>
+<ul>
+<li class="chapter" data-level="9.10.1" data-path="the-linear-model.html"><a href="the-linear-model.html#traditional-regression-analysis"><i class="fa fa-check"></i><b>9.10.1</b> Traditional Regression Analysis</a></li>
+<li class="chapter" data-level="9.10.2" data-path="the-linear-model.html"><a href="the-linear-model.html#lm-approach-1"><i class="fa fa-check"></i><b>9.10.2</b> LM Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="9.11" data-path="the-linear-model.html"><a href="the-linear-model.html#categorical-outcome-variables"><i class="fa fa-check"></i><b>9.11</b> Categorical Outcome Variables</a></li>
+<li class="chapter" data-level="9.12" data-path="the-linear-model.html"><a href="the-linear-model.html#its-all-the-same"><i class="fa fa-check"></i><b>9.12</b> It’s All the Same!</a></li>
+<li class="chapter" data-level="9.13" data-path="the-linear-model.html"><a href="the-linear-model.html#summary-1"><i class="fa fa-check"></i><b>9.13</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="vizmvglms.html"><a href="vizmvglms.html"><i class="fa fa-check"></i><b>10</b> Visualizing Multivariate General Linear Models</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="vizmvglms.html"><a href="vizmvglms.html#what-is-a-multivariate-relationship"><i class="fa fa-check"></i><b>10.1</b> What is a multivariate relationship?</a></li>
+<li class="chapter" data-level="10.2" data-path="vizmvglms.html"><a href="vizmvglms.html#reasons-to-use-multivariate-glms"><i class="fa fa-check"></i><b>10.2</b> Reasons to use multivariate GLMs</a></li>
+<li class="chapter" data-level="10.3" data-path="vizmvglms.html"><a href="vizmvglms.html#visualizing-multivariate-relationships-in-flexplot"><i class="fa fa-check"></i><b>10.3</b> Visualizing Multivariate Relationships in Flexplot</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="vizmvglms.html"><a href="vizmvglms.html#encoding-additional-dimension-using-colorslinessymbols-or-panels"><i class="fa fa-check"></i><b>10.3.1</b> Encoding Additional Dimension Using Colors/Lines/Symbols or Panels</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="vizmvglms.html"><a href="vizmvglms.html#what-are-we-looking-for-when-studying-a-flexplot-visual"><i class="fa fa-check"></i><b>10.4</b> What are we looking for when studying a flexplot visual?</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="vizmvglms.html"><a href="vizmvglms.html#identifying-trends-in-flexplot"><i class="fa fa-check"></i><b>10.4.1</b> Identifying trends in Flexplot</a></li>
+<li class="chapter" data-level="10.4.2" data-path="vizmvglms.html"><a href="vizmvglms.html#identifying-nonparallel-lines-in-flexplot"><i class="fa fa-check"></i><b>10.4.2</b> Identifying nonparallel lines in Flexplot</a></li>
+<li class="chapter" data-level="10.4.3" data-path="vizmvglms.html"><a href="vizmvglms.html#identifying-nonlinear-effects"><i class="fa fa-check"></i><b>10.4.3</b> Identifying nonlinear effects</a></li>
+<li class="chapter" data-level="10.4.4" data-path="vizmvglms.html"><a href="vizmvglms.html#encoding-additional-dimensions-using-added-variable-plots"><i class="fa fa-check"></i><b>10.4.4</b> Encoding Additional Dimensions Using Added Variable Plots</a></li>
+<li class="chapter" data-level="10.4.5" data-path="vizmvglms.html"><a href="vizmvglms.html#dustins-cool-modifications-to-added-variable-plots"><i class="fa fa-check"></i><b>10.4.5</b> Dustin’s Cool Modifications to Added Variable Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="vizmvglms.html"><a href="vizmvglms.html#summary-2"><i class="fa fa-check"></i><b>10.5</b> Summary</a></li>
+<li class="chapter" data-level="10.6" data-path="vizmvglms.html"><a href="vizmvglms.html#practice-2"><i class="fa fa-check"></i><b>10.6</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html"><i class="fa fa-check"></i><b>11</b> Multivariate GLMs: Conditioning Effects</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multicollinearity"><i class="fa fa-check"></i><b>11.1</b> Multicollinearity</a></li>
+<li class="chapter" data-level="11.2" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#controlling-by-conditioning"><i class="fa fa-check"></i><b>11.2</b> Controlling by conditioning</a></li>
+<li class="chapter" data-level="11.3" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-is-just-residualizing"><i class="fa fa-check"></i><b>11.3</b> Conditioning is just residualizing</a></li>
+<li class="chapter" data-level="11.4" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#all-the-ways-of-thinking-about-conditioning"><i class="fa fa-check"></i><b>11.4</b> All the ways of thinking about “conditioning”</a></li>
+<li class="chapter" data-level="11.5" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-about-conditioning-and-using-multiple-regression"><i class="fa fa-check"></i><b>11.5</b> Be careful about conditioning! (And using multiple regression)</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-will-not-prove-causation."><i class="fa fa-check"></i><b>11.5.1</b> 1. Conditioning will not prove causation.</a></li>
+<li class="chapter" data-level="11.5.2" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#be-careful-what-you-condition-on"><i class="fa fa-check"></i><b>11.5.2</b> 2. Be Careful what you condition on</a></li>
+<li class="chapter" data-level="11.5.3" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#only-study-and-interpret-the-effects-of-the-interest-variable"><i class="fa fa-check"></i><b>11.5.3</b> 3. Only study and interpret the effects of the interest variable</a></li>
+<li class="chapter" data-level="11.5.4" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#conditioning-with-interaction-effects."><i class="fa fa-check"></i><b>11.5.4</b> 4. Conditioning with interaction effects.</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#when-should-you-use-a-conditioning-analysis"><i class="fa fa-check"></i><b>11.6</b> When should you use a conditioning analysis?</a></li>
+<li class="chapter" data-level="11.7" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#additional-estimates-of-interest"><i class="fa fa-check"></i><b>11.7</b> Additional Estimates of Interest</a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#slopes"><i class="fa fa-check"></i><b>11.7.1</b> Slopes</a></li>
+<li class="chapter" data-level="11.7.2" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#r-squared."><i class="fa fa-check"></i><b>11.7.2</b> R squared.</a></li>
+<li class="chapter" data-level="11.7.3" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#semi-partial-r2"><i class="fa fa-check"></i><b>11.7.3</b> Semi-Partial <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#applied-analyses"><i class="fa fa-check"></i><b>11.8</b> Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#ancova"><i class="fa fa-check"></i><b>11.8.1</b> ANCOVA</a></li>
+<li class="chapter" data-level="11.8.2" data-path="multivariate-glms-conditioning-effects.html"><a href="multivariate-glms-conditioning-effects.html#multiple-regression"><i class="fa fa-check"></i><b>11.8.2</b> Multiple Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="mvinteractions.html"><a href="mvinteractions.html"><i class="fa fa-check"></i><b>12</b> Multivariate GLMs: Interaction Effects</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="mvinteractions.html"><a href="mvinteractions.html#visualizing-interaction-effects"><i class="fa fa-check"></i><b>12.1</b> Visualizing interaction effects</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="mvinteractions.html"><a href="mvinteractions.html#a-simple-visual-trick-to-tell-if-theres-an-interaction"><i class="fa fa-check"></i><b>12.1.1</b> A simple visual trick to tell if there’s an interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="mvinteractions.html"><a href="mvinteractions.html#interactions-between-numeric-variables"><i class="fa fa-check"></i><b>12.2</b> Interactions between numeric variables</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="mvinteractions.html"><a href="mvinteractions.html#simple-slopes-analysis"><i class="fa fa-check"></i><b>12.2.1</b> Simple Slopes Analysis</a></li>
+<li class="chapter" data-level="12.2.2" data-path="mvinteractions.html"><a href="mvinteractions.html#the-flexplot-approach-to-interpreting-interactions"><i class="fa fa-check"></i><b>12.2.2</b> The Flexplot Approach to Interpreting Interactions</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="mvinteractions.html"><a href="mvinteractions.html#the-lm-for-interaction-effects"><i class="fa fa-check"></i><b>12.3</b> The LM for interaction effects</a></li>
+<li class="chapter" data-level="12.4" data-path="mvinteractions.html"><a href="mvinteractions.html#common-things-people-screw-up-in-the-literature"><i class="fa fa-check"></i><b>12.4</b> Common things people screw up in the literature</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="mvinteractions.html"><a href="mvinteractions.html#gripe-1.-interpreting-main-effects-when-interactions-exist"><i class="fa fa-check"></i><b>12.4.1</b> Gripe #1. Interpreting main effects when interactions exist</a></li>
+<li class="chapter" data-level="12.4.2" data-path="mvinteractions.html"><a href="mvinteractions.html#gripe-2-failing-to-check-whether-interactions-exist-when-doing-an-ancova"><i class="fa fa-check"></i><b>12.4.2</b> Gripe #2: Failing to check whether interactions exist when doing an ANCOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="mvinteractions.html"><a href="mvinteractions.html#estimates-for-interactions"><i class="fa fa-check"></i><b>12.5</b> Estimates for interactions</a></li>
+<li class="chapter" data-level="12.6" data-path="mvinteractions.html"><a href="mvinteractions.html#applied-analyses-1"><i class="fa fa-check"></i><b>12.6</b> Applied Analyses</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="mvinteractions.html"><a href="mvinteractions.html#factorial-anova"><i class="fa fa-check"></i><b>12.6.1</b> Factorial ANOVA</a></li>
+<li class="chapter" data-level="12.6.2" data-path="mvinteractions.html"><a href="mvinteractions.html#multiple-regression-1"><i class="fa fa-check"></i><b>12.6.2</b> Multiple Regression</a></li>
+<li class="chapter" data-level="12.6.3" data-path="mvinteractions.html"><a href="mvinteractions.html#mediation-analysis"><i class="fa fa-check"></i><b>12.6.3</b> Mediation Analysis</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>13</b> Probability</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="probability.html"><a href="probability.html#why-and-when-we-need-probability"><i class="fa fa-check"></i><b>13.1</b> Why and when we need probability?</a></li>
+<li class="chapter" data-level="13.2" data-path="probability.html"><a href="probability.html#finite-samples"><i class="fa fa-check"></i><b>13.2</b> Finite Samples</a></li>
+<li class="chapter" data-level="13.3" data-path="probability.html"><a href="probability.html#infinite-sets"><i class="fa fa-check"></i><b>13.3</b> Infinite sets</a></li>
+<li class="chapter" data-level="13.4" data-path="probability.html"><a href="probability.html#infinite-sets-and-sampling"><i class="fa fa-check"></i><b>13.4</b> Infinite Sets and Sampling</a></li>
+<li class="chapter" data-level="13.5" data-path="probability.html"><a href="probability.html#how-to-ensure-a-representative-sample"><i class="fa fa-check"></i><b>13.5</b> How to ensure a representative sample</a></li>
+<li class="chapter" data-level="13.6" data-path="probability.html"><a href="probability.html#probability-density-functions"><i class="fa fa-check"></i><b>13.6</b> Probability Density Functions</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="probability.html"><a href="probability.html#computing-probabilities-from-pdfs"><i class="fa fa-check"></i><b>13.6.1</b> Computing Probabilities From PDFs</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="probability.html"><a href="probability.html#chapter-summary"><i class="fa fa-check"></i><b>13.7</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="bayesprobability.html"><a href="bayesprobability.html"><i class="fa fa-check"></i><b>14</b> Probability Two: Bayesian Probabilities (Versus Frequentist Approaches)</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="bayesprobability.html"><a href="bayesprobability.html#a-tale-of-two-roomates"><i class="fa fa-check"></i><b>14.1</b> A Tale of Two Roomates</a>
+<ul>
+<li class="chapter" data-level="14.1.1" data-path="bayesprobability.html"><a href="bayesprobability.html#toms-approach"><i class="fa fa-check"></i><b>14.1.1</b> Tom’s Approach</a></li>
+<li class="chapter" data-level="14.1.2" data-path="bayesprobability.html"><a href="bayesprobability.html#egons-approach"><i class="fa fa-check"></i><b>14.1.2</b> Egon’s Approach</a></li>
+<li class="chapter" data-level="14.1.3" data-path="bayesprobability.html"><a href="bayesprobability.html#what-do-they-conclude"><i class="fa fa-check"></i><b>14.1.3</b> What do they conclude?</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="bayesprobability.html"><a href="bayesprobability.html#the-bayesian-approach"><i class="fa fa-check"></i><b>14.2</b> The Bayesian Approach</a>
+<ul>
+<li class="chapter" data-level="14.2.1" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths-of-the-bayesian-approach"><i class="fa fa-check"></i><b>14.2.1</b> Strengths of the Bayesian approach</a></li>
+<li class="chapter" data-level="14.2.2" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknessesobjections-to-the-bayesian-approach"><i class="fa fa-check"></i><b>14.2.2</b> Weaknesses/Objections to the Bayesian Approach</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="bayesprobability.html"><a href="bayesprobability.html#frequentistlikelihood-description"><i class="fa fa-check"></i><b>14.3</b> Frequentist/Likelihood Description</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="bayesprobability.html"><a href="bayesprobability.html#strengths"><i class="fa fa-check"></i><b>14.3.1</b> Strengths</a></li>
+<li class="chapter" data-level="14.3.2" data-path="bayesprobability.html"><a href="bayesprobability.html#weaknesses"><i class="fa fa-check"></i><b>14.3.2</b> Weaknesses</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="bayesprobability.html"><a href="bayesprobability.html#doing-bayesian-analyses-in-r"><i class="fa fa-check"></i><b>14.4</b> Doing Bayesian Analyses in R</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html"><i class="fa fa-check"></i><b>15</b> Probability 3: The Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#groundhog-day"><i class="fa fa-check"></i><b>15.1</b> Groundhog Day</a></li>
+<li class="chapter" data-level="15.2" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>15.2</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="15.3" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implications-of-the-clt"><i class="fa fa-check"></i><b>15.3</b> Implications of the CLT</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-1-normality-doesnt-really-matter"><i class="fa fa-check"></i><b>15.3.1</b> Implication #1: Normality doesn’t really matter</a></li>
+<li class="chapter" data-level="15.3.2" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-2.-if-your-sample-size-is-large-enough-its-quite-likely-your-estimate-is-close-to-the-true-value"><i class="fa fa-check"></i><b>15.3.2</b> Implication #2. If your sample size is large enough, it’s quite likely your estimate is close to the true value</a></li>
+<li class="chapter" data-level="15.3.3" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#implication-3-we-can-kinda-sorta-make-inferences-about-the-population"><i class="fa fa-check"></i><b>15.3.3</b> Implication #3: We can (kinda sorta) make inferences about the population</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#using-the-clt-to-making-inferences"><i class="fa fa-check"></i><b>15.4</b> Using the CLT to Making Inferences</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#confidence-intervals"><i class="fa fa-check"></i><b>15.4.1</b> Confidence intervals</a></li>
+<li class="chapter" data-level="15.4.2" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#p-values"><i class="fa fa-check"></i><b>15.4.2</b> p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="probability-3-the-central-limit-theorem.html"><a href="probability-3-the-central-limit-theorem.html#learning-objectives"><i class="fa fa-check"></i><b>15.5</b> Learning Objectives</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="model-comparisons.html"><a href="model-comparisons.html"><i class="fa fa-check"></i><b>16</b> Model Comparisons</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="model-comparisons.html"><a href="model-comparisons.html#nested-versus-non-nested-models"><i class="fa fa-check"></i><b>16.1</b> Nested versus non-nested Models</a></li>
+<li class="chapter" data-level="16.2" data-path="model-comparisons.html"><a href="model-comparisons.html#the-fitcomplexity-tradeoff"><i class="fa fa-check"></i><b>16.2</b> The Fit/Complexity Tradeoff</a></li>
+<li class="chapter" data-level="16.3" data-path="model-comparisons.html"><a href="model-comparisons.html#model-comparisons-are-tools-not-procedures"><i class="fa fa-check"></i><b>16.3</b> Model comparisons are tools, not procedures</a></li>
+<li class="chapter" data-level="16.4" data-path="model-comparisons.html"><a href="model-comparisons.html#visual-model-comparisons"><i class="fa fa-check"></i><b>16.4</b> Visual model comparisons</a></li>
+<li class="chapter" data-level="16.5" data-path="model-comparisons.html"><a href="model-comparisons.html#the-model.comparison-function"><i class="fa fa-check"></i><b>16.5</b> The <code>model.comparison</code> function</a>
+<ul>
+<li class="chapter" data-level="16.5.1" data-path="model-comparisons.html"><a href="model-comparisons.html#aicbic"><i class="fa fa-check"></i><b>16.5.1</b> AIC/BIC</a></li>
+<li class="chapter" data-level="16.5.2" data-path="model-comparisons.html"><a href="model-comparisons.html#bayes-factors"><i class="fa fa-check"></i><b>16.5.2</b> Bayes Factors</a></li>
+<li class="chapter" data-level="16.5.3" data-path="model-comparisons.html"><a href="model-comparisons.html#p-values-1"><i class="fa fa-check"></i><b>16.5.3</b> p values</a></li>
+<li class="chapter" data-level="16.5.4" data-path="model-comparisons.html"><a href="model-comparisons.html#r2"><i class="fa fa-check"></i><b>16.5.4</b> <span class="math inline">\(R^2\)</span></a></li>
+<li class="chapter" data-level="16.5.5" data-path="model-comparisons.html"><a href="model-comparisons.html#the-predicted-values"><i class="fa fa-check"></i><b>16.5.5</b> The predicted values</a></li>
+<li class="chapter" data-level="16.5.6" data-path="model-comparisons.html"><a href="model-comparisons.html#what-if-the-statistics-disagree"><i class="fa fa-check"></i><b>16.5.6</b> What if the statistics disagree?</a></li>
+</ul></li>
+<li class="chapter" data-level="16.6" data-path="model-comparisons.html"><a href="model-comparisons.html#hierarchical-regressions-nested-model-comparisons-in-spss"><i class="fa fa-check"></i><b>16.6</b> Hierarchical Regressions: Nested Model Comparisons in SPSS</a></li>
+<li class="chapter" data-level="16.7" data-path="model-comparisons.html"><a href="model-comparisons.html#non-nested-models"><i class="fa fa-check"></i><b>16.7</b> Non-nested models</a></li>
+<li class="chapter" data-level="16.8" data-path="model-comparisons.html"><a href="model-comparisons.html#summary-3"><i class="fa fa-check"></i><b>16.8</b> Summary</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Order of the Statistical Jedi: ¶ Responsibilities, Routines, and Rituals</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="the-linear-model" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> The Linear Model<a href="the-linear-model.html#the-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="wax-on-wax-off" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Wax on, wax off<a href="the-linear-model.html#wax-on-wax-off" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Have you ever seen the movie <em>Karate Kid</em>? That came out when I was a young’n and my best friend and I would watch that movie, over and over, then launch through the air, round-house kicking imagined foes.</p>
+<p>’Twas a classic.</p>
+<p>To summarize, the main character, Daniel LaRusso faces bullies after moving to a new school, so he seeks to learn Karate from his neighbor, Mr. Miyagi. Miyagi begins Daniel’s training by having the boy do a boat-load of menial chores: painting a fence, sanding a floor, and waxing a car. Weeks go by until Daniel, frustrated, threatens to quit. He’s tired of doing chores and wants to learn to fight.</p>
+<p>Little did Daniel know, Miyagi <em>was</em> teaching him to fight. The motions of painting, sanding, and waxing had developed muscle memory, which enabled him to miraculously and somewhat autonomously block hits from his opponents.</p>
+<p>Wax on. Wax off.</p>
+<p>I loved this idea because I despise complexity and am easily overwhelmed by details. The thought that I could, from just a few core motions, master the art of self-defense was exhilarating.</p>
+<p>I suppose that’s how my mind naturally works. I want to believe that complexity only exists because we fail to see the simplicity. Sure, you can master Karate by learning hundreds of moves. But who wants to do that? If it’s really just variations on a few basic moves, shouldn’t we approach it that way instead?</p>
+<p>It seems that, for decades, we have been teaching and learning statistics as if it were a random collection of hundreds of Karate moves, with no semblance of simplicity.</p>
+<p>What are these karate moves? T-tests, ANOVAs, Factorial ANOVAs, regression, multiple regression, factor analysis, structural equation modeling, mixed models, chi squares, log linear models, ….</p>
+<p>And the list goes on. And on. And on.</p>
+<p>That’s the old way. That’s the way that favors memorizing large lists of information.</p>
+<p>But I’m going to give you the “Wax on, wax off,” of statistics: the linear model.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p><em>Nearly every single statistical procedure is just a different variation of the linear model.</em></p>
+<p>Actually, I think that deserves a tweet-worthy decoration:</p>
+<div class="rmdtweet">
+<p>
+Nearly every single statistical procedure is just a different
+variation of the linear model.
+</p>
+</div>
+<p>So, let me ask you. Would you rather have a sensei that teaches you the muscle memory of a handful of core moves? Or would your rather learn hundreds?</p>
+<p>That’s what I thought.</p>
+<p>Before I talk about the linear model, let’s have a conversation about what a model is.</p>
+</div>
+<div id="what-is-a-model" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> What is a model?<a href="the-linear-model.html#what-is-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When you think of a model, what comes to mind? Perhaps a fashion model? Or a model airplane or model car? Or perhaps a model citizen.</p>
+<p>So what <em>is</em> a model?</p>
+<p><em>A model is a representation of something else. This representation retains essential elements, while ignoring non-essential details.</em></p>
+<p>A fashion model is a representation of beauty. It represents the essentials of what we consider beautiful, while excluding other features of what might be considered beautiful. A model airplane contains the essential shape. proportions, and color of a real airplane, but it’s ignores nonessential details (like the ability to fly or carry passengers). A model citizen exhibits the essential behaviors of what makes a good citizen (e.g., law-abiding, civic responsibility, community participation), while ignoring non-essentials (e.g., hair color, profession, family size).</p>
+<p>Likewise, a statistical model is a mathematical representation of reality. This model ignores nonessential information. This model seeks to capture the patterns, while ignoring the noise. T-tests are models. ANOVAs are models. Regressions are models. Each of these capture some “signal” (e.g., a mean difference between groups, a slope, a correlation coefficient), while ignoring the noise (e.g., deviations of each score from their mean).</p>
+<p>But, all these different statistical models can be considered as different variations of the <em>linear model</em>.</p>
+</div>
+<div id="what-is-the-linear-model" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> What is the Linear Model?<a href="the-linear-model.html#what-is-the-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You’ve already seen this, by the way. There’s nothing new here; we’re just conceptualizing it slightly differently.</p>
+<p>The linear model is simply an algebraic equation that has the following form:</p>
+<p><span class="math display">\[y = \text{intercept} + \text{slope(s)} \times \text{predictor(s)} + e\]</span></p>
+<p>Remember that? Yes, it was the equation for a line, though before we were a bit more technical: <span class="math inline">\(y = b_0 + b_1\times X + e\)</span>.</p>
+<p>But there’s another way of thinking about it:</p>
+<p><span class="math display">\[\text{outcome} = \text{model} + \text{error}\]</span></p>
+<p>In other words, the model is the slope + the intercept.</p>
+<p>But there are many other ways to think about it:</p>
+<p><span class="math display">\[\begin{align}
+    \text{outcome} &amp;= \text{signal} + \text{noise} \\
+    \text{reality} &amp;= \text{fit} + \text{residual} \\
+    \text{what I wanna predict} &amp;= \text{explainable} + \text{unexplainable}\\
+    y &amp;= \text{essential} + \text{nonessential}\\
+\end{align}\]</span></p>
+<p>The linear model decomposes reality into those things our model can explain and those things we cannot. Back in the diagnostics chapter, we already learned why a residual is important, so I won’t go over that again. But, I will say that this simple equation can be used to fit almost <em>any</em> statistical model. We’ll go into more detail later, but the table below summarizes how we can conceptualize the “traditional” procedure as a linear model.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Procedure</th>
+<th>LM Equation</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>one-sample t-test</td>
+<td><span class="math inline">\(y = b_0\)</span></td>
+<td><span class="math inline">\(b_0\)</span> (the intercept) is the value we’re testing against</td>
+</tr>
+<tr class="even">
+<td>independent-sample t-test</td>
+<td><span class="math inline">\(y = b_0 + b_1\times \text{Treatment}\)</span></td>
+<td><span class="math inline">\(b_0\)</span> (the intercept) is the mean of the control group and <span class="math inline">\(b_1\)</span> is the difference between treatment and control groups</td>
+</tr>
+<tr class="odd">
+<td>related t-test</td>
+<td><span class="math inline">\(\text{Time}_2 - \text{Time}_1 = b_0\)</span></td>
+<td><span class="math inline">\(b_0\)</span> (the intercept) is the average difference from Time 1 to Time 2</td>
+</tr>
+<tr class="even">
+<td>ANOVA</td>
+<td><span class="math inline">\(y = b_0 + b_1\times \text{Treatment A}\)</span> <br>     <span class="math inline">\(+ b_2\times \text{Treatment B}\)</span></td>
+<td><span class="math inline">\(b_0\)</span> (the intercept) is the mean of the control group, <span class="math inline">\(b_1\)</span> is the difference between Treatment A and the control, and <span class="math inline">\(b_2\)</span> is the difference between Treatment B and the control.</td>
+</tr>
+<tr class="odd">
+<td>ANCOVA</td>
+<td><span class="math inline">\(y = b_0 + b_1\times \text{Covariate}\)</span> <br>     <span class="math inline">\(+ b_2\times \text{Treatment}\)</span></td>
+<td><span class="math inline">\(b_0\)</span> (the intercept) is the mean of the control group, <span class="math inline">\(b_1\)</span> is slope of the covariate, and <span class="math inline">\(b_2\)</span> is the difference between the Treatment and the control group.</td>
+</tr>
+<tr class="even">
+<td>Factorial ANOVA</td>
+<td><span class="math inline">\(y = b_0 + b_1\times \text{Treatment}\)</span> <br>   <span class="math inline">\(+ b_2\times \text{Female}\)</span> <br>  <span class="math inline">\(+ b_3\times \text{Female}\times \text{Treatment}\)</span></td>
+<td><span class="math inline">\(b_0\)</span> (the intercept) is the mean of the men in the control group, <span class="math inline">\(b_1\)</span> is the difference between Treatment and control, <span class="math inline">\(b_2\)</span> is the difference between Males and Females, and <span class="math inline">\(b_3\)</span> is the difference between females in the treatment group and males in the control group.</td>
+</tr>
+</tbody>
+</table>
+<p>Not only are the more traditional procedures all different versions of the linear model, but advanced procedures are also part of the LM. Structural Equation Modeling (SEM) is just a bunch of regression equations stringed together. Mixed models are regression models that essentially fit different slopes for each cluster, logistic regression is regression on a logit scale, and poisson regression is regression on a log scale.</p>
+<p>It’s all the same thing.</p>
+<div class="figure"><span style="display:block;" id="fig:decisiongtreeglm"></span>
+<img src="stats-jedi_files/figure-html/decisiongtreeglm-1.png" alt="This diagram shows the old way of doing things. It is hopelessly complicated and it is much better to just use a linear model." width="90%" />
+<p class="caption">
+Figure 9.1: This diagram shows the old way of doing things. It is hopelessly complicated and it is much better to just use a linear model.
+</p>
+</div>
+<p>Why is that important? Because you <em>don’t</em> have to memorize complex decision trees with awkward rules to remember what statistical model you need to use (like the image above). It simplifies things immensely. You really just have to know which variables you want to predict (i.e., which variable is your outcome or dependent variable) and which variable(s) you use to predict (e.g., IQ, SES, male versus female, treatment versus control). BTW, see the note box below.</p>
+<div class="rmdnote">
+<p>
+When we talk about groups (e.g., treatment versus control, males
+versus females, freshman versus seniors), we typically say that we’re
+interested in estimating group differences. However, you could also use
+different language and say that group membership <em>predicts</em>
+scores on the outcome variable. There is absolutely no difference
+<em>mathematically</em> between estimating group differences and
+predicting an outcome. It’s only a psychological difference.
+</p>
+<p>
+I’ve often been chided by non-statistician colleagues for my loose
+use of language. “No,” they’ll insist, “it is not appropriate to refer
+to group membership as a predictor.”
+</p>
+<p>
+Umm…no. It makes no mathematical difference, so why are we squabbling
+over semantics?
+</p>
+<p>
+Also, there’s an advantage to referring to grouping variables as
+predictors; once you realize there’s nothing special about categorical
+variables, it simplifies decision-making. Once again, we just have to
+figure out which variable(s) are the predictors and which is the
+outcome.
+</p>
+</div>
+</div>
+<div id="what-makes-a-good-statistical-model" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> What makes a good statistical model?<a href="the-linear-model.html#what-makes-a-good-statistical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So, we have established the linear model (LM) is the big daddy of statistics; it can be used to fit most statistical models and makes it much easier to select the right procedure.</p>
+<p>How do you determine whether a model is good or not?</p>
+<p>Well, it turns out that’s a bit hard to do. Many methodologists and philosophers of science have suggested several criteria using fantsy pantsy words nobody knows, like fitting propensity, identifiability, fungibility, etc. I’m not going to go into those. Instead, I’ll talk about one criteria everybody agrees is important: fit.</p>
+<p>The model must fit the data. Or, the model must be at least somewhat representative of reality. If you have a model airplane that looks like a hotdog, it’s a poor model. Likewise, if you have a statistical model that doesn’t fit the data, it’s pretty useless.</p>
+<p>“Alright,” you say, “so how, good sir, do we go about determining whether the model fits the data?”</p>
+<p>Excellent question. And the answer is quite simple: you’ve been doing it all along.</p>
+<ul>
+<li>You assess fit with visualizations, looking for evidence of patterns</li>
+<li>You assess fit by computing effect sizes and determining whether they’re strong enough to keep</li>
+<li>You assess fit by evaluating diagnostics, ensuring the assumptions of the model have been met</li>
+<li>You assess fit by computing statistical significance (if you’re a frequentist) or by computing a Bayes Factor (if you’re a Bayesian). (We’ll get into how to do this once we get to probability).</li>
+</ul>
+<p>In other words, this textbook is an instruction manual that <em>tells you how to determine whether your model fits!</em> I bet you didn’t see that twist coming!</p>
+<p>And, by couching most statistical models within the LM, we have a common method of determining whether the model fits. All we have to do is plug in our predictor(s) and specify our outcome variable, then let the software generate visuals, effect sizes, and probability estimates.</p>
+<p>Then we be in bid’ness.</p>
+<p>The next couple of sections are going to apply the LM to fit various types of statistical models. But really, you’ve already done the hard work. The next few sections are simply going to assemble all the pieces together, using the LM.</p>
+</div>
+<div id="prediction-versus-group-differences" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Prediction Versus Group Differences<a href="the-linear-model.html#prediction-versus-group-differences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Often we’re interested in seeing how two groups differ on some outcome. Maybe we want to if those who like eggplants are less intelligent than those who don’t. (Eggplants are gross). Or perhaps you want to demonstrate that statisticians are way smarter than accountants. Ooh, that reminds me of a joke:</p>
+<div class="rmdjoke">
+<p>
+What’s the difference between a statistician and an accountant?
+</p>
+<p>
+Statisticians like numbers but didn’t have enough personality to be
+accountants.
+</p>
+</div>
+<p>In both of these cases, we’re comparing two groups on some outcome. But, remember, you could just as easily say that group membership (e.g., statisticians versus accountants, or those who like versus dislike eggplants) <em>predicts</em> scores. The math is the same. (Read the above rant box if you want more information.)</p>
+<p>Lot’s of questions can be answered with the LM, including….</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Group Means Language</th>
+<th>Predictor Language</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How do nerds versus jocks compare in average income later in life?</td>
+<td>How does nerd versus jock status predict income?</td>
+</tr>
+<tr class="even">
+<td>Is it quicker to fry an ant with a magnifying glass or matches?</td>
+<td>How does method of frying (magnifying glass versus matches) predict time to ant combustion?</td>
+</tr>
+<tr class="odd">
+<td>If I fast before Thanksgiving dinner, can I eat more than if I snack throughout the day?</td>
+<td>How does the state of my stomach (fasting versus snacking) predict consumption on Thanksgiving?</td>
+</tr>
+</tbody>
+</table>
+<p>Once again, the language doesn’t matter. When you realize it doesn’t matter, then it’s easier to transition into thinking about categorical GLMs as same ole same ole regression.</p>
+<div id="out-with-the-old-in-with-the-shiny" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Out with the old, in with the shiny<a href="the-linear-model.html#out-with-the-old-in-with-the-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Just for giggles and gaffes, I’ll go ahead and show you how most people do ANOVA/t-tests, before I go ahead and show you the light of the LM.</p>
+<p>Step 1: count the number of groups. If there’s more than two, do an ANOVA. Otherwise, do a <span class="math inline">\(t\)</span>-test</p>
+<p>Step 2: Set up a null and alternative hypothesis. For ANOVA, test whether there’s some difference somewhere between groups. For t-test, test whether the groups are equal.</p>
+<p>Step 3: If groups &gt; 3 and there’s a significant p-value, perform post-hoc tests to see <em>where</em> that difference is.</p>
+<p>Step 4: Make conclusions.</p>
+<p>Hmmm….that’s more complicated than it needs to be, <em>and</em> it’s really not that informative. There’s no graphics. There’s no evaluation of model assumptions. There’s no estimates computed.</p>
+<div class="rmdrant">
+<p>
+If I wished to be fair (which I don’t), other textbooks may mention
+estimates and/or graphics and/or assumptions. Yet these activities never
+seems to make it to the step-by-step process of doing significance
+testing. Go ahead, read any intro stats book and there will likely be a
+four or five step procedure for doing a <span class="math inline"><span class="math inline">\(t\)</span></span>-test or ANOVA. I’m willing to bet very
+few of them mention graphics, estimates, or diagnostics. These books
+might stress the importance of these things, but they never show you how
+they fit within the process.
+</p>
+<p>
+Have I sold you on my approach yet? If not, that’s impressive you’ve
+gotten this far and still haven’t bought into it yet. Kudos to you.
+</p>
+</div>
+<p>And what is the step-by-step procedure of the LM way?</p>
+<p>(By the way, this is [loosely] based on a paper I wrote called <em>The Eight Steps of Data Analysis</em>, and that paper served as the basis for the organization of this textbook. Neat, eh? Not all eight steps are included because one of the steps, evaluating the measurement model, is beyond the scope of this text.)</p>
+<p>Step 1: State theoretical hypothesis</p>
+<p>Step 2: Visualize univariate distributions</p>
+<p>Step 3: Visualize the statistical model</p>
+<p>Step 4: Evaluate diagnostics</p>
+<p>Step 5: Study estimates</p>
+<p>Step 6: Compute probability estimates (p-values, Bayes Factors)</p>
+<p>Notice there are no conditional statements in there; you don’t have to count the number of groups, number of predictor variables, determine type of predictor variable, etc. These steps are <em>always</em> used, no mater whether you have two groups or three, categorical predictors or numeric, whether it’s Monday or Wednesday or your birthday.</p>
+<p>Wax on/wax off. I just taught you the basic moves. And these moves will help you win any statistical ninja competition. After doing these steps, you will know <em>far</em> more than any student taught using the crappy old method. You will be far less likely to be deceived and do better science.</p>
+<p>How’s that for a sales pitch? (Too bad I don’t make any money off of book sales).</p>
+<p>And how, you might ask, are we possibly able to condense all the complexity of statistical models into the same six steps?</p>
+<p>We use the linear model. Remember that the LM doesn’t care whether you have numeric or categorical predictor variables.</p>
+<p>Now, let’s go ahead and go through all the types of procedures you might do and show how to do it using the LM approach.</p>
+</div>
+</div>
+<div id="one-sample-t-test" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> One-Sample T-Test<a href="the-linear-model.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Is this group taller than 5’5”?</p>
+<p>Does this classroom score higher than 75 on the exam?</p>
+<p>Are engineers smarter than the population average?</p>
+<p>These are all questions that are traditionally answered using a one-sample t-test (OST). For a OST, we have a group and we want to see if that group’s score is different than a specific value. These tests aren’t very common, but I’ll show you how to do them anyway.</p>
+<div class="rmdnote">
+<h3 id="what-is-a-p-value">
+What is a p-value?
+</h3>
+<p>
+In the next few sections, I’m going to show you how to do various
+analyses from both the LM approach and the traditional approach.
+Throughout, I’m going to be computing p-values and statistical
+significance.
+</p>
+<p>
+Alas, we haven’t yet gotten to the probability chapters yet, so I
+haven’t yet gotten in depth into what a p-value is. But, I’ll give you a
+brief overview here. When computing a p-value, we are trying to test two
+hypotheses: a null hypothesis and an altnernative hypothesis. A null
+hypothesis predicts nothing is going on (e.g., group means are no
+different, two variables are not associated). The alternative predicts
+the opposite of that.
+</p>
+<p>
+The idea behind a p-value is that we <em>assume</em> the null
+hypothesis is actually true. In other words, we assume there’s no
+association between our predictor and outcome variable. We then compute
+the probability of obtaining our particular estimate (e.g., correlation
+coefficient or mean difference), under the assumption that the null
+hypothesis is actually true. If we get a small p-value, that suggests it
+is unlikely these estimates (again, correlations, mean differences,
+etc.) are probably different from zero.
+</p>
+<p>
+Traditionally, if the p-value is less than 0.05, we deem the results
+“statistically significant.”
+</p>
+</div>
+<div id="traditional-analysis" class="section level3 hasAnchor" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Traditional Analysis<a href="the-linear-model.html#traditional-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you wanted to a t-test in R, you would do something like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="the-linear-model.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(flexplot)</span>
+<span id="cb1-2"><a href="the-linear-model.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&#39;avengers&#39;</span>)</span>
+<span id="cb1-3"><a href="the-linear-model.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(avengers<span class="sc">$</span>iq, <span class="at">mu =</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  One Sample t-test
+#&gt; 
+#&gt; data:  avengers$iq
+#&gt; t = 35.556, df = 811, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: true mean is not equal to 100
+#&gt; 95 percent confidence interval:
+#&gt;  109.4479 110.5521
+#&gt; sample estimates:
+#&gt; mean of x 
+#&gt;       110</code></pre>
+<p>That there is testing whether the mean IQ in our dataset (which, in this case is 110) is different from <code>mu</code>, which we specified as 100. In other words, 100 is our null hypothesis. Because <span class="math inline">\(p\)</span>&lt;0.05, our group’s IQ is considered “statistically significantly different from 100.”</p>
+</div>
+<div id="one-sample-t-test-as-a-lm" class="section level3 hasAnchor" number="9.6.2">
+<h3><span class="header-section-number">9.6.2</span> One-Sample T-Test as a LM<a href="the-linear-model.html#one-sample-t-test-as-a-lm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So, how do we do this using the LM? It’s quite easy, but we do have to make one small modification. As far as I know, there’s no way to tell R’s <code>lm</code> function you want to test against a specific value (like we tested against 100 with the <code>t.test</code>). It’s always going to test against zero. For that reason, we need to subtract the score we want to test against (100 in this case) from the scores. Then, with these new scores, testing against 0 with these new scores is the same as testing against 100:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="the-linear-model.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new iq variable that subtracts 100 (the tested value)</span></span>
+<span id="cb3-2"><a href="the-linear-model.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from the actual iq scores</span></span>
+<span id="cb3-3"><a href="the-linear-model.html#cb3-3" aria-hidden="true" tabindex="-1"></a>avengers<span class="sc">$</span>iq2 <span class="ot">=</span> avengers<span class="sc">$</span>iq <span class="sc">-</span> <span class="dv">100</span></span>
+<span id="cb3-4"><a href="the-linear-model.html#cb3-4" aria-hidden="true" tabindex="-1"></a>t_test_model <span class="ot">=</span> <span class="fu">lm</span>(iq2<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>So, something a little funky just happened. When we’ve done <code>lm</code> in the past, we’ve always had an equation that had the outcome on the left side and the predictor on the right side (like <code>outcome~predictor</code>). Now, however, we don’t have any predictors (<code>outcome~1</code>, or <code>iq2~1</code> in this case). What does this mean? This is just how you tell R that you’re fitting what’s called an “intercept-only” model. An intercept-only model means that we’re just fitting a model with a mean. So, long story short, <code>y~1</code> just tells R we want to compute the mean. It’s an odd way of doing it. (We could, afterall, just type <code>mean(y)</code>). But, using the <code>lm</code> function allows us to access flexplot’s toolset and it gives us more than just the mean.</p>
+<p>Now that we’ve fit the model, we can look at the values. Normally I don’t use the <code>summary</code> command because it reports p-values. But, just to show it’s the same as if you did a t-test, let’s look at that:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="the-linear-model.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(t_test_model)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = iq2 ~ 1, data = avengers)
+#&gt; 
+#&gt; Residuals:
+#&gt;    Min     1Q Median     3Q    Max 
+#&gt;    -25     -5      0      5     27 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)  10.0000     0.2812   35.56   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 8.014 on 811 degrees of freedom</code></pre>
+<p>Notice the value of “Estimate” is 10. Remember we subtracted 100 from all the scores, so this tells us the original scores had a mean of 100 + 10 = 110, which is the same value we got earlier. Also, the p-value is the same.</p>
+<p>But we can also visualize the model:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="the-linear-model.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(t_test_model)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/onesamplet-1.png" width="672" /></p>
+<p>This shows two histograms. The top one shows the distribution of the <em>raw</em> scores. The bottom-left shows the distribution of the residuals.</p>
+<p>In the histogram, we see that most scores are above 100. We can also use the <code>estimates</code> function to get even more information:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="the-linear-model.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(t_test_model)</span></code></pre></div>
+<pre><code>#&gt;   Mean    Lower    Upper        d
+#&gt; 1   10 9.447941 10.55206 1.247766</code></pre>
+<p>I know, I know. I’m not making my point very well. Remember, I’m trying to convince you the LM approach is easier, and yet for this analysis, it was more complicated (because we had to subtract 100). But, one-sample t-tests are quite rare. And, almost all the other analyses are far easier to do with a LM.</p>
+</div>
+</div>
+<div id="independent-sample-t-test" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Independent Sample T-Test<a href="the-linear-model.html#independent-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Is the treatment group different from the control group?</p>
+<p>Do males have higher scores than females?</p>
+<p>Are statisticians more attractive than non-statisticians? (The answer is emphatically yes).</p>
+<p>These are all questions we would typically answer with an independent sample t-test. For these procedures, we want to compute the mean of exactly two groups, then see if those means are different.</p>
+<div id="preparing-data-for-a-t-test" class="section level3 hasAnchor" number="9.7.1">
+<h3><span class="header-section-number">9.7.1</span> Preparing Data for a t-test<a href="the-linear-model.html#preparing-data-for-a-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are two common ways of storing data for a t-test. One is called “wide format”:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">group1</th>
+<th align="right">group2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">10</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="right">9</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="right">13</td>
+</tr>
+</tbody>
+</table>
+<p>This method puts each group’s scores in a separate column. Another way to do it is called, “long format”:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">group</th>
+<th align="right">scores</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="right">12</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="right">13</td>
+</tr>
+</tbody>
+</table>
+<p>If I’m remembering correctly, SPSS will make you analyze your data in wide format. With R, you can use either. However, <code>flexplot</code> requires it to be in long format.</p>
+<p>Let’s say your data are in wide format, but you need it in long format. How do you do it?</p>
+<p>We can use the <code>pivot_longer</code> command in the tidyverse. (If you need help with this, you can watch my <a href="http://https://youtu.be/dmLm_8DW37w">video on pivoting</a>.</p>
+<p>Let’s say our data from the table above is contained in a dataset called <code>wide_data</code>. To convert it to wide, we would do the following:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="the-linear-model.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb9-2"><a href="the-linear-model.html#cb9-2" aria-hidden="true" tabindex="-1"></a>long_data <span class="ot">=</span> <span class="fu">pivot_longer</span>(wide_data, </span>
+<span id="cb9-3"><a href="the-linear-model.html#cb9-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">cols=</span><span class="fu">c</span>(group1, group2), </span>
+<span id="cb9-4"><a href="the-linear-model.html#cb9-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names_to=</span><span class="st">&quot;Here_Are_My_Groups&quot;</span>, </span>
+<span id="cb9-5"><a href="the-linear-model.html#cb9-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">values_to=</span><span class="st">&quot;Here_Are_My_Scores&quot;</span>)</span></code></pre></div>
+<p>Here, we specify which columns contain the scores (in our case <code>group1</code> and <code>group2</code>), as well as the name of the variable that indicates the groups (which we called “Here_Are_My_Groups”) and the name of the variable that indicates the scores (which we called “Here_Are_My_Scores”). After doing that, we should get:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="the-linear-model.html#cb10-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(long_data)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Here_Are_My_Groups</th>
+<th align="right">Here_Are_My_Scores</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">group1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">group2</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">group1</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">group2</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">group1</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">group2</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">group1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">group2</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">group1</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">group2</td>
+<td align="right">13</td>
+</tr>
+</tbody>
+</table>
+<p>For more information on using <code>pivot_longer</code>, you can type <code>?pivot_longer</code> to access the help menu or <a href="http://%5Bvideo%20on%20pivoting%5D(http://https://youtu.be/dmLm_8DW37w)">see my aforementioned video</a>.</p>
+</div>
+<div id="traditional-t-test-analysis" class="section level3 hasAnchor" number="9.7.2">
+<h3><span class="header-section-number">9.7.2</span> Traditional t-test Analysis<a href="the-linear-model.html#traditional-t-test-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we did a traditional t-test in R, we would use the <code>t.test</code> command:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="the-linear-model.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ptsd<span class="sc">~</span>north_south, <span class="at">data=</span>avengers)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Welch Two Sample t-test
+#&gt; 
+#&gt; data:  ptsd by north_south
+#&gt; t = -8.195, df = 810, p-value = 9.755e-16
+#&gt; alternative hypothesis: true difference in means between group north and group south is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  -0.4112410 -0.2523058
+#&gt; sample estimates:
+#&gt; mean in group north mean in group south 
+#&gt;            3.834729            4.166502</code></pre>
+<p>This procedure attempts to determine whether those in the north battle field suffered more ptsd than those in the south battlefield. It seems that there is a statistically significant difference between the two groups. (Woopty doo). And we see there’s a small difference between them in terms of PTSD: 3.83 versus 4.17.</p>
+</div>
+<div id="lm-approach" class="section level3 hasAnchor" number="9.7.3">
+<h3><span class="header-section-number">9.7.3</span> LM Approach<a href="the-linear-model.html#lm-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To use the LM approach, we first fit the model:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="the-linear-model.html#cb13-1" aria-hidden="true" tabindex="-1"></a>ind_t <span class="ot">=</span> <span class="fu">lm</span>(ptsd<span class="sc">~</span>north_south, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>Then we can use the <code>estimates</code> function to get the estimates:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="the-linear-model.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(ind_t)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.077 (0.04, 0.11)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt; north_south 
+#&gt;       0.077 
+#&gt; 
+#&gt; Estimates for Factors:
+#&gt;     variables levels estimate lower upper
+#&gt; 1 north_south  north     3.83  3.78  3.89
+#&gt; 2              south     4.17  4.11  4.22
+#&gt; 
+#&gt; 
+#&gt; Mean Differences:
+#&gt;     variables  comparison difference lower upper cohens.d
+#&gt; 1 north_south south-north       0.33  0.22  0.44     0.58</code></pre>
+<p>Notice the estimates of the means are identical to the t-test approach. We can also compute a p-value, using the LM approach:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="the-linear-model.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ind_t)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = ptsd ~ north_south, data = avengers)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -2.0347 -0.3665 -0.0347  0.3653  3.2335 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                  Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)       3.83473    0.02863 133.954  &lt; 2e-16 ***
+#&gt; north_southsouth  0.33177    0.04048   8.195 9.76e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 0.5768 on 810 degrees of freedom
+#&gt; Multiple R-squared:  0.07656,    Adjusted R-squared:  0.07542 
+#&gt; F-statistic: 67.16 on 1 and 810 DF,  p-value: 9.755e-16</code></pre>
+<p>And, of course, that p-value is the same as it was before.</p>
+<p>But, within the LM framework, we can also visualize it:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="the-linear-model.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(ind_t)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/indt-1.png" width="672" /></p>
+<p>That’s quite a bit more informative!</p>
+</div>
+</div>
+<div id="related-t-test" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Related t-test<a href="the-linear-model.html#related-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Does symptom severity decrease after therapy?</p>
+<p>Do husbands experience more relationship satisfaction than their wives?</p>
+<p>Relative to before training, how much does free throw percentages improve?</p>
+<p>These are all questions we might use a related t-test to address. For a related t-test, we have data that are related in some way. Maybe it’s the same person measured twice. Or maybe it’s siblings being measured, or spouses. In either case, it’s not appropriate to use traditional analyses because of that independence assumption we mentioned in the diagnostics chapter.</p>
+<p>To address the correlated issue, the scores need to be converted into a single score. With the traditional method, the computer does this for you. For the LM, you have to do this yourself. In either case, one set of scores are subtracted from the other (e.g., the post-treatment scores are subtracted from the pre-treatment scores).</p>
+<div id="traditional-related-t-test-analysis" class="section level3 hasAnchor" number="9.8.1">
+<h3><span class="header-section-number">9.8.1</span> Traditional Related t-test Analysis<a href="the-linear-model.html#traditional-related-t-test-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When using the traditional method, you can either use long or wide format for the data. Let’s look at the <code>diet</code> dataset for our example analysis:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="the-linear-model.html#cb19-1" aria-hidden="true" tabindex="-1"></a>related_t <span class="ot">=</span> <span class="fu">t.test</span>(diet<span class="sc">$</span>pre.weight, diet<span class="sc">$</span>weight6weeks, <span class="at">paired=</span>T)</span>
+<span id="cb19-2"><a href="the-linear-model.html#cb19-2" aria-hidden="true" tabindex="-1"></a>related_t</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Paired t-test
+#&gt; 
+#&gt; data:  diet$pre.weight and diet$weight6weeks
+#&gt; t = 13.309, df = 77, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: true mean difference is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  3.269602 4.420141
+#&gt; sample estimates:
+#&gt; mean difference 
+#&gt;        3.844872</code></pre>
+<p>Notice the use of the argument <code>paired=T</code>; this tells R the scores belong to the same people. So, we get a statistically significant difference, though it’s not clear whether the mean difference (3.84) means weight is lower or higher after six weeks. We’d have to do some digging to figure it out.</p>
+</div>
+<div id="lm-analysis-of-a-related-t-test" class="section level3 hasAnchor" number="9.8.2">
+<h3><span class="header-section-number">9.8.2</span> LM Analysis of a Related t-test<a href="the-linear-model.html#lm-analysis-of-a-related-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This is one of the few procedures that is slightly more annoying to do as a LM. As I already mentioned, when you do a related t-test, in the background, the procedure is actually subtracting one set of scores (e.g., 6 week weight) from the other set (e.g., pre weight), then doing a one-sample t-test. With a LM, we actually have to do this manually:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="the-linear-model.html#cb21-1" aria-hidden="true" tabindex="-1"></a>diet<span class="sc">$</span>difference <span class="ot">=</span> diet<span class="sc">$</span>weight6weeks <span class="sc">-</span> diet<span class="sc">$</span>pre.weight</span></code></pre></div>
+<p>So, we’re creating a new scores that is simply the difference pre versus 6 weeks post.</p>
+<p>Now we can do a one-sample t-test through regression:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="the-linear-model.html#cb22-1" aria-hidden="true" tabindex="-1"></a>related_t_as_glm <span class="ot">=</span> <span class="fu">lm</span>(difference<span class="sc">~</span><span class="dv">1</span>, <span class="at">data=</span>diet)</span></code></pre></div>
+<p>There’s that <code>~1</code> style of equation again. As before, we’re just asking <code>lm</code> to compute the mean of the difference scores.</p>
+<p>As before, we can visualize the data using flexplot:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="the-linear-model.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(related_t_as_glm)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/relatedtglm-1.png" width="672" /></p>
+<p>So, most scores are negative. This means that most people lost weight, though a few gained weight. Also, the residuals don’t look bad. (And the SL plot is irrelevant here).</p>
+<p>We can compute the estimates:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="the-linear-model.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(related_t_as_glm)</span></code></pre></div>
+<pre><code>#&gt;        Mean     Lower     Upper        d
+#&gt; 1 -3.844872 -4.420141 -3.269602 -1.50692</code></pre>
+<p>On average, people lost 3.8 pounds during the program.</p>
+</div>
+</div>
+<div id="anova" class="section level2 hasAnchor" number="9.9">
+<h2><span class="header-section-number">9.9</span> ANOVA<a href="the-linear-model.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Which of my three treatment groups has the least stress?</p>
+<p>How does gender (male, female, nonbinary) affect empathy?</p>
+<p>Which political party (republican, democrat, independent, libertarian) is the most fiscally conservative?</p>
+<p>These sorts of questions are traditionally answered with an ANOVA, which is short for ANalysis Of VAriance.</p>
+<div id="traditional-analysis-of-anova" class="section level3 hasAnchor" number="9.9.1">
+<h3><span class="header-section-number">9.9.1</span> Traditional Analysis of ANOVA<a href="the-linear-model.html#traditional-analysis-of-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In traditional stats classes, we were told that we use an ANOVA when we have 3+ groups.</p>
+<p>Let’s see how we’d traditionally analyze these sorts of questions. Let’s start with the <code>exercise_data</code> dataset. Here we’re going to analyze see how groups (beh, cog, and control) differ in weight loss:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="the-linear-model.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&#39;exercise_data&#39;</span>)</span>
+<span id="cb26-2"><a href="the-linear-model.html#cb26-2" aria-hidden="true" tabindex="-1"></a>anova_model <span class="ot">=</span> <span class="fu">aov</span>(weight.loss<span class="sc">~</span>therapy.type, <span class="at">data=</span>exercise_data)</span>
+<span id="cb26-3"><a href="the-linear-model.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_model)</span></code></pre></div>
+<pre><code>#&gt;               Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+#&gt; therapy.type   2    505   252.5   8.501 0.000288 ***
+#&gt; Residuals    197   5850    29.7                     
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div id="multiple-comparisons" class="section level4 hasAnchor" number="9.9.1.1">
+<h4><span class="header-section-number">9.9.1.1</span> Multiple comparisons<a href="the-linear-model.html#multiple-comparisons" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This tells us nothing about the group means, but the traditional analysis doesn’t really care about group means. This analysis suggests there’s “some difference somewhere,” but doesn’t tell us where that difference is. Once we conclude statistical significance, we then follow that up with “post-hoc tests,” which attempt to identify where the mean differences are statistically significant:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="the-linear-model.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairwise.t.test</span>(exercise_data<span class="sc">$</span>weight.loss, </span>
+<span id="cb28-2"><a href="the-linear-model.html#cb28-2" aria-hidden="true" tabindex="-1"></a>                exercise_data<span class="sc">$</span>therapy.type, <span class="at">p.adj=</span><span class="st">&quot;bonf&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Pairwise comparisons using t tests with pooled SD 
+#&gt; 
+#&gt; data:  exercise_data$weight.loss and exercise_data$therapy.type 
+#&gt; 
+#&gt;     control cog   
+#&gt; cog 0.0015  -     
+#&gt; beh 0.0009  1.0000
+#&gt; 
+#&gt; P value adjustment method: bonferroni</code></pre>
+<p>This analysis adjusts for p-value inflation using the “bonferroni” method. According to this analysis, the cog versus control and beh versus control differences are statistically significant, but the cog versus behavioral difference is not.</p>
+<div class="rmdblock">
+<h4 id="adjusting-for-multiple-comparisons">
+Adjusting for multiple
+comparisons
+</h4>
+<p>
+What’s the probability of rolling a six? 1/6, right? Of course.
+Unless you allow yourself to roll the dice multiple times. The idea
+behind multiple comparisons is the same. Here, we’re using probabilities
+to make judgments about “statistical significance.” Probabilities can be
+easily gamed, like in this dice rolling example. Testing each and every
+possible pairwise comparison between groups (e.g., behaviorist versus
+control, control versus cognitive, cognitive versus behaviorist) amounts
+to rolling the dice additional times. For this reason, many recommend we
+adjust the p-values to reflect the fact that we have “rolled the dice”
+multiple times.
+</p>
+<p>
+There’s no universal consensus about how exactly these p-values
+should be adjusted. There’s the Bonferroni method, the Holm method, the
+Hochberg method, Tukey’s Honestly Significant Difference, and many
+others. Some are more conservative than others, but I tend to avoid
+them. Why? Because most of my research is not strictly confirmatory.
+Very few people are actually doing strictly confirmatory research, so I
+think these should be used rarely. Instead, the data should be
+visualized and one should compute estimates.
+</p>
+</div>
+</div>
+</div>
+<div id="anova-as-a-lm" class="section level3 hasAnchor" number="9.9.2">
+<h3><span class="header-section-number">9.9.2</span> ANOVA as a LM<a href="the-linear-model.html#anova-as-a-lm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we use the LM to do an ANOVA, it looks no different than a independent t-test. That’s a pretty big deal, by the way. We don’t have to worry about the number of groups and try to remember what procedure to use when we do have more than three groups. We just specify our predictor and outcome:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="the-linear-model.html#cb30-1" aria-hidden="true" tabindex="-1"></a>anova_model_as_lm <span class="ot">=</span> <span class="fu">lm</span>(weight.loss<span class="sc">~</span>therapy.type, <span class="at">data=</span>exercise_data)</span></code></pre></div>
+<p>We could start by visualizing the data:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="the-linear-model.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(anova_model_as_lm)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/anovaglm-1.png" width="672" /></p>
+<p>It looks like normality and homoscedasticity are viable assumptions (even if the residuals are slightly negatively skewed). It also seems that the cog/beh group both outperform the control in weight loss, but aren’t much different from one another.</p>
+<p>Let’s go ahead and compute some estimates:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="the-linear-model.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(anova_model_as_lm)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.079 (0.01, 0.15)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt; therapy.type 
+#&gt;        0.079 
+#&gt; 
+#&gt; Estimates for Factors:
+#&gt;      variables  levels estimate lower upper
+#&gt; 1 therapy.type control     4.13  2.75  5.52
+#&gt; 2                  cog     7.64  6.26  9.02
+#&gt; 3                  beh     7.57  6.36  8.78
+#&gt; 
+#&gt; 
+#&gt; Mean Differences:
+#&gt;      variables  comparison difference lower upper cohens.d
+#&gt; 1 therapy.type cog-control       3.51  0.20  6.82     0.64
+#&gt; 2              beh-control       3.44  0.32  6.55     0.63
+#&gt; 3                  beh-cog      -0.07 -3.17  3.03    -0.01</code></pre>
+<p>It seems those in the control lost an average of 4.1, while the beh and cog groups are 7.6 and 7.6, respectively. Also, the beh/cog groups lost about 3.5 pounds more than the control group, with a Cohen’s <span class="math inline">\(d\)</span> of 0.6.</p>
+</div>
+</div>
+<div id="regression" class="section level2 hasAnchor" number="9.10">
+<h2><span class="header-section-number">9.10</span> Regression<a href="the-linear-model.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How strongly are stress and anxiety related?</p>
+<p>Does sleep improve test performance?</p>
+<p>These are questions we typically address using regression. Typically, textbooks suggest we use regression when we have a numeric predictor and a numeric outcome.</p>
+<div id="traditional-regression-analysis" class="section level3 hasAnchor" number="9.10.1">
+<h3><span class="header-section-number">9.10.1</span> Traditional Regression Analysis<a href="the-linear-model.html#traditional-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s go ahead and look at the relationship between agility and speed in the avengers dataset. First, we fit the regression:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="the-linear-model.html#cb34-1" aria-hidden="true" tabindex="-1"></a>regression_analysis <span class="ot">=</span> <span class="fu">lm</span>(agility<span class="sc">~</span>speed, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>Now we can compute statistical significance:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="the-linear-model.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(regression_analysis)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = agility ~ speed, data = avengers)
+#&gt; 
+#&gt; Residuals:
+#&gt;     Min      1Q  Median      3Q     Max 
+#&gt; -38.715  -9.048   0.186   9.102  41.269 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) -165.421     13.526  -12.23   &lt;2e-16 ***
+#&gt; speed         43.086      2.704   15.94   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 13.1 on 810 degrees of freedom
+#&gt; Multiple R-squared:  0.2387, Adjusted R-squared:  0.2377 
+#&gt; F-statistic:   254 on 1 and 810 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>We can also compute the correlation coefficient:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="the-linear-model.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(avengers<span class="sc">$</span>agility, avengers<span class="sc">$</span>speed)</span></code></pre></div>
+<pre><code>#&gt; [1] 0.4885585</code></pre>
+<p>So, it seems from this analysis, there is a statistically significant relationship between speed and agility, with a correlation of 0.489. Nice.</p>
+<p>Let’s see what additional insights we might gain with our LM method.</p>
+</div>
+<div id="lm-approach-1" class="section level3 hasAnchor" number="9.10.2">
+<h3><span class="header-section-number">9.10.2</span> LM Approach<a href="the-linear-model.html#lm-approach-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The LM approach actually isn’t all that different from the traditional regression analysis. The emphasis is just slightly different. We fit the model the same:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="the-linear-model.html#cb39-1" aria-hidden="true" tabindex="-1"></a>regression_analysis <span class="ot">=</span> <span class="fu">lm</span>(agility<span class="sc">~</span>speed, <span class="at">data=</span>avengers)</span></code></pre></div>
+<p>Once again, let me emphasis that you didn’t have to remember whether speed was numeric or categorical and you didn’t have to consciously decide whether you were doing regression. The math doesn’t care and neither does flexplot.</p>
+<p>See how much easier that is?</p>
+<p>Now that we have a model, let’s visualize it and study the estimates. Let’s start with visuals:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="the-linear-model.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(regression_analysis)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/regressionglm-1.png" width="672" /></p>
+<p>Uh oh! It’s a good thing we visualized things! Our RD plot suggests there’s some nonlinearity in the data. So, maybe we’ll try to fit a quadratic to the model:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="the-linear-model.html#cb41-1" aria-hidden="true" tabindex="-1"></a>regression_analysis_quadratic <span class="ot">=</span> <span class="fu">lm</span>(agility<span class="sc">~</span>speed <span class="sc">+</span> <span class="fu">I</span>(speed<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>avengers)</span>
+<span id="cb41-2"><a href="the-linear-model.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(regression_analysis_quadratic)</span></code></pre></div>
+<p><img src="stats-jedi_files/figure-html/regressionquadglm-1.png" width="672" /></p>
+<p>My, my! That looks beautiful! Glad we visualized it!</p>
+<p>Now we can study the estimates:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="the-linear-model.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(regression_analysis_quadratic)</span></code></pre></div>
+<pre><code>#&gt; Model R squared:
+#&gt; 0.255 (0.2, 0.31)
+#&gt; 
+#&gt; Semi-Partial R squared:
+#&gt;      speed I(speed^2) 
+#&gt;      0.239      0.017 
+#&gt; 
+#&gt; 
+#&gt; Estimates for Numeric Variables = 
+#&gt;     variables estimate    lower   upper std.estimate std.lower std.upper
+#&gt; 1 (Intercept) -1318.35 -1851.78 -784.92         0.00      0.00      0.00
+#&gt; 2       speed   506.83   292.46  721.20         5.75      3.32      8.18
+#&gt; 3  I(speed^2)   -46.58   -68.10  -25.05        -5.26     -7.69     -2.83</code></pre>
+<p>Alas, it’s a bit harder to understand the estimates from a quadratic regression, but the model’s <span class="math inline">\(R^2\)</span> is fairly interpretable. We have explained 25.52% of the variance.</p>
+</div>
+</div>
+<div id="categorical-outcome-variables" class="section level2 hasAnchor" number="9.11">
+<h2><span class="header-section-number">9.11</span> Categorical Outcome Variables<a href="the-linear-model.html#categorical-outcome-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All the analyses I have showed you are for situations where the outcome variable is numeric. Things get more complicated when you have a categorical outcome variable. If you have a categorical outcome and categorical predictor, we typically use a <span class="math inline">\(\chi^2\)</span> test. When we have a numeric predictor and categorical outcome, we might use a logistic or multinomial logistic regression.</p>
+<p>These sorts of analyses don’t fit within the linear model framework. They <em>do</em>, however, fit within another class of models called general<em>ized</em> linear models. Those sorts of models are beyond the scope of this book, but you can always watch my <a href="http://http://https://youtube.com/playlist?list=PL8F480DgtpW_YXp3Ir20a709c0UQ10dwI">YouTube playlist on generalized linear models</a>.</p>
+</div>
+<div id="its-all-the-same" class="section level2 hasAnchor" number="9.12">
+<h2><span class="header-section-number">9.12</span> It’s All the Same!<a href="the-linear-model.html#its-all-the-same" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You may have noticed, my astute reader that, no matter whether one is using a t-test, ANOVA, regression, etc., the process of fitting the model is <em>exactly</em> the same when you use flexplot:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="the-linear-model.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. fit the model</span></span>
+<span id="cb44-2"><a href="the-linear-model.html#cb44-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">lm</span>(y<span class="sc">~</span>x, <span class="at">data=</span>data)</span>
+<span id="cb44-3"><a href="the-linear-model.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. visualize the model</span></span>
+<span id="cb44-4"><a href="the-linear-model.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize</span>(model)</span>
+<span id="cb44-5"><a href="the-linear-model.html#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. compute estimates for the model</span></span>
+<span id="cb44-6"><a href="the-linear-model.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">estimates</span>(model)</span></code></pre></div>
+<p>That was <em>by design.</em> How clever I am.</p>
+<p>And, when you get to more advanced statistics (including mixed models, random forests, generalized linear models, etc.), the process is still the same:</p>
+<ol style="list-style-type: decimal">
+<li>Fit the model</li>
+<li>Visualize the model with the <code>visualize</code> command.</li>
+<li>Compute the estimates with the <code>estimates</code> command.</li>
+</ol>
+<p>Once we pass the probability chapter, we’ll add a few more steps (specifically, fit an alternative model, visualize the two models, and calculate model comparisons). But, regardless of whether the IV is numeric, categorical, two groups, three groups, etc., the process is always the same.</p>
+<p>That there, simplifies things immensely.</p>
+</div>
+<div id="summary-1" class="section level2 hasAnchor" number="9.13">
+<h2><span class="header-section-number">9.13</span> Summary<a href="the-linear-model.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Traditionally, statistics classes have been taught using decision-trees, helping students identify the “correct” approach to analyzing their data. This approach is very cumbersome and doesn’t help reinforce the underlying logic of statistics. In this chapter, I introduced the “linear model,” which is an algebraic equation that specifies how predictor(s) may onto an outcome. Using this approach means you don’t have to use different procedures for categorical versus numeric predictors, or two versus three groups. Instead, you can use the same flexplot functions (visualize and estimates).</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Back when statistical software was super new, the biggest (and perhaps really the only) condender in statistical software was SAS, which used to stand for Statistical Analysis Software. (They’ve since changed things so SAS doesn’t stand for anything…kinda weird). In SAS there was a function (called “procedures” in SAS) named “PROC GLM” which stood for the general linear model. Alas, it was kinda poorly named, but it wasn’t SAS’s fault. In the 1980s, there was a paper that came out that identified a bunch of models (like poisson models and logistic models) as belonging to a family of models they called “generalized linear models.” Do you see the problem? General linear model and generalized linear model sound pretty similar and it’s easy to confuse them, but they’re pretty different things. In the late 1990s, R came along and decided to name its foremost statistical function “lm” for “linear model.” Why does this matter? It doesn’t really. It just means that if you are a SAS user (as many of the old guard are), you probably call this the general linear model. If you’re an R user, you probably call it the linear model. I’ve opted to call it the linear model because (a) I’m an R user, and (b) it’s easier to avoid confusing general and generalized linear models.<a href="the-linear-model.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="diagnostics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vizmvglms.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/09-General-Linear-Model.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["stats-jedi.pdf", "stats-jedi.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

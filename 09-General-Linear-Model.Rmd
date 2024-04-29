@@ -1,4 +1,4 @@
-# The General Linear Model
+# The Linear Model
 
 
 ```{r, include=FALSE}
@@ -10,7 +10,7 @@ library(flexplot)
 
 ## Wax on, wax off
 
-Have you ever seen the movie *Karate Kid*? That came out when I was a young'n and my best friend and I would watch that movie, over and over, then launch through the air, round-housing imagined foes. 
+Have you ever seen the movie *Karate Kid*? That came out when I was a young'n and my best friend and I would watch that movie, over and over, then launch through the air, round-house kicking imagined foes. 
 
 'Twas a classic. 
 
@@ -32,41 +32,44 @@ And the list goes on. And on. And on.
 
 That's the old way. That's the way that favors memorizing large lists of information.
 
-But I'm going to give you the "Wax on, wax off," of statistics: the general linear model. 
+But I'm going to give you the "Wax on, wax off," of statistics: the linear model.[^glmvslm] 
 
-*Nearly every single statistical procedure is just a different variation of the general linear model.*
+[^glmvslm]:Back when statistical software was super new, the biggest (and perhaps really the only) condender in statistical software was SAS, which used to stand for Statistical Analysis Software. (They've since changed things so SAS doesn't stand for anything...kinda weird). In SAS there was a function (called "procedures" in SAS) named "PROC GLM" which stood for the general linear model. Alas, it was kinda poorly named, but it wasn't SAS's fault. In the 1980s, there was a paper that came out that identified a bunch of models (like poisson models and logistic models) as belonging to a family of models they called "generalized linear models." Do you see the problem? General linear model and generalized linear model sound pretty similar and it's easy to confuse them, but they're pretty different things. In the late 1990s, R came along and decided to name its foremost statistical function "lm" for "linear model." Why does this matter? It doesn't really. It just means that if you are a SAS user (as many of the old guard are), you probably call this the general linear model. If you're an R user, you probably call it the linear model. I've opted to call it the linear model because (a) I'm an R user, and (b) it's easier to avoid confusing general and generalized linear models. 
+
+
+*Nearly every single statistical procedure is just a different variation of the linear model.*
 
 Actually, I think that deserves a tweet-worthy decoration:
 
 ```{block, type="rmdtweet", echo = TRUE}
-Nearly every single statistical procedure is just a different variation of the general linear model.
+Nearly every single statistical procedure is just a different variation of the linear model.
 ```
 
 So, let me ask you. Would you rather have a sensei that teaches you the muscle memory of a handful of core moves? Or would your rather learn hundreds?
 
 That's what I thought. 
 
-Before I talk about the general linear model, let's have a conversation about what a model is. 
+Before I talk about the linear model, let's have a conversation about what a model is. 
 
-## What is a model
+## What is a model?
 
 When you think of a model, what comes to mind? Perhaps a fashion model? Or a model airplane or model car? Or perhaps a model citizen. 
 
 So what *is* a model?
 
-*A model is a representation of something else. This representation retains essential elements, while ignoring nonessential details.*
+*A model is a representation of something else. This representation retains essential elements, while ignoring non-essential details.*
 
-A fashion model is a representation of beauty. It represents the essentials of what we consider beautiful, while excluding other features of what might be considered beautiful. A model airplane contains the essential shape. proportions, and color of a real airplane, but it's ignores nonessential details (like the ability to fly or carry passengers). A model citizen exhibits the essential behaviors of what makes a good citizen (e.g., law-abiding, civic responsibility, community participation), while ignoring nonessentials (e.g., hair color, profession, family size). 
+A fashion model is a representation of beauty. It represents the essentials of what we consider beautiful, while excluding other features of what might be considered beautiful. A model airplane contains the essential shape. proportions, and color of a real airplane, but it's ignores nonessential details (like the ability to fly or carry passengers). A model citizen exhibits the essential behaviors of what makes a good citizen (e.g., law-abiding, civic responsibility, community participation), while ignoring non-essentials (e.g., hair color, profession, family size). 
 
-Likewise, a statistical model is a mathematical representation of reality. This model ignores nonessential information. This model seeks to capture the patterns, while ignoring the noise. T-tests are models. ANOVAs are models. Regressions are models. Each of these capture some "signal" (e.g., a mean difference between groups, a slope, a correlation coefficient), while ignoring the noise. 
+Likewise, a statistical model is a mathematical representation of reality. This model ignores nonessential information. This model seeks to capture the patterns, while ignoring the noise. T-tests are models. ANOVAs are models. Regressions are models. Each of these capture some "signal" (e.g., a mean difference between groups, a slope, a correlation coefficient), while ignoring the noise (e.g., deviations of each score from their mean). 
 
-But, all these different statistical models can be considered as different variations of a *general linear model*. 
+But, all these different statistical models can be considered as different variations of the *linear model*. 
 
-## What is the general linear model
+## What is the Linear Model?
 
 You've already seen this, by the way. There's nothing new here; we're just conceptualizing it slightly differently. 
 
-The general linear model is simply an algebraic equation that has the following form:
+The linear model is simply an algebraic equation that has the following form:
 
 $$y = \text{intercept} + \text{slope(s)} \times \text{predictor(s)} + e$$
 
@@ -87,7 +90,7 @@ But there are many other ways to think about it:
     y &= \text{essential} + \text{nonessential}\\
 \end{align}
 
-The general linear model decomposes reality into those things our model can explain and those things we cannot. Back in the diagnostics chapter, we already learned why a residual is important, so I won't go over that again. But, I will say that this simple equation can be used to fit almost *any* statistical model. We'll go into more detail later, but the table below summarizes how we can conceptualize the "traditional" procedure as a general linear model. 
+The linear model decomposes reality into those things our model can explain and those things we cannot. Back in the diagnostics chapter, we already learned why a residual is important, so I won't go over that again. But, I will say that this simple equation can be used to fit almost *any* statistical model. We'll go into more detail later, but the table below summarizes how we can conceptualize the "traditional" procedure as a linear model. 
 
 
 | Procedure | LM Equation | Interpretation |
@@ -99,7 +102,7 @@ The general linear model decomposes reality into those things our model can expl
 | ANCOVA| $y = b_0 + b_1\times \text{Covariate}$ <br> &nbsp; &nbsp; $+ b_2\times \text{Treatment}$|  $b_0$ (the intercept) is the mean of the control group, $b_1$ is slope of the covariate, and $b_2$ is the difference between the Treatment and the control group. |
 | Factorial ANOVA| $y = b_0 + b_1\times \text{Treatment}$ <br> &nbsp; $+ b_2\times \text{Female}$ <br> &nbsp;$+ b_3\times \text{Female}\times \text{Treatment}$ |  $b_0$ (the intercept) is the mean of the men in the control group, $b_1$ is the difference between Treatment and control, $b_2$ is the difference between Males and Females, and $b_3$ is the difference between females in the treatment group and males in the control group. |
 
-Not only are the more traditional procedures all different versions of the general linear model, but advanced procedures are also part of the LM. Structural Equation Modeling (SEM) is just a bunch of regression equations stringed together. Mixed models are regression models that essentially fit different slopes for each cluster, logistic regression is regression on a logit scale, and poisson regression is regression on a log scale. 
+Not only are the more traditional procedures all different versions of the linear model, but advanced procedures are also part of the LM. Structural Equation Modeling (SEM) is just a bunch of regression equations stringed together. Mixed models are regression models that essentially fit different slopes for each cluster, logistic regression is regression on a logit scale, and poisson regression is regression on a log scale. 
 
 It's all the same thing. 
 
@@ -153,10 +156,7 @@ It's all the same thing.
 \end{tikzpicture}
 ```
 
-
-
-
-Why is that important? Because you *don't* have to memorize complex decision trees with awkward rules to remember what statistical model you need to use (like the image above). It simplifies things immensely. You really just have to know which variables you want to predict (i.e., which variable is your outcome or dependent variable) and which variables you use to predict (e.g., IQ, SES, male versus female, treatment versus control). BTW, see the note box below.  
+Why is that important? Because you *don't* have to memorize complex decision trees with awkward rules to remember what statistical model you need to use (like the image above). It simplifies things immensely. You really just have to know which variables you want to predict (i.e., which variable is your outcome or dependent variable) and which variable(s) you use to predict (e.g., IQ, SES, male versus female, treatment versus control). BTW, see the note box below.  
 
 ```{block, type='rmdnote'}
 When we talk about groups (e.g., treatment versus control, males versus females, freshman versus seniors), we typically say that we're interested in estimating group differences. However, you could also use different language and say that group membership *predicts* scores on the outcome variable. There is absolutely no difference *mathematically* between estimating group differences and predicting an outcome. It's only a psychological difference. 
@@ -170,13 +170,11 @@ Also, there's an advantage to referring to grouping variables as predictors; onc
     
 ## What makes a good statistical model?
 
-So, we have established that the general linear model (LM) [^glm] is the Sylvester Stallone of statistics; it can be used to fit most statistical models and makes it much easier to select the right procedure. 
-
-[^glm]: You might be asking why we call it the LM instead of the LM. Good question, that. There are procedures called general*ized* linear models. These are different than General Linear Models. To distinguish the two, I use LM to refer to the general linear model, and LM to refer to generalized linear models. 
+So, we have established the linear model (LM) is the big daddy of statistics; it can be used to fit most statistical models and makes it much easier to select the right procedure. 
 
 How do you determine whether a model is good or not? 
 
-Well, it turns out that's a bit hard to do. Many methodologists and philosophers of science have suggested several criteria including fitting propensity, identifiability, fungibility, etc. I'm not going to go into those. Instead, I'll talk about one criteria everybody agrees is important: fit. 
+Well, it turns out that's a bit hard to do. Many methodologists and philosophers of science have suggested several criteria using fantsy pantsy words nobody knows, like fitting propensity, identifiability, fungibility, etc. I'm not going to go into those. Instead, I'll talk about one criteria everybody agrees is important: fit. 
 
 The model must fit the data. Or, the model must be at least somewhat representative of reality. If you have a model airplane that looks like a hotdog, it's a poor model. Likewise, if you have a statistical model that doesn't fit the data, it's pretty useless. 
 
@@ -185,15 +183,15 @@ The model must fit the data. Or, the model must be at least somewhat representat
 Excellent question. And the answer is quite simple: you've been doing it all along. 
 
 * You assess fit with visualizations, looking for evidence of patterns
-* You assess fit by computing effect sizes and determining whether they're strong enough to bother over
+* You assess fit by computing effect sizes and determining whether they're strong enough to keep
 * You assess fit by evaluating diagnostics, ensuring the assumptions of the model have been met
 * You assess fit by computing statistical significance (if you're a frequentist) or by computing a Bayes Factor (if you're a Bayesian). (We'll get into how to do this once we get to probability). 
 
-In other words, this textbook is an instruction manual that *tells you how to determine whether your model fits!*
+In other words, this textbook is an instruction manual that *tells you how to determine whether your model fits!* I bet you didn't see that twist coming!
 
 And, by couching most statistical models within the LM, we have a common method of determining whether the model fits. All we have to do is plug in our predictor(s) and specify our outcome variable, then let the software generate visuals, effect sizes, and probability estimates. 
 
-Then we be in bidness. 
+Then we be in bid'ness. 
 
 The next couple of sections are going to apply the LM to fit various types of statistical models. But really, you've already done the hard work. The next few sections are simply going to assemble all the pieces together, using the LM. 
 
@@ -207,7 +205,7 @@ What's the difference between a statistician and an accountant?
 Statisticians like numbers but didn't have enough personality to be accountants. 
 ```
 
-In both of these cases, we're comparing two groups on some outcome. But, remember, you could just as easily say that group membership (e.g., statisticians versus accountants, or those who like versus dislike eggplants) *predicts* scores. The math is the same. 
+In both of these cases, we're comparing two groups on some outcome. But, remember, you could just as easily say that group membership (e.g., statisticians versus accountants, or those who like versus dislike eggplants) *predicts* scores. The math is the same. (Read the above rant box if you want more information.)
 
 Lot's of questions can be answered with the LM, including....
 
@@ -221,7 +219,7 @@ Once again, the language doesn't matter. When you realize it doesn't matter, the
 
 ### Out with the old, in with the shiny
 
-Just for giggles and gaffes, I'll go ahead and show you how most people do ANOVA/t-tests, before I go ahead and show you the light. 
+Just for giggles and gaffes, I'll go ahead and show you how most people do ANOVA/t-tests, before I go ahead and show you the light of the LM. 
 
 Step 1: count the number of groups. If there's more than two, do an ANOVA. Otherwise, do a $t$-test
 
@@ -239,7 +237,7 @@ If I wished to be fair (which I don't), other textbooks may mention estimates an
 Have I sold you on my approach yet? If not, that's impressive you've gotten this far and still haven't bought into it yet. Kudos to you. 
 ```
 
-And the new way? 
+And what is the step-by-step procedure of the LM way?
 
 (By the way, this is [loosely] based on a paper I wrote called *The Eight Steps of Data Analysis*, and that paper served as the basis for the organization of this textbook. Neat, eh? Not all eight steps are included because one of the steps, evaluating the measurement model, is beyond the scope of this text.)
 
@@ -259,11 +257,11 @@ Notice there are no conditional statements in there; you don't have to count the
 
 Wax on/wax off. I just taught you the basic moves. And these moves will help you win any statistical ninja competition. After doing these steps, you will know *far* more than any student taught using the crappy old method. You will be far less likely to be deceived and do better science.
 
-How's that for a sales pitch?
+How's that for a sales pitch? (Too bad I don't make any money off of book sales). 
 
 And how, you might ask, are we possibly able to condense all the complexity of statistical models into the same six steps?
 
-We use the general linear model. Remember that the LM doesn't care whether you have numeric or categorical predictor variables. 
+We use the linear model. Remember that the LM doesn't care whether you have numeric or categorical predictor variables. 
 
 Now, let's go ahead and go through all the types of procedures you might do and show how to do it using the LM approach. 
 
@@ -313,7 +311,7 @@ avengers$iq2 = avengers$iq - 100
 t_test_model = lm(iq2~1, data=avengers)
 ```
 
-So, something a little funky just happened. When we've done `lm` in the past, we've always had an equation that had the outcome on the left side and the predictor on the right side (like `outcome~predictor`). Now, however, we don't have any predictors (`outcome~1`, or `iq2~1` in this case). What does this mean? This is just how you tell R that you're fitting what's called an "intercept-only" model. An intercept-only model means that we're just fitting a model with a mean. So, long story short, `y~1` just tells R we want to compute the mean. It's an odd way of doing it. (We could, afterall, just type `mean(y)`). But, using the `lm` function allows us to access flexplot's toolset. 
+So, something a little funky just happened. When we've done `lm` in the past, we've always had an equation that had the outcome on the left side and the predictor on the right side (like `outcome~predictor`). Now, however, we don't have any predictors (`outcome~1`, or `iq2~1` in this case). What does this mean? This is just how you tell R that you're fitting what's called an "intercept-only" model. An intercept-only model means that we're just fitting a model with a mean. So, long story short, `y~1` just tells R we want to compute the mean. It's an odd way of doing it. (We could, afterall, just type `mean(y)`). But, using the `lm` function allows us to access flexplot's toolset and it gives us more than just the mean. 
 
 Now that we've fit the model, we can look at the values. Normally I don't use the `summary` command because it reports p-values. But, just to show it's the same as if you did a t-test, let's look at that:
 
@@ -345,7 +343,7 @@ Is the treatment group different from the control group?
 
 Do males have higher scores than females?
 
-Are statisticians more attractive than non-statisticians?
+Are statisticians more attractive than non-statisticians? (The answer is emphatically yes).
 
 These are all questions we would typically answer with an independent sample t-test. For these procedures, we want to compute the mean of exactly two groups, then see if those means are different. 
 
@@ -421,7 +419,7 @@ Then we can use the `estimates` function to get the estimates:
 estimates(ind_t)
 ```
 
-Notice the means are identical. We can also compute a p-value, using the LM approach:
+Notice the estimates of the means are identical to the t-test approach. We can also compute a p-value, using the LM approach:
 
 ```{r}
 summary(ind_t)
@@ -531,14 +529,14 @@ This analysis adjusts for p-value inflation using the "bonferroni" method. Accor
 
 #### Adjusting for multiple comparisons
 
-What's the probability of rolling a six? 1/6, right? Of course. Unless you allow yourself to roll the dice multiple times. The idea behind multiple comparisons is the same. Here, we're using probabilities to make judgments about "statistical significance." Probabilities can be easily gamed, like in this dice rolling example. Testing each and every possible pairwise comparison between groups (e.g., behaviorist versus control, control versus cognitive, cognitive versus behaviorist) amounts to rolling the dice additional times. For this reason, many recomment we adjust the p-values to reflect the fact that we have "rolled the dice" multiple times.
+What's the probability of rolling a six? 1/6, right? Of course. Unless you allow yourself to roll the dice multiple times. The idea behind multiple comparisons is the same. Here, we're using probabilities to make judgments about "statistical significance." Probabilities can be easily gamed, like in this dice rolling example. Testing each and every possible pairwise comparison between groups (e.g., behaviorist versus control, control versus cognitive, cognitive versus behaviorist) amounts to rolling the dice additional times. For this reason, many recommend we adjust the p-values to reflect the fact that we have "rolled the dice" multiple times.
 
 There's no universal consensus about how exactly these p-values should be adjusted. There's the Bonferroni method, the Holm method, the Hochberg method, Tukey's Honestly Significant Difference, and many others. Some are more conservative than others, but I tend to avoid them. Why? Because most of my research is not strictly confirmatory. Very few people are actually doing strictly confirmatory research, so I think these should be used rarely. Instead, the data should be visualized and one should compute estimates. 
 ```
 
 ### ANOVA as a LM
 
-When we use the LM to do an ANOVA, it looks no different than a one-sample t-test. That's a pretty big deal, by the way. We don't have to worry about the number of groups and try to remember what procedure to use when we do have more than three groups. We just specify our predictor and outcome:
+When we use the LM to do an ANOVA, it looks no different than a independent t-test. That's a pretty big deal, by the way. We don't have to worry about the number of groups and try to remember what procedure to use when we do have more than three groups. We just specify our predictor and outcome:
 
 ```{r}
 anova_model_as_lm = lm(weight.loss~therapy.type, data=exercise_data)
@@ -609,7 +607,7 @@ Once again, let me emphasis that you didn't have to remember whether speed was n
 
 See how much easier that is?
 
-Now that we have a model, let's visualizing the analysis and studying estimates. Let's start with visuals:
+Now that we have a model, let's visualize it and study the estimates. Let's start with visuals:
 
 ```{r regressionglm}
 visualize(regression_analysis)
@@ -636,7 +634,7 @@ Alas, it's a bit harder to understand the estimates from a quadratic regression,
 
 All the analyses I have showed you are for situations where the outcome variable is numeric. Things get more complicated when you have a categorical outcome variable. If you have a categorical outcome and categorical predictor, we typically use a $\chi^2$ test. When we have a numeric predictor and categorical outcome, we might use a logistic or multinomial logistic regression. 
 
-These sorts of analyses don't fit within the general linear model framework. They *do*, however, fit within another class of models called general*ized* linear models. Those sorts of models are beyond the scope of this book, but you can always watch my [YouTube playlist on generalized linear models](http://http://https://youtube.com/playlist?list=PL8F480DgtpW_YXp3Ir20a709c0UQ10dwI). 
+These sorts of analyses don't fit within the linear model framework. They *do*, however, fit within another class of models called general*ized* linear models. Those sorts of models are beyond the scope of this book, but you can always watch my [YouTube playlist on generalized linear models](http://http://https://youtube.com/playlist?list=PL8F480DgtpW_YXp3Ir20a709c0UQ10dwI). 
 
 ## It's All the Same!
 
@@ -662,3 +660,7 @@ And, when you get to more advanced statistics (including mixed models, random fo
 Once we pass the probability chapter, we'll add a few more steps (specifically, fit an alternative model, visualize the two models, and calculate model comparisons). But, regardless of whether the IV is numeric, categorical, two groups, three groups, etc., the process is always the same.
 
 That there, simplifies things immensely. 
+
+## Summary
+
+Traditionally, statistics classes have been taught using decision-trees, helping students identify the "correct" approach to analyzing their data. This approach is very cumbersome and doesn't help reinforce the underlying logic of statistics. In this chapter, I introduced the "linear model," which is an algebraic equation that specifies how predictor(s) may onto an outcome. Using this approach means you don't have to use different procedures for categorical versus numeric predictors, or two versus three groups. Instead, you can use the same flexplot functions (visualize and estimates). 

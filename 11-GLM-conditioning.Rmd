@@ -5,7 +5,7 @@ knitr::opts_chunk$set(
 library(flexplot)
 ```
 
-# Multivariate GLMs: Conditioning Effects {#multivariate-glms-conditioning-effects}
+# Multivariate LMs: Conditioning Effects {#multivariate-glms-conditioning-effects}
 
 There were once two identical twin brothers, separated at birth, one named Tim, the other named Burton. Tim was born to a wealthy family. Said family paid for private tutors, incentivized Tim to do his homework with donuts and hot chocolate, and build him his own baseball diamond. Burton, on the other hand, was not so lucky. Shortly after the adoption, Burton's father died. Burton's mom, now an uneducated spinster, took double shifts at a local diner. When she could afford it, she paid for daycare, but more often than not, Burton spent his time watching Sesame Street and eating Hot Pockets. 
 
@@ -87,23 +87,23 @@ The overlap between circles represents the degree of correlation (more overlap =
 
 By the way, somehow there's this weird rumor out there that says linear models assume we don't have multicollinearity. *That is false!* LMs don't really care about whether you have multicollinearity. Let me say that again: **we never assume our variables are uncorrelated with one another.**
 
-Sure, it might make it more difficult to interpret our model, but that doesn't make it an assumption. Though, in reality, it is a real genuine problem because it becomes difficult to figure out which explanation is correct. How then, do we disentangle the explanations? We use conditioning!
+Sure, collinearity might make it more difficult to interpret our model, but that doesn't make it an assumption. Though, in reality, it is a real genuine problem because it becomes difficult to figure out which variable is responsible for the changes in the outcome. How then, do we disentangle the explanations? We use conditioning!
 
 ## Controlling by conditioning
 
-Before I explain conditioning, let's review some terminology. Once again, we're going to call the variable we're interested in (in this case, hard word) the "interest variable." Why? Because it's the variable we're interested in. The variable we're trying to control for, we're going to call a "covariate" or a "control" variable
+Before I explain conditioning, let's review some terminology. Once again, we're going to call the variable we're interested in (in this case, hard word) the "interest variable." Why? Because it's the variable we're interested in. (I suppose that was obvious, wasn't it?) The variable we're trying to control for, we're going to call a "covariate" or a "control" variable
 
 **Interest variable: the predictor variable for which we're wanting to determine the strength of the relationship **
 
-**Covariate: the predictor variable for which we're trying to control.**
+**Covariate or control variable: the predictor variable for which we're trying to control.**
 
-Let's say, for the sake of explanation, we think it was parental wealth that caused Tim's success, not his work ethic. In other words, the interest variable is work ethic and the covariate is parental wealth. 
+Let's say, for the sake of explanation, we think it was parental wealth that caused Tim's success, not his work ethic. What we'd want to know is if work ethic predicted wealth *above and beyond* parental wealth. In this case, parental wealth is the control variable and work ethic is the interest variable. 
 
-If we were to write a model as a GLM, we might use:
+If we were to write a model as a LM, we might use:
 
 $\text{Outcome} = b_0 + b_1\text{Covariate} + b_2\text{Interest Variable} + e$
 
-It's customary to put the covariate first, then put the interest variable. Why? Two reasons. The first is in the technical box. The second reason is psychological; that which is last is most easily remembered. So, putting our interest variable last is an easy reminder of which variable we're actually interested in. 
+It's customary to put the covariate first, then put the interest variable. Why? Two reasons. The first is in the technical box. The second reason is psychological; that which is last is most easily remembered. So, putting our interest variable last is an easy reminder of which variable we're actually interested in. But, it actually doesn't matter. LMs love all variables equally. 
 
 ```{block, type="rmdnote"}
 
@@ -115,8 +115,7 @@ If you look at the Venn diagram above, you'll notice that I've defined "credit" 
 
 So what are Type I/II? Type I means that whatever variable is entered first in a model gets the credit. So, if our model was Income = $b_0 + b_1$Hard Work $+ b_2$Parental Income, Hard work would get the credit for the information presented in yellow + green, while Parental Income would only get credit for the blue area. Type II is similar to Type III, but it ignores interaction effects (i.e., it "controls" for all main effects, but not interactions). 
 
-I think it's pretty stupid to give one variable more credit than another, just because we happened to enter it first in the model. For that reason, I always use Type III sums of squares. 
-
+I think it's pretty stupid to give one variable more credit than another, just because we happened to enter it first in the model. For that reason, I always use Type III sums of squares. But really, I try not to think in terms of sums of squares because that's old school thinking that isn't all that helpful. 
 ```
 
 If we were to write the above equation for the LM using our own variables, we would put:
@@ -154,9 +153,9 @@ n = 4000
 practice = rnorm(n, 0, 1)
 confidence = .6*practice + rnorm(n, 0, sqrt(1-.6^2))
 earnings = .6*confidence + rnorm(n, 0, sqrt(1-.6^2))
-practice = fifer::rescale(practice, 10, 3)
-confidence = fifer::rescale(confidence, 50, 15)
-earnings = fifer::rescale(earnings, 0, 30)
+practice = flexplot::rescale(practice, 10, 3)
+confidence = flexplot::rescale(confidence, 50, 15)
+earnings = flexplot::rescale(earnings, 0, 30)
 d = data.frame(practice = practice, confidence = confidence, earnings = earnings)
 a = flexplot(earnings~practice, data=d, method="lm")
 b = flexplot(earnings~practice | confidence, data=d, method="lm", bins=3)
@@ -191,7 +190,7 @@ Well, not quite. There's always a catch. This time, there's four: (1) Conditioni
 
 ### 1. Conditioning will not prove causation. 
 
-You've probably heard many marginally-educated souls repeat the mantra that correlation does not prove causation. And it's true. But, correlation can provide evidence for causation. For example, a lack of correlation between race and death penalty is evidence that there's no relationship between race and death penalty. But, it's very weak and misleading evidence. As I mentioned in my chapter on [visualizing multivariate models](#vizmvglms), once you condition on the race of the victim, a much different picture emerges. 
+You've probably heard many marginally-educated souls repeat the mantra that correlation does not prove causation. And it's true. But, correlation can provide evidence for causation. For example, a lack of correlation between race and death penalty *is* evidence that there's no relationship between race and death penalty. But, it's very weak and misleading evidence. As I mentioned in my chapter on [visualizing multivariate models](#vizmvglms), once you condition on the race of the victim, a much different picture emerges. 
 
 The problem with using conditioning as evidence for causality is that there are *always* an infinite number of variables you can condition on. Is there a strong correlation between processed food consumption and heart disease? Sure, let's say there is. But maybe it's not processed food consumption per se, but perhaps people who are health-conscious tend to both consume less processed food *and* they tend to exercise more regularly. So, maybe we condition on exercise and find there's *still* a relationship between the two. Has our evidence for causation strengthened?  
 
@@ -251,17 +250,17 @@ So, before you try to control for a particular covariate, spend some time thinki
 
 ### 3. Only study and interpret the effects of the interest variable
 
-Multivariate GLMs are kind of dangerous, at least if they're approached from the antiquated NHST paradigm of the past. Why? Well, let's say we're trying to model heart disease based on an interest variable (processed food consumption) and various covariates (socioeconomic status, exercise, and age). Using the GLM, our model becomes:
+Multivariate LMs are kind of dangerous, at least if they're approached from the antiquated NHST paradigm of the past. Why? Well, let's say we're trying to model heart disease based on an interest variable (processed food consumption) and various covariates (socioeconomic status, exercise, and age). Using the LM, our model becomes:
 
 Heart Disease = $b_0 + b_1$ SES $+ b_2$ exercise $+ b_3$ age $+ b_4$processed foods $+e$
 
 Note that we don't care about $b_1-b_3$; we only care about $b_4$. Even though that's all we care about, the computer doesn't know that. So, it will report estimates for *everything* we have in the model, even the variables we don't care about. The problem is much worse if you're using anything but Flexplot because the computer will report p-values *for each and every variable in the model*. So, we might start our analysis with the idea that we will study the effect of processed foods, but our eyes might be drawn to that whopping SES effect, or the statistically significant exercise effect. 
 
-There are two problems with doing that. First, if we are lured by the significance of p-values, we are deceiving ourselves; in this situation, p-values have no probabilistic meaning. Remember a p-value only means something if we have specified our sample size in advance, met all the assumptions, and *perform one test* (or control for multiple comparisons). Nearly all statistical packages out there disregard this fact and default to reporting p-values for every single parameter in the model. 
+There are two problems with doing that. First, if we are lured by the significance of p-values, we are deceiving ourselves; in this situation, p-values have no probabilistic meaning. Remember a p-value only means something if we have specified our sample size in advance, met all the assumptions, and *perform one test* (or control for multiple comparisons). Nearly all statistical packages out there disregard this fact and default to reporting p-values for every single parameter in the model. (We'll talk more about this in the probability chapters).
 
 That's a problem. 
 
-Multivariate GLMs (or multiple regression) are not a means for performing a fishing expedition. They should be used for *targeted hypotheses*, which means we should only study and interpret the parameter for the interest variable. 
+Multivariate LMs are not a means for performing a fishing expedition. They should be used for *targeted hypotheses*, which means we should only study and interpret the parameter for the interest variable. 
 
 ### 4. Conditioning with interaction effects. 
 
@@ -277,7 +276,7 @@ Most people act under the assumption that conditioning can't hurt; if I control 
 
 Huh?
 
-Here's an example. Let's say, for the sake of simplicity, that beauty and talent for acting are uncorrelated. It's probably a safe assumption. I've known some beautiful people who truly suck at acting. Likewise, I've seen some ugly actors. However, let's say we "condition" on success by sampling from Hollywood. Would you be surprised if talent and beauty are correlated in Hollywood? In fact, they are. Why? Because if you're really beautiful, you don't need a whole lot of talent to be in a movie. On the other hand, if you're talented, you don't need to be as beautiful. In other words, one's talent (or beauty) can compensate for weaknesses they have in another area. This means that there will be a negative correlation between talent and beauty amongst movie stars. 
+Here's an example. Let's say, for the sake of simplicity, that beauty and talent for acting are uncorrelated. It's probably a safe assumption. I've known some beautiful people who truly suck at acting. Likewise, I've seen some ugly actors. However, let's say we "condition" on success by sampling from Hollywood. Would you be surprised if talent and beauty are correlated in Hollywood? In fact, they are. Why? Because if you're really beautiful, you don't need a whole lot of talent to be in a movie. On the other hand, if you're talented, you don't need to be as beautiful. In other words, one's talent (or beauty) can compensate for weaknesses in another area. This means that there will be a negative correlation between talent and beauty amongst movie stars. 
 
 Again, this correlation doesn't exist when we don't do a conditional analysis. 
 
@@ -300,7 +299,7 @@ Let me say that, but more definition-like:
 So, when would you ever want to do this? Let me give some examples, where this might be interesting:
 
 * We know that there's a genetic component of depression. But, once we subtract out the effect of genetics, what is the net effect of poverty on depression?
-* If we assume control for time of day, what is the effect of using live bait on fishing success?
+* If we control for time of day, what is the effect of using live bait versus lures on fishing success?
 * How effective is exercise at improving health, once we control for nutrition?
 * Assuming resources are equal, what is the effect of sunlight on pilfering behaviors among chipmunks?
 * If two teams have point guards of equivalent skills, what effect does rebounds have on winning percentages in basketball games?
@@ -322,7 +321,7 @@ Good question! Here are phrases that indicate it's not really about conditioning
 
 So, again, with a conditioning analysis, we're interested in determining the effect of our interest variable on the outcome, after subtracting out the effect of the covariate. 
 
-[^datamining]: This requires a bit of elaboration. When you're doing data mining, usually you're also doing a conditioning analysis. For example, you might try to determine which variable has the largest net effect among all the others. Data mining is a totally different procedure that I don't go into in this book. Unfortunately, it has its own set of rules and techniques that I can't go into here. 
+[^datamining]: This requires a bit of elaboration. When you're doing data mining, usually you're also doing a conditioning analysis. For example, you might try to determine which variable has the largest net effect after subtracting out the effect of the others. Data mining is a totally different procedure that I don't go into in this book. Unfortunately, it has its own set of rules and techniques that I can't go into here. 
 
 Once we've determined we're doing a conditioning analysis, the next step is to set up our linear model. Fortunately, that's pretty easy to do. All we have to do is identify our outcome variable, our interest variable, and our covariate. Once we've done that, we're ready to fit our model:
 
@@ -336,12 +335,10 @@ mod = lm(outcome~covariate + interest, data=d)
 
 Remember, the order of the variables doesn't matter, but conventionally, we put the interest variable at the end. 
 
-Now that we're ready to fit our model, it's important to know what sorts of estimates a multivariate model will spit out. So, without further ado...
-
 ```{block, type="rmdnote"}
 *Conditioning Versus Mediation*
 
-As I talk about conditioning analyses, you might be saying to yourself, "wow, dude...this sounds an awful lot like mediation analysis. 
+As I talk about conditioning analyses, you might be saying to yourself, "wow, dude...this sounds an awful lot like mediation analysis." 
 
 Right you are. It's a lot like it. But it's not the same thing. Mediation is different. With mediation we hypothesize that our interest variable only affects our outcome because of the covariate (though we'd call it a mediator, not a covariate). Or, in other words, the only reason we observe a relationship between the interest variable and the outcome is because of the covariate. 
 
@@ -350,6 +347,7 @@ Mediation will try to determine this with conditioning. More specifically, if, a
 ```
 
 
+Now that we're ready to fit our model, it's important to know what sorts of estimates a multivariate model will spit out. So, without further ado...
 
 ## Additional Estimates of Interest
 
@@ -403,17 +401,17 @@ Alrighty, folks. I kinda lied. I said we need estimates that tell us about condi
 
 So what is R squared? Well, to understand, you have to think kinda sorta like an antiquated statistician. So, lemme take you through an acid-laced trip through the mind of a nerd...
 
-Suppose we want to predict a score. For simplicity, let's suppose it's someone's height. What's our best guess of their height? Without any information, our best guess is going to be the mean. So, let's say we predict 5'6" (or 1.67 meters for those smart enough to use the metric system). We will call this prediction (i.e., the prediction with just the mean) as our naive prediction.
+Suppose we want to predict a score. For simplicity, let's suppose it's someone's height. What's our best guess of their height? Without any information, our best guess is going to be the mean. So, let's say we predict 5'6" (or 1.67 meters for those smart enough to use the metric system). Why 5'6"? Because that's the mean of adult height. We will call this prediction (i.e., the prediction with just the mean) as our naive prediction.
 
 But, alas, not everyone in the world is going to be 5'6". Some are going to be 5'8", some 4'9", some 7'8". We can measure the deviations from 5'6" with the standard deviation. Just for fun, let's say our standard deviation is 4 inches. So, our naive prediction yields an average error of 4 inches. 
 
-Now, however, we want to be less naive. Now we want to predict someone's height using *some* information. Maybe we ask them their gender and build a GLM from that. Perhaps our GLM says that our new prediction is 5'3" for females and 5'8" for males. As before, we could measure our new deviations. We would expect this to improve, right? Before, we were off by an average of 4 inches. Now, however, every prediction gets us closer and we're now only off by 2 inches.
+Now, however, we want to be less naive. Now we want to predict someone's height using *some* information. Maybe we ask them their gender and build a LM from that. Perhaps our LM says that our new prediction is 5'3" for females and 5'8" for males. As before, we could measure our new deviations. We would expect this to improve, right? Before, we were off by an average of 4 inches. Now, however, every prediction gets us closer and we're now only off by 2 inches.
 
 So, to review, before we added gender, our average error in prediction was 4 inches. Now, our average error is 2 inches. In other words, we cut our errors in prediction in half (because 2 inches is half of 4).
 
 That's very similar to what R squared is: it is a ratio that tells us how much we reduced our error in prediction when we go from just the mean to predicting with our model. But, I've oversimplified things. R squared is actually computed from the variance, not the standard deviation. So, for our example before, the error in prediction before was 16 inches (four squared) while now it is 4 inches (two squared). In other words, our $R^2$ is $4/16 = 0.25$. 
 
-In stats-ese, we would say we have "explained 25% of the variance." Or, a more elaborate explanation would be, "relative to a model that just predicts someone's score using only the mean, adding the predictors that we have added reduces the variance by 25%."
+In stats-ese, we would say we have "explained 25% of the variance." Or, a more elaborate explanation would be, "relative to a model that just predicts someone's score using only the mean, adding gender as a predictor reduced the variance by 25%."
 
 Make sense?
 
@@ -455,11 +453,9 @@ You could, of course, compute the semi-partial "by hand," by computing the $R^2$
 estimates(speed.model.2)
 ```
 
-Notice that second section labeled "Semi-Partial R squared"? Nice, that. Ya'll can thank me now. I accept cash, check, and Subway coupons. 
+Notice that second section labeled "Semi-Partial R squared"? Nice, that. Ya'll can thank me now. I accept cash, check, YouTube subscriptions, and Subway coupons. 
 
 So, in summary, a semi-partial tells you how much adding a single predictor improves our prediction above and beyond a model without that variable. 
-
-
 
 ## Applied Analyses
 
@@ -467,9 +463,9 @@ Now that we have all the theoretical nonsense out of the way, let's do some anal
 
 ### ANCOVA 
 
-We would traditionally call this an Analysis of Covariance (ANCOVA). ANCOVAs are generally used when we have a treatment condition and we want to control for a covariate we suspect might muck up our analysis. 
+We would traditionally call this an Analysis of Covariance (ANCOVA). ANCOVAs are generally used when we have a treatment and we want to control for a covariate we suspect might muck up our analysis. 
 
-For this analysis, we're going to look at the exercise_data dataset. We know from previous analyses that the behaviorist/cognitive groups lost more weight than the control group. But we know that weight loss is heavily influence by motivation. It's possible that we accidentally put a bunch of motivated people in the control group and unmotivated people in the treatment groups. In other words, maybe we don't believe that random assignment didn't work very well. If that's the case, we might want to "control" or "condition" on motivation.
+For this analysis, we're going to look at the exercise_data dataset. We know from previous analyses that the behaviorist/cognitive groups lost more weight than the control group. But we know that weight loss is heavily influenced by motivation. It's possible that we accidentally put a bunch of motivated people in the control group and unmotivated people in the treatment groups. In other words, maybe random assignment didn't work very well. If that's the case, we might want to "control" or "condition" on motivation.
 
 Before we start our analysis, it's going to be helpful to state our research question. That might be: 
 
@@ -504,13 +500,13 @@ a+b+c
 
 Nothing surprising here, especially since we've already seen these plots; motivation and weight loss are about normally distributed, and we have about the same number of people in each group (there there are slighly more in the behaviorist group). All is as expected, so we'll go ahead and move on to the next step. 
 
-Now let's visualize the statistical model. We could do it in multiple ways. First, let's put all the data out there at the same time, using a paneled plot. (Not I'm also asking flexplot to show standard errors, instead of medians/interquartile ranges):
+Now let's visualize the statistical model. We could do it in multiple ways. First, let's put all the data out there at the same time, using a paneled plot. (Note I'm also asking flexplot to show standard errors, instead of medians/interquartile ranges):
 
 ```{r mvcondmodelplot, fig.cap="Plot of therapy group scores on weight loss for different levels of motivation."}
 flexplot(weight.loss~therapy.type | motivation, data=exercise_data, spread="sterr")
 ```
 
-Why did I put the therapy.type on the x-axis? Because it's the interest variable. I almost always put the interest variable on the x-axis because it makes that relationship most visible. It seems that the two conditions always do better than the control condition, though the degree changes somewhat across motivation levels. 
+Why did I put the therapy.type on the x-axis? Because it's the interest variable. I almost always put the interest variable on the x-axis because it makes that relationship most visible. It seems that the two experimental conditions always do better than the control condition, though the size of that advantages changes somewhat across motivation levels. 
 
 The second way to visualize it is with the added variable plot I mentioned earlier. Remember, therapy.type is my interest variable, so I'm going to put that last in the equation. 
 
@@ -545,7 +541,7 @@ Good question, that. I'm going to give three examples. Why three? Because some o
 
 Here's the basic approach for each:
 
-1. Radicals will report visuals/estimates/confidence intervals/Bayes factors. They will refuse to report p-values and they will refer to analyses using LM terminology. 
+1. Radicals will report visuals/estimates/confidence intervals/Bayes factors. They will refuse to report p-values and they will refer to analyses using LM terminology. Lastly, they'll use linear model notation to describe their model. 
 2. Traditionalists will report visuals/estimates/confidence intervals/Bayes factors. They will use traditional terminology and report p-values but will not use them to guide their commentary of the results. 
 3. Conventionalists will report/interpret p-values as is typical, but will supplement their analysis with visuals/estimates/confidence intervals/Bayes factors.
 
@@ -560,7 +556,13 @@ summod = summary(ancova.model)
 When reporting from a "radical" perspectives, I generally have three sections. The first section reports on the model diagnostics. The second section reports and comments on the visuals/estimates. The final section reports $R^2$ and probability estimates.
 
 <div style="margin-left: 40px;">
-We fit a linear model predicting weight loss from motivation and therapy group. First, however, we studied the univariate distributions (see Appendix A), as well as the diagnostics. The diagnostics suggest the residuals of the model are approximately normally-distributed, the model is approximately linear, and the variance is approximately constant. 
+We fit a linear model predicting weight loss from motivation and therapy group. More specifically,
+
+weight loss = $b_0$ + $b_1 \times$ motivation + $\beta_2 \times$therapy therapy 
+
+(Note: therapy group would technically require multiple parameters to account for the different groups, but we have only displayed one beta for simplicity of notation). 
+
+First, however, we studied the univariate distributions (see Appendix A), as well as the diagnostics. The diagnostics suggest the residuals of the model are approximately normally-distributed, the model is approximately linear, and the variance is approximately constant. 
 
 Once the viability of the assumptions was established, we visualized the model using an added-variable plot (see Figure \@ref(fig:mvcondavp)). According to the figure and Table \@ref(tab:estimatesradical), the cognitive and behavioral groups consistently lost more weight than the control group, after controlling for motivation. 
 
@@ -605,14 +607,16 @@ After evaluating the assumptions of normality, linearity, and homoscedasticity (
 After evaluating the assumptions of normality, linearity, and homoscedasticity (see Appendix A), we fit an ANCOVA, estimating the mean differences in therapy groups, after controlling for motivation. Figure \@ref(fig:mvcondmodelplot) shows the three groups across different levels of motivation. The group effect was statistically significant, `r pval`. The cognitive group was statistically different from the control group by an average of `r est_tab$difference[2]` (95\% CI: `r est_tab$lower[2]`, `r est_tab$lower[2]`, `r pvalcog`), while the behaviorist group differed from the control by an average of `r est_tab$difference[1]` (95\% CI: `r est_tab$lower[1]`, `r est_tab$lower[1]`, `r pvalbeh`). 
 </div>
 
+I know we haven't yet addressed p-values, AIC, BIC, or Bayes Factors. We'll get to those. But hopefully this still gives you an idea of how to report these. 
+
 
 ### Multiple Regression
 
-For this analysis, let's say you're a body builder and you want to demonstrate the advantages of strength training. You want to show that strength training has a large effect on ability. However, you know that both speed and flexibility also influence agility. But, you're a strength trainer for Stat's sake. You don't give two flips about speed and flexibility. Thus, your research question is:
+For this analysis, let's say you're a body builder and you want to demonstrate the advantages of strength training. You want to show that strength training has a large effect on agility. However, you know that both speed and flexibility also influence agility. But, you're a strength trainer for Stat's sake. You don't give two flips about speed and flexibility. Thus, your research question is:
 
   *How strongly does strength affect agility, once we control for speed and flexibility*
     
-This research question would traditionally be answered using multiple regression. Multiple regression is used when you have multiple numeric predictors and a numeric outcome. But, we're calling it a multivariate GLM, because, once again, whether a predictor is numeric or categorical doesn't matter. 
+This research question would traditionally be answered using multiple regression. Multiple regression is used when you have multiple numeric predictors and a numeric outcome. But, we're calling it a multivariate LM, because, once again, whether a predictor is numeric or categorical doesn't matter. 
 
 Let's start by looking at the univariate distributions:
 
@@ -640,7 +644,7 @@ flexplot(agility~strength | speed + flexibility, data=avengers,
          method = "quadratic")
 ```
 
-I reckon that looks right nice. But before we decide on that, let's go ahead and check out the diagnostics:
+I reckon that looks right nice. So we should probably model a nonlinear effect. But before we decide on that, let's go ahead and check out the diagnostics:
 
 ```{r mrdiag, fig.cap="Diagnostics of the model predicting agility from strength, after controlling for speed and flexibility"}
 multiple_reg_model = lm(agility~strength + flexibility + speed + I(strength^2),
@@ -664,7 +668,7 @@ So, let's go ahead and look at the estimates:
 estimates(multiple_reg_model)
 ```
 
-When we have polynomials, it's a bit tricky because the speed effect (which is, of course, the effect of interest) has actually been separated into two components: the linear component (called "strength") and the quadratic component (called "I(strength^2)"). To see the total effect of the interest variable (speed), we have to add them together:
+When we have polynomials, it's a bit tricky because the speed effect (which is, of course, the effect of interest) has actually been separated into two components: the linear component (called "strength") and the quadratic component (called `I(strength^2)`). To see the total effect of the interest variable (speed), we have to add them together:
 
 `r round(estimates(multiple_reg_model)$semi.p[1], digits=3)` + `r round(estimates(multiple_reg_model)$semi.p[4], digits=3)` = `r round(estimates(multiple_reg_model)$semi.p[1], digits=3) + round(estimates(multiple_reg_model)$semi.p[4], digits=3)`
 
@@ -679,7 +683,15 @@ Suffice it to say, we've got a good model now ;)
 ##### Example Reporting of multiple regression (Radical)
 
 <div style="margin-left: 40px;">
-We sought to determine how strongly strength affects agility, after controlling for speed and flexibility. To do so, we utilized a linear model. Upon visual inspection (Figure \@ref(fig:mrquad)), we determined that the speed/agility relationship is curvilinear: as strength increases, so does agility, until one reaches around 500, at which point more strength actually decreases agility. Consequently, we added a quadratic term to the linear model to account for the nonlinearity. Figure \@ref(fig:mrdiag) shows the diagnostics of this model, suggesting the assumptions of normality, linearity, and homoscedasticity have been met. The final visual representation of the model is shown in Figure \@ref(fig:mravp).
+We sought to determine how strongly strength affects agility, after controlling for speed and flexibility. To do so, we used a linear model of the following form:
+
+agility = $b_0$ + $b_1 \times$ speed + $b_2 \times$ flexibility + $b_3 \times$ strength
+
+Upon visual inspection (Figure \@ref(fig:mrquad)), we determined that the speed/agility relationship is curvilinear: as strength increases, so does agility, until one reaches around 500, at which point more strength actually decreases agility. Consequently, we added a quadratic term to the linear model to account for the nonlinearity:
+
+agility = $b_0$ + $b_1 \times$ speed + $b_2 \times$ flexibility + $b_3 \times$ strength + $b_4 \times$ strength$^2$
+
+Figure \@ref(fig:mrdiag) shows the diagnostic plots of this model, suggesting the assumptions of normality, linearity, and homoscedasticity have been met. The final visual representation of the model is shown in Figure \@ref(fig:mravp). This plot suggests agility increases rapidly as strength increases, but only to a point. At around a strength value of 500, agility tapers off and adding strength may even harm agility.
 
 Table \@ref(tab:mrestimates) reports the estimates for the variables of interest, along with 95\% confidence intervals. (Estimates for the flexibility/speed effects are omitted because they were only used as covariates, Fife, 2021). The linear and quadratic term combined explained `r round(estimates(multiple_reg_model)$semi.p[1], digits=3) + round(estimates(multiple_reg_model)$semi.p[4], digits=3)*100`\% of the variance in agility. 
 
@@ -733,3 +745,187 @@ We sought to determine how strongly strength affects agility, after controlling 
 Table \@ref(tab:mrestimates2) reports the estimates for the variables of interest, along with 95\% confidence intervals. The linear and quadratic term combined explained `r round(estimates(multiple_reg_model)$semi.p[1], digits=3) + round(estimates(multiple_reg_model)$semi.p[4], digits=3)*100`\% of the variance in agility. This effect was statistically significant (p<0.001). 
 </div>
 
+## Mediation Analysis
+
+Alright, you've twisted my arm. Well, maybe not you, but my own students. Their advisors keep asking them to do mediation analyses. I've never liked them, but never for any good reason, so I figured I ought to cave to the pressure and explain what mediation analyses are.
+
+Truth be told, I already told you...truthfully. But let me go into a bit more detail. To help understand, let's review what a conditioning analysis. A conditioning analysis identifies the effect of an interest variable, after subtracting out the effect of the control variable. Mediation is very similar, except it determines how much the size of the interest variable's effect is before versus after conditioning. Let me say that again, but in bold:
+
+*Conditioning analysis: identifying the effect of the interest variable after subtracting out the effect of the control variable*
+
+*Mediation analysis: identifying the effect of the interest variable before versus after subtracting out the effect of the control variable (mediator)*
+
+### An example
+
+Let's say we're interested in determining the effect of effort on muscle growth. Say you've measured effort using %VO2 max (i.e., the proportion of your maximum heartrate you achieve). You know there's a strong relationship between effort and muscle growth, but you want to know *why* there's a strong relationship. So you hypothesize that this effort/growth relationship is because of muscle *tears*. To put it differently, you suspect the only reason there's a relationship between effort and growth is because effort causes muscle tears, which then causes muscle growth. To use mediation terminology, we would say that muscle tears *mediates* the relationship between effort and growth. 
+
+To evaluate this hypothesis, maybe you design exercises that are really fatiguing, but do little to tear muscle fibers. For example, you might have participants do cardio-based exercises in addition to weight training. 
+
+In this example, effort is the "interest" variable, and muscle tears is the control variable. But, in a mediation analysis we actually call it a mediator. 
+
+### $c$ versus $c\prime$
+
+Now, you can't talk about mediation without showing a graphic like Figure xx, below. The boxes obviously represent the variables and the arrows represent the direction of causality. So, the top diagram suggests effort causes muscle growth (indicated by the parameter `c`), while the middle diagram suggests that effort causes muscle tears (indicated by the parameter `a`), which then causes growth (indicated by the parameter `b`). The bottom graph combines these two into one model, except now we have $c\prime$ (called "c prime"). This parameter ($c\prime$) is exactly equal to the slope in a regular old conditioning analysis.
+
+What mediation analysis asks is how large is the difference between $c$ and $c\prime$. When a mediator is fully responsible for the relationship between the interest variable and the outcome, we would expect $c\prime$ to be zero. If that's the case, that means that any association between the interest variable and the outcome is due entirely to the mediator. 
+
+"Now, wait a minute," I hear you saying. "If we do have a mediation situation and $c\prime$ is zero, why do we need to calculate $c$ at all? Can't we just determine that there's mediation if $c\prime$ is zero?"
+
+No. Why? Because $c\prime$ could be zero for two different reasons: (1) the mediator is responsible for the relationship (as we've already discussed), or (2) there is no relationship at all between the interest variable and the outcome, regardless of the mediator. For this reason, you must compute $c$ to ensure that the interest variable and the outcome are correlated before you even try to calculate $c\prime$. 
+
+But there's another reason we need to compute both $c$ and $c\prime$: very rarely do mediators *fully* explain the relationship between the interest variable and the outcome. Sometimes there's instead *partial mediation*. So, $c$ might equal .42 and $c\prime$ might equal .28. In that situation, we would consider that partial mediation.  
+
+### Performing a mediation analysis
+
+To perform a mediation analysis, it requires a couple of steps:
+
+1. Build a model predicting the outcome from the interest variable to compute $c$. 
+2. Build a model including the mediator and compute $c\prime$.
+3. Compare $c$ and $c\prime$ to determine the degree of mediation.
+4. Bootstrap the values of $c$ and $c\prime$
+5. Visualize the slopes for $c$ and $c\prime$
+
+Well snapdragon. I'm going to have to explain bootstrapping now. Is it too late to stop writing this section? 
+
+No?
+
+Fine. 
+
+#### Bootstrapping
+
+Okay, I just spent like an hour trying to explain why bootstrapping is necessary. No matter what I wrote, it was unnecessarily complicated. After several cuss words, I decided I'm not going to really explain why we need to bootstrap. Instead I'll give an intentionally vague reason why, coupled with an assurance to you that you don't have to fully understand what I'm saying. So, here it goes: we need bootstrapping because it gives us a cheap and easy way to compute probabilities. 
+
+Why do we need probabilities? Well, what we want to know is if our $c$ versus $c\prime$ difference was a fluke. Maybe that difference is 0.14. That value seems somewhat close to zero, so maybe that difference is a fluke. Maybe it's not. How do we know? We use bootstrapping. 
+
+To understand what bootstrapping is, I want you to imagine I am filthy rich and have a theater that I want to fill every night. The theater has 100 seats and it so happens that I have exactly 100 friends. Obviously, I could invite all my friends every night, fill every seat (assuming they all agree every time) and everyone's happy. Except that I want some of my friends to be able to bring their friends. 
+
+So, I decide that I will put all my friends' names in a jar. Then, every morning, I begin by drawing a name from the jar...Matthew Wood, you have been chosen to attend today! Nice! Enjoy the show Matt. But, instead of discarding Matt's name, I decide to put it *back into the jar*, shuffle the names, and draw again. Why? Again, maybe Matt wants to bring his lovely wife to the show and if I pull his name twice, he gets two tickets. 
+
+So, I draw a second name. Kyle Fackrell! Kyle gets to see the show. I put his name back in the jar. 
+
+I draw a third name. Jill Murray! She gets to see the show! Again, I put her name back in the jar. 
+
+Now, on the fourth draw, I pull Matt Wood's name again. Yay! Matt gets to bring his wife. So, I put his name back in the jar. 
+
+Then, maybe on the 89th draw, I pull Matt's name again. Now he gets to bring his son!
+
+On any give day, some people (like Matt) will get selected more than once. On other days, they might not get selected at all. (Sorry Matt!)
+
+If I were to repeat this, say over the course of 500 days, I will have created 500 bootstrapped samples of 100 people. 
+
+Now, let's apply this to our dataset. Suppose I have a dataset with five observations:
+
+| Person      | Score |
+| ----------- | ----------- |
+| 1   | 85  |
+| 2   | 92  |
+| 3   | 108  |
+| 4   | 112  |
+| 5   | 94  |
+
+If I wanted to bootstrap this sample, on my first sample might look like this:
+
+| Person      | Score |
+| ----------- | ----------- |
+| 3   | 108  |
+| 2   | 92  |
+| 3   | 108  |
+| 1   | 85  |
+| 5   | 94  |
+
+Notice how Person 3 was sampled twice and Person 4 wasn't sampled at all. 
+
+Now let's generate gather another bootstrapped sample:
+
+| Person      | Score |
+| ----------- | ----------- |
+| 5   | 94  |
+| 1   | 85  |
+| 1   | 85  |
+| 4   | 112  |
+| 3   | 108  |
+
+And maybe I do this 500 times. That means I have one actual dataset and 500 bootstrapped datasets. What do I do with these 500 datasets? I fit the exact same mediation models and compute both $c$ and $c\prime$ on each of these bootstrapped samples. And here is where things get really cool...because each of these samples has a different composition of scores, each estimate of $c$ and $c\prime$ will be different. Or, in stats terms, there will be *variability* in our estimates of $c$ and $c\prime$. This variability will allow us to compute probabilities. 
+
+For example, I might plot a histogram of the bootstrapped values for $c$ and $c\prime$:
+
+```{r, echo=F}
+d = data.frame(c=rnorm(500, .4, .2))
+require(flexplot)
+require(ggplot2)
+flexplot(c~1, data=d) +
+  geom_vline(xintercept=.4) +
+  labs(x=expression("c-c'"))
+```
+
+Notice how I overlaid the actual value of $c-c\prime$. Since nearly all those scores are above zero, we can reasonably conclude that the $c$/$c\prime$ difference is non-zero. 
+
+#### Visualizing mediation analyses
+
+Remember, a mediation analysis wants to know how large the differences is between $c$ and $c\prime$. Also remember that $c$ and $c\prime$ are just slopes. So, all we have to do is plot a slope for $c$ and a slope for $c\prime$. That might look something like this:
+
+
+Here, the xxx line is for $c$ (which, remember, is the slope without any conditioning), and the xxx colored line is the slope for $c\prime$ (which is the slope with conditioning). The size of that difference in slopes is the size of the mediation effect. 
+
+You might be asking what the dots represent. Are they the dots from the conditioned (residualized) analysis? Or from the unconditioned analysis. I actually don't remember. Let me check....Oh, it's from the xxx analysis. Why did I choose to display that? Good question....
+
+
+#### Performing a mediation analysis
+
+```{r, echo=FALSE}
+set.seed(1212111)
+compute_stats(252, 916)
+testosterone = rnorm(333, 584, 166)
+height = 5*12 + .4*(4/166)*testosterone + rnorm(length(testosterone), 0, 4)
+
+compute_stats(85, 155)
+depth = 230 + -.1*(17.5/155)*testosterone - .3*(17.5/4)*height + rnorm(length(testosterone), 0, 10) 
+voice_depth = data.frame(testosterone, height, depth)
+````
+
+For my example analysis, I have simulated data showing the relationship between testosterone level (interest variable), height (mediator), and voice depth (outcome). We know that those with higher testosterone levels tend to have deeper voices, but they also tend to be taller. And, those who are taller tend to have deeper voices. So, are their voices deeper because of testosterone? Or does the testosterone/depth relationship only exist because of height? 
+
+As I mentioned earlier, our first step is to fit a model between the interest variable and the outcome:
+
+```{r, echo=TRUE}
+model_one = lm(depth~testosterone, data=d)
+```
+
+We might want to look at the estimates to make sure the slope is actually non-zero:
+
+```{r, echo=TRUE}
+estimates(model_one)
+```
+
+Good. The correlation (-.28) is pretty far from zero, so we can continue. If it was zero, we'd have to quit there. 
+Now, let's fit the model where we condition on the mediator:
+
+```{r, ech=TRUE}
+model_two = lm(depth~testosterone + height, data=d)
+```
+
+And, of course, we could look at the new slope:
+
+```{r, echo=TRUE}
+estimates(model_two)
+```
+
+We'll go ahead and look at the standardized slopes since the units of testosterone lend themselves to small numbers. So the old standardized slope was -.28 and the new slope is -.07, which gives us a difference of .19. Clearly, we don't have full mediation (otherwise the second slope would be zero). But is that difference (.19) far enough from zero that we can conclude there's at least some mediation in the model? To answer that, we'll have to bootstrap.
+
+To boostrap, we'll have to use the `mediation` package. To install it, we can type:
+
+```{r, eval=F, echo=T}
+install.packages("mediation")
+require(mediation)
+```
+
+Now, to perform the bootstrapping, we'll type:
+
+```{r, echo=T}
+boostrapped_results = mediate()
+```
+
+
+Here's the code. Here's what the number mean. 
+
+Finally, we're ready to visualize this. 

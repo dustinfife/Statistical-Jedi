@@ -1,3 +1,273 @@
+--- 
+title: "The Order of the Statistical Jedi: <div style='font-size: .8em;'>Responsibilities, Routines, and Rituals</div>"
+author: "Dustin Fife"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output:
+  html_document:
+    toc: true
+    number_sections: false
+documentclass: book
+bibliography: [book.bib, packages.bib, book_citations.bib, references.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+--- 
+title: "The Order of the Statistical Jedi: <div style='font-size: .8em;'>Responsibilities, Routines, and Rituals</div>"
+author: "Dustin Fife"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output:
+  html_document:
+    toc: true
+    number_sections: false
+documentclass: book
+bibliography: [book.bib, packages.bib, book_citations.bib, references.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+---
+
+# Preface
+
+<hr>
+
+<img src="drawings/coverjedi.jpg" alt="drawing" class="cover"/>
+
+<!--chapter:end:index.Rmd-->
+
+
+# Introduction {#intro}
+
+Placeholder
+
+
+## The power of repetition (and my...umm...*complicated* history with statistics)
+## But there's a better way
+## The Curriculum Hasn't Changed in 50 Years!
+## The General Linear Model Approach
+
+<!--chapter:end:01-intro.Rmd-->
+
+
+# Ethics
+
+Placeholder
+
+
+## History of the Replication Crisis
+### Dederick Stapel
+### Darryl Bem
+### The "P-Hacking" Article
+## P-hacking
+## The Scientific Method Movement
+## Values versus Ethics
+## The Open Science Values
+### 1. Protecting humanity
+### 2. Seek truth
+### 3. Openness and transparency. 
+### 4. Humility and skepticism. 
+### 5. Dissemination. 
+## Making Change
+## Further data analysis ethics. 
+
+<!--chapter:end:02-Ethics.Rmd-->
+
+
+# Measurement
+
+Placeholder
+
+
+## Why am I talking about measurement?
+## Constructs
+## Operational Definitions
+## Validity
+### Evaluating Validity
+## Reliability
+### Evaluating reliability
+### Increasing Reliability
+## Variable types
+### Predictor versus Outcome Variables
+### Measurement scales
+## Take-home message
+
+<!--chapter:end:03-Measurement.Rmd-->
+
+
+# Univariate Distributions
+
+Placeholder
+
+
+## Categorical Variables
+### Column Sorting
+### Visualizing
+#### Line Chart
+#### Pie Charts
+#### Bar Charts
+### Interpreting Bar Charts
+#### Redundant Labels
+#### Unknown/Unexpected Labels
+#### Swapped Labels
+#### Small Sample Sizes
+#### Practice
+#### Visualizing Bar Charts in R
+#### Visualizing Bar Charts in JASP
+## Numeric Variables
+### What to Look Out For
+#### Normal (Bell-Curved) Distributions
+#### Outliers
+#### Skewness
+#### Zero-Inflated Data
+#### Bimodal data
+#### Visualizing Histograms in R
+#### Visualizing Histograms in JASP
+
+<!--chapter:end:04-UnivariateDistributions.Rmd-->
+
+
+# Univariate Estimates
+
+Placeholder
+
+
+## Central Tendency: What's the most likely score?
+### Mean
+#### Advantages of the Mean
+#### Disadvantages
+### Mode
+#### Disadvantages of the Mode
+#### Advantages of the Mode
+### Median
+#### Disadvantages of the Median
+#### Advantages of the Median
+### Central Tendency in JASP
+### Central Tendency in R
+## Variability: How precise are the scores?
+### Range
+#### Advantages/Disadvantages of the Range
+### Deviations, Standard Deviation, and Variance
+#### Advantages/Disadvantages of the Standard Deviation
+### Median Absolute Deviation
+#### Advantages/Disadvantages of the MAD
+### Variability in JASP
+### Variability in R
+## Z-Scores and Probability
+
+<!--chapter:end:05-UnivariateEstimates.Rmd-->
+
+
+# Bivariate Visualizations {#bivariate_visuals}
+
+Placeholder
+
+
+## Avengers Dataset
+### Visualizing bivariate relationships in R using Flexplot
+### Visualizing bivariate relationships in JASP using Visual Modeling
+## Scatterplots: Numeric on numeric
+### What to look for
+### Problems to look out for
+#### Nonlinearity
+#### Bivariate Outliers
+### Practice
+## Beeswarm plots: Categorical on Numeric
+### What to look for
+### Problems to look out for
+#### Uneven sample sizes
+#### Skewness
+## Other Bivariate Plots
+### Logistic Plots: Numeric on Binary
+### Association Plots: Categorical on Categorical
+
+<!--chapter:end:06-BivariateDistributions.Rmd-->
+
+
+# Bivariate Estimates
+
+Placeholder
+
+
+## Statistics Help Us Predict Things
+## Conditional Estimates
+## Estimates for Numeric Predictors
+### Slopes and Intercepts
+### Making Predictions
+### When Slopes/Intercepts Don't Make Sense
+### Correlation Coefficients
+#### What's a "Good" Correlation?
+#### Computing Estimates in R
+## Estimates for Categorical Predictors
+### Slopes and Intercepts for Categorical Predictors?
+### Cohen's $d$
+
+<!--chapter:end:07-BivariateEstimates.Rmd-->
+
+
+# Diagnostics {-}
+
+Placeholder
+
+
+## Models are tools. And they don't have feelings.
+## Residuals 
+## Diagnostic tool \# 1: Histogram of the residuals
+### Sensitivity Analyses
+## Diagnostic tool \# 2: Residual Dependence (RD) Plot for Linearity
+### Statistical Models are Lazy
+### Residual Dependence Plots
+### How to Fix Nonlinearity
+#### What is a Quadratic Term? 
+### How to tell if nonlinearity is a problem?
+### How much nonlinearity is too much?
+## Diagnostic tool \# 3: Scale-Location (SL) Plots for Homoscedasticity
+### Spread-Location (SL) Plots
+## Outliers
+## Independence
+### Why do models assume independence?
+### What happens if you violate the independence assumption?
+### How to detect and handle dependent data?
+## Summary
+
+<!--chapter:end:08-Diagnostics.Rmd-->
+
+
+# The Linear Model
+
+Placeholder
+
+
+## Wax on, wax off
+## What is a model?
+## What is the Linear Model?
+## What makes a good statistical model?
+## Prediction Versus Group Differences
+### Out with the old, in with the shiny
+## One-Sample T-Test
+### Traditional Analysis 
+### One-Sample T-Test as a LM
+## Independent Sample T-Test
+### Preparing Data for a t-test
+### Traditional t-test Analysis
+### LM Approach 
+## Related t-test
+### Traditional Related t-test Analysis
+### LM Analysis of a Related t-test
+## ANOVA 
+### Traditional Analysis of ANOVA
+#### Multiple comparisons
+### ANOVA as a LM
+## Regression
+### Traditional Regression Analysis
+### LM Approach
+## Categorical Outcome Variables
+## It's All the Same!
+## Summary
+
+<!--chapter:end:09-General-Linear-Model.Rmd-->
+
 # Visualizing Multivariate General Linear Models {#vizmvglms}
 
 ```{r, include=FALSE}
@@ -466,4 +736,153 @@ flexplot(agility~speed | strength + superpower, data=avenger)
 
 3. Suppose our interest variables are speed and agility, our outcome variable is ptsd, and our control variables are kills and injuries (and the interaction between the two). How would you use an AVP to visualize that?
 
+
+
+<!--chapter:end:10-MultivariateGLMs.Rmd-->
+
+
+# Multivariate GLMs: Conditioning Effects {#multivariate-glms-conditioning-effects}
+
+Placeholder
+
+
+## Multicollinearity
+## Controlling by conditioning
+## Conditioning is just residualizing
+## All the ways of thinking about "conditioning"
+## Be careful about conditioning! (And using multiple regression)
+### 1. Conditioning will not prove causation. 
+### 2. Be Careful what you condition on
+### 3. Only study and interpret the effects of the interest variable
+### 4. Conditioning with interaction effects. 
+## When should you use a conditioning analysis?
+## Additional Estimates of Interest
+### Slopes
+### R squared.
+### Semi-Partial $R^2$
+## Applied Analyses
+### ANCOVA 
+#### Reporting Results for an ANCOVA
+##### Example Reporting of ANOVA (Radical)
+##### Example Reporting of ANOVA (Traditionalist)
+##### Example Reporting of ANOVA (Conventionalist)
+### Multiple Regression
+#### Reporting of a Multiple Regression
+##### Example Reporting of multiple regression (Radical)
+##### Example Reporting of multiple regression (Traditionalist)
+##### Example Reporting of multiple regression (Conventionalist)
+
+<!--chapter:end:11-GLM-conditioning.Rmd-->
+
+
+# Multivariate GLMs: Interaction Effects {#mvinteractions}
+
+Placeholder
+
+
+## Visualizing interaction effects	
+### A simple visual trick to tell if there's an interaction
+## Interactions between numeric variables
+### Simple Slopes Analysis
+### The Flexplot Approach to Interpreting Interactions
+## The LM for interaction effects
+## Common things people screw up in the literature
+### Gripe #1. Interpreting main effects when interactions exist
+### Gripe #2: Failing to check whether interactions exist when doing an ANCOVA
+## Estimates for interactions
+## Applied Analyses
+### Factorial ANOVA
+#### Reporting Results for a Factorial ANOVA
+### Multiple Regression
+#### Reporting Results for a Multiple Regression
+### Mediation Analysis
+#### Reporting Results for a Multiple Regression
+
+<!--chapter:end:12-GLM-Interactions.Rmd-->
+
+
+# Probability
+
+Placeholder
+
+
+## Why and when we need probability?
+## Finite Samples
+## Infinite sets
+## Infinite Sets and Sampling
+## How to ensure a representative sample
+## Probability Density Functions
+### Computing Probabilities From PDFs
+## Chapter Summary
+
+<!--chapter:end:14-Probability.Rmd-->
+
+
+# Probability Two: Bayesian Probabilities (Versus Frequentist Approaches) {#bayesprobability}
+
+Placeholder
+
+
+## A Tale of Two Roomates
+### Tom's Approach
+### Egon's Approach
+### What do they conclude?
+## The Bayesian Approach
+### Strengths of the Bayesian approach
+### Weaknesses/Objections to the Bayesian Approach
+## Frequentist/Likelihood Description
+### Strengths
+### Weaknesses
+## Doing Bayesian Analyses in R
+
+<!--chapter:end:15-Probability-2.Rmd-->
+
+
+# Probability 3: The Central Limit Theorem
+
+Placeholder
+
+
+## Groundhog Day
+## The Central Limit Theorem
+## Implications of the CLT
+### Implication #1: Normality doesn't really matter
+### Implication #2. If your sample size is large enough, it's quite likely your estimate is close to the true value
+### Implication #3: We can (kinda sorta) make inferences about the population
+## Using the CLT to Making Inferences 
+### Confidence intervals
+#### Interpreting Confidence Intervals
+### p-values
+#### The logic of hypothesis testing
+## Learning Objectives
+
+<!--chapter:end:16-Probability-3.Rmd-->
+
+
+# Model Comparisons
+
+Placeholder
+
+
+## Nested versus non-nested Models
+## The Fit/Complexity Tradeoff
+## Model comparisons are tools, not procedures
+## Visual model comparisons
+## The `model.comparison` function
+### AIC/BIC
+### Bayes Factors
+### p values
+### $R^2$
+### The predicted values
+### What if the statistics disagree?
+## Hierarchical Regressions: Nested Model Comparisons in SPSS
+## Non-nested models
+## Summary
+
+<!--chapter:end:17-ModelComparisons.Rmd-->
+
+
+
+
+<!--chapter:end:scratch.Rmd-->
 

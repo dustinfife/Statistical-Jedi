@@ -274,3 +274,7 @@ what-if-the-statistics-disagree
 hierarchical-regressions-nested-model-comparisons-in-spss
 non-nested-models
 summary-2
+the-linear-model
+what-is-the-linear-model
+summary-3
+fig:decisiongtreeglm
