@@ -881,7 +881,7 @@ height = 5*12 + .4*(4/166)*testosterone + rnorm(length(testosterone), 0, 4)
 compute_stats(85, 155)
 depth = 230 + -.1*(17.5/155)*testosterone - .3*(17.5/4)*height + rnorm(length(testosterone), 0, 10) 
 voice_depth = data.frame(testosterone, height, depth)
-````
+```
 
 For my example analysis, I have simulated data showing the relationship between testosterone level (interest variable), height (mediator), and voice depth (outcome). We know that those with higher testosterone levels tend to have deeper voices, but they also tend to be taller. And, those who are taller tend to have deeper voices. So, are their voices deeper because of testosterone? Or does the testosterone/depth relationship only exist because of height? 
 
